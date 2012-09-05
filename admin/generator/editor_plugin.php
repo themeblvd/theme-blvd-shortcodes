@@ -10,7 +10,7 @@ $wp_url = $path_to_wp[0];
 require_once( $wp_url.'wp-load.php' );
 
 //URL to TinyMCE plugin folder
-$plugin_url = TB_SHORTCODES_PLUGIN_URI . '/generator/assets/images';
+$plugin_url = TB_SHORTCODES_PLUGIN_URI . '/admin/generator/assets/images';
 ?>
 (function(){
 	

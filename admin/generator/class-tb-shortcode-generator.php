@@ -52,7 +52,7 @@ class Theme_Blvd_Shortcode_Generator {
 			add_filter( 'mce_buttons', array( $this, 'filter_mce_buttons' ) );
 			add_filter( 'mce_external_plugins', array( $this, 'filter_mce_external_plugins' ) );
 			// TinyMCE shortcode plugin CSS
-			wp_enqueue_style( 'themeblvd-tinymce-shortcodes', TB_SHORTCODES_PLUGIN_URI . '/generator/assets/css/shortcodes.css', null, TB_SHORTCODES_PLUGIN_VERSION );
+			wp_enqueue_style( 'themeblvd-tinymce-shortcodes', TB_SHORTCODES_PLUGIN_URI . '/admin/generator/assets/css/shortcodes.css', null, TB_SHORTCODES_PLUGIN_VERSION );
 		}
 	}
 	
@@ -72,7 +72,7 @@ class Theme_Blvd_Shortcode_Generator {
 	 * @since 1.0.0
 	 */
 	function filter_mce_external_plugins( $plugins ) {
-        $plugins['ThemeBlvdShortcodes'] = TB_SHORTCODES_PLUGIN_URI.'/generator/editor_plugin.php';
+        $plugins['ThemeBlvdShortcodes'] = TB_SHORTCODES_PLUGIN_URI.'/admin/generator/editor_plugin.php';
         return $plugins;
 	}
 	
