@@ -38,6 +38,7 @@ define( 'TB_SHORTCODES_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
 function themeblvd_shortcodes_init() {
 	
 	global $_themeblvd_shortcode_generator;
+	global $_themeblvd_shortcode_options;
 
 	// Check to make sure Theme Blvd Framework 2.2+ is running
 	if( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '<' ) ) {
@@ -48,13 +49,27 @@ function themeblvd_shortcodes_init() {
 	if( is_admin() ) {
 	
 		// Add shortcode generator
-		include_once( TB_SHORTCODES_PLUGIN_DIR . '/generator/class-tb-shortcode-generator.php' );
+		include_once( TB_SHORTCODES_PLUGIN_DIR . '/admin/generator/class-tb-shortcode-generator.php' );
 		$_themeblvd_shortcode_generator = new Theme_Blvd_Shortcode_Generator();
+		
+		// Add shortcode options - Currently this consists of one option 
+		// that allows the [raw] shortcode to be disabled added to 
+		// Settings > General.
+		include_once( TB_SHORTCODES_PLUGIN_DIR . '/admin/options/class-tb-shortcode-options.php' );
+		$_themeblvd_shortcode_options = new Theme_Blvd_Shortcode_Options();
 	
 	} else {
 		
 		// Include shortcodes
 		include_once( TB_SHORTCODES_PLUGIN_DIR . '/shortcodes/shortcodes.php' );
+		
+		// Raw -- Can be disabled from WP > Settings > Writing
+		if( get_option( 'themeblvd_raw' ) != 'no' ) {
+			remove_filter( 'the_content', 'wpautop' );
+			remove_filter( 'the_content', 'wptexturize' );
+			remove_filter( 'the_content', 'shortcode_unautop' );
+			add_filter( 'the_content', 'themeblvd_content_formatter', 9 );
+		}
 		
 		// Columns
 		add_shortcode( 'one_sixth', 'themeblvd_shortcode_column' ); 		// 1/6
@@ -143,4 +158,26 @@ function themeblvd_shortcodes_warning() {
 	echo '<div class="updated">';
 	echo '<p>'.__( 'You currently have the "Theme Blvd Shortcodes" plugin activated, however you are not using a theme with Theme Blvd Framework v2.2+, and so this plugin will not do anything.', 'themeblvd_shortcodes' ).'</p>';
 	echo '</div>';
+}
+
+/**
+ * Content formatter.
+ *
+ * @since 2.0.0
+ *
+ * @param sting $content Content
+ */
+
+function themeblvd_content_formatter( $content ) {
+	$new_content = '';
+	$pattern_full = '{(\[raw\].*?\[/raw\])}is';
+	$pattern_contents = '{\[raw\](.*?)\[/raw\]}is';
+	$pieces = preg_split( $pattern_full, $content, -1, PREG_SPLIT_DELIM_CAPTURE );
+	foreach( $pieces as $piece ) {
+		if( preg_match( $pattern_contents, $piece, $matches ) )
+			$new_content .= $matches[1];
+		else
+			$new_content .= shortcode_unautop( wptexturize( wpautop( $piece ) ) );
+	}
+	return $new_content;
 }
