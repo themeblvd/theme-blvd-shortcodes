@@ -69,6 +69,7 @@ function themeblvd_shortcodes_init() {
 			remove_filter( 'the_content', 'wptexturize' );
 			remove_filter( 'the_content', 'shortcode_unautop' );
 			add_filter( 'the_content', 'themeblvd_content_formatter', 9 );
+			add_filter( 'themeblvd_the_content', 'themeblvd_content_formatter' );
 		}
 		
 		// Columns
