@@ -14,7 +14,7 @@ $path_to_wp = explode( 'wp-content', dirname(__FILE__) );
 $plugin_path = trailingslashit( '../wp-content' . substr( $path_to_wp[1], 0, -3 ) );
 
 //URL to TinyMCE plugin folder
-$plugin_url = TB_SHORTCODES_PLUGIN_URI.'/generator/';
+$plugin_url = TB_SHORTCODES_PLUGIN_URI.'/admin/generator/';
 ?>
 
 var framework_url = '<?php echo dirname( __FILE__ ); ?>';
