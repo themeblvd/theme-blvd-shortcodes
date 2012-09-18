@@ -2,7 +2,7 @@
 Author URI: http://www.jasonbobich.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 1.0.0
+Stable Tag: 1.0.1
 
 This plugin works in conjuction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
@@ -82,6 +82,10 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 1. Shortcode Generator
 
 == Changelog ==
+
+= 1.0.1 =
+
+* Fixed option forms not showing up with shortcode generator in ThickBox popup.
 
 = 1.0.0 =
 

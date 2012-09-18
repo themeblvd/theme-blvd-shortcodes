@@ -3,7 +3,7 @@
 Plugin Name: Theme Blvd Shortcodes
 Plugin URI: 
 Description: This plugin works in conjuction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
-Version: 1.0.0
+Version: 1.0.1
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
