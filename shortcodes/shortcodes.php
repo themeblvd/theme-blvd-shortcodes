@@ -406,14 +406,25 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_icon( $atts, $content = null ) {
-	$output = '';
+	
 	$default = array(
         'image' => 'accepted',
-        'align' => 'left' // left, right, center, none
+        'align' => 'left', // left, right, center, none
+        'width'	=> '45'
     );
     extract( shortcode_atts( $default, $atts ) );
+    
+    // Icon image URL
+    $image_url = get_template_directory_uri().'/framework/frontend/assets/images/shortcodes/icons/'.$image.'.png';
+    if( file_exists( get_stylesheet_directory().'/icons/'.$image.'.png' ) )
+    	$image_url = get_stylesheet_directory_uri().'/icons/'.$image.'.png';
+    
+    // Alignment
     $align != 'none' ? $align = ' class="align'.$align.'"' : $align = null;
-    $output = '<img src="'.get_template_directory_uri().'/framework/frontend/assets/images/shortcodes/icons/'.$image.'.png"'.$align.' />';
+    
+    // Output
+    $output = '<img src="'.$image_url.'" width="'.$width.'"'.$align.' />';
+	
 	return $output;
 }
 

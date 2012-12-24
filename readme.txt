@@ -2,7 +2,7 @@
 Author URI: http://www.jasonbobich.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 1.0.1
+Stable Tag: 1.0.2
 
 This plugin works in conjuction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
@@ -82,6 +82,11 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 1. Shortcode Generator
 
 == Changelog ==
+
+= 1.0.2 =
+
+* Added feature to override `[icon]` shortcode images from your Child theme. -- Just create a folder called "icons" in the root of your Child theme and any icons there will take presedence. 
+* Add "width" parameter to `[icon]` shortcode. -- Defaults to 45px and will make implementing retina icons easier.
 
 = 1.0.1 =
 

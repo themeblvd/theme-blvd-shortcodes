@@ -4,6 +4,7 @@
  * 
  * Optional arguments:
  *  - align: left, right, center, none
+ * 	- width: Width of image, should be 45
  */
 themeblvdShortcodeAtts={
 	attributes:[
@@ -20,6 +21,12 @@ themeblvdShortcodeAtts={
 			help:"Select how you'd like the icon aligned.", 
 			controlType:"select-control", 
 			selectValues:['left', 'right', 'center', 'none']
+		},
+		{
+			label:"Width",
+			id:"width",
+			value:"45",
+			help:"This is the width of the image. Don't change this unless you've created a custom icon image from your Child theme that has a different width."
 		}
 	],
 	defaultContent:"",
