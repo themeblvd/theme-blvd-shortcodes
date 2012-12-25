@@ -86,7 +86,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.0.2 =
 
 * Added feature to override `[icon]` shortcode images from your Child theme. -- Just create a folder called "icons" in the root of your Child theme and any icons there will take presedence. 
-* Add "width" parameter to `[icon]` shortcode. -- Defaults to 45px and will make implementing retina icons easier.
+* Added "width" parameter to `[icon]` shortcode. -- Defaults to 45px and will make implementing retina icons easier.
 
 = 1.0.1 =
 
