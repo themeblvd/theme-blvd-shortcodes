@@ -4,9 +4,10 @@
  * - thumbs: Size of post thumbnails - default, small, full, hide
  * - post_content: Show excerpts or full content - default, content, excerpt
  * - numberposts: Total number of posts, -1 for all posts
- * - orderby: post_date, title, comment_count, rand
+ * - orderby: date, title, comment_count, rand
  * - order: DESC, ASC
  * - offset: Number of posts to offset off the start, defaults to 0
+ * - query: Custom query string
  * - link: Show link after posts, true or false
  * - link_text: Text for the link
  * - link_url: URL where link should go
@@ -44,7 +45,7 @@ themeblvdShortcodeAtts={
 			id:"orderby",
 			help:"What to order the posts displayed by.", 
 			controlType:"select-control", 
-			selectValues:['post_date', 'title', 'comment_count', 'rand']
+			selectValues:['date', 'title', 'comment_count', 'rand']
 		},
 		{
 			label:"Order",
@@ -58,6 +59,12 @@ themeblvdShortcodeAtts={
 			id:"offset",
 			value:"0",
 			help:"Number of posts to offset off the start, defaults to 0"
+		},
+		{
+			label:"Custom Query",
+			id:"query",
+			value:"",
+			help:"Enter a custom WP query string. This is will override numberposts, orderby, order, and offset, setup previously."
 		},
 		{
 			label:"Link",

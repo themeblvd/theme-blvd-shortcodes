@@ -2,7 +2,7 @@
 Author URI: http://www.jasonbobich.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 1.0.2
+Stable Tag: 1.0.3
 
 This plugin works in conjuction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
@@ -82,6 +82,15 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 1. Shortcode Generator
 
 == Changelog ==
+
+= 1.0.3 =
+
+* Added `[post_slider]` to shortcode generator.
+* Added custom query option to shortcode generator with applicable shortcodes.
+* Changed default `[button]` size to blank, i.e. default Bootstrap button
+size.
+* Adding missing $size parameter for [popup] shortcode.
+* Fixed PHP warning with `[toggle]` shortcode.
 
 = 1.0.2 =
 

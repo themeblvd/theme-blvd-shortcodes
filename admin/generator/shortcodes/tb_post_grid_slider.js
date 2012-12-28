@@ -9,7 +9,7 @@
  *  - columns: Number of posts per row
  *  - rows: Number of rows per slide
  *  - numberposts: Total number of posts, -1 for all posts
- *  - orderby: post_date, title, comment_count, rand
+ *  - orderby: date, title, comment_count, rand
  *  - order: DESC, ASC
  *  - offset: Number of posts to offset off the start, defaults to 0
  */
@@ -77,7 +77,7 @@ themeblvdShortcodeAtts={
 			id:"orderby",
 			help:"What to order the posts displayed by.", 
 			controlType:"select-control", 
-			selectValues:['post_date', 'title', 'comment_count', 'rand']
+			selectValues:['date', 'title', 'comment_count', 'rand']
 		},
 		{
 			label:"Order",

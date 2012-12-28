@@ -534,6 +534,7 @@ $plugin_url = TB_SHORTCODES_PLUGIN_URI . '/admin/generator/assets/images';
 										a.addWithDialog(c,"Post List","post_list");
 									c=b.addMenu({title:"Sliders"});
 										a.addWithDialog(c,"Custom Slider","slider");
+										a.addWithDialog(c,"Post Slider","post_slider");
 										a.addWithDialog(c,"Post Grid Slider","post_grid_slider");
 										a.addWithDialog(c,"Post List Slider","post_list_slider");
 									a.addWithDialog(b,"Tabs","tabs");
