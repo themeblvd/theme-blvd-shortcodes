@@ -203,7 +203,7 @@ function themeblvd_shortcode_button( $atts, $content = null ) {
         'link' 			=> 'http://www.google.com',
         'color' 		=> 'default',
         'target' 		=> '_self',
-        'size' 			=> 'small',
+        'size' 			=> '',
         'class' 		=> '',
         'title' 		=> '',
         'icon_before' 	=> '',
@@ -346,6 +346,7 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
     	'text' 			=> 'Link Text', // Text for link or button leading to popup
 		'title' 		=> '', 			// Title for anchor, will default to "text" option
 		'color' 		=> '', 			// Color of button, only applies if button style is selected
+		'size'			=> '',			// Size of button, 
 		'icon_before'	=> '', 			// Icon before button or link's text
 		'icon_after' 	=> '', 			// Icon after button or link's text
 		'header' 		=> '', 			// Header text for popup
@@ -644,7 +645,7 @@ function themeblvd_shortcode_accordion( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_toggle( $atts, $content = null ) {		
-	if( isset( $atts[0] ) ) $last = ' accordion-group-last';
+	$last = isset( $atts[0] ) ? $last = ' accordion-group-last' : null;
 	$default = array(
         'title' => ''
     );
