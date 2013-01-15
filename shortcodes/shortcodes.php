@@ -414,17 +414,17 @@ function themeblvd_shortcode_icon( $atts, $content = null ) {
         'width'	=> '45'
     );
     extract( shortcode_atts( $default, $atts ) );
-    
+
     // Icon image URL
     $image_url = get_template_directory_uri().'/framework/frontend/assets/images/shortcodes/icons/'.$image.'.png';
     if( file_exists( get_stylesheet_directory().'/icons/'.$image.'.png' ) )
     	$image_url = get_stylesheet_directory_uri().'/icons/'.$image.'.png';
     
     // Alignment
-    $align != 'none' ? $align = ' class="align'.$align.'"' : $align = null;
+    $align != 'none' ? $align = ' align'.$align : $align = null;
     
     // Output
-    $output = '<img src="'.$image_url.'" width="'.$width.'"'.$align.' />';
+    $output = '<img src="'.$image_url.'" class="tb-image-icon '.$image.$align.'" width="'.$width.'" />';
 	
 	return $output;
 }
