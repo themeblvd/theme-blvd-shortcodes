@@ -47,10 +47,12 @@ function themeblvd_shortcodes_init() {
 	}
 	
 	if( is_admin() ) {
-	
-		// Add shortcode generator
-		include_once( TB_SHORTCODES_PLUGIN_DIR . '/admin/generator/class-tb-shortcode-generator.php' );
-		$_themeblvd_shortcode_generator = new Theme_Blvd_Shortcode_Generator();
+		
+		// Add shortcode generator -- Can be disabled from WP > Settings > Writing
+		if( get_option( 'themeblvd_shortcode_generator' ) != 'no' ) {
+			include_once( TB_SHORTCODES_PLUGIN_DIR . '/admin/generator/class-tb-shortcode-generator.php' );
+			$_themeblvd_shortcode_generator = new Theme_Blvd_Shortcode_Generator();
+		}
 		
 		// Add shortcode options - Currently this consists of one option 
 		// that allows the [raw] shortcode to be disabled added to 
