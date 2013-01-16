@@ -2,7 +2,7 @@
 Author URI: http://www.jasonbobich.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 1.0.3
+Stable Tag: 1.0.4
 
 This plugin works in conjuction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
