@@ -1004,7 +1004,9 @@ function themeblvd_shortcode_post_list( $atts ) {
 function themeblvd_shortcode_mini_post_grid( $atts ) {
 	// Default shortcode atts
 	$default = array(
-	    'categories' 	=> '',			// categories: Categories to include, category slugs separated by commas, or blank for all categories
+	    'categories' 	=> '',			// @deprecated -- Category slug(s) to include/exclude 
+        'cat'           => '',          // cat: Category ID(s) to include/exclude
+        'category_name' => '',          // category_name: Category slug(s) to include/exclude
 		'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts         
 	    'orderby' 		=> 'date',		// orderby: date, title, comment_count, rand
 	    'order' 		=> 'DESC',		// order: DESC, ASC
@@ -1017,8 +1019,18 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
 	extract( shortcode_atts( $default, $atts ) );
 	// Build query
 	if( ! $query ) {
-		$query  = 'category_name='.$categories;
-		$query .= '&numberposts='.$numberposts;
+		$query = '';
+        // Figure out category madness
+        if( $categories ) // @deprecated
+            $query = 'category_name='.$categories;
+        if( $cat )
+            $query = 'cat='.$cat;
+        if( $category_name )
+            $query = 'category_name='.$category_name;
+        // Continue query
+        if( $query )
+            $query .= '&';
+		$query .= 'numberposts='.$numberposts;
 		$query .= '&orderby='.$orderby;
 		$query .= '&order='.$order;
 		$query .= '&offset='.$offset;
@@ -1041,7 +1053,9 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
 function themeblvd_shortcode_mini_post_list( $atts ) {
 	// Default shortcode atts
 	$default = array(
-	    'categories' 	=> '',			// categories: Categories to include, category slugs separated by commas, or blank for all categories
+	    'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude 
+        'cat'           => '',          // cat: Category ID(s) to include/exclude
+        'category_name' => '',          // category_name: Category slug(s) to include/exclude
 		'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts         
 	    'orderby' 		=> 'date',		// orderby: date, title, comment_count, rand
 	    'order' 		=> 'DESC',		// order: DESC, ASC
@@ -1051,14 +1065,24 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
 	    'meta' 			=> 'show'		// show meta or not - show or hide
 	); 
 	extract( shortcode_atts( $default, $atts ) );
-	// Build query
-	if( ! $query ) {
-		$query  = 'category_name='.$categories;
-		$query .= '&numberposts='.$numberposts;
-		$query .= '&orderby='.$orderby;
-		$query .= '&order='.$order;
-		$query .= '&offset='.$offset;
-	}
+    // Build query
+    if( ! $query ) {
+        $query = '';
+        // Figure out category madness
+        if( $categories ) // @deprecated
+            $query = 'category_name='.$categories;
+        if( $cat )
+            $query = 'cat='.$cat;
+        if( $category_name )
+            $query = 'category_name='.$category_name;
+        // Continue query
+        if( $query )
+            $query .= '&';
+        $query .= 'numberposts='.$numberposts;
+        $query .= '&orderby='.$orderby;
+        $query .= '&order='.$order;
+        $query .= '&offset='.$offset;
+    }
 	// Format thumbnail size
 	if( $thumb == 'hide' ) 
 		$thumb = false;
