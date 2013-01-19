@@ -1022,18 +1022,16 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
 		$query = '';
         // Figure out category madness
         if( $categories ) // @deprecated
-            $query = 'category_name='.$categories;
+            $query = 'category_name='.$categories.'&';
         if( $cat )
-            $query = 'cat='.$cat;
+            $query = 'cat='.$cat.'&';
         if( $category_name )
-            $query = 'category_name='.$category_name;
+            $query = 'category_name='.$category_name.'&';
         // Continue query
-        if( $query )
-            $query .= '&';
-		$query .= 'numberposts='.$numberposts;
-		$query .= '&orderby='.$orderby;
-		$query .= '&order='.$order;
-		$query .= '&offset='.$offset;
+		$query .= 'numberposts='.$numberposts.'&';
+		$query .= 'orderby='.$orderby.'&';
+		$query .= 'order='.$order.'&';
+		$query .= 'offset='.$offset;
 	}
 	// Output
 	$output = themeblvd_get_mini_post_grid( $query, $align, $thumb, $gallery );
@@ -1070,18 +1068,17 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
         $query = '';
         // Figure out category madness
         if( $categories ) // @deprecated
-            $query = 'category_name='.$categories;
+            $query = 'category_name='.$categories.'&';
         if( $cat )
-            $query = 'cat='.$cat;
+            $query = 'cat='.$cat.'&';
         if( $category_name )
-            $query = 'category_name='.$category_name;
+            $query = 'category_name='.$category_name.'&';
         // Continue query
-        if( $query )
-            $query .= '&';
-        $query .= 'numberposts='.$numberposts;
-        $query .= '&orderby='.$orderby;
-        $query .= '&order='.$order;
-        $query .= '&offset='.$offset;
+        $query .= 'numberposts='.$numberposts.'&';
+        $query .= 'orderby='.$orderby.'&';
+        $query .= 'order='.$order.'&';
+        $query .= 'offset='.$offset;
+
     }
 	// Format thumbnail size
 	if( $thumb == 'hide' ) 
