@@ -685,7 +685,9 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         'nav_standard' 	=> 1, 			// nav_standard: Show standard nav dots to control slider - true or false
         'nav_arrows' 	=> 1, 			// nav_arrows: Show directional arrows to control slider - true or false
         'pause_play' 	=> 1, 			// pause_play: Show pause/play button - true or false
-        'categories' 	=> '',			// categories: Categories to include, category slugs separated by commas, or blank for all categories
+        'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude
+        'cat'           => '',          // cat: Category ID(s) to include/exclude
+        'category_name' => '',          // category_name: Category slug(s) to include/exclude
         'columns' 		=> 3,			// columns: Number of posts per row
         'rows' 			=> 3,			// rows: Number of rows per slide
         'numberposts' 	=> -1,			// numberposts: Total number of posts, -1 for all posts
@@ -693,7 +695,7 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         'order' 		=> 'DESC',		// order: DESC, ASC
         'offset' 		=> 0,			// offset: Number of posts to offset off the start, defaults to 0
         'crop'			=> ''			// crop: Can manually enter a featured image crop size
-    ); 
+    );
     extract( shortcode_atts( $default, $atts ) );
     // Generate unique ID
 	$id = uniqid( 'grid_'.rand() );
@@ -733,15 +735,13 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
     else
     	$options['pause_play'] = $default['pause_play'];
     
-    // Build categories array
-    if( $categories ) {
-    	$formatted_categories = explode( ',', $categories );
-    	foreach( $formatted_categories as $category ) {
-    		$options['categories'][$category] = 1;
-    	}
-    } else {
-    	$options['categories']['all'] = 1;
-    }
+    // Categories
+    if( $cat )
+        $options['cat'] = $cat;
+    elseif( $category_name )
+        $options['category_name'] = $category_name;
+    elseif( $categories )
+        $options['category_name'] = $categories; // @deprecated
     
 	// Output
 	ob_start();
@@ -772,10 +772,12 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
         'nav_standard' 		=> 1, 			// nav_standard: Show standard nav dots to control slider - true or false
         'nav_arrows' 		=> 1, 			// nav_arrows: Show directional arrows to control slider - true or false
         'pause_play' 		=> 1, 			// pause_play: Show pause/play button - true or false
-        'categories' 		=> '',			// categories: Categories to include, category slugs separated by commas, or blank for all categories
+        'categories'        => '',          // @deprecated -- Category slug(s) to include/exclude
+        'cat'               => '',          // cat: Category ID(s) to include/exclude
+        'category_name'     => '',          // category_name: Category slug(s) to include/exclude
         'thumbs' 			=> 'default',	// thumbs: Size of post thumbnails - default, small, full, hide
         'post_content' 		=> 'default',	// content: Show excerpts or full content - default, content, excerpt
-        'posts_per_slide' 	=> 3,			// posts_per_slide: Number of posts per slide.
+        'posts_per_slide'   => 3,			// posts_per_slide: Number of posts per slide.
         'numberposts' 		=> -1,			// numberposts: Total number of posts, -1 for all posts
         'orderby' 			=> 'date',		// orderby: date, title, comment_count, rand
         'order' 			=> 'DESC',		// order: DESC, ASC
@@ -820,15 +822,13 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
     else
     	$options['pause_play'] = $default['pause_play'];
     
-    // Build categories array
-    if( $categories ) {
-    	$formatted_categories = explode( ',', $categories );
-    	foreach( $formatted_categories as $category ) {
-    		$options['categories'][$category] = 1;
-    	}
-    } else {
-    	$options['categories']['all'] = 1;
-    }
+    // Categories
+    if( $cat )
+        $options['cat'] = $cat;
+    elseif( $category_name )
+        $options['category_name'] = $category_name;
+    elseif( $categories )
+        $options['category_name'] = $categories; // @deprecated
     
 	// Output
 	ob_start();
