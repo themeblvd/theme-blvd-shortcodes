@@ -858,7 +858,9 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
 
 function themeblvd_shortcode_post_grid( $atts ) {
 	$default = array(
-        'categories' 	=> '',					// categories: Categories to include, category slugs separated by commas, or blank for all categories
+        'categories'    => '',                  // @deprecated -- Category slug(s) to include/exclude
+        'cat'           => '',                  // cat: Category ID(s) to include/exclude
+        'category_name' => '',                  // category_name: Category slug(s) to include/exclude
         'columns' 		=> 3,					// columns: Number of posts per row
         'rows' 			=> 3,					// rows: Number of rows per slide
         'orderby' 		=> 'date',				// orderby: date, title, comment_count, rand
@@ -875,7 +877,6 @@ function themeblvd_shortcode_post_grid( $atts ) {
     
     // Build $options array compatible to element's function
     $options = array(
-        'categories' 	=> array('all' => 0),
         'columns' 		=> $columns,
         'rows' 			=> $rows,
         'orderby' 		=> $orderby,
@@ -888,23 +889,21 @@ function themeblvd_shortcode_post_grid( $atts ) {
         'link_target' 	=> $link_target
     );
     
+    // Categories
+    if( $cat )
+        $options['cat'] = $cat;
+    elseif( $category_name )
+        $options['category_name'] = $category_name;
+    elseif( $categories )
+        $options['category_name'] = $categories; // @deprecated
+    
     // Add in the booleans
     if( $link === 'true' )
-    	$options['link'] = 1;
+        $options['link'] = 1;
     else if( $link === 'false' )
-    	$options['link'] = 0;
+        $options['link'] = 0;
     else
-    	$options['link'] = $default['link'];
-    
-    // Build categories array
-    if( $categories ) {
-    	$formatted_categories = explode( ',', $categories );
-    	foreach( $formatted_categories as $category ) {
-    		$options['categories'][$category] = 1;
-    	}
-    } else {
-    	$options['categories']['all'] = 1;
-    }
+        $options['link'] = $default['link'];
     
 	// Output
 	ob_start();
@@ -930,8 +929,10 @@ function themeblvd_shortcode_post_grid( $atts ) {
 
 function themeblvd_shortcode_post_list( $atts ) {
 	$default = array(
-        'categories' 	=> '',					// categories: Categories to include, category slugs separated by commas, or blank for all categories
-		'thumbs' 		=> 'default',			// thumbs: Size of post thumbnails - default, small, full, hide
+        'categories' 	=> '',					// @deprecated -- Category slug(s) to include/exclude
+		'cat'           => '',                  // cat: Category ID(s) to include/exclude
+        'category_name' => '',                  // category_name: Category slug(s) to include/exclude
+        'thumbs' 		=> 'default',			// thumbs: Size of post thumbnails - default, small, full, hide
 		'post_content' 	=> 'default',			// content: Show excerpts or full content - default, content, excerpt
 		'numberposts' 	=> 3,					// numberposts: Total number of posts, -1 for all posts            
         'orderby' 		=> 'date',				// orderby: date, title, comment_count, rand
@@ -947,7 +948,6 @@ function themeblvd_shortcode_post_list( $atts ) {
     
     // Build $options array compatible to element's function
     $options = array(
-        'categories' 	=> array('all' => 0),
         'thumbs' 		=> $thumbs,
         'content' 		=> $post_content,
         'numberposts' 	=> $numberposts,
@@ -959,7 +959,15 @@ function themeblvd_shortcode_post_list( $atts ) {
         'link_url' 		=> $link_url,
         'link_target' 	=> $link_target
     );
-    
+     
+    // Categories
+    if( $cat )
+        $options['cat'] = $cat;
+    elseif( $category_name )
+        $options['category_name'] = $category_name;
+    elseif( $categories )
+        $options['category_name'] = $categories; // @deprecated
+
     // Add in the booleans
     if( $link === 'true' )
     	$options['link'] = 1;
@@ -967,16 +975,6 @@ function themeblvd_shortcode_post_list( $atts ) {
     	$options['link'] = 0;
     else
     	$options['link'] = $default['link'];
-    
-    // Build categories array
-    if( $categories ) {
-    	$formatted_categories = explode( ',', $categories );
-    	foreach( $formatted_categories as $category ) {
-    		$options['categories'][$category] = 1;
-    	}
-    } else {
-    	$options['categories']['all'] = 1;
-    }
     
 	// Output
 	ob_start();
