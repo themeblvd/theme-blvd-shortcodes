@@ -688,6 +688,7 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude
         'cat'           => '',          // cat: Category ID(s) to include/exclude
         'category_name' => '',          // category_name: Category slug(s) to include/exclude
+        'tag'           => '',          // tag: Tag(s) to include/exclude
         'columns' 		=> 3,			// columns: Number of posts per row
         'rows' 			=> 3,			// rows: Number of rows per slide
         'numberposts' 	=> -1,			// numberposts: Total number of posts, -1 for all posts
@@ -703,7 +704,6 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
     $options = array(
         'fx' 			=> $fx,
         'timeout' 		=> $timeout,
-        'categories' 	=> array('all' => 0),
         'columns' 		=> $columns,
         'rows' 			=> $rows,
         'numberposts' 	=> $numberposts,
@@ -742,6 +742,10 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         $options['category_name'] = $category_name;
     elseif( $categories )
         $options['category_name'] = $categories; // @deprecated
+
+    // Tags
+    if( $tag )
+        $options['tag'] = $tag;
     
 	// Output
 	ob_start();
@@ -758,7 +762,7 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
 }
 
 /**
- * Post Slider
+ * Post List Slider
  *
  * @since 1.0.0
  *
@@ -775,6 +779,7 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
         'categories'        => '',          // @deprecated -- Category slug(s) to include/exclude
         'cat'               => '',          // cat: Category ID(s) to include/exclude
         'category_name'     => '',          // category_name: Category slug(s) to include/exclude
+        'tag'               => '',          // tag: Tag(s) to include/exclude
         'thumbs' 			=> 'default',	// thumbs: Size of post thumbnails - default, small, full, hide
         'post_content' 		=> 'default',	// content: Show excerpts or full content - default, content, excerpt
         'posts_per_slide'   => 3,			// posts_per_slide: Number of posts per slide.
@@ -790,7 +795,6 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
     $options = array(
         'fx' 				=> $fx,
         'timeout' 			=> $timeout,
-        'categories' 		=> array('all' => 0),
         'thumbs' 			=> $thumbs,	
         'content' 			=> $post_content,
         'posts_per_slide' 	=> $posts_per_slide,
@@ -829,6 +833,10 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
         $options['category_name'] = $category_name;
     elseif( $categories )
         $options['category_name'] = $categories; // @deprecated
+    
+    // Tags
+    if( $tag )
+        $options['tag'] = $tag;
     
 	// Output
 	ob_start();
@@ -1005,7 +1013,8 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
 	    'categories' 	=> '',			// @deprecated -- Category slug(s) to include/exclude 
         'cat'           => '',          // cat: Category ID(s) to include/exclude
         'category_name' => '',          // category_name: Category slug(s) to include/exclude
-		'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts         
+		'tag'           => '',          // tag: Tag(s) to include/exclude
+        'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts         
 	    'orderby' 		=> 'date',		// orderby: date, title, comment_count, rand
 	    'order' 		=> 'DESC',		// order: DESC, ASC
 	    'offset' 		=> 0,			// offset: Number of posts to offset off the start, defaults to 0
@@ -1017,14 +1026,16 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
 	extract( shortcode_atts( $default, $atts ) );
 	// Build query
 	if( ! $query ) {
-		$query = '';
-        // Figure out category madness
+        // Categories
         if( $categories ) // @deprecated
-            $query = 'category_name='.$categories.'&';
+            $query .= 'category_name='.$categories.'&';
         if( $cat )
-            $query = 'cat='.$cat.'&';
+            $query .= 'cat='.$cat.'&';
         if( $category_name )
-            $query = 'category_name='.$category_name.'&';
+            $query .= 'category_name='.$category_name.'&';
+        // Tags
+        if( $tag )
+            $query .= 'tag='.$tag.'&';
         // Continue query
 		$query .= 'numberposts='.$numberposts.'&';
 		$query .= 'orderby='.$orderby.'&';
@@ -1052,7 +1063,8 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
 	    'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude 
         'cat'           => '',          // cat: Category ID(s) to include/exclude
         'category_name' => '',          // category_name: Category slug(s) to include/exclude
-		'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts         
+		'tag'           => '',          // tag: Tag(s) to include/exclude
+        'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts         
 	    'orderby' 		=> 'date',		// orderby: date, title, comment_count, rand
 	    'order' 		=> 'DESC',		// order: DESC, ASC
 	    'offset' 		=> 0,			// offset: Number of posts to offset off the start, defaults to 0
@@ -1063,20 +1075,21 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
 	extract( shortcode_atts( $default, $atts ) );
     // Build query
     if( ! $query ) {
-        $query = '';
-        // Figure out category madness
+        // Categories
         if( $categories ) // @deprecated
-            $query = 'category_name='.$categories.'&';
+            $query .= 'category_name='.$categories.'&';
         if( $cat )
-            $query = 'cat='.$cat.'&';
+            $query .= 'cat='.$cat.'&';
         if( $category_name )
-            $query = 'category_name='.$category_name.'&';
+            $query .= 'category_name='.$category_name.'&';
+        // Tags
+        if( $tag )
+            $query .= 'tag='.$tag.'&';
         // Continue query
         $query .= 'numberposts='.$numberposts.'&';
         $query .= 'orderby='.$orderby.'&';
         $query .= 'order='.$order.'&';
         $query .= 'offset='.$offset;
-
     }
 	// Format thumbnail size
 	if( $thumb == 'hide' ) 
