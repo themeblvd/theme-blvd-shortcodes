@@ -87,7 +87,9 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 * Added option at WP > Settings > Writing to turn off Shortcode generator from Visual Editor.
 * Added CSS classes to `[icon]` shortcode for any potential custom styling.
+* Now using "cat" and "category_name" params for `[mini_post_list]`, `[mini_post_grid]`, `[post_list]`, `[post_grid]`, `[post_list_slider]`, and `[post_grid_slider]`.
 * Added "tag" parameter for `[mini_post_list]`, `[mini_post_grid]`, `[post_list]`, `[post_grid]`, `[post_list_slider]`, and `[post_grid_slider]`.
+* Updated generator options for modified shortcodes.
 
 = 1.0.3 =
 

@@ -63,8 +63,13 @@ themeblvdShortcodeAtts={
 		},
 		{
 			label:"Categories",
-			id:"categories",
-			help:"List any category slugs you want to include separated by commas (no spaces!). Leave blank if you want to include all categories.<br><br>Ex: category-1,category-2,category-3"
+			id:"category_name",
+			help:"List any category slugs you want to include separated by commas."
+		},
+		{
+			label:"Tags",
+			id:"tag",
+			help:"List any tags you want to include separated by commas."
 		},
 		{
 			label:"Number of Posts",
