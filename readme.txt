@@ -87,6 +87,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 * Added option at WP > Settings > Writing to turn off Shortcode generator from Visual Editor.
 * Added CSS classes to `[icon]` shortcode for any potential custom styling.
+* Adjusted generator options for `[post_slider]`.
 
 = 1.0.3 =
 
