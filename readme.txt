@@ -85,6 +85,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.0.5 =
 
+* Fixed wpautop happenning before do_shortcode on "themeblvd_the_content".
+
 = 1.0.4 =
 
 * Added option at WP > Settings > Writing to turn off Shortcode generator from Visual Editor.
