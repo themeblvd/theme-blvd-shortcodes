@@ -695,6 +695,7 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         'orderby' 		=> 'date',		// orderby: date, title, comment_count, rand
         'order' 		=> 'DESC',		// order: DESC, ASC
         'offset' 		=> 0,			// offset: Number of posts to offset off the start, defaults to 0
+        'query'         => '',          // query: custom query string
         'crop'			=> ''			// crop: Can manually enter a featured image crop size
     );
     extract( shortcode_atts( $default, $atts ) );
@@ -710,6 +711,7 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         'orderby' 		=> $orderby,
         'order' 		=> $order,
         'offset' 		=> $offset,
+        'query'         => $query,
         'crop' 			=> $crop
     );
     
@@ -786,7 +788,8 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
         'numberposts' 		=> -1,			// numberposts: Total number of posts, -1 for all posts
         'orderby' 			=> 'date',		// orderby: date, title, comment_count, rand
         'order' 			=> 'DESC',		// order: DESC, ASC
-        'offset' 			=> 0			// offset: Number of posts to offset off the start, defaults to 0
+        'offset' 			=> 0,			// offset: Number of posts to offset off the start, defaults to 0
+        'query'             => ''           // query: custom query string
     ); 
     extract( shortcode_atts( $default, $atts ) );	    
     // Generate unique ID
@@ -801,7 +804,8 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
         'numberposts' 		=> $numberposts,
         'orderby' 			=> $orderby,
         'order' 			=> $order,
-        'offset' 			=> $offset
+        'offset' 			=> $offset,
+        'query'             => $query,
     );
     
     // Add in the booleans
