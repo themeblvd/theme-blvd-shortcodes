@@ -647,17 +647,25 @@ function themeblvd_shortcode_accordion( $atts, $content = null ) {
 function themeblvd_shortcode_toggle( $atts, $content = null ) {		
 	$last = isset( $atts[0] ) ? $last = ' accordion-group-last' : null;
 	$default = array(
-        'title' => ''
+        'title' => '',
+        'open'  => 'false'
     );
 	extract( shortcode_atts( $default, $atts ) );
+    // Is toggle open?
+    $classes = 'accordion-body collapse';
+    $icon = 'icon-plus-sign';
+    if( $open == 'true' ) {
+        $classes .= ' in';
+        $icon = 'icon-minus-sign';
+    }
 	// Individual toggle ID (NOT the Accordion ID)
 	$toggle_id = uniqid( 'toggle_'.rand() );
 	// Start output
 	$output  = '<div class="accordion-group'.$last.'">';
 	$output .= '<div class="accordion-heading">';               
-	$output .= '<a class="accordion-toggle" data-toggle="collapse" href="#'.$toggle_id.'"><i class="icon-plus-sign switch-me"></i> '.$title.'</a>';
+	$output .= '<a class="accordion-toggle" data-toggle="collapse" href="#'.$toggle_id.'"><i class="'.$icon.' switch-me"></i> '.$title.'</a>';
 	$output .= '</div><!-- .accordion-heading (end) -->';
-	$output .= '<div id="'.$toggle_id.'" class="accordion-body collapse">';
+	$output .= '<div id="'.$toggle_id.'" class="'.$classes.'">';
 	$output .= '<div class="accordion-inner">';
 	$output .= apply_filters( 'themeblvd_the_content', $content );
 	$output .= '</div><!-- .accordion-inner (end) -->';
