@@ -12,6 +12,7 @@
  *  - orderby: date, title, comment_count, rand
  *  - order: DESC, ASC
  *  - offset: Number of posts to offset off the start, defaults to 0
+ *  - query: Custom query string
  */
 themeblvdShortcodeAtts={
 	attributes:[
@@ -96,6 +97,12 @@ themeblvdShortcodeAtts={
 			id:"offset",
 			value:"0",
 			help:"Number of posts to offset off the start, defaults to 0"
+		},
+		{
+			label:"Custom Query",
+			id:"query",
+			value:"",
+			help:"Enter a custom WP query string. This is will override numberposts, orderby, and order, setup previously."
 		}
 	],
 	defaultContent:"",
