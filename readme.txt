@@ -86,8 +86,9 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.0.5 =
 
 * Added custom "query" parameter for post list/grid slider shortcodes.
-* Fixed wpautop happenning before do_shortcode on "themeblvd_the_content".
 * Added feature to start toggle as open. -- `[toggle open="true"]`
+* Fixed wpautop happenning before do_shortcode on "themeblvd_the_content".
+* Accounted for framework now adding more filters to "themeblvd_the_content" when adding in `[raw]` shortcode.
 
 = 1.0.4 =
 

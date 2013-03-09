@@ -67,11 +67,17 @@ function themeblvd_shortcodes_init() {
 		
 		// Raw -- Can be disabled from WP > Settings > Writing
 		if( get_option( 'themeblvd_raw' ) != 'no' ) {
-			remove_filter( 'the_content', 'wpautop' );
+			
 			remove_filter( 'the_content', 'wptexturize' );
+			remove_filter( 'the_content', 'wpautop' );
 			remove_filter( 'the_content', 'shortcode_unautop' );
 			add_filter( 'the_content', 'themeblvd_content_formatter', 9 );
-			add_filter( 'themeblvd_the_content', 'themeblvd_content_formatter', 9 );
+
+			remove_filter( 'themeblvd_the_content', 'wptexturize' );
+			remove_filter( 'themeblvd_the_content', 'wpautop' );
+			remove_filter( 'themeblvd_the_content', 'shortcode_unautop' );
+			add_filter( 'themeblvd_the_content', 'themeblvd_content_formatter', 9 ); // Framework uses themeblvd_the_content in some areas so plugins filtering the_content do not effect.
+		
 		}
 		
 		// Columns
@@ -180,7 +186,7 @@ function themeblvd_content_formatter( $content ) {
 		if( preg_match( $pattern_contents, $piece, $matches ) )
 			$new_content .= $matches[1];
 		else
-			$new_content .= shortcode_unautop( wptexturize( wpautop( $piece ) ) );
+			$new_content .= shortcode_unautop( wpautop( wptexturize( $piece ) ) );
 	}
 	return $new_content;
 }
