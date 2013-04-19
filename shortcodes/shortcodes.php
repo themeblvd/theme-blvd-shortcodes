@@ -60,11 +60,12 @@
  */
 
 function themeblvd_shortcode_column( $atts, $content = null, $tag = '' ) {
-	// Determine if column is last in row
+    // Determine if column is last in row
 	$last = '';
-	if ( isset( $atts[0] ) && trim( $atts[0] ) == 'last')
+	if( isset( $atts[0] ) && trim( $atts[0] ) == 'last')
 		$last = ' last';
-	// Determine width of column
+	
+    // Determine width of column
 	$class = 'column ';
 	if( 'one_sixth' == $tag || 'one-sixth' == $tag )
 		$class .= 'grid_2';
@@ -90,9 +91,14 @@ function themeblvd_shortcode_column( $atts, $content = null, $tag = '' ) {
 		$class .= 'grid_tenth_3';
 	else if( 'seven_tenth' == $tag || 'seven-tenth' == $tag )
 		$class .= 'grid_tenth_7';
-	// Return column
+	
+    // Force wpautop in shortcode? (not relevant if columns not wrapped in [raw])
+    if( isset( $atts['wpautop'] ) && trim( $atts['wpautop'] ) == 'true')
+        $content = wpautop( $content );
+
+    // Return column
 	$content = '<div class="'.$class.$last.'">'.$content.'</div><!-- .column (end) -->';
-	return do_shortcode( $content );
+    return do_shortcode( $content );
 }
 
 /**

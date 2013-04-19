@@ -86,6 +86,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.0.6 =
 
 * Added "tag" parameter for `[post_list]` and `[post_grid]`.
+* Added optional `wpautop=true` parameter on column shortcodes to allow forcing wpautop when wrapping column sets in `[raw]`.
 
 = 1.0.5 =
 
