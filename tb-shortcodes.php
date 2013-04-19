@@ -43,6 +43,7 @@ function themeblvd_shortcodes_init() {
 	// Check to make sure Theme Blvd Framework 2.2+ is running
 	if( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '<' ) ) {
 		add_action( 'admin_notices', 'themeblvd_shortcodes_warning' );
+		add_action( 'admin_init', 'themeblvd_shortcodes_disable_nag' );
 		return;
 	}
 	
@@ -164,9 +165,39 @@ add_action( 'plugins_loaded', 'themeblvd_shortcodes_textdomain' );
  */
 
 function themeblvd_shortcodes_warning() {
-	echo '<div class="updated">';
-	echo '<p>'.__( 'You currently have the "Theme Blvd Shortcodes" plugin activated, however you are not using a theme with Theme Blvd Framework v2.2+, and so this plugin will not do anything.', 'themeblvd_shortcodes' ).'</p>';
-	echo '</div>';
+	global $current_user;
+	// DEBUG: delete_user_meta( $current_user->ID, 'tb_shortcode_no_framework' )
+	if( ! get_user_meta( $current_user->ID, 'tb_shortcode_no_framework' ) ){
+		echo '<div class="updated">';
+		echo '<p>'.__( 'You currently have the "Theme Blvd Shortcodes" plugin activated, however you are not using a theme with Theme Blvd Framework v2.2+, and so this plugin will not do anything.', 'themeblvd_shortcodes' ).'</p>';
+		echo '<p><a href="?tb_nag_ignore=tb_shortcode_no_framework">'.__('Dismiss this notice', 'themeblvd').'</a> | <a href="http://www.themeblvd.com" target="_blank">Visit ThemeBlvd.com</a></p>';
+		echo '</div>';
+	}
+}
+
+/**
+ * Dismiss an admin notice.
+ *
+ * An admin notice could be setup something like this:
+ *
+ * function my_admin_notice(){
+ *		global $current_user;
+ * 		if( ! get_user_meta( $current_user->ID, 'example_message' ) ){
+ * 			echo '<div class="updated">';
+ *			echo '<p>Some message to the user.</p>';
+ * 			echo '<p><a href="?tb_nag_ignore=example_message">Dismiss this notice</a></p>';
+ *			echo '</div>';
+ * 		}
+ * }
+ * add_action( 'admin_notices', 'my_admin_notice' );
+ *
+ * @since 1.0.6
+ */
+
+function themeblvd_shortcodes_disable_nag() {
+	global $current_user;
+    if ( isset( $_GET['tb_nag_ignore'] ) )
+         add_user_meta( $current_user->ID, $_GET['tb_nag_ignore'], 'true', true );
 }
 
 /**
