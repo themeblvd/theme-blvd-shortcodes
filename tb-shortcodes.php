@@ -170,7 +170,7 @@ function themeblvd_shortcodes_warning() {
 	if( ! get_user_meta( $current_user->ID, 'tb_shortcode_no_framework' ) ){
 		echo '<div class="updated">';
 		echo '<p>'.__( 'You currently have the "Theme Blvd Shortcodes" plugin activated, however you are not using a theme with Theme Blvd Framework v2.2+, and so this plugin will not do anything.', 'themeblvd_shortcodes' ).'</p>';
-		echo '<p><a href="?tb_nag_ignore=tb_shortcode_no_framework">'.__('Dismiss this notice', 'themeblvd').'</a> | <a href="http://www.themeblvd.com" target="_blank">Visit ThemeBlvd.com</a></p>';
+		echo '<p><a href="?tb_nag_ignore=tb_shortcode_no_framework">'.__('Dismiss this notice', 'themeblvd_shortcodes').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'themeblvd_shortcodes').'</a></p>';
 		echo '</div>';
 	}
 }
