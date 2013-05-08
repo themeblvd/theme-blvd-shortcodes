@@ -54,10 +54,13 @@ function themeblvd_shortcodes_init() {
 			include_once( TB_SHORTCODES_PLUGIN_DIR . '/admin/generator/class-tb-shortcode-generator.php' );
 			$_themeblvd_shortcode_generator = new Theme_Blvd_Shortcode_Generator();
 		}
+
+		// Auto Lightbox -- Can be disabled from WP > Settings > Writing
+		if( get_option( 'themeblvd_auto_lightbox' ) != 'no' ) {
+			add_filter( 'image_send_to_editor', 'themeblvd_lightbox_send_to_editor', 10, 8 );
+		}
 		
-		// Add shortcode options - Currently this consists of one option 
-		// that allows the [raw] shortcode to be disabled added to 
-		// Settings > General.
+		// Add shortcode options, Settings > General.
 		include_once( TB_SHORTCODES_PLUGIN_DIR . '/admin/options/class-tb-shortcode-options.php' );
 		$_themeblvd_shortcode_options = new Theme_Blvd_Shortcode_Options();
 	
@@ -220,4 +223,83 @@ function themeblvd_content_formatter( $content ) {
 			$new_content .= shortcode_unautop( wpautop( wptexturize( $piece ) ) );
 	}
 	return $new_content;
+}
+
+/**
+ * Grab image being sent to editor and transform it into 
+ * the [lightbox] shortcode if image is linked to Vimeo, 
+ * YouTube, Quicktime files, or image files.
+ *
+ * @since 1.0.7
+ *
+ * @param string $html HTML markup for image to be converted
+ * @param string $id Attachment ID of image
+ * @param string $caption Image's caption, get out of here if this exists
+ * @param string $title Title of <img /> tag, should be blank as WP doesn't use any more
+ * @param string $align How to align image - none, right, left 
+ * @param string $url URL being linked to in the lightbox popup
+ * @param string $size WP crop size for image
+ * @param string $alt Title of the image, which we'll put through to the title of the <a> for prettyPhoto
+ * @return string $html Modified <img /> output into [lightbox] shortcode
+ */
+
+function themeblvd_lightbox_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt ){
+	if( ! $caption && $icon = themeblvd_prettyphoto_supported_link( $url ) ) {
+		
+		list( $img_src, $width, $height ) = image_downsize( $id, $size );
+		
+		$atts = array(
+			'link'		=> $url,
+			'thumb'		=> $img_src,
+			'width'		=> $width,
+			'height'	=> $height,
+			'align'		=> $align,
+			'title'		=> $alt,
+			'frame'		=> 'true',
+			'icon'		=> $icon 	// video or image
+		);
+		$html = sprintf('[lightbox link="%s" thumb="%s" width="%s" height="%s" align="%s" title="%s" frame="%s" icon="%s"]', $atts['link'], $atts['thumb'], $atts['width'], $atts['height'], $atts['align'], $atts['title'], $atts['frame'], $atts['icon']);
+	}
+	
+	return apply_filters( 'themeblvd_lightbox_to_editor', $html, $atts );
+}
+
+/** 
+ * Determine if prettyPhoto can take the current URL and 
+ * display in the lightbox. 
+ * (Pluggable because also added to Theme Blvd framework)
+ *
+ * @since 1.0.7
+ *
+ * @param string $url URL string to check
+ * @return string $icon Type of URL (video or image) or blank if URL not supported
+ */
+
+if( ! function_exists( 'themeblvd_prettyphoto_supported_link' ) ) {
+	function themeblvd_prettyphoto_supported_link( $url ) {
+		
+		$icon = '';
+
+		if( $url ) {
+			
+			// Link to Vimeo or YouTube page?
+			if( strpos( $url, 'vimeo.com' ) !== false || 
+				strpos( $url, 'youtube.com' ) !== false || 
+				strpos( $url, 'youtu.be' ) !== false )
+			$icon = 'video';
+			
+			if( ! $icon ) {
+				$parsed_url = parse_url( $url );
+				$type = wp_check_filetype( $parsed_url['path'] );
+				// Link to .mov file?
+				if( $type['ext'] == 'mov' )
+					$icon = 'video';
+				// Link to image file?
+				if( substr( $type['type'], 0, 5 ) == 'image' )
+					$icon = 'image';
+			}
+		}
+
+		return apply_filters( 'themeblvd_prettyphoto_supported_link', $icon, $url );
+	}
 }

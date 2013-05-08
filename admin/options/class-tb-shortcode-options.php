@@ -29,10 +29,12 @@ class Theme_Blvd_Shortcode_Options {
 	 	// Add options to "Theme Blvd Shortcodes" section.
 	 	add_settings_field( 'themeblvd_raw', __('Raw Shortcode', 'themeblvd_shortcodes'), array( $this, 'display_option_raw' ), 'writing', 'themeblvd_shortcodes' );
 	 	add_settings_field( 'themeblvd_shortcode_generator', __('Shortcode Generator', 'themeblvd_shortcodes'), array( $this, 'display_option_generator' ), 'writing', 'themeblvd_shortcodes' );
+	 	add_settings_field( 'themeblvd_auto_lightbox', __('Auto Lightbox', 'themeblvd_shortcodes'), array( $this, 'display_option_auto_lightbox' ), 'writing', 'themeblvd_shortcodes' );
 	 	
 	 	// Register options
 	 	register_setting( 'writing', 'themeblvd_raw', array( $this, 'sanitize_yes_no' ) );
 	 	register_setting( 'writing', 'themeblvd_shortcode_generator', array( $this, 'sanitize_yes_no' ) );
+	 	register_setting( 'writing', 'themeblvd_auto_lightbox', array( $this, 'sanitize_yes_no' ) );
 	 	
 	}
 	
@@ -51,7 +53,7 @@ class Theme_Blvd_Shortcode_Options {
 	 * @since 1.0.0
 	 */
 	public function display_option_raw() {
-		$desc = __( 'Because the [raw] shortcode isn\'t a standard shortcode, having it enabled does effect the output of your content and may conflict with other plugins.', 'themeblvd_shortcode' );
+		$desc = __( 'Because the [raw] shortcode isn\'t a standard shortcode, having it enabled does effect the output of your content and may conflict with other plugins.', 'themeblvd_shortcodes' );
 		$this->display_yes_no( 'themeblvd_raw', $desc );
 	}
 
@@ -61,8 +63,18 @@ class Theme_Blvd_Shortcode_Options {
 	 * @since 1.0.4
 	 */
 	public function display_option_generator() {
-		$desc = __( 'If our plugin\'s shortcode generator causes any problems with WordPress\'s Visual Editor and your server setup, you can disable it here.', 'themeblvd_shortcode' );
+		$desc = __( 'If our plugin\'s shortcode generator causes any problems with WordPress\'s Visual Editor and your server setup, you can disable it here.', 'themeblvd_shortcodes' );
 		$this->display_yes_no( 'themeblvd_shortcode_generator', $desc );
+	}
+
+	/**
+	 * Display option to disable shortcode generator.
+	 *
+	 * @since 1.0.7
+	 */
+	public function display_option_auto_lightbox() {
+		$desc = __( 'When inserting an image with this enabled, images linked to YouTube, Vimeo, Quicktime files, and image files will be automatically converted to the [lightbox] shortcode.', 'themeblvd_shortcodes' );
+		$this->display_yes_no( 'themeblvd_auto_lightbox', $desc );
 	}
 
 	/**
