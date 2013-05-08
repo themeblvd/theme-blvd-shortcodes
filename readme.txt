@@ -85,6 +85,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.0.7 =
 
+* When inserting `[tabs]` shortcode, default example now has `tabs_above`.
+
 = 1.0.6 =
 
 * Added "tag" parameter for `[post_list]` and `[post_grid]`.
