@@ -66,6 +66,12 @@ The Theme Blvd shortcodes pack wouldn't be complete without the ability create s
 
 [View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/tabs/)
 
+= Lightbox =
+
+Theme Blvd themes already come with basic prettyPhoto lightbox integration, and this plugin will give you a `[lightbox]` shortcode you can use to easily tap into this. 
+
+Additionally, there is a featured called "Auto Lightbox" which will automatically convert images inserted into pages and posts into the `[lightbox]` shortcode when they link to a lightbox-compatible URL. Note that you can disable this functionality from *Settings > Writing* in your WordPress admin.
+
 = Raw Shortcode =
 
 Any content wrapped in the `[raw]` shortcode will allow you to escape any automatic WordPress formatting. Keep in mind that this is not a standard shortcode, and does modify the content outputted in your site. So, if you find that this conflicts with any other plugins you may be using, you can disable this functionality all together from *Settings > Writing* in your WordPress admin.
@@ -85,6 +91,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.0.7 =
 
+* Added `[lightbox]` shortcode
+* Added "Auto Lightbox" feature when inserting images into pages and posts. -- Can be disabled from WP > Settings > Writing. 
 * When inserting `[tabs]` shortcode, default example now has `tabs_above`.
 
 = 1.0.6 =
