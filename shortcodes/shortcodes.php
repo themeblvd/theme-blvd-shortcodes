@@ -23,6 +23,7 @@
  *		- divider			=> @since 1.0.0
  * 		- progess_bar		=> @since 1.0.0
  *		- popup				=> @since 1.0.0
+ *      - lightbox          => @since 1.0.7
  * (3) Inline Elements
  *		- icon				=> @since 1.0.0
  *		- icon_link 		=> @since 1.0.0
@@ -396,6 +397,95 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
     $output .= '</div><!-- .modal-footer (end) -->';
     $output .= '</div><!-- .modal (end) -->';
     return $output;
+}
+
+/**
+ * Lightbox
+ *
+ * @since 1.0.7
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @param string $content Content in shortcode
+ * @return string $output Content to output for shortcode
+ */
+
+function themeblvd_shortcode_lightbox( $atts, $content = null ) {
+    $default = array(
+        'link'      => '',          // URL being linked to in the lightbox popup
+        'thumb'     => '',          // Text or Image URL being used for link to lightbox
+        'width'     => '',          // Width of tumbnail image linking to lighbox
+        'align'     => '',          // Alignment of thumbnail image
+        'title'     => '',          // Title displayed in lightbox link
+        'frame'     => 'true',      // Whether or not to display frame around thumbnail
+        'frame_max' => 'true',      // Whether or not the frame takes on the image's width as a max-width (super-secret and not in generator)
+        'icon'      => 'image',     // Icon for thumbnail if in frame - video or image
+        'gallery'   => '',          // Optional gallery name to link to other items on page
+        'class'     => ''           // Class to append to <a>, or frame if enabled
+    );
+    $atts = shortcode_atts( $default, $atts );
+
+    $output = '';
+
+    // Setup thumbnail, can be image or text string
+    $thumb = $atts['thumb'];
+    $has_thumb_img = false;
+    $thumb_type = wp_check_filetype( $thumb );
+    if( substr( $thumb_type['type'], 0, 5 ) == 'image' ) {
+        $has_thumb_img = true;
+        // Build <img /> HTML for thumbnail
+        $thumb = sprintf('<img src="%s" alt="%s"', $thumb, $atts['title'] );
+        if( $atts['width'] )
+            $thumb .= sprintf( ' width="%s"', $atts['width'] );
+        if( $atts['frame'] == 'false' && $atts['align'] != 'none' ) // If image is framed, the alignment will be on the frame
+            $thumb .= sprintf( ' class="align%s"', $atts['align'] );
+        $thumb .= ' />';
+    }
+
+    // Wrap thumbail image/text in link to lightbox
+    $anchor_classes = '';
+    if( $atts['frame'] == 'true' )
+        $anchor_classes .= 'thumbnail '.$atts['icon'];
+    if( $atts['frame'] == 'false' && $atts['class'] )
+        $anchor_classes .= $atts['class'];
+
+    $rel = 'themeblvd_lightbox';
+    if( $atts['gallery'] )
+        $rel .= "[".$atts['gallery']."]";
+
+    if( $atts['frame'] == 'true' && $has_thumb_img )
+        $thumb .= apply_filters( 'themeblvd_image_overlay', '<span class="image-overlay"><span class="image-overlay-bg"></span><span class="image-overlay-icon"></span></span>');
+
+    $output .= sprintf( '<a href="%s" title="%s" class="%s" rel="%s">%s</a>', $atts['link'], $atts['title'], $anchor_classes, $rel, $thumb );
+
+    // Wrap link and thumbnail image in frame
+    if( $atts['frame'] == 'true' && $has_thumb_img ) {
+        
+        $wrap_classes = '';
+        if( $atts['align'] != 'none' )
+            $wrap_classes .= 'align'.$atts['align'];
+        if( $atts['class'] )
+            $wrap_classes .= ' '.$atts['class'];
+
+        $style = '';
+        if( $atts['width'] && $atts['frame_max'] == 'true' )
+            $style = sprintf(' style="max-width: %spx"', $atts['width']);
+
+        $wrap  = '<div class="'.$wrap_classes.'"'.$style.'>';
+        $wrap .= '<div class="featured-image-wrapper">';
+        $wrap .= '<div class="featured-image">';
+        $wrap .= '<div class="featured-image-inner">';
+        $wrap .= '%s';
+        $wrap .= '</div><!-- .featured-image-inner (end) -->';
+        $wrap .= '</div><!-- .featured-image (end) -->';
+        $wrap .= '</div><!-- .featured-image-wrapper (end) -->';
+        $wrap .= '</div>';
+        $wrap = apply_filters( 'themeblvd_lightbox_thumbnail_wrap', $wrap, $classes );
+        
+        $output = sprintf( $wrap, $output );
+    }
+
+    return apply_filters( 'themeblvd_shortcode_lightbox', $output, $atts, $thumb );
+
 }
 
 /*-----------------------------------------------------------*/
