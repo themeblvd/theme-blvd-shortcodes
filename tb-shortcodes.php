@@ -119,6 +119,7 @@ function themeblvd_shortcodes_init() {
 		add_shortcode( 'divider', 'themeblvd_shortcode_divider' );
 		add_shortcode( 'progress_bar', 'themeblvd_shortcode_progress_bar' );
 		add_shortcode( 'popup', 'themeblvd_shortcode_popup' );
+		add_shortcode( 'lightbox', 'themeblvd_shortcode_lightbox' );
 		
 		// Inline Elements
 		add_shortcode( 'icon', 'themeblvd_shortcode_icon' );
@@ -246,19 +247,25 @@ function themeblvd_content_formatter( $content ) {
 function themeblvd_lightbox_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt ){
 	if( ! $caption && $icon = themeblvd_prettyphoto_supported_link( $url ) ) {
 		
+		global $content_width;
+		$original_content_width = $content_width;
+		$content_width = 0;
+
 		list( $img_src, $width, $height ) = image_downsize( $id, $size );
 		
 		$atts = array(
 			'link'		=> $url,
 			'thumb'		=> $img_src,
 			'width'		=> $width,
-			'height'	=> $height,
 			'align'		=> $align,
 			'title'		=> $alt,
 			'frame'		=> 'true',
 			'icon'		=> $icon 	// video or image
 		);
-		$html = sprintf('[lightbox link="%s" thumb="%s" width="%s" height="%s" align="%s" title="%s" frame="%s" icon="%s"]', $atts['link'], $atts['thumb'], $atts['width'], $atts['height'], $atts['align'], $atts['title'], $atts['frame'], $atts['icon']);
+		$html = sprintf('[lightbox link="%s" thumb="%s" width="%s" align="%s" title="%s" frame="%s" icon="%s"]', $atts['link'], $atts['thumb'], $atts['width'], $atts['align'], $atts['title'], $atts['frame'], $atts['icon']);
+		
+		// Restore admin content width
+		$content_width = $original_content_width;
 	}
 	
 	return apply_filters( 'themeblvd_lightbox_to_editor', $html, $atts );
