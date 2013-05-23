@@ -94,6 +94,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Added `[lightbox]` shortcode
 * Added "Auto Lightbox" feature when inserting images into pages and posts. -- Can be disabled from WP > Settings > Writing. 
 * When inserting `[tabs]` shortcode, default example now has `tabs_above`.
+* Added fix for `[icon]` shortcode image URL's to work with Theme Blvd framework v2.3+.
 
 = 1.0.6 =
 
