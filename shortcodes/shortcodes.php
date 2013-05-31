@@ -1152,10 +1152,11 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
         if( $tag )
             $query .= 'tag='.$tag.'&';
         // Continue query
-		$query .= 'numberposts='.$numberposts.'&';
-		$query .= 'orderby='.$orderby.'&';
-		$query .= 'order='.$order.'&';
-		$query .= 'offset='.$offset;
+        $query .= 'numberposts='.$numberposts.'&';
+        $query .= 'orderby='.$orderby.'&';
+        $query .= 'order='.$order.'&';
+        $query .= 'offset='.$offset.'&';
+        $query .= 'suppress_filters=false'; // Mainly for WPML compat
 	}
 	// Output
 	$output = themeblvd_get_mini_post_grid( $query, $align, $thumb, $gallery );
@@ -1204,7 +1205,8 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
         $query .= 'numberposts='.$numberposts.'&';
         $query .= 'orderby='.$orderby.'&';
         $query .= 'order='.$order.'&';
-        $query .= 'offset='.$offset;
+        $query .= 'offset='.$offset.'&';
+        $query .= 'suppress_filters=false'; // Mainly for WPML compat
     }
 	// Format thumbnail size
 	if( $thumb == 'hide' ) 

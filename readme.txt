@@ -124,6 +124,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 size.
 * Adding missing $size parameter for [popup] shortcode.
 * Fixed PHP warning with `[toggle]` shortcode.
+* Added compatibility for WPML with `[mini_post_list]` and `[mini_post_grid]`.
 
 = 1.0.2 =
 
