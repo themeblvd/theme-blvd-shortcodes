@@ -174,26 +174,13 @@ function themeblvd_shortcodes_warning() {
 	if( ! get_user_meta( $current_user->ID, 'tb_shortcode_no_framework' ) ){
 		echo '<div class="updated">';
 		echo '<p>'.__( 'You currently have the "Theme Blvd Shortcodes" plugin activated, however you are not using a theme with Theme Blvd Framework v2.2+, and so this plugin will not do anything.', 'themeblvd_shortcodes' ).'</p>';
-		echo '<p><a href="?tb_nag_ignore=tb_shortcode_no_framework">'.__('Dismiss this notice', 'themeblvd_shortcodes').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'themeblvd_shortcodes').'</a></p>';
+		echo '<p><a href="'.themeblvd_shortcodes_disable_url('tb_shortcode_no_framework').'">'.__('Dismiss this notice', 'themeblvd_shortcodes').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'themeblvd_shortcodes').'</a></p>';
 		echo '</div>';
 	}
 }
 
 /**
  * Dismiss an admin notice.
- *
- * An admin notice could be setup something like this:
- *
- * function my_admin_notice(){
- *		global $current_user;
- * 		if( ! get_user_meta( $current_user->ID, 'example_message' ) ){
- * 			echo '<div class="updated">';
- *			echo '<p>Some message to the user.</p>';
- * 			echo '<p><a href="?tb_nag_ignore=example_message">Dismiss this notice</a></p>';
- *			echo '</div>';
- * 		}
- * }
- * add_action( 'admin_notices', 'my_admin_notice' );
  *
  * @since 1.0.6
  */
@@ -202,6 +189,26 @@ function themeblvd_shortcodes_disable_nag() {
 	global $current_user;
     if ( isset( $_GET['tb_nag_ignore'] ) )
          add_user_meta( $current_user->ID, $_GET['tb_nag_ignore'], 'true', true );
+}
+
+/**
+ * Disable admin notice URL.
+ *
+ * @since 1.0.7
+ */
+
+function themeblvd_shortcodes_disable_url( $id ) {
+
+	global $pagenow;
+
+	$url = admin_url( $pagenow );
+
+	if( ! empty( $_SERVER['QUERY_STRING'] ) )
+		$url .= sprintf( '?%s&tb_nag_ignore=%s', $_SERVER['QUERY_STRING'], $id );
+	else
+		$url .= sprintf( '?tb_nag_ignore=%s', $id );
+
+	return $url;
 }
 
 /**
