@@ -45,7 +45,7 @@ function themeblvd_shortcodes_init() {
 	global $_themeblvd_shortcode_options;
 
 	// Include general functions
-	include_once( TB_BUILDER_PLUGIN_DIR . '/includes/general.php' );
+	include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/general.php' );
 
 	// Check to make sure Theme Blvd Framework 2.2+ is running
 	if( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '<' ) ) {
