@@ -1,14 +1,13 @@
 <?php
 /*
 Plugin Name: Theme Blvd Shortcodes
-Plugin URI: 
 Description: This plugin works in conjuction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 Version: 1.0.7
-Author: Jason Bobich
-Author URI: http://jasonbobich.com
+Author: Theme Blvd
+Author URI: http://themeblvd.com
 License: GPL2
 
-    Copyright 2012  Jason Bobich
+    Copyright 2013  Theme Blvd
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License version 2,
@@ -25,20 +24,28 @@ License: GPL2
     http://www.gnu.org/licenses/gpl-2.0.html
 
 */
-define( 'TB_SHORTCODES_PLUGIN_VERSION', '1.0.7' );
-define( 'TB_SHORTCODES_PLUGIN_DIR', dirname( __FILE__ ) ); 
-define( 'TB_SHORTCODES_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
 
+// Avoid potential conflicts on activation with Bundle.
+if ( !defined( 'TB_SHORTCODES_PLUGIN_VERSION' ) ) {
+
+	define( 'TB_SHORTCODES_PLUGIN_VERSION', '1.0.7' );
+	define( 'TB_SHORTCODES_PLUGIN_DIR', dirname( __FILE__ ) );
+	define( 'TB_SHORTCODES_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
+}
+
+if ( !function_exists( 'themeblvd_shortcodes_init' ) ) : // Avoid activation errors with Bundle
 /**
  * Run Shortcodes
  *
  * @since 1.0.0
  */
- 
 function themeblvd_shortcodes_init() {
-	
+
 	global $_themeblvd_shortcode_generator;
 	global $_themeblvd_shortcode_options;
+
+	// Include general functions
+	include_once( TB_BUILDER_PLUGIN_DIR . '/includes/general.php' );
 
 	// Check to make sure Theme Blvd Framework 2.2+ is running
 	if( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '<' ) ) {
@@ -46,12 +53,12 @@ function themeblvd_shortcodes_init() {
 		add_action( 'admin_init', 'themeblvd_shortcodes_disable_nag' );
 		return;
 	}
-	
+
 	if( is_admin() ) {
-		
+
 		// Add shortcode generator -- Can be disabled from WP > Settings > Writing
 		if( get_option( 'themeblvd_shortcode_generator' ) != 'no' ) {
-			include_once( TB_SHORTCODES_PLUGIN_DIR . '/admin/generator/class-tb-shortcode-generator.php' );
+			include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/admin/generator/class-tb-shortcode-generator.php' );
 			$_themeblvd_shortcode_generator = new Theme_Blvd_Shortcode_Generator();
 		}
 
@@ -59,19 +66,19 @@ function themeblvd_shortcodes_init() {
 		if( get_option( 'themeblvd_auto_lightbox' ) != 'no' ) {
 			add_filter( 'image_send_to_editor', 'themeblvd_lightbox_send_to_editor', 10, 8 );
 		}
-		
+
 		// Add shortcode options, Settings > General.
-		include_once( TB_SHORTCODES_PLUGIN_DIR . '/admin/options/class-tb-shortcode-options.php' );
+		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/admin/options/class-tb-shortcode-options.php' );
 		$_themeblvd_shortcode_options = new Theme_Blvd_Shortcode_Options();
-	
+
 	} else {
-		
+
 		// Include shortcodes
-		include_once( TB_SHORTCODES_PLUGIN_DIR . '/shortcodes/shortcodes.php' );
-		
+		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/shortcodes.php' );
+
 		// Raw -- Can be disabled from WP > Settings > Writing
 		if( get_option( 'themeblvd_raw' ) != 'no' ) {
-			
+
 			remove_filter( 'the_content', 'wptexturize' );
 			remove_filter( 'the_content', 'wpautop' );
 			remove_filter( 'the_content', 'shortcode_unautop' );
@@ -81,9 +88,9 @@ function themeblvd_shortcodes_init() {
 			remove_filter( 'themeblvd_the_content', 'wpautop' );
 			remove_filter( 'themeblvd_the_content', 'shortcode_unautop' );
 			add_filter( 'themeblvd_the_content', 'themeblvd_content_formatter', 9 ); // Framework uses themeblvd_the_content in some areas so plugins filtering the_content do not effect.
-		
+
 		}
-		
+
 		// Columns
 		add_shortcode( 'one_sixth', 'themeblvd_shortcode_column' ); 		// 1/6
 		add_shortcode( 'one-sixth', 'themeblvd_shortcode_column' );			// 1/6 (deprecated)
@@ -110,7 +117,7 @@ function themeblvd_shortcodes_init() {
 		add_shortcode( 'seven_tenth', 'themeblvd_shortcode_column' );		// 7/10
 		add_shortcode( 'seven-tenth', 'themeblvd_shortcode_column' );		// 7/10 (deprecated)
 		add_shortcode( 'clear', 'themeblvd_shortcode_clear' );				// Clear row
-		
+
 		// Components
 		add_shortcode( 'icon_list', 'themeblvd_shortcode_icon_list' );
 		add_shortcode( 'button', 'themeblvd_shortcode_button' );
@@ -120,7 +127,7 @@ function themeblvd_shortcodes_init() {
 		add_shortcode( 'progress_bar', 'themeblvd_shortcode_progress_bar' );
 		add_shortcode( 'popup', 'themeblvd_shortcode_popup' );
 		add_shortcode( 'lightbox', 'themeblvd_shortcode_lightbox' );
-		
+
 		// Inline Elements
 		add_shortcode( 'icon', 'themeblvd_shortcode_icon' );
 		add_shortcode( 'icon_link', 'themeblvd_shortcode_icon_link' );
@@ -128,192 +135,36 @@ function themeblvd_shortcodes_init() {
 		add_shortcode( 'dropcap', 'themeblvd_shortcode_dropcap' );
 		add_shortcode( 'label', 'themeblvd_shortcode_label' );
 		add_shortcode( 'vector_icon', 'themeblvd_shortcode_vector_icon' );
-		
+
 		// Tabs, Toggles, and Accordion
 		add_shortcode( 'tabs', 'themeblvd_shortcode_tabs' );
 		add_shortcode( 'accordion', 'themeblvd_shortcode_accordion' );
 		add_shortcode( 'toggle', 'themeblvd_shortcode_toggle' );
-		
+
 		// Sliders
 		add_shortcode( 'post_grid_slider', 'themeblvd_shortcode_post_grid_slider' );
 		add_shortcode( 'post_list_slider', 'themeblvd_shortcode_post_list_slider' );
-		
+
 		// Display Posts
 		add_shortcode( 'post_grid', 'themeblvd_shortcode_post_grid' );
 		add_shortcode( 'post_list', 'themeblvd_shortcode_post_list' );
 		add_shortcode( 'mini_post_grid', 'themeblvd_shortcode_mini_post_grid' );
 		add_shortcode( 'mini_post_list', 'themeblvd_shortcode_mini_post_list' );
-		
+
 	}
-	
+
 }
 add_action( 'after_setup_theme', 'themeblvd_shortcodes_init' );
+endif;
 
+if ( !function_exists( 'themeblvd_shortcodes_textdomain' ) ) : // Avoid activation errors with Bundle
 /**
  * Register text domain for localization.
  *
  * @since 1.0.0
  */
-
 function themeblvd_shortcodes_textdomain() {
 	load_plugin_textdomain( 'themeblvd_shortcodes', false, TB_SHORTCODES_PLUGIN_DIR . '/lang' );
 }
 add_action( 'plugins_loaded', 'themeblvd_shortcodes_textdomain' );
-
-/**
- * Display warning telling the user they must have a 
- * theme with Theme Blvd framework v2.2+ installed in 
- * order to run this plugin.
- *
- * @since 1.0.0
- */
-
-function themeblvd_shortcodes_warning() {
-	global $current_user;
-	// DEBUG: delete_user_meta( $current_user->ID, 'tb_shortcode_no_framework' )
-	if( ! get_user_meta( $current_user->ID, 'tb_shortcode_no_framework' ) ){
-		echo '<div class="updated">';
-		echo '<p>'.__( 'You currently have the "Theme Blvd Shortcodes" plugin activated, however you are not using a theme with Theme Blvd Framework v2.2+, and so this plugin will not do anything.', 'themeblvd_shortcodes' ).'</p>';
-		echo '<p><a href="'.themeblvd_shortcodes_disable_url('tb_shortcode_no_framework').'">'.__('Dismiss this notice', 'themeblvd_shortcodes').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'themeblvd_shortcodes').'</a></p>';
-		echo '</div>';
-	}
-}
-
-/**
- * Dismiss an admin notice.
- *
- * @since 1.0.6
- */
-
-function themeblvd_shortcodes_disable_nag() {
-	global $current_user;
-    if ( isset( $_GET['tb_nag_ignore'] ) )
-         add_user_meta( $current_user->ID, $_GET['tb_nag_ignore'], 'true', true );
-}
-
-/**
- * Disable admin notice URL.
- *
- * @since 1.0.7
- */
-
-function themeblvd_shortcodes_disable_url( $id ) {
-
-	global $pagenow;
-
-	$url = admin_url( $pagenow );
-
-	if( ! empty( $_SERVER['QUERY_STRING'] ) )
-		$url .= sprintf( '?%s&tb_nag_ignore=%s', $_SERVER['QUERY_STRING'], $id );
-	else
-		$url .= sprintf( '?tb_nag_ignore=%s', $id );
-
-	return $url;
-}
-
-/**
- * Content formatter.
- *
- * @since 1.0.0
- *
- * @param sting $content Content
- */
-
-function themeblvd_content_formatter( $content ) {
-	$new_content = '';
-	$pattern_full = '{(\[raw\].*?\[/raw\])}is';
-	$pattern_contents = '{\[raw\](.*?)\[/raw\]}is';
-	$pieces = preg_split( $pattern_full, $content, -1, PREG_SPLIT_DELIM_CAPTURE );
-	foreach( $pieces as $piece ) {
-		if( preg_match( $pattern_contents, $piece, $matches ) )
-			$new_content .= $matches[1];
-		else
-			$new_content .= shortcode_unautop( wpautop( wptexturize( $piece ) ) );
-	}
-	return $new_content;
-}
-
-/**
- * Grab image being sent to editor and transform it into 
- * the [lightbox] shortcode if image is linked to Vimeo, 
- * YouTube, Quicktime files, or image files.
- *
- * @since 1.0.7
- *
- * @param string $html HTML markup for image to be converted
- * @param string $id Attachment ID of image
- * @param string $caption Image's caption, get out of here if this exists
- * @param string $title Title of <img /> tag, should be blank as WP doesn't use any more
- * @param string $align How to align image - none, right, left 
- * @param string $url URL being linked to in the lightbox popup
- * @param string $size WP crop size for image
- * @param string $alt Title of the image, which we'll put through to the title of the <a> for prettyPhoto
- * @return string $html Modified <img /> output into [lightbox] shortcode
- */
-
-function themeblvd_lightbox_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt ){
-	if( ! $caption && $icon = themeblvd_prettyphoto_supported_link( $url ) ) {
-		
-		global $content_width;
-		$original_content_width = $content_width;
-		$content_width = 0;
-
-		list( $img_src, $width, $height ) = image_downsize( $id, $size );
-		
-		$atts = array(
-			'link'		=> $url,
-			'thumb'		=> $img_src,
-			'width'		=> $width,
-			'align'		=> $align,
-			'title'		=> $alt,
-			'frame'		=> 'true',
-			'icon'		=> $icon 	// video or image
-		);
-		$html = sprintf('[lightbox link="%s" thumb="%s" width="%s" align="%s" title="%s" frame="%s" icon="%s"]', $atts['link'], $atts['thumb'], $atts['width'], $atts['align'], $atts['title'], $atts['frame'], $atts['icon']);
-		
-		// Restore admin content width
-		$content_width = $original_content_width;
-	}
-	
-	return apply_filters( 'themeblvd_lightbox_to_editor', $html, $atts );
-}
-
-/** 
- * Determine if prettyPhoto can take the current URL and 
- * display in the lightbox. 
- * (Pluggable because also added to Theme Blvd framework)
- *
- * @since 1.0.7
- *
- * @param string $url URL string to check
- * @return string $icon Type of URL (video or image) or blank if URL not supported
- */
-
-if( ! function_exists( 'themeblvd_prettyphoto_supported_link' ) ) {
-	function themeblvd_prettyphoto_supported_link( $url ) {
-		
-		$icon = '';
-
-		if( $url ) {
-			
-			// Link to Vimeo or YouTube page?
-			if( strpos( $url, 'vimeo.com' ) !== false || 
-				strpos( $url, 'youtube.com' ) !== false || 
-				strpos( $url, 'youtu.be' ) !== false )
-			$icon = 'video';
-			
-			if( ! $icon ) {
-				$parsed_url = parse_url( $url );
-				$type = wp_check_filetype( $parsed_url['path'] );
-				// Link to .mov file?
-				if( $type['ext'] == 'mov' )
-					$icon = 'video';
-				// Link to image file?
-				if( substr( $type['type'], 0, 5 ) == 'image' )
-					$icon = 'image';
-			}
-		}
-
-		return apply_filters( 'themeblvd_prettyphoto_supported_link', $icon, $url );
-	}
-}
+endif;

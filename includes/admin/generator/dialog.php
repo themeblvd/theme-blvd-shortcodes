@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Setup URL to WordPres
 $absolute_path = __FILE__;
 $path_to_wp = explode( 'wp-content', $absolute_path );
@@ -28,7 +28,7 @@ require_once( $wp_url.'/wp-load.php' );
 			</table>
 		</div>
 		<div class="clear"></div>
-		<script type="text/javascript" src="<?php echo TB_SHORTCODES_PLUGIN_URI; ?>/admin/generator/assets/js/dialog-js.php"></script>
+		<script type="text/javascript" src="<?php echo TB_SHORTCODES_PLUGIN_URI; ?>/includes/admin/generator/assets/js/dialog-js.php"></script>
 	</div><!-- #themeblvd-dialog (end) -->
 </body>
 </html>

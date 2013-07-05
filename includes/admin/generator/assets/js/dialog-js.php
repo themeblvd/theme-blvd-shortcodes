@@ -14,7 +14,7 @@ $path_to_wp = explode( 'wp-content', dirname(__FILE__) );
 $plugin_path = trailingslashit( '../wp-content' . substr( $path_to_wp[1], 0, -3 ) );
 
 //URL to TinyMCE plugin folder
-$plugin_url = TB_SHORTCODES_PLUGIN_URI.'/admin/generator/';
+$plugin_url = TB_SHORTCODES_PLUGIN_URI.'/includes/admin/generator/';
 ?>
 
 var framework_url = '<?php echo dirname( __FILE__ ); ?>';
@@ -23,11 +23,11 @@ var shortcode_generator_path = '<?php echo $plugin_path; ?>';
 var shortcode_generator_url = '<?php echo $plugin_url; ?>';
 
 var tb_dialog_helper = {
-	
+
 	// ---------------------------------------------------------
     // TickBox popup controls
     // ---------------------------------------------------------
-    
+
     remove_linebreaks : false,
     needsPreview: false,
     setUpButtons: function () {
@@ -44,7 +44,7 @@ var tb_dialog_helper = {
             var a = this;
             jQuery.getScript(shortcode_generator_url + "shortcodes/tb_" + themeblvdSelectedShortcodeType + ".js", function () {
                 a.initializeDialog();
-                
+
                 // Set the default content to the highlighted text, for certain shortcode types.
                 switch ( themeblvdSelectedShortcodeType ) {
 					case 'box':
@@ -59,9 +59,9 @@ var tb_dialog_helper = {
 					case 'toggle':
 						jQuery('textarea#themeblvd-value-content').val( selectedText );
 					break;
-				
+
 				} // End SWITCH Statement
-                
+
                 // Automatic preview generation on load.
                 a.previewAction();
             })
@@ -101,20 +101,20 @@ var tb_dialog_helper = {
 	                case "text-control":
 	                    this.createTextControl(a[c], f, c == 0);
 	                    break;
-	                    
+
 	                case "textarea-control":
 	                    this.createTextAreaControl(a[c], f, c == 0);
 	                    break;
-	
+
 	                case "select-control":
 	                    this.createSelectControl(a[c], f, c == 0);
 	                    break;
 	                }
-	
+
 	                jQuery("<tr/>").append(g).append(f).appendTo(b)
 	            }
 	            jQuery(".themeblvd-focus-here:first").focus()
-	
+
 				// Add additional wrappers, etc, to each select box.
 				jQuery('#themeblvd-shortcode-options select').wrap( '<div class="select_wrapper"></div>' ).before('<span></span>');
 				jQuery('#themeblvd-shortcode-options select option:selected').each( function () {
@@ -123,7 +123,7 @@ var tb_dialog_helper = {
 
         } // End IF Statement
     },
-    
+
      /* Tab Generator Element */
 
     createTabControl: function (a, b, c) {
@@ -136,14 +136,14 @@ var tb_dialog_helper = {
     // ---------------------------------------------------------
 
     createTextControl: function (a, b, c) {
-		
+
         var f = a.validateLink ? "themeblvd-validation-marker" : "",
             d = a.isRequired ? "themeblvd-required" : "",
             g = "themeblvd-" + a.id,
             e = a.value; // Default text input value (Added 10/10/2011)
 
         jQuery('<input type="text">').attr("id", g).attr("name", g).val(e).addClass(f).addClass(d).addClass('txt input-text').addClass(c ? "themeblvd-focus-here" : "").appendTo(b);
-		
+
         if (a = a.help) {
             jQuery("<br/>").appendTo(b);
             jQuery("<span/>").addClass("themeblvd-input-help").html(a).appendTo(b)
@@ -159,11 +159,11 @@ var tb_dialog_helper = {
         })
 
     },
-	
+
 	// ---------------------------------------------------------
     // Generic TextArea Element
     // ---------------------------------------------------------
-	
+
     createTextAreaControl: function (a, b, c) {
 
         var f = a.validateLink ? "themeblvd-validation-marker" : "",
@@ -188,8 +188,8 @@ var tb_dialog_helper = {
         })
 
     },
-	
-	
+
+
 	// ---------------------------------------------------------
     // Select Box Element
     // ---------------------------------------------------------
@@ -205,7 +205,7 @@ var tb_dialog_helper = {
         b.addClass('themeblvd-marker-select-control');
 
         var selectBoxValues = a.selectValues;
-        
+
         var labelValues = a.selectValues;
 
         for (v in selectBoxValues) {
@@ -230,11 +230,11 @@ var tb_dialog_helper = {
             if (value == a.defaultValue) {
                 selected = ' selected="selected"';
             } // End IF Statement
-            
+
             selectNode.append('<option value="' + value + '"' + selected + '>' + label + '</option>');
 
         } // End FOREACH Loop
-        
+
         selectNode.appendTo(b);
 
         if (a = a.help) {
@@ -258,15 +258,15 @@ var tb_dialog_helper = {
 
                 h.needsPreview = false
             }
-            
+
             // Update the text in the appropriate span tag.
             var newText = jQuery(this).children('option:selected').text();
-            
+
             jQuery(this).parents('.select_wrapper').find('span').text( newText );
         })
 
     },
-    
+
 	getTextKeyValue: function (a) {
         var b = a.find("input");
         if (!b.length) return null;
@@ -299,7 +299,7 @@ var tb_dialog_helper = {
             }
         }
     },
-    
+
     getTabKeyValue: function (a) {
         var b = a.find("#themeblvd-tab-text").text();
         if (a = Number(a.find("select option:selected").val())) return {
@@ -334,25 +334,25 @@ var tb_dialog_helper = {
             var g = a[d];
             if (g && d != "content") f += " " + d + '="' + g + '"'
         }
-        
+
         // Customise the shortcode output for various shortcode types.
-        
+
         switch ( themeblvdShortcodeAtts.shortcodeType ) {
-        
+
         	case 'text-replace':
-        	
+
         		var shortcode = "[" + themeblvdShortcodeAtts.shortcode + f + "]" + (c ? c + "[/" + themeblvdShortcodeAtts.shortcode + "]" : " ")
-        	
+
         	break;
-        	
+
         	default:
-        	
+
         		var shortcode = "[" + themeblvdShortcodeAtts.shortcode + f + "]" + (c ? c + "[/" + themeblvdShortcodeAtts.shortcode + "] " : " ")
-        	
+
         	break;
-        
+
         } // End SWITCH Statement
-        
+
         return shortcode;
     },
 
@@ -382,15 +382,15 @@ var tb_dialog_helper = {
     },
 
     previewAction: function (a) {
-    
+
     	var fontValue = '';
-    	
+
     	jQuery('#themeblvd-options-table').find('select.input-select-font').each ( function () {
-    	
+
     		fontValue = jQuery(this).val();
-    	
+
     	});
-    
+
         jQuery(a).hasClass("themeblvd-validation-marker") && this.validateLinkFor(a);
     },
 
