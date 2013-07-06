@@ -61,11 +61,12 @@
  */
 
 function themeblvd_shortcode_column( $atts, $content = null, $tag = '' ) {
+
     // Determine if column is last in row
 	$last = '';
 	if( isset( $atts[0] ) && trim( $atts[0] ) == 'last')
 		$last = ' last';
-	
+
     // Determine width of column
 	$class = 'column ';
 	if( 'one_sixth' == $tag || 'one-sixth' == $tag )
@@ -92,7 +93,7 @@ function themeblvd_shortcode_column( $atts, $content = null, $tag = '' ) {
 		$class .= 'grid_tenth_3';
 	else if( 'seven_tenth' == $tag || 'seven-tenth' == $tag )
 		$class .= 'grid_tenth_7';
-	
+
     // Force wpautop in shortcode? (not relevant if columns not wrapped in [raw])
     if( isset( $atts['wpautop'] ) && trim( $atts['wpautop'] ) == 'true')
         $content = wpautop( $content );
@@ -127,17 +128,17 @@ function themeblvd_shortcode_clear() {
  */
 
 function themeblvd_shortcode_icon_list( $atts, $content = null ) {
-    
+
     $default = array(
 		'style' => '',					// (deprecated) check, crank, delete, doc, plus, star, star2, warning, write
 		'icon'	=> 'caret-right',		// Any fontawesome icon
 		'color'	=> ''					// Optional color hex for icon - ex: #000000
     );
     extract( shortcode_atts( $default, $atts ) );
-    
-    
-    // For those using old "style" method, this will 
-    // match the old style choices to a fontawesome icon 
+
+
+    // For those using old "style" method, this will
+    // match the old style choices to a fontawesome icon
     // and add in a relevant color.
     if( $style ) {
 	    switch( $style ) {
@@ -179,16 +180,16 @@ function themeblvd_shortcode_icon_list( $atts, $content = null ) {
 		    	break;
 	    }
     }
-    
+
     // Color
     $color_css = '';
     if( $color )
     	$color_css = ' style="color:'.$color.';"';
-    
+
     // Add in fontawesome icon
     $content = str_replace('<ul>', '<ul class="tb-icon-list">', $content );
     $content = str_replace('<li>', '<li><i class="icon-'.$icon.'"'.$color_css.'></i> ', $content );
-    
+
     // Output
     $output = do_shortcode($content);
     return $output;
@@ -205,8 +206,10 @@ function themeblvd_shortcode_icon_list( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_button( $atts, $content = null ) {
-	$output = '';
-	$default = array(
+
+    $output = '';
+
+    $default = array(
         'link' 			=> '',
         'color' 		=> 'default',
         'target' 		=> '_self',
@@ -217,7 +220,9 @@ function themeblvd_shortcode_button( $atts, $content = null ) {
         'icon_after' 	=> ''
     );
     extract( shortcode_atts( $default, $atts ) );
+
     $output = themeblvd_button( $content, $link, $color, $target, $size, $class, $title, $icon_before, $icon_after );
+
     return $output;
 }
 
@@ -232,21 +237,27 @@ function themeblvd_shortcode_button( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_box( $atts, $content = null ) {
-	$output = '';
-	$has_icon = '';
-	$default = array(
+
+    $output = '';
+    $has_icon = '';
+
+    $default = array(
         'style' 	=> 'blue', // blue, green, grey, orange, purple, red, teal, yellow
         'icon' 		=> ''
     );
     extract( shortcode_atts( $default, $atts ) );
+
     // Classes
-    $classes = 'info-box info-box-'.$style;	    
+    $classes = 'info-box info-box-'.$style;
+
     // Add icon
     if( $icon ) {
     	$classes .= ' info-box-has-icon';
     	$content = '<i class="icon icon-'.$icon.'"></i>'.$content;
     }
+
     $output = '<div class="'.$classes.'">'.apply_filters('themeblvd_the_content', $content).'</div>';
+
     return $output;
 }
 
@@ -261,25 +272,30 @@ function themeblvd_shortcode_box( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_alert( $atts, $content = null ) {
-	$output = '';
-	$classes = 'alert';
-	$default = array(
+
+    $default = array(
         'style' => 'blue', // info, success, danger, 'message'
         'close' => 'false' // true, false
     );
     extract( shortcode_atts( $default, $atts ) );
+
     // CSS classes
-    if( in_array( $style, array( 'info', 'success', 'danger', 'message' ) ) )
+    $classes = 'alert';
+    if( in_array( $style, array( 'info', 'success', 'danger', 'message' ) ) ) // Twitter Bootstrap options
     	$classes .= ' alert-'.$style;
-    if( $close == 'true' ) 
+    if( $close == 'true' )
     	$classes .= ' fade in';
+
     // Start output
     $output = '<div class="'.$classes.'">';
+
     // Add a close button?
     if( $close == 'true' )
     	$output .= '<button type="button" class="close" data-dismiss="alert">×</button>';
+
     // Finish output
     $output .= $content.'</div><!-- .alert (end) -->';
+
     return $output;
 }
 
@@ -293,10 +309,12 @@ function themeblvd_shortcode_alert( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_divider( $atts, $content = null ) {
+
     $default = array(
         'style' => 'solid' // dashed, shadow, solid
     );
     extract( shortcode_atts( $default, $atts ) );
+
     return themeblvd_divider( $style );
 }
 
@@ -310,31 +328,32 @@ function themeblvd_shortcode_divider( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_progress_bar( $atts ) {
+
     $default = array(
         'color' 	=> '',		// default, danger, success, info, warning
         'percent' 	=> '100',	// Percent of bar - 30, 60, 80, etc.
-        'striped' 	=> 'false',	// true, false	
+        'striped' 	=> 'false',	// true, false
         'animate' 	=> 'false'	// true, false
     );
     extract( shortcode_atts( $default, $atts ) );
-    
+
     $classes = 'progress';
-    
+
     // Color
     if( $color && $color != 'default' )
     	$classes .= ' progress-'.$color;
-    
+
     // Striped?
     if( $striped == 'true' )
     	$classes .= ' progress-striped';
-    
+
     // Animated?
     if( $animate == 'true' )
     	$classes .= ' active';
-    
+
     // Output
     $output = '<div class="'.$classes.'"><div class="bar" style="width: '.$percent.'%;"></div></div>';
-    
+
     return $output;
 }
 
@@ -349,33 +368,34 @@ function themeblvd_shortcode_progress_bar( $atts ) {
  */
 
 function themeblvd_shortcode_popup( $atts, $content = null ) {
+
     $default = array(
     	'text' 			=> 'Link Text', // Text for link or button leading to popup
 		'title' 		=> '', 			// Title for anchor, will default to "text" option
 		'color' 		=> '', 			// Color of button, only applies if button style is selected
-		'size'			=> '',			// Size of button, 
+		'size'			=> '',			// Size of button,
 		'icon_before'	=> '', 			// Icon before button or link's text
 		'icon_after' 	=> '', 			// Icon after button or link's text
 		'header' 		=> '', 			// Header text for popup
-		'animate' 		=> 'false'		// Whether popup slides in or not - true, false 
+		'animate' 		=> 'false'		// Whether popup slides in or not - true, false
     );
     extract( shortcode_atts( $default, $atts ) );
-    
+
     // ID for popup
     $popup_id = uniqid( 'popup_'.rand() );
-    
+
     // Button/Link
     $link = '';
     if( $title )
     	$title = $text;
     $link = themeblvd_button( $text, '#'.$popup_id, $color, null, $size, null, $title, $icon_before, $icon_after, 'data-toggle="modal"' );
 	$link = apply_filters('themeblvd_the_content', $link);
-    
+
     // Classes for popup
     $classes = 'modal hide';
     if( $animate == 'true' )
     	$classes .= ' fade';
-    
+
     // Header
     $header_html = '';
     if( $header ) {
@@ -384,7 +404,7 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
     	$header_html .= '<h3>'.$header.'</h3>';
     	$header_html .= '</div><!-- modal-header (end) -->';
     }
-    
+
     // Output
     $output  = $link;
     $output .= '<div class="'.$classes.'" id="'.$popup_id.'">';
@@ -396,6 +416,7 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
     $output .= '<a href="#" class="btn" data-dismiss="modal">'.themeblvd_get_local('close').'</a>';
     $output .= '</div><!-- .modal-footer (end) -->';
     $output .= '</div><!-- .modal (end) -->';
+
     return $output;
 }
 
@@ -410,6 +431,7 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_lightbox( $atts, $content = null ) {
+
     $default = array(
         'link'      => '',          // URL being linked to in the lightbox popup
         'thumb'     => '',          // Text or Image URL being used for link to lightbox
@@ -459,7 +481,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
 
     // Wrap link and thumbnail image in frame
     if( $atts['frame'] == 'true' && $has_thumb_img ) {
-        
+
         $wrap_classes = '';
         if( $atts['align'] != 'none' )
             $wrap_classes .= 'align'.$atts['align'];
@@ -480,7 +502,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
         $wrap .= '</div><!-- .featured-image-wrapper (end) -->';
         $wrap .= '</div>';
         $wrap = apply_filters( 'themeblvd_lightbox_thumbnail_wrap', $wrap, $classes );
-        
+
         $output = sprintf( $wrap, $output );
     }
 
@@ -503,7 +525,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_icon( $atts, $content = null ) {
-	
+
 	$default = array(
         'image' => 'accepted',
         'align' => 'left', // left, right, center, none
@@ -518,13 +540,13 @@ function themeblvd_shortcode_icon( $atts, $content = null ) {
         $image_url = get_template_directory_uri().'/framework/frontend/assets/images/shortcodes/icons/'.$image.'.png';
     else
         $image_url = get_template_directory_uri().'/framework/assets/images/shortcodes/icons/'.$image.'.png';
-    
+
     // Alignment
     $align != 'none' ? $align = ' align'.$align : $align = null;
-    
+
     // Output
     $output = '<img src="'.$image_url.'" class="tb-image-icon '.$image.$align.'" width="'.$width.'" />';
-	
+
 	return $output;
 }
 
@@ -538,7 +560,8 @@ function themeblvd_shortcode_icon( $atts, $content = null ) {
  * @return string $output Content to output for shortcode
  */
 
-function themeblvd_shortcode_icon_link( $atts, $content = null ) {	    
+function themeblvd_shortcode_icon_link( $atts, $content = null ) {
+
     $default = array(
         'icon' 		=> '', // alert, approved, camera, cart, doc, download, media, note, notice, quote, warning
         'link' 		=> '',
@@ -547,7 +570,7 @@ function themeblvd_shortcode_icon_link( $atts, $content = null ) {
         'title' 	=> ''
     );
     extract( shortcode_atts( $default, $atts ) );
-    
+
     // Convert icons used with older framework versions to fontawesome
     // alert, approved, camera, cart, doc, download, media, note, notice, quote, warning
     // Note: "camera" and "download" work so can be excluded below.
@@ -556,37 +579,41 @@ function themeblvd_shortcode_icon_link( $atts, $content = null ) {
 	    	$icon = 'exclamation-sign';
 	    	break;
 	    case 'approved' :
-			$icon = 'check';		    
+			$icon = 'check';
 	    	break;
 	    case 'cart' :
-	    	$icon = 'shopping-cart';	
+	    	$icon = 'shopping-cart';
 	    	break;
 	    case 'doc' :
-	    	$icon = 'file';	
+	    	$icon = 'file';
 	    	break;
 	    case 'media' :
 	    	$icon = 'hdd'; // Kind of ironic... The CD icon gets replaced with the harddrive icon in the update for the "media" icon.
 	    	break;
 	    case 'note' :
-	    	$icon = 'pencil';	
+	    	$icon = 'pencil';
 	    	break;
 	    case 'notice' :
-	    	$icon = 'exclamation-sign'; // Was always the same as "alert"	
+	    	$icon = 'exclamation-sign'; // Was always the same as "alert"
 	    	break;
 	    case 'quote' :
-	    	$icon = 'comment';	
+	    	$icon = 'comment';
 	    	break;
 	    case 'warning' :
-	    	$icon = 'warning-sign';	
+	    	$icon = 'warning-sign';
 	    	break;
     }
-    
-    if( ! $title ) $title = $content;
-    if( $class ) $class = ' '.$class;
+
+    if( ! $title )
+        $title = $content;
+    if( $class )
+        $class = ' '.$class;
+
     $output  = '<span class="tb-icon-link'.$class.'">'; // Can't use class starting in "icon-" or it will conflict with Bootstrap
     $output .= '<i class="icon-'.$icon.'"></i>';
     $output .= '<a href="'.$link.'" title="'.$title.'" class="icon-link-'.$icon.'" target="'.$target.'">'.$content.'</a>';
     $output .= '</span>';
+
     return $output;
 }
 
@@ -618,7 +645,7 @@ function themeblvd_shortcode_dropcap( $atts, $content = null ) {
 
 /**
  * Labels (straight from Bootstrap)
- * 
+ *
  * <span class="label label-success">Success</span>
  *
  * @since 1.0.0
@@ -628,22 +655,27 @@ function themeblvd_shortcode_dropcap( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_label( $atts, $content = null ) {
-   	$default = array(
+
+    $default = array(
         'style' => '', // default, success, warning, important, info, inverse
         'icon'	=> ''
     );
     extract( shortcode_atts( $default, $atts ) );
-   	$class = 'label'; 
+
+    $class = 'label';
+
     if( $style && $style != 'default' )
     	$class .= ' label-'.$style;
+
     if( $icon )
     	$content = '<i class="icon-'.$icon.'"></i> '.$content;
+
     return '<span class="'.$class.'">'.do_shortcode($content).'</span><!-- .label (end) -->';
 }
 
 /**
  * Vector Icon (from Bootstrap and Font Awesome)
- * 
+ *
  * <i class="icon-{whatever}"></i>
  *
  * @since 1.0.0
@@ -653,14 +685,18 @@ function themeblvd_shortcode_label( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_vector_icon( $atts ) {
-   	$default = array(
+
+    $default = array(
         'icon' 	=> 'pencil',
         'size'	=> ''
     );
     extract( shortcode_atts( $default, $atts ) );
-   	$size_style = '';
-   	if( $size )
-   		$size_style = ' style="font-size:'.$size.';"';
+
+    $size_style = '';
+
+    if( $size )
+    		$size_style = ' style="font-size:'.$size.';"';
+
     return '<i class="icon-'.$icon.'"'.$size_style.'></i>';
 }
 
@@ -679,19 +715,28 @@ function themeblvd_shortcode_vector_icon( $atts ) {
  */
 
 function themeblvd_shortcode_tabs( $atts, $content = null ) {
+
     $default = array(
         'style' 		=> 'framed', 		// framed, open
         'nav'			=> 'tabs_above',	// tabs_above, tabs_right, tabs_below, tabs_left, pills_above, pills_below
         'height' 		=> '' 				// Optional fixed height for inside of tabs
     );
     extract( shortcode_atts( $default, $atts ) );
-    if( isset( $atts['style'] ) ) unset( $atts['style'] );
-    if( isset( $atts['nav'] ) ) unset( $atts['nav'] );
-    if( isset( $atts['height'] ) ) unset( $atts['height'] );
+
+    if( isset( $atts['style'] ) )
+        unset( $atts['style'] );
+
+    if( isset( $atts['nav'] ) )
+        unset( $atts['nav'] );
+
+    if( isset( $atts['height'] ) )
+        unset( $atts['height'] );
+
     $id = uniqid( 'tabs_'.rand() );
     $num = count( $atts ) - 1;
 	$i = 1;
-	$options = array(
+
+    $options = array(
     	'setup' => array(
     		'num' 	=> $num,
     		'style' => $style,
@@ -700,7 +745,8 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
     	),
     	'height' => $height
     );
-    if( is_array( $atts ) && ! empty( $atts ) ) {
+
+    if( is_array( $atts ) && count( $atts ) > 0 ) {
 		foreach( $atts as $key => $tab ) {
 			$options['setup']['names']['tab_'.$i] = $tab;
 			$tab_content = explode( '[/'.$key.']', $content );
@@ -743,13 +789,15 @@ function themeblvd_shortcode_accordion( $atts, $content = null ) {
  * @return string $output Content to output for shortcode
  */
 
-function themeblvd_shortcode_toggle( $atts, $content = null ) {		
-	$last = isset( $atts[0] ) ? $last = ' accordion-group-last' : null;
+function themeblvd_shortcode_toggle( $atts, $content = null ) {
+
+    $last = isset( $atts[0] ) ? $last = ' accordion-group-last' : null;
 	$default = array(
         'title' => '',
         'open'  => 'false'
     );
 	extract( shortcode_atts( $default, $atts ) );
+
     // Is toggle open?
     $classes = 'accordion-body collapse';
     $icon = 'icon-plus-sign';
@@ -757,11 +805,13 @@ function themeblvd_shortcode_toggle( $atts, $content = null ) {
         $classes .= ' in';
         $icon = 'icon-minus-sign';
     }
-	// Individual toggle ID (NOT the Accordion ID)
+
+    // Individual toggle ID (NOT the Accordion ID)
 	$toggle_id = uniqid( 'toggle_'.rand() );
-	// Start output
+
+    // Start output
 	$output  = '<div class="accordion-group'.$last.'">';
-	$output .= '<div class="accordion-heading">';               
+	$output .= '<div class="accordion-heading">';
 	$output .= '<a class="accordion-toggle" data-toggle="collapse" href="#'.$toggle_id.'"><i class="'.$icon.' switch-me"></i> '.$title.'</a>';
 	$output .= '</div><!-- .accordion-heading (end) -->';
 	$output .= '<div id="'.$toggle_id.'" class="'.$classes.'">';
@@ -770,6 +820,7 @@ function themeblvd_shortcode_toggle( $atts, $content = null ) {
 	$output .= '</div><!-- .accordion-inner (end) -->';
 	$output .= '</div><!-- .accordion-body (end) -->';
 	$output .= '</div><!-- .accordion-group (end) -->';
+
     return $output;
 }
 
@@ -786,7 +837,8 @@ function themeblvd_shortcode_toggle( $atts, $content = null ) {
  */
 
 function themeblvd_shortcode_post_grid_slider( $atts ) {
-	$default = array(
+
+    $default = array(
         'fx' 			=> 'slide', 	// fx: Transition of slider - fade, slide
         'timeout' 		=> 0, 			// timeout: Seconds in between transitions, 0 for no auto-advancing
         'nav_standard' 	=> 1, 			// nav_standard: Show standard nav dots to control slider - true or false
@@ -806,8 +858,10 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         'crop'			=> ''			// crop: Can manually enter a featured image crop size
     );
     extract( shortcode_atts( $default, $atts ) );
+
     // Generate unique ID
 	$id = uniqid( 'grid_'.rand() );
+
     // Build $options array compatible to element's function
     $options = array(
         'fx' 			=> $fx,
@@ -821,7 +875,7 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         'query'         => $query,
         'crop' 			=> $crop
     );
-    
+
     // Add in the booleans
     if( $nav_standard === 'true' )
     	$options['nav_standard'] = 1;
@@ -836,14 +890,14 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
     	$options['nav_arrows'] = 0;
     else
     	$options['nav_arrows'] = $default['nav_arrows'];
-    
+
     if( $pause_play === 'true' )
     	$options['pause_play'] = 1;
     else if( $pause_play === 'false' )
     	$options['pause_play'] = 0;
     else
     	$options['pause_play'] = $default['pause_play'];
-    
+
     // Categories
     if( $cat )
         $options['cat'] = $cat;
@@ -855,7 +909,7 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
     // Tags
     if( $tag )
         $options['tag'] = $tag;
-    
+
 	// Output
 	ob_start();
 	echo '<div class="element element-post_grid_slider'.themeblvd_get_classes( 'element_post_grid_slider', true ).'">';
@@ -879,7 +933,8 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
  */
 
 function themeblvd_shortcode_post_list_slider( $atts ) {
-	$default = array(
+
+    $default = array(
         'fx' 				=> 'slide', 	// fx: Transition of slider - fade, slide
         'timeout' 			=> 0, 			// timeout: Seconds in between transitions, 0 for no auto-advancing
         'nav_standard' 		=> 1, 			// nav_standard: Show standard nav dots to control slider - true or false
@@ -897,15 +952,17 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
         'order' 			=> 'DESC',		// order: DESC, ASC
         'offset' 			=> 0,			// offset: Number of posts to offset off the start, defaults to 0
         'query'             => ''           // query: custom query string
-    ); 
-    extract( shortcode_atts( $default, $atts ) );	    
+    );
+    extract( shortcode_atts( $default, $atts ) );
+
     // Generate unique ID
 	$id = uniqid( 'list_'.rand() );
+
     // Build $options array compatible to element's function
     $options = array(
         'fx' 				=> $fx,
         'timeout' 			=> $timeout,
-        'thumbs' 			=> $thumbs,	
+        'thumbs' 			=> $thumbs,
         'content' 			=> $post_content,
         'posts_per_slide' 	=> $posts_per_slide,
         'numberposts' 		=> $numberposts,
@@ -914,7 +971,7 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
         'offset' 			=> $offset,
         'query'             => $query,
     );
-    
+
     // Add in the booleans
     if( $nav_standard === 'true' )
     	$options['nav_standard'] = 1;
@@ -929,14 +986,14 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
     	$options['nav_arrows'] = 0;
     else
     	$options['nav_arrows'] = $default['nav_arrows'];
-    
+
     if( $pause_play === 'true' )
     	$options['pause_play'] = 1;
     else if( $pause_play === 'false' )
     	$options['pause_play'] = 0;
     else
     	$options['pause_play'] = $default['pause_play'];
-    
+
     // Categories
     if( $cat )
         $options['cat'] = $cat;
@@ -944,11 +1001,11 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
         $options['category_name'] = $category_name;
     elseif( $categories )
         $options['category_name'] = $categories; // @deprecated
-    
+
     // Tags
     if( $tag )
         $options['tag'] = $tag;
-    
+
 	// Output
 	ob_start();
 	echo '<div class="element element-post_list_slider'.themeblvd_get_classes( 'element_post_list_slider', true ).'">';
@@ -976,7 +1033,8 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
  */
 
 function themeblvd_shortcode_post_grid( $atts ) {
-	$default = array(
+
+    $default = array(
         'categories'    => '',                  // @deprecated -- Category slug(s) to include/exclude
         'cat'           => '',                  // cat: Category ID(s) to include/exclude
         'category_name' => '',                  // category_name: Category slug(s) to include/exclude
@@ -992,9 +1050,9 @@ function themeblvd_shortcode_post_grid( $atts ) {
         'link_text' 	=> 'View All Posts', 	// link_text: Text for the link
         'link_url' 		=> 'http://google.com',	// link_url: URL where link should go
         'link_target' 	=> '_self' 				// link_target: Where link opens - _self, _blank
-    ); 
+    );
     extract( shortcode_atts( $default, $atts ) );
-    
+
     // Build $options array compatible to element's function
     $options = array(
         'columns' 		=> $columns,
@@ -1009,7 +1067,7 @@ function themeblvd_shortcode_post_grid( $atts ) {
         'link_url' 		=> $link_url,
         'link_target' 	=> $link_target
     );
-    
+
     // Categories
     if( $cat )
         $options['cat'] = $cat;
@@ -1017,7 +1075,7 @@ function themeblvd_shortcode_post_grid( $atts ) {
         $options['category_name'] = $category_name;
     elseif( $categories )
         $options['category_name'] = $categories; // @deprecated
-    
+
     // Add in the booleans
     if( $link === 'true' )
         $options['link'] = 1;
@@ -1025,7 +1083,7 @@ function themeblvd_shortcode_post_grid( $atts ) {
         $options['link'] = 0;
     else
         $options['link'] = $default['link'];
-    
+
 	// Output
 	ob_start();
 	echo '<div class="element element-post_grid'.themeblvd_get_classes( 'element_post_grid', true ).'">';
@@ -1049,14 +1107,15 @@ function themeblvd_shortcode_post_grid( $atts ) {
  */
 
 function themeblvd_shortcode_post_list( $atts ) {
-	$default = array(
+
+    $default = array(
         'categories' 	=> '',					// @deprecated -- Category slug(s) to include/exclude
 		'cat'           => '',                  // cat: Category ID(s) to include/exclude
         'category_name' => '',                  // category_name: Category slug(s) to include/exclude
         'tag'           => '',                  // tag: Tag(s) to include/exclude
         'thumbs' 		=> 'default',			// thumbs: Size of post thumbnails - default, small, full, hide
 		'post_content' 	=> 'default',			// content: Show excerpts or full content - default, content, excerpt
-		'numberposts' 	=> 3,					// numberposts: Total number of posts, -1 for all posts            
+		'numberposts' 	=> 3,					// numberposts: Total number of posts, -1 for all posts
         'orderby' 		=> 'date',				// orderby: date, title, comment_count, rand
         'order' 		=> 'DESC',				// order: DESC, ASC
         'offset' 		=> 0,					// offset: Number of posts to offset off the start, defaults to 0
@@ -1065,9 +1124,9 @@ function themeblvd_shortcode_post_list( $atts ) {
         'link_url' 		=> 'http://google.com',	// link_url: URL where link should go
         'link_target' 	=> '_self', 			// link_target: Where link opens - _self, _blank
         'query' 		=> '' 					// custom query string
-    ); 
+    );
     extract( shortcode_atts( $default, $atts ) );
-    
+
     // Build $options array compatible to element's function
     $options = array(
         'thumbs' 		=> $thumbs,
@@ -1082,7 +1141,7 @@ function themeblvd_shortcode_post_list( $atts ) {
         'link_url' 		=> $link_url,
         'link_target' 	=> $link_target
     );
-     
+
     // Categories
     if( $cat )
         $options['cat'] = $cat;
@@ -1098,7 +1157,7 @@ function themeblvd_shortcode_post_list( $atts ) {
     	$options['link'] = 0;
     else
     	$options['link'] = $default['link'];
-    
+
 	// Output
 	ob_start();
 	echo '<div class="element element-post_list'.themeblvd_get_classes( 'element_post_list', true ).'">';
@@ -1123,13 +1182,14 @@ function themeblvd_shortcode_post_list( $atts ) {
  */
 
 function themeblvd_shortcode_mini_post_grid( $atts ) {
-	// Default shortcode atts
+
+    // Default shortcode atts
 	$default = array(
-	    'categories' 	=> '',			// @deprecated -- Category slug(s) to include/exclude 
+	    'categories' 	=> '',			// @deprecated -- Category slug(s) to include/exclude
         'cat'           => '',          // cat: Category ID(s) to include/exclude
         'category_name' => '',          // category_name: Category slug(s) to include/exclude
 		'tag'           => '',          // tag: Tag(s) to include/exclude
-        'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts         
+        'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts
 	    'orderby' 		=> 'date',		// orderby: date, title, comment_count, rand
 	    'order' 		=> 'DESC',		// order: DESC, ASC
 	    'offset' 		=> 0,			// offset: Number of posts to offset off the start, defaults to 0
@@ -1137,9 +1197,10 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
 	    'thumb' 		=> 'smaller',	// thumbnail size - small, smaller, or smallest
 	    'align' 		=> 'left',		// alignment of grid - left, right, or center
 	    'gallery' 		=> ''			// post ID to pull gallery attachments from, only used if not blank
-	); 
+	);
 	extract( shortcode_atts( $default, $atts ) );
-	// Build query
+
+    // Build query
 	if( ! $query ) {
         // Categories
         if( $categories ) // @deprecated
@@ -1158,10 +1219,11 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
         $query .= 'offset='.$offset.'&';
         $query .= 'suppress_filters=false'; // Mainly for WPML compat
 	}
+
 	// Output
 	$output = themeblvd_get_mini_post_grid( $query, $align, $thumb, $gallery );
 	return $output;
-   
+
 }
 
 /**
@@ -1174,23 +1236,26 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
  */
 
 function themeblvd_shortcode_mini_post_list( $atts ) {
-	// Default shortcode atts
+
+    // Default shortcode atts
 	$default = array(
-	    'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude 
+	    'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude
         'cat'           => '',          // cat: Category ID(s) to include/exclude
         'category_name' => '',          // category_name: Category slug(s) to include/exclude
 		'tag'           => '',          // tag: Tag(s) to include/exclude
-        'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts         
+        'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts
 	    'orderby' 		=> 'date',		// orderby: date, title, comment_count, rand
 	    'order' 		=> 'DESC',		// order: DESC, ASC
 	    'offset' 		=> 0,			// offset: Number of posts to offset off the start, defaults to 0
 	    'query' 		=> '',			// custom query string
 	    'thumb' 		=> 'smaller',	// thumbnail size - small, smaller, smallest, or hide
 	    'meta' 			=> 'show'		// show meta or not - show or hide
-	); 
+	);
 	extract( shortcode_atts( $default, $atts ) );
+
     // Build query
     if( ! $query ) {
+
         // Categories
         if( $categories ) // @deprecated
             $query .= 'category_name='.$categories.'&';
@@ -1198,22 +1263,29 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
             $query .= 'cat='.$cat.'&';
         if( $category_name )
             $query .= 'category_name='.$category_name.'&';
+
         // Tags
         if( $tag )
             $query .= 'tag='.$tag.'&';
+
         // Continue query
         $query .= 'numberposts='.$numberposts.'&';
         $query .= 'orderby='.$orderby.'&';
         $query .= 'order='.$order.'&';
         $query .= 'offset='.$offset.'&';
         $query .= 'suppress_filters=false'; // Mainly for WPML compat
+
     }
-	// Format thumbnail size
-	if( $thumb == 'hide' ) 
-		$thumb = false;
-	// Format meta
-	$meta == 'show' ? $meta = true : $meta = false;
-	// Output
-	$output = themeblvd_get_mini_post_list( $query, $thumb, $meta );
-	return $output;
+
+    // Format thumbnail size
+    if( $thumb == 'hide' )
+    $thumb = false;
+
+    // Format meta
+    $meta == 'show' ? $meta = true : $meta = false;
+
+    // Output
+    $output = themeblvd_get_mini_post_list( $query, $thumb, $meta );
+
+    return $output;
 }
