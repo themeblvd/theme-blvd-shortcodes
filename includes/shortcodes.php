@@ -1185,23 +1185,24 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
 
     // Default shortcode atts
 	$default = array(
-	    'categories' 	=> '',			// @deprecated -- Category slug(s) to include/exclude
+        'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude
         'cat'           => '',          // cat: Category ID(s) to include/exclude
         'category_name' => '',          // category_name: Category slug(s) to include/exclude
-		'tag'           => '',          // tag: Tag(s) to include/exclude
-        'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts
-	    'orderby' 		=> 'date',		// orderby: date, title, comment_count, rand
-	    'order' 		=> 'DESC',		// order: DESC, ASC
-	    'offset' 		=> 0,			// offset: Number of posts to offset off the start, defaults to 0
-	    'query' 		=> '',			// custom query string
-	    'thumb' 		=> 'smaller',	// thumbnail size - small, smaller, or smallest
-	    'align' 		=> 'left',		// alignment of grid - left, right, or center
-	    'gallery' 		=> ''			// post ID to pull gallery attachments from, only used if not blank
+        'tag'           => '',          // tag: Tag(s) to include/exclude
+        'numberposts'   => 4,           // numberposts: Total number of posts, -1 for all posts
+        'orderby'       => 'date',      // orderby: date, title, comment_count, rand
+        'order'         => 'DESC',      // order: DESC, ASC
+        'offset'        => 0,           // offset: Number of posts to offset off the start, defaults to 0
+        'query'         => '',          // custom query string
+        'thumb'         => 'smaller',   // thumbnail size - small, smaller, or smallest
+        'align'         => 'left',      // alignment of grid - left, right, or center
+        'gallery'       => ''           // post ID to pull gallery attachments from, only used if not blank
 	);
 	extract( shortcode_atts( $default, $atts ) );
 
     // Build query
-	if( ! $query ) {
+    if( ! $query ) {
+
         // Categories
         if( $categories ) // @deprecated
             $query .= 'category_name='.$categories.'&';
@@ -1209,20 +1210,24 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
             $query .= 'cat='.$cat.'&';
         if( $category_name )
             $query .= 'category_name='.$category_name.'&';
+
         // Tags
         if( $tag )
             $query .= 'tag='.$tag.'&';
+
         // Continue query
         $query .= 'numberposts='.$numberposts.'&';
         $query .= 'orderby='.$orderby.'&';
         $query .= 'order='.$order.'&';
         $query .= 'offset='.$offset.'&';
         $query .= 'suppress_filters=false'; // Mainly for WPML compat
-	}
+
+    }
 
 	// Output
 	$output = themeblvd_get_mini_post_grid( $query, $align, $thumb, $gallery );
-	return $output;
+
+    return $output;
 
 }
 
@@ -1239,17 +1244,17 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
 
     // Default shortcode atts
 	$default = array(
-	    'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude
+        'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude
         'cat'           => '',          // cat: Category ID(s) to include/exclude
         'category_name' => '',          // category_name: Category slug(s) to include/exclude
-		'tag'           => '',          // tag: Tag(s) to include/exclude
-        'numberposts' 	=> 4,			// numberposts: Total number of posts, -1 for all posts
-	    'orderby' 		=> 'date',		// orderby: date, title, comment_count, rand
-	    'order' 		=> 'DESC',		// order: DESC, ASC
-	    'offset' 		=> 0,			// offset: Number of posts to offset off the start, defaults to 0
-	    'query' 		=> '',			// custom query string
-	    'thumb' 		=> 'smaller',	// thumbnail size - small, smaller, smallest, or hide
-	    'meta' 			=> 'show'		// show meta or not - show or hide
+        'tag'           => '',          // tag: Tag(s) to include/exclude
+        'numberposts'   => 4,           // numberposts: Total number of posts, -1 for all posts
+        'orderby'       => 'date',      // orderby: date, title, comment_count, rand
+        'order'         => 'DESC',      // order: DESC, ASC
+        'offset'        => 0,           // offset: Number of posts to offset off the start, defaults to 0
+        'query'         => '',          // custom query string
+        'thumb'         => 'smaller',   // thumbnail size - small, smaller, smallest, or hide
+        'meta'          => 'show'       // show meta or not - show or hide
 	);
 	extract( shortcode_atts( $default, $atts ) );
 
