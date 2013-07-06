@@ -87,30 +87,18 @@ function themeblvd_shortcodes_init() {
 		}
 
 		// Columns -- @todo clean this mess up, and create single [column] shortcode
-		add_shortcode( 'one_sixth', 'themeblvd_shortcode_column' ); 		// 1/6
-		add_shortcode( 'one-sixth', 'themeblvd_shortcode_column' );			// 1/6 (deprecated)
-		add_shortcode( 'one_fourth', 'themeblvd_shortcode_column' ); 		// 1/4
-		add_shortcode( 'one-fourth', 'themeblvd_shortcode_column' );		// 1/4 (deprecated)
+		add_shortcode( 'one_sixth', 'themeblvd_shortcode_column' );			// 1/6
+		add_shortcode( 'one_fourth', 'themeblvd_shortcode_column' );		// 1/4
 		add_shortcode( 'one_third', 'themeblvd_shortcode_column' );			// 1/3
-		add_shortcode( 'one-third', 'themeblvd_shortcode_column' );			// 1/3 (deprecated)
 		add_shortcode( 'one_half', 'themeblvd_shortcode_column' );			// 1/2
-		add_shortcode( 'one-half', 'themeblvd_shortcode_column' );			// 1/2 (deprecated)
 		add_shortcode( 'two_third', 'themeblvd_shortcode_column' );			// 2/3
-		add_shortcode( 'two-third', 'themeblvd_shortcode_column' );			// 2/3 (deprecated)
 		add_shortcode( 'three_fourth', 'themeblvd_shortcode_column' );		// 3/4
-		add_shortcode( 'three-fourth', 'themeblvd_shortcode_column' );		// 3/4 (deprecated)
 		add_shortcode( 'one_fifth', 'themeblvd_shortcode_column' );			// 1/5
-		add_shortcode( 'one-fifth', 'themeblvd_shortcode_column' );			// 1/5 (deprecated)
 		add_shortcode( 'two_fifth', 'themeblvd_shortcode_column' );			// 2/5
-		add_shortcode( 'two-fifth', 'themeblvd_shortcode_column' );			// 2/5 (deprecated)
 		add_shortcode( 'three_fifth', 'themeblvd_shortcode_column' );		// 3/5
-		add_shortcode( 'three-fifth', 'themeblvd_shortcode_column' );		// 3/5 (deprecated)
 		add_shortcode( 'four_fifth', 'themeblvd_shortcode_column' );		// 4/5
-		add_shortcode( 'four-fifth', 'themeblvd_shortcode_column' );		// 4/5 (deprecated)
 		add_shortcode( 'three_tenth', 'themeblvd_shortcode_column' );		// 3/10
-		add_shortcode( 'three-tenth', 'themeblvd_shortcode_column' );		// 3/10 (deprecated)
 		add_shortcode( 'seven_tenth', 'themeblvd_shortcode_column' );		// 7/10
-		add_shortcode( 'seven-tenth', 'themeblvd_shortcode_column' );		// 7/10 (deprecated)
 		add_shortcode( 'clear', 'themeblvd_shortcode_clear' );				// Clear row
 
 		// Components
