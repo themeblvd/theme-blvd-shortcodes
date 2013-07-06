@@ -25,15 +25,10 @@ License: GPL2
 
 */
 
-// Avoid potential conflicts on activation with Bundle.
-if ( !defined( 'TB_SHORTCODES_PLUGIN_VERSION' ) ) {
+define( 'TB_SHORTCODES_PLUGIN_VERSION', '1.0.7' );
+define( 'TB_SHORTCODES_PLUGIN_DIR', dirname( __FILE__ ) );
+define( 'TB_SHORTCODES_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
 
-	define( 'TB_SHORTCODES_PLUGIN_VERSION', '1.0.7' );
-	define( 'TB_SHORTCODES_PLUGIN_DIR', dirname( __FILE__ ) );
-	define( 'TB_SHORTCODES_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
-}
-
-if ( !function_exists( 'themeblvd_shortcodes_init' ) ) : // Avoid activation errors with Bundle
 /**
  * Run Shortcodes
  *
@@ -76,13 +71,13 @@ function themeblvd_shortcodes_init() {
 		// Include shortcodes
 		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/shortcodes.php' );
 
-		// Raw -- Can be disabled from WP > Settings > Writing
+		// [raw] -- Can be disabled from WP > Settings > Writing
 		if( get_option( 'themeblvd_raw' ) != 'no' ) {
 
 			remove_filter( 'the_content', 'wptexturize' );
 			remove_filter( 'the_content', 'wpautop' );
 			remove_filter( 'the_content', 'shortcode_unautop' );
-			add_filter( 'the_content', 'themeblvd_content_formatter', 9 );
+			add_filter( 'the_content', 'themeblvd_content_formatter', 9 ); // Before do_shortcode()
 
 			remove_filter( 'themeblvd_the_content', 'wptexturize' );
 			remove_filter( 'themeblvd_the_content', 'wpautop' );
@@ -91,7 +86,7 @@ function themeblvd_shortcodes_init() {
 
 		}
 
-		// Columns
+		// Columns -- @todo clean this mess up, and create single [column] shortcode
 		add_shortcode( 'one_sixth', 'themeblvd_shortcode_column' ); 		// 1/6
 		add_shortcode( 'one-sixth', 'themeblvd_shortcode_column' );			// 1/6 (deprecated)
 		add_shortcode( 'one_fourth', 'themeblvd_shortcode_column' ); 		// 1/4
@@ -155,9 +150,7 @@ function themeblvd_shortcodes_init() {
 
 }
 add_action( 'after_setup_theme', 'themeblvd_shortcodes_init' );
-endif;
 
-if ( !function_exists( 'themeblvd_shortcodes_textdomain' ) ) : // Avoid activation errors with Bundle
 /**
  * Register text domain for localization.
  *
@@ -167,4 +160,3 @@ function themeblvd_shortcodes_textdomain() {
 	load_plugin_textdomain( 'themeblvd_shortcodes', false, TB_SHORTCODES_PLUGIN_DIR . '/lang' );
 }
 add_action( 'plugins_loaded', 'themeblvd_shortcodes_textdomain' );
-endif;
