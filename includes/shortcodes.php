@@ -848,6 +848,8 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         'cat'           => '',          // cat: Category ID(s) to include/exclude
         'category_name' => '',          // category_name: Category slug(s) to include/exclude
         'tag'           => '',          // tag: Tag(s) to include/exclude
+        'portfolio'     => '',          // portfolio: Portfolio(s) slugs to include, requires Portfolios plugin
+        'portfolio_tag' => '',          // portfolio_tag: Portfolio Tag(s) to include, requires Portfolios plugin
         'columns' 		=> 3,			// columns: Number of posts per row
         'rows' 			=> 3,			// rows: Number of rows per slide
         'numberposts' 	=> -1,			// numberposts: Total number of posts, -1 for all posts
@@ -910,6 +912,14 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
     if( $tag )
         $options['tag'] = $tag;
 
+    // Portfolios
+    if( $portfolio )
+        $options['portfolio'] = $portfolio;
+
+    // Portfolios
+    if( $portfolio_tag )
+        $options['portfolio_tag'] = $portfolio_tag;
+
 	// Output
 	ob_start();
 	echo '<div class="element element-post_grid_slider'.themeblvd_get_classes( 'element_post_grid_slider', true ).'">';
@@ -944,6 +954,8 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
         'cat'               => '',          // cat: Category ID(s) to include/exclude
         'category_name'     => '',          // category_name: Category slug(s) to include/exclude
         'tag'               => '',          // tag: Tag(s) to include/exclude
+        'portfolio'         => '',          // portfolio: Portfolio(s) slugs to include, requires Portfolios plugin
+        'portfolio_tag'     => '',          // portfolio_tag: Portfolio Tag(s) to include, requires Portfolios plugin
         'thumbs' 			=> 'default',	// thumbs: Size of post thumbnails - default, small, full, hide
         'post_content' 		=> 'default',	// content: Show excerpts or full content - default, content, excerpt
         'posts_per_slide'   => 3,			// posts_per_slide: Number of posts per slide.
@@ -1006,6 +1018,14 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
     if( $tag )
         $options['tag'] = $tag;
 
+    // Portfolios
+    if( $portfolio )
+        $options['portfolio'] = $portfolio;
+
+    // Portfolios
+    if( $portfolio_tag )
+        $options['portfolio_tag'] = $portfolio_tag;
+
 	// Output
 	ob_start();
 	echo '<div class="element element-post_list_slider'.themeblvd_get_classes( 'element_post_list_slider', true ).'">';
@@ -1039,6 +1059,8 @@ function themeblvd_shortcode_post_grid( $atts ) {
         'cat'           => '',                  // cat: Category ID(s) to include/exclude
         'category_name' => '',                  // category_name: Category slug(s) to include/exclude
         'tag'           => '',                  // tag: Tag(s) to include/exclude
+        'portfolio'     => '',                  // portfolio: Portfolio(s) slugs to include, requires Portfolios plugin
+        'portfolio_tag' => '',                  // portfolio_tag: Portfolio Tag(s) to include, requires Portfolios plugin
         'columns' 		=> 3,					// columns: Number of posts per row
         'rows' 			=> 3,					// rows: Number of rows per slide
         'orderby' 		=> 'date',				// orderby: date, title, comment_count, rand
@@ -1058,6 +1080,8 @@ function themeblvd_shortcode_post_grid( $atts ) {
         'columns' 		=> $columns,
         'rows' 			=> $rows,
         'tag'           => $tag,
+        'portfolio'     => $portfolio,
+        'portfolio_tag' => $portfolio_tag,
         'orderby' 		=> $orderby,
         'order' 		=> $order,
         'offset' 		=> $offset,
@@ -1113,6 +1137,8 @@ function themeblvd_shortcode_post_list( $atts ) {
 		'cat'           => '',                  // cat: Category ID(s) to include/exclude
         'category_name' => '',                  // category_name: Category slug(s) to include/exclude
         'tag'           => '',                  // tag: Tag(s) to include/exclude
+        'portfolio'     => '',                  // portfolio: Portfolio(s) slugs to include, requires Portfolios plugin
+        'portfolio_tag' => '',                  // portfolio_tag: Portfolio Tag(s) to include, requires Portfolios plugin
         'thumbs' 		=> 'default',			// thumbs: Size of post thumbnails - default, small, full, hide
 		'post_content' 	=> 'default',			// content: Show excerpts or full content - default, content, excerpt
 		'numberposts' 	=> 3,					// numberposts: Total number of posts, -1 for all posts
@@ -1132,6 +1158,8 @@ function themeblvd_shortcode_post_list( $atts ) {
         'thumbs' 		=> $thumbs,
         'content' 		=> $post_content,
         'tag'           => $tag,
+        'portfolio'     => $portfolio,
+        'portfolio_tag' => $portfolio_tag,
         'numberposts' 	=> $numberposts,
         'orderby' 		=> $orderby,
         'order' 		=> $order,

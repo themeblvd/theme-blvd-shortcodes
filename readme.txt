@@ -91,6 +91,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.0.7 =
 
+* Added compatibility for [Portfolios](http://wordpress.org/plugins/portfolios/) plugin. With this plugin activated you can use "portfolio" and "portfolio_tag" parameters with `[post_grid]`, `[post_list]`, `[post_grid_slider]`, `[post_list_slider]`.
 * Added `[lightbox]` shortcode
 * Added "Auto Lightbox" feature when inserting images into pages and posts. -- Can be disabled from WP > Settings > Writing.
 * When inserting `[tabs]` shortcode, default example now has `tabs_above`.
