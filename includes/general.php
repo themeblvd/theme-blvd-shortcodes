@@ -86,6 +86,9 @@ function themeblvd_content_formatter( $content ) {
  * @return string $html Modified <img /> output into [lightbox] shortcode
  */
 function themeblvd_lightbox_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt ){
+
+	$atts = array();
+
 	if( ! $caption && $icon = themeblvd_prettyphoto_supported_link( $url ) ) {
 
 		global $content_width;
@@ -107,6 +110,7 @@ function themeblvd_lightbox_send_to_editor( $html, $id, $caption, $title, $align
 
 		// Restore admin content width
 		$content_width = $original_content_width;
+
 	}
 
 	return apply_filters( 'themeblvd_lightbox_to_editor', $html, $atts );
