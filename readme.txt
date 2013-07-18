@@ -96,7 +96,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Added "Auto Lightbox" feature when inserting images into pages and posts. -- Can be disabled from WP > Settings > Writing.
 * When inserting `[tabs]` shortcode, default example now has `tabs_above`.
 * Added fix for `[icon]` shortcode image URL's to work with Theme Blvd framework v2.3+.
-* Fixed any conflicts when activated with [Theme Blvd Bundle](http://wordpress.org/extend/plugins/theme-blvd-bundle).
+* Added optional "class" parameter to all column shortcodes.
 * Fixed "Dismiss" link not working on notices for some admin pages.
 
 = 1.0.6 =

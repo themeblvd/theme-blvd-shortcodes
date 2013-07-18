@@ -69,34 +69,68 @@ function themeblvd_shortcode_column( $atts, $content = null, $tag = '' ) {
 
     // Determine width of column
 	$class = 'column ';
-	if( 'one_sixth' == $tag || 'one-sixth' == $tag )
-		$class .= 'grid_2';
-	else if( 'one_fourth' == $tag || 'one-fourth' == $tag )
-		$class .= 'grid_3';
-	else if( 'one_third' == $tag || 'one-third' == $tag )
-		$class .= 'grid_4';
-	else if( 'one_half' == $tag || 'one-half' == $tag )
-		$class .= 'grid_6';
-	else if( 'two_third' == $tag || 'two-third' == $tag )
-		$class .= 'grid_8';
-	else if( 'three_fourth' == $tag || 'three-fourth' == $tag )
-		$class .= 'grid_9';
-	else if( 'one_fifth' == $tag || 'one-fifth' == $tag )
-		$class .= 'grid_fifth_1';
-	else if( 'two_fifth' == $tag || 'two-fifth' == $tag )
-		$class .= 'grid_fifth_2';
-	else if( 'three_fifth' == $tag || 'three-fifth' == $tag )
-		$class .= 'grid_fifth_3';
-	else if( 'four_fifth' == $tag || 'four-fifth' == $tag )
-		$class .= 'grid_fifth_4';
-	else if( 'three_tenth' == $tag || 'three-tenth' == $tag )
-		$class .= 'grid_tenth_3';
-	else if( 'seven_tenth' == $tag || 'seven-tenth' == $tag )
-		$class .= 'grid_tenth_7';
+
+    switch ( $tag ) {
+
+        case 'one_sixth' :
+            $class .= 'grid_2';
+            break;
+
+        case 'one_fourth' :
+            $class .= 'grid_3';
+            break;
+
+        case 'one_third' :
+            $class .= 'grid_4';
+            break;
+
+        case 'one_half' :
+            $class .= 'grid_6';
+            break;
+
+        case 'two_third' :
+            $class .= 'grid_8';
+            break;
+
+        case 'three_fourth' :
+            $class .= 'grid_9';
+            break;
+
+        case 'one_fifth' :
+            $class .= 'grid_fifth_1';
+            break;
+
+        case 'two_fifth' :
+            $class .= 'grid_fifth_2';
+            break;
+
+        case 'three_fifth' :
+            $class .= 'grid_fifth_3';
+            break;
+
+        case 'four_fifth' :
+            $class .= 'grid_fifth_4';
+            break;
+
+        case 'three_tenth' :
+            $class .= 'grid_tenth_3';
+            break;
+
+        case 'seven_tenth' :
+            $class .= 'grid_tenth_7';
+            break;
+
+    }
+
+    // Is user adding additional classes?
+    if ( isset( $atts['class'] ) ) {
+        $class .= ' '.$atts['class'];
+    }
 
     // Force wpautop in shortcode? (not relevant if columns not wrapped in [raw])
-    if( isset( $atts['wpautop'] ) && trim( $atts['wpautop'] ) == 'true')
+    if ( isset( $atts['wpautop'] ) && trim( $atts['wpautop'] ) == 'true') {
         $content = wpautop( $content );
+    }
 
     // Return column
 	$content = '<div class="'.$class.$last.'">'.$content.'</div><!-- .column (end) -->';
