@@ -22,8 +22,8 @@ themeblvdShortcodeAtts={
 		{
 			label:"Transition Effect",
 			id:"fx",
-			help:"Select what effect you'd like used when each slide transitions to the next.", 
-			controlType:"select-control", 
+			help:"Select what effect you'd like used when each slide transitions to the next.",
+			controlType:"select-control",
 			selectValues:['fade', 'slide']
 		},
 		{
@@ -35,44 +35,50 @@ themeblvdShortcodeAtts={
 		{
 			label:"Standard Navigation",
 			id:"nav_standard",
-			help:"Show standard nav dots to control slider.", 
-			controlType:"select-control", 
+			help:"Show standard nav dots to control slider.",
+			controlType:"select-control",
 			selectValues:['true', 'false']
 		},
 		{
 			label:"Navigation Arrows",
 			id:"nav_arrows",
-			help:"Show directional arrows to control slider.", 
+			help:"Show directional arrows to control slider.",
 			controlType:"select-control",
 			selectValues:['true', 'false']
 		},
 		{
 			label:"Pause/Play Button",
 			id:"pause_play",
-			help:"Show pause/play button.", 
+			help:"Show pause/play button.",
 			controlType:"select-control",
 			selectValues:['true', 'false']
 		},
 		{
 			label:"Pause on Hover Effect",
 			id:"pause_on_hover",
-			help:"How to enable the pause on hover effect for the slider. pause_on means the slider will pause when the user hovers over it, while pause_on_off means the slider will pause on hover AND start again when the user hovers off it.", 
+			help:"How to enable the pause on hover effect for the slider. pause_on means the slider will pause when the user hovers over it, while pause_on_off means the slider will pause on hover AND start again when the user hovers off it.",
 			controlType:"select-control",
 			selectValues:['pause_on', 'pause_on_off', 'disable']
 		},
 		{
 			label:"Image Display",
 			id:"image",
-			help:"Select how you'd like the featured image of the post displayed in the slider.", 
+			help:"Select how you'd like the featured image of the post displayed in the slider.",
 			controlType:"select-control",
 			selectValues:['full', 'align-right', 'align-left']
 		},
 		{
+			label:"Image Size",
+			id:"image_size",
+			value:"slider-large",
+			help:"Input an image crop size to be used for the slider images. This will only work if your Image Display is set to \"full\"."
+		},
+		{
 			label:"Image Link",
 			id:"image_link",
-			help:"Select where the image link goes.", 
-			controlType:"select-control", 
-			selectValues:['permalink', 'lightbox', 'none']
+			help:"Select where the image link goes. Selecting \"option\" will pull from each posts's Image Link options. Selecting \"permalink\" will link each image to its post. Selecting \"lightbox\" will link each post to the full size of the featured image in a lightbox.",
+			controlType:"select-control",
+			selectValues:['option', 'permalink', 'lightbox', 'none']
 		},
 		{
 			label:"Button linking to post",
@@ -98,15 +104,15 @@ themeblvdShortcodeAtts={
 		{
 			label:"Order by",
 			id:"orderby",
-			help:"What to order the posts displayed by.", 
-			controlType:"select-control", 
+			help:"What to order the posts displayed by.",
+			controlType:"select-control",
 			selectValues:['date', 'title', 'comment_count', 'rand']
 		},
 		{
 			label:"Order",
 			id:"order",
-			help:"How to order the posts displayed.", 
-			controlType:"select-control", 
+			help:"How to order the posts displayed.",
+			controlType:"select-control",
 			selectValues:['DESC', 'ASC']
 		},
 		{
@@ -118,8 +124,8 @@ themeblvdShortcodeAtts={
 		{
 			label:"Mobile Fallback",
 			id:"fx",
-			help:"Select how you'd like the slider to display on mobile devices. If you 'full_list', all slides will be listed out for the mobile user, while 'first_slide' will just display the first slide. The 'display' option will attempt display the full, animated slider to the mobile user; this isn't recommended.", 
-			controlType:"select-control", 
+			help:"Select how you'd like the slider to display on mobile devices. If you 'full_list', all slides will be listed out for the mobile user, while 'first_slide' will just display the first slide. The 'display' option will attempt display the full, animated slider to the mobile user; this isn't recommended.",
+			controlType:"select-control",
 			selectValues:['full_list', 'first_slide', 'display']
 		}
 	],
