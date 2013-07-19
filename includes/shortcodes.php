@@ -457,8 +457,8 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
 function themeblvd_shortcode_lightbox( $atts, $content = null ) {
 
     // Shortcode requires framework 2.3+
-    if ( version_compare( TB_FRAMEWORK_VERSION, '2.3.0', '<' ) ) {
-        $error = __('You must be using a theme with Theme Blvd framework v2.3+ to use the [lightbox] shortcode.', 'themeblvd_shortcodes' );
+    if ( ! function_exists( 'themeblvd_is_lightbox_url' ) ) {
+         $error = __('You must be using a theme with Theme Blvd framework v2.3+ to use the [lightbox] shortcode.', 'themeblvd_shortcodes' );
         return sprintf( '<div class="alert">%s</div>', $error );
     }
 
@@ -545,10 +545,10 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
         // Force inline styling
         $style = '';
         if( $atts['width'] && $atts['frame_max'] == 'true' ) {
-            $style = sprintf(' style="max-width: %spx"', $atts['width']);
+            $style = sprintf('max-width: %spx', $atts['width']);
         }
 
-        $wrap  = '<div class="'.$wrap_classes.'"'.$style.'>';
+        $wrap  = '<div class="'.$wrap_classes.'" style="'.$style.'">';
         $wrap .= '<div class="featured-image-wrapper">';
         $wrap .= '<div class="featured-image">';
         $wrap .= '<div class="featured-image-inner">';
@@ -557,7 +557,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
         $wrap .= '</div><!-- .featured-image (end) -->';
         $wrap .= '</div><!-- .featured-image-wrapper (end) -->';
         $wrap .= '</div>';
-        $wrap = apply_filters( 'themeblvd_lightbox_shortcode_thumbnail_wrap', $wrap, $wrap_classes,  );
+        $wrap = apply_filters( 'themeblvd_lightbox_shortcode_thumbnail_wrap', $wrap, $wrap_classes, $style );
 
         $output = sprintf( $wrap, $output );
     }

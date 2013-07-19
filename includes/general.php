@@ -87,9 +87,13 @@ function themeblvd_content_formatter( $content ) {
  */
 function themeblvd_lightbox_send_to_editor( $html, $id, $caption, $title, $align, $url, $size, $alt ){
 
+	if ( ! function_exists( 'themeblvd_is_lightbox_url' ) ) {
+		return $html;
+	}
+
 	$atts = array();
 
-	if( ! $caption && $icon = themeblvd_prettyphoto_supported_link( $url ) ) {
+	if( ! $caption && $icon = themeblvd_is_lightbox_url( $url ) ) {
 
 		global $content_width;
 		$original_content_width = $content_width;
@@ -115,42 +119,3 @@ function themeblvd_lightbox_send_to_editor( $html, $id, $caption, $title, $align
 
 	return apply_filters( 'themeblvd_lightbox_to_editor', $html, $atts );
 }
-
-if( ! function_exists( 'themeblvd_prettyphoto_supported_link' ) ) :
-/**
- * Determine if prettyPhoto can take the current URL and
- * display in the lightbox.
- * (Pluggable because also added to Theme Blvd framework)
- *
- * @since 1.0.7
- *
- * @param string $url URL string to check
- * @return string $icon Type of URL (video or image) or blank if URL not supported
- */
-function themeblvd_prettyphoto_supported_link( $url ) {
-
-	$icon = '';
-
-	if( $url ) {
-
-		// Link to Vimeo or YouTube page?
-		if( strpos( $url, 'vimeo.com' ) !== false ||
-			strpos( $url, 'youtube.com' ) !== false ||
-			strpos( $url, 'youtu.be' ) !== false )
-		$icon = 'video';
-
-		if( ! $icon ) {
-			$parsed_url = parse_url( $url );
-			$type = wp_check_filetype( $parsed_url['path'] );
-			// Link to .mov file?
-			if( $type['ext'] == 'mov' )
-				$icon = 'video';
-			// Link to image file?
-			if( substr( $type['type'], 0, 5 ) == 'image' )
-				$icon = 'image';
-		}
-	}
-
-	return apply_filters( 'themeblvd_prettyphoto_supported_link', $icon, $url );
-}
-endif;
