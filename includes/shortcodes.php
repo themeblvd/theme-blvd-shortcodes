@@ -59,7 +59,6 @@
  * @param string $content The enclosed content
  * @param string $tag Current shortcode tag
  */
-
 function themeblvd_shortcode_column( $atts, $content = null, $tag = '' ) {
 
     // Determine if column is last in row
@@ -142,7 +141,6 @@ function themeblvd_shortcode_column( $atts, $content = null, $tag = '' ) {
  *
  * @since 1.0.0
  */
-
 function themeblvd_shortcode_clear() {
 	return '<div class="clear"></div>';
 }
@@ -160,7 +158,6 @@ function themeblvd_shortcode_clear() {
  * @param string $content The enclosed content
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_icon_list( $atts, $content = null ) {
 
     $default = array(
@@ -238,7 +235,6 @@ function themeblvd_shortcode_icon_list( $atts, $content = null ) {
  * @param string $content The enclosed content
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_button( $atts, $content = null ) {
 
     $output = '';
@@ -269,7 +265,6 @@ function themeblvd_shortcode_button( $atts, $content = null ) {
  * @param string $content The enclosed content
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_box( $atts, $content = null ) {
 
     $output = '';
@@ -304,7 +299,6 @@ function themeblvd_shortcode_box( $atts, $content = null ) {
  * @param string $content The enclosed content
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_alert( $atts, $content = null ) {
 
     $default = array(
@@ -341,7 +335,6 @@ function themeblvd_shortcode_alert( $atts, $content = null ) {
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content The enclosed content
  */
-
 function themeblvd_shortcode_divider( $atts, $content = null ) {
 
     $default = array(
@@ -360,7 +353,6 @@ function themeblvd_shortcode_divider( $atts, $content = null ) {
  * @param array $atts Standard WordPress shortcode attributes
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_progress_bar( $atts ) {
 
     $default = array(
@@ -400,7 +392,6 @@ function themeblvd_shortcode_progress_bar( $atts ) {
  * @param string $content Content in shortcode
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_popup( $atts, $content = null ) {
 
     $default = array(
@@ -463,8 +454,13 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
  * @param string $content Content in shortcode
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_lightbox( $atts, $content = null ) {
+
+    // Shortcode requires framework 2.3+
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.3.0', '<' ) ) {
+        $error = __('You must be using a theme with Theme Blvd framework v2.3+ to use the [lightbox] shortcode.', 'themeblvd_shortcodes' );
+        return sprintf( '<div class="alert">%s</div>', $error );
+    }
 
     $default = array(
         'link'      => '',          // URL being linked to in the lightbox popup
@@ -486,45 +482,71 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
     $thumb = $atts['thumb'];
     $has_thumb_img = false;
     $thumb_type = wp_check_filetype( $thumb );
+
     if( substr( $thumb_type['type'], 0, 5 ) == 'image' ) {
+
         $has_thumb_img = true;
+
         // Build <img /> HTML for thumbnail
         $thumb = sprintf('<img src="%s" alt="%s"', $thumb, $atts['title'] );
-        if( $atts['width'] )
+
+        if( $atts['width'] ) {
             $thumb .= sprintf( ' width="%s"', $atts['width'] );
-        if( $atts['frame'] == 'false' && $atts['align'] != 'none' ) // If image is framed, the alignment will be on the frame
+        }
+
+        if( $atts['frame'] == 'false' && $atts['align'] != 'none' ) {
+            // If image is framed, the alignment will be on the frame
             $thumb .= sprintf( ' class="align%s"', $atts['align'] );
+        }
+
         $thumb .= ' />';
     }
 
-    // Wrap thumbail image/text in link to lightbox
+    // Add image overlay if framed thumbnail
+    if( $atts['frame'] == 'true' && $has_thumb_img ) {
+        $thumb .= themeblvd_get_image_overlay();
+    }
+
+    // Classes for link's anchor tag
     $anchor_classes = '';
-    if( $atts['frame'] == 'true' )
+
+    if( $atts['frame'] == 'true' ) {
         $anchor_classes .= 'thumbnail '.$atts['icon'];
-    if( $atts['frame'] == 'false' && $atts['class'] )
+    }
+
+    if( $atts['frame'] == 'false' && $atts['class'] ) {
         $anchor_classes .= $atts['class'];
+    }
 
-    $rel = 'themeblvd_lightbox';
-    if( $atts['gallery'] )
-        $rel .= "[".$atts['gallery']."]";
+    // Wrap thumbail image/text in link to lightbox
+    $args = apply_filters('themeblvd_lightbox_shortcode_args', array(
+        'item'      => $thumb,
+        'link'      => $atts['link'],
+        'title'     => $atts['title'],
+        'class'     => $anchor_classes
+    ), $atts );
 
-    if( $atts['frame'] == 'true' && $has_thumb_img )
-        $thumb .= apply_filters( 'themeblvd_image_overlay', '<span class="image-overlay"><span class="image-overlay-bg"></span><span class="image-overlay-icon"></span></span>');
-
-    $output .= sprintf( '<a href="%s" title="%s" class="%s" rel="%s">%s</a>', $atts['link'], $atts['title'], $anchor_classes, $rel, $thumb );
+    $output .= themeblvd_get_link_to_lightbox( $args );
 
     // Wrap link and thumbnail image in frame
     if( $atts['frame'] == 'true' && $has_thumb_img ) {
 
+        // Wrapping CSS classes
         $wrap_classes = '';
-        if( $atts['align'] != 'none' )
-            $wrap_classes .= 'align'.$atts['align'];
-        if( $atts['class'] )
-            $wrap_classes .= ' '.$atts['class'];
 
+        if( $atts['align'] != 'none' ) {
+            $wrap_classes .= 'align'.$atts['align'];
+        }
+
+        if( $atts['class'] ) {
+            $wrap_classes .= ' '.$atts['class'];
+        }
+
+        // Force inline styling
         $style = '';
-        if( $atts['width'] && $atts['frame_max'] == 'true' )
+        if( $atts['width'] && $atts['frame_max'] == 'true' ) {
             $style = sprintf(' style="max-width: %spx"', $atts['width']);
+        }
 
         $wrap  = '<div class="'.$wrap_classes.'"'.$style.'>';
         $wrap .= '<div class="featured-image-wrapper">';
@@ -535,7 +557,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
         $wrap .= '</div><!-- .featured-image (end) -->';
         $wrap .= '</div><!-- .featured-image-wrapper (end) -->';
         $wrap .= '</div>';
-        $wrap = apply_filters( 'themeblvd_lightbox_thumbnail_wrap', $wrap, $classes );
+        $wrap = apply_filters( 'themeblvd_lightbox_shortcode_thumbnail_wrap', $wrap, $wrap_classes,  );
 
         $output = sprintf( $wrap, $output );
     }
@@ -557,7 +579,6 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
  * @param string $content The enclosed content
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_icon( $atts, $content = null ) {
 
 	$default = array(
@@ -593,7 +614,6 @@ function themeblvd_shortcode_icon( $atts, $content = null ) {
  * @param string $content The enclosed content
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_icon_link( $atts, $content = null ) {
 
     $default = array(
@@ -659,7 +679,6 @@ function themeblvd_shortcode_icon_link( $atts, $content = null ) {
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content The enclosed content
  */
-
 function themeblvd_shortcode_highlight( $atts, $content = null ) {
     return '<span class="text-highlight">'.do_shortcode($content).'</span><!-- .text-highlight (end) -->';
 }
@@ -672,7 +691,6 @@ function themeblvd_shortcode_highlight( $atts, $content = null ) {
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content The enclosed content
  */
-
 function themeblvd_shortcode_dropcap( $atts, $content = null ) {
     return '<span class="dropcap">'.do_shortcode($content).'</span><!-- .dropcap (end) -->';
 }
@@ -687,7 +705,6 @@ function themeblvd_shortcode_dropcap( $atts, $content = null ) {
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content The enclosed content
  */
-
 function themeblvd_shortcode_label( $atts, $content = null ) {
 
     $default = array(
@@ -717,7 +734,6 @@ function themeblvd_shortcode_label( $atts, $content = null ) {
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content The enclosed content
  */
-
 function themeblvd_shortcode_vector_icon( $atts ) {
 
     $default = array(
@@ -747,7 +763,6 @@ function themeblvd_shortcode_vector_icon( $atts ) {
  * @param string $content The enclosed content
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_tabs( $atts, $content = null ) {
 
     $default = array(
@@ -807,7 +822,6 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
  * @param string $content The enclosed content
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_accordion( $atts, $content = null ) {
 	$accordion_id = uniqid( 'accordion_'.rand() );
 	return '<div id="'.$accordion_id.'" class="tb-accordion">'.do_shortcode($content).'</div>';
@@ -822,7 +836,6 @@ function themeblvd_shortcode_accordion( $atts, $content = null ) {
  * @param string $content The enclosed content
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_toggle( $atts, $content = null ) {
 
     $last = isset( $atts[0] ) ? $last = ' accordion-group-last' : null;
@@ -869,7 +882,6 @@ function themeblvd_shortcode_toggle( $atts, $content = null ) {
  *
  * @param array $atts Standard WordPress shortcode attributes
  */
-
 function themeblvd_shortcode_post_grid_slider( $atts ) {
 
     $default = array(
@@ -975,7 +987,6 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
  *
  * @param array $atts Standard WordPress shortcode attributes
  */
-
 function themeblvd_shortcode_post_list_slider( $atts ) {
 
     $default = array(
@@ -1085,7 +1096,6 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
  *
  * @param array $atts Standard WordPress shortcode attributes
  */
-
 function themeblvd_shortcode_post_grid( $atts ) {
 
     $default = array(
@@ -1163,7 +1173,6 @@ function themeblvd_shortcode_post_grid( $atts ) {
  *
  * @param array $atts Standard WordPress shortcode attributes
  */
-
 function themeblvd_shortcode_post_list( $atts ) {
 
     $default = array(
@@ -1242,7 +1251,6 @@ function themeblvd_shortcode_post_list( $atts ) {
  * @param array $atts Standard WordPress shortcode attributes
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_mini_post_grid( $atts ) {
 
     // Default shortcode atts
@@ -1301,7 +1309,6 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
  * @param array $atts Standard WordPress shortcode attributes
  * @return string $output Content to output for shortcode
  */
-
 function themeblvd_shortcode_mini_post_list( $atts ) {
 
     // Default shortcode atts
