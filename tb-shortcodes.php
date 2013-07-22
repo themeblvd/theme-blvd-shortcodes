@@ -110,6 +110,7 @@ function themeblvd_shortcodes_init() {
 		add_shortcode( 'progress_bar', 'themeblvd_shortcode_progress_bar' );
 		add_shortcode( 'popup', 'themeblvd_shortcode_popup' );
 		add_shortcode( 'lightbox', 'themeblvd_shortcode_lightbox' );
+		add_shortcode( 'lightbox_gallery', 'themeblvd_shortcode_lightbox_gallery' );
 
 		// Inline Elements
 		add_shortcode( 'icon', 'themeblvd_shortcode_icon' );

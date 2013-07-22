@@ -68,7 +68,7 @@ The Theme Blvd shortcodes pack wouldn't be complete without the ability create s
 
 = Lightbox =
 
-Theme Blvd themes already come with basic prettyPhoto lightbox integration, and this plugin will give you a `[lightbox]` shortcode you can use to easily tap into this.
+Theme Blvd themes already come with basic lightbox integration, and this plugin will give you a `[lightbox]` shortcode you can use to easily tap into this. You can also wrap a group of `[lightbox]` instances in a `[lightbox_gallery]` for them to be grouped into a gallery within the lightbox.
 
 Additionally, there is a featured called "Auto Lightbox" which will automatically convert images inserted into pages and posts into the `[lightbox]` shortcode when they link to a lightbox-compatible URL. Note that you can disable this functionality from *Settings > Writing* in your WordPress admin.
 
@@ -92,7 +92,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.0.7 =
 
 * Added compatibility for [Portfolios](http://wordpress.org/plugins/portfolios/) plugin. With this plugin activated you can use "portfolio" and "portfolio_tag" parameters with `[post_grid]`, `[post_list]`, `[post_grid_slider]`, `[post_list_slider]`.
-* Added `[lightbox]` shortcode
+* Added `[lightbox]` and `[lightbox_gallery]` shortcode.
 * Added "Auto Lightbox" feature when inserting images into pages and posts. -- Can be disabled from WP > Settings > Writing.
 * When inserting `[tabs]` shortcode, default example now has `tabs_above`.
 * Added fix for `[icon]` shortcode image URL's to work with Theme Blvd framework v2.3+.

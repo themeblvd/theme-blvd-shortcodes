@@ -24,6 +24,7 @@
  * 		- progess_bar		=> @since 1.0.0
  *		- popup				=> @since 1.0.0
  *      - lightbox          => @since 1.0.7
+ *      - lightbox_gallery  => @since 1.0.7
  * (3) Inline Elements
  *		- icon				=> @since 1.0.0
  *		- icon_link 		=> @since 1.0.0
@@ -458,7 +459,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
 
     // Shortcode requires framework 2.3+
     if ( ! function_exists( 'themeblvd_is_lightbox_url' ) ) {
-         $error = __('You must be using a theme with Theme Blvd framework v2.3+ to use the [lightbox] shortcode.', 'themeblvd_shortcodes' );
+        $error = __('You must be using a theme with Theme Blvd framework v2.3+ to use the [lightbox] shortcode.', 'themeblvd_shortcodes' );
         return sprintf( '<div class="alert">%s</div>', $error );
     }
 
@@ -563,6 +564,32 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
     }
 
     return apply_filters( 'themeblvd_shortcode_lightbox', $output, $atts, $thumb );
+
+}
+
+/**
+ * Wrap a set of [lightbox] instances to link as a gallery.
+ *
+ * @since 1.0.7
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @param string $content Content in shortcode
+ * @return string $output Content to output for shortcode
+ */
+function themeblvd_shortcode_lightbox_gallery( $atts, $content = null ) {
+
+    // Shortcode requires framework 2.3+
+    if ( ! function_exists( 'themeblvd_is_lightbox_url' ) ) {
+        $error = __('You must be using a theme with Theme Blvd framework v2.3+ to use the [lightbox] shortcode.', 'themeblvd_shortcodes' );
+        return sprintf( '<div class="alert">%s</div>', $error );
+    }
+
+    $default = array(
+       // currently no atts ...
+    );
+    $atts = shortcode_atts( $default, $atts );
+
+    return sprintf( '<div class="themeblvd-gallery">%s</div>', do_shortcode($content) );
 
 }
 
