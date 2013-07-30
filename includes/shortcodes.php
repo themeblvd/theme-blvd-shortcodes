@@ -795,32 +795,49 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
     $default = array(
         'style' 		=> 'framed', 		// framed, open
         'nav'			=> 'tabs_above',	// tabs_above, tabs_right, tabs_below, tabs_left, pills_above, pills_below
-        'height' 		=> '' 				// Optional fixed height for inside of tabs
+        'height' 		=> '' 				// Fixed height for tabs, true or false
     );
     extract( shortcode_atts( $default, $atts ) );
 
-    if( isset( $atts['style'] ) )
+
+    // Since we use the $atts to loop through and
+    // display the tabs, we need to remove the other
+    // data, now that we've extracted it to other
+    // variables.
+    if( isset( $atts['style'] ) ) {
         unset( $atts['style'] );
+    }
 
-    if( isset( $atts['nav'] ) )
+    if( isset( $atts['nav'] ) ) {
         unset( $atts['nav'] );
+    }
 
-    if( isset( $atts['height'] ) )
+    if( isset( $atts['height'] ) ) {
         unset( $atts['height'] );
+    }
 
     $id = uniqid( 'tabs_'.rand() );
     $num = count( $atts ) - 1;
 	$i = 1;
 
+    // Setup options pass
     $options = array(
     	'setup' => array(
     		'num' 	=> $num,
     		'style' => $style,
     		'nav' 	=> $nav,
     		'names' => array()
-    	),
-    	'height' => $height
+    	)
     );
+
+    // Add in height to options as true boolean
+    if ( ! $height || 'false' === $height ) {
+        $height = false;
+    } else {
+        $height = true;
+    }
+
+    $options['height'] = $height;
 
     if( is_array( $atts ) && count( $atts ) > 0 ) {
 		foreach( $atts as $key => $tab ) {
