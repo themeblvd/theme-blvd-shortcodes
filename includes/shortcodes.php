@@ -23,8 +23,8 @@
  *		- divider			=> @since 1.0.0
  * 		- progess_bar		=> @since 1.0.0
  *		- popup				=> @since 1.0.0
- *      - lightbox          => @since 1.0.7
- *      - lightbox_gallery  => @since 1.0.7
+ *      - lightbox          => @since 1.1.0
+ *      - lightbox_gallery  => @since 1.1.0
  * (3) Inline Elements
  *		- icon				=> @since 1.0.0
  *		- icon_link 		=> @since 1.0.0
@@ -449,7 +449,7 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
 /**
  * Lightbox
  *
- * @since 1.0.7
+ * @since 1.1.0
  *
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content Content in shortcode
@@ -570,7 +570,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
 /**
  * Wrap a set of [lightbox] instances to link as a gallery.
  *
- * @since 1.0.7
+ * @since 1.1.0
  *
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content Content in shortcode
