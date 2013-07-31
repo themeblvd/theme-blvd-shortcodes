@@ -472,7 +472,6 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
         'frame'     => 'true',      // Whether or not to display frame around thumbnail
         'frame_max' => 'true',      // Whether or not the frame takes on the image's width as a max-width (super-secret and not in generator)
         'icon'      => 'image',     // Icon for thumbnail if in frame - video or image
-        'gallery'   => '',          // Optional gallery name to link to other items on page
         'class'     => ''           // Class to append to <a>, or frame if enabled
     );
     $atts = shortcode_atts( $default, $atts );
