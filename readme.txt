@@ -72,6 +72,8 @@ Theme Blvd themes already come with basic lightbox integration, and this plugin 
 
 Additionally, there is a featured called "Auto Lightbox" which will automatically convert images inserted into pages and posts into the `[lightbox]` shortcode when they link to a lightbox-compatible URL. Note that you can disable this functionality from *Settings > Writing* in your WordPress admin.
 
+[View Documentation and Examples](hhttp://shortcodes.themeblvd.com/shortcodes/lightbox/)
+
 = Raw Shortcode =
 
 Any content wrapped in the `[raw]` shortcode will allow you to escape any automatic WordPress formatting. Keep in mind that this is not a standard shortcode, and does modify the content outputted in your site. So, if you find that this conflicts with any other plugins you may be using, you can disable this functionality all together from *Settings > Writing* in your WordPress admin.
