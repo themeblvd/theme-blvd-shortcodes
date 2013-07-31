@@ -31,7 +31,7 @@ function themeblvd_shortcodes_disable_nag() {
 /**
  * Disable admin notice URL.
  *
- * @since 1.0.7
+ * @since 1.1.0
  */
 function themeblvd_shortcodes_disable_url( $id ) {
 
@@ -73,7 +73,7 @@ function themeblvd_content_formatter( $content ) {
  * the [lightbox] shortcode if image is linked to Vimeo,
  * YouTube, Quicktime files, or image files.
  *
- * @since 1.0.7
+ * @since 1.1.0
  *
  * @param string $html HTML markup for image to be converted
  * @param string $id Attachment ID of image

@@ -70,7 +70,7 @@ class Theme_Blvd_Shortcode_Options {
 	/**
 	 * Display option to disable shortcode generator.
 	 *
-	 * @since 1.0.7
+	 * @since 1.1.0
 	 */
 	public function display_option_auto_lightbox() {
 		$desc = __( 'When inserting an image with this enabled, images linked to YouTube, Vimeo, Quicktime files, and image files will be automatically converted to the [lightbox] shortcode.', 'themeblvd_shortcodes' );
