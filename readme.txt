@@ -93,6 +93,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.1.1 =
 
+* Fixed `[post_slider]` parameters for shortcode generator.
+
 = 1.1.0 =
 
 * Added compatibility for [Portfolios](http://wordpress.org/plugins/portfolios/) plugin. With this plugin activated you can use "portfolio" and "portfolio_tag" parameters with `[post_grid]`, `[post_list]`, `[post_grid_slider]`, `[post_list_slider]`.

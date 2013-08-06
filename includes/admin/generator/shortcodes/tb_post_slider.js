@@ -92,7 +92,7 @@ themeblvdShortcodeAtts={
 		},
 		{
 			label:"Category to pull posts from",
-			id:"category_name",
+			id:"category",
 			help:"Enter a category slug to pull posts from for the slider. Ex: my-category"
 		},
 		{
