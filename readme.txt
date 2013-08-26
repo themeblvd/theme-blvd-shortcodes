@@ -91,6 +91,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
+= 1.1.2 =
+
 = 1.1.1 =
 
 * Fixed `[post_slider]` parameters for shortcode generator.
