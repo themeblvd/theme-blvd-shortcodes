@@ -123,7 +123,7 @@ themeblvdShortcodeAtts={
 		},
 		{
 			label:"Mobile Fallback",
-			id:"fx",
+			id:"mobile_fallback",
 			help:"Select how you'd like the slider to display on mobile devices. If you 'full_list', all slides will be listed out for the mobile user, while 'first_slide' will just display the first slide. The 'display' option will attempt display the full, animated slider to the mobile user; this isn't recommended.",
 			controlType:"select-control",
 			selectValues:['full_list', 'first_slide', 'display']
