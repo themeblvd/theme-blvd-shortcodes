@@ -770,10 +770,16 @@ function themeblvd_shortcode_vector_icon( $atts ) {
 
     $size_style = '';
 
-    if( $size )
-    		$size_style = ' style="font-size:'.$size.';"';
+    if( $size ) {
+        $size_style = sprintf( ' style="font-size: %s;"', $size );
+    }
 
-    return '<i class="icon-'.$icon.'"'.$size_style.'></i>';
+    $class = sprintf( 'fa fa-%s', $icon ); // FontAwesome 4
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '<' ) ) {
+        $class = sprintf( 'icon-%s', $icon ); // FontAwesome 1-3
+    }
+
+    return sprintf( '<i class="%s"%s></i>', $class, $size_style );
 }
 
 /*-----------------------------------------------------------*/
