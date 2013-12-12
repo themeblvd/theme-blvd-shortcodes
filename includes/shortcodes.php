@@ -734,18 +734,29 @@ function themeblvd_shortcode_dropcap( $atts, $content = null ) {
 function themeblvd_shortcode_label( $atts, $content = null ) {
 
     $default = array(
-        'style' => '', // default, success, warning, important, info, inverse
+        'style' => 'default', // default, success, warning, danger, info
         'icon'	=> ''
     );
     extract( shortcode_atts( $default, $atts ) );
 
     $class = 'label';
 
-    if( $style && $style != 'default' )
-    	$class .= ' label-'.$style;
+    // Convert styles from Bootstrap 1 & 2 to Bootstrap 3.
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+        if ( 'important' == $style ) {
+            $style = 'danger';
+        }
+    }
 
-    if( $icon )
+    if ( ! $style ) {
+        $style = 'default';
+    }
+
+    $class .= ' label-'.$style;
+
+    if ( $icon ) {
     	$content = '<i class="icon-'.$icon.'"></i> '.$content;
+    }
 
     return '<span class="'.$class.'">'.do_shortcode($content).'</span><!-- .label (end) -->';
 }

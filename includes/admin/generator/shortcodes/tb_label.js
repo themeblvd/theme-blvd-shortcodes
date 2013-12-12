@@ -1,6 +1,6 @@
 /**
  * Optional arguments
- * - style: default, success, warning, important, info, inverse
+ * - style: default, success, warning, danger, info
  * - icon: Icon code to display before text
  */
 themeblvdShortcodeAtts={
@@ -8,9 +8,9 @@ themeblvdShortcodeAtts={
 		{
 			label:"Style",
 			id:"style",
-			help:"Select the style, which determines the color of the label.", 
-			controlType:"select-control", 
-			selectValues:['default', 'success', 'warning', 'important', 'info', 'inverse']
+			help:"Select the style, which determines the color of the label.",
+			controlType:"select-control",
+			selectValues:['default', 'success', 'warning', 'danger', 'info']
 		},
 		{
 			label:"Icon (optional)",

@@ -93,7 +93,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.1.3 =
 
-* Fix for [vector_icon] shortcode accomodate FontAwesome 4 in Theme Blvd framework v2.4+.
+* Fix for [vector_icon] shortcode to accomodate FontAwesome 4 in Theme Blvd framework v2.4+.
+* Fix for [label] shortcode to accomodate Bootstrap 3 in Theme Blvd framework v2.4+.
 
 = 1.1.2 =
 
