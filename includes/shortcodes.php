@@ -215,12 +215,18 @@ function themeblvd_shortcode_icon_list( $atts, $content = null ) {
 
     // Color
     $color_css = '';
-    if( $color )
+    if( $color ) {
     	$color_css = ' style="color:'.$color.';"';
+    }
 
     // Add in fontawesome icon
     $content = str_replace('<ul>', '<ul class="tb-icon-list">', $content );
-    $content = str_replace('<li>', '<li><i class="icon-'.$icon.'"'.$color_css.'></i> ', $content );
+
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+        $content = str_replace('<li>', '<li><i class="fa fa-'.$icon.'"'.$color_css.'></i> ', $content );
+    } else {
+        $content = str_replace('<li>', '<li><i class="icon-'.$icon.'"'.$color_css.'></i> ', $content );
+    }
 
     // Output
     $output = do_shortcode($content);
