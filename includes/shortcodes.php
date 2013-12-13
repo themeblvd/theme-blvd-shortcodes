@@ -385,22 +385,92 @@ function themeblvd_shortcode_progress_bar( $atts ) {
     );
     extract( shortcode_atts( $default, $atts ) );
 
-    $classes = 'progress';
+    $wrap_classes = '';
+
+    // Wrap classes for Bootstrap 3+
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+        $wrap_classes = 'progress';
+    }
+
+    // Start classes
+    $classes = '';
+
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+        // Bootstrap 3+
+        $classes = 'progress-bar';
+
+    } else {
+
+        // Bootstrap 1 & 2 (@deprecated)
+        $classes = 'progress';
+
+    }
 
     // Color
-    if( $color && $color != 'default' )
-    	$classes .= ' progress-'.$color;
+    if( $color ) {
+
+        if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+            // Bootstrap 3+
+            $classes .= ' progress-bar-'.$color;
+
+        } else {
+
+            // Bootstrap 1 & 2 (@deprecated)
+            $classes .= ' progress-'.$color;
+        }
+    }
 
     // Striped?
-    if( $striped == 'true' )
-    	$classes .= ' progress-striped';
+    if( $striped == 'true' ) {
+    	if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+            // Bootstrap 3+
+            $wrap_classes .= ' progress-striped';
+
+        } else {
+
+            // Bootstrap 1 & 2 (@deprecated)
+            $classes .= ' progress-striped';
+
+        }
+    }
 
     // Animated?
-    if( $animate == 'true' )
-    	$classes .= ' active';
+    if( $animate == 'true' ) {
+        if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+            // Bootstrap 3
+            $wrap_classes .= ' active';
+
+        } else {
+
+            // Bootstrap 1 & 2 (@deprecated)
+            $classes .= ' active';
+
+        }
+    }
 
     // Output
-    $output = '<div class="'.$classes.'"><div class="bar" style="width: '.$percent.'%;"></div></div>';
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+        // Bootstrap 3+
+        $output  = '<div class="'.$wrap_classes.'">';
+        $output .= '    <div class="'.$classes.'" role="progressbar" aria-valuenow="'.$percent.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent.'%;">';
+        $output .= '        <span class="sr-only">'.$percent.'%</span>';
+        $output .= '    </div>';
+        $output .= '</div>';
+
+    } else {
+
+        // Bootstrap 1 & 2 (@deprecated)
+        $output  = '<div class="'.$classes.'">';
+        $output .= '    <div class="bar" style="width: '.$percent.'%;"></div>';
+        $output .= '</div>';
+
+    }
+
 
     return $output;
 }

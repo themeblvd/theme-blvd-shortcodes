@@ -93,11 +93,12 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.1.3 =
 
-* [vector_icon] shortcode fix for FontAwesome 4.
-* [icon_list] shortcode fix for FontAwesome 4.
-* [label] shortcode fix for Bootstrap 3.
-* [toggle] shortcode fix for Bootstrap 3.
-* Because of Bootstrap 3, [tabs] shortcode no longer has below, right, or left nav options.
+* `[vector_icon]` shortcode fix for FontAwesome 4.
+* `[icon_list]` shortcode fix for FontAwesome 4.
+* `[label]` shortcode fix for Bootstrap 3.
+* `[toggle]` shortcode fix for Bootstrap 3.
+* `[progress_bar]` shortcode fix for Bootstrap 3.
+* Because of Bootstrap 3, `[tabs]` shortcode no longer has below, right, or left nav options.
 
 = 1.1.2 =
 
