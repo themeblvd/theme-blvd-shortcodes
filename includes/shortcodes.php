@@ -248,11 +248,26 @@ function themeblvd_shortcode_button( $atts, $content = null ) {
         'class' 		=> '',
         'title' 		=> '',
         'icon_before' 	=> '',
-        'icon_after' 	=> ''
+        'icon_after' 	=> '',
+        'block'         => 'false'
     );
     extract( shortcode_atts( $default, $atts ) );
 
-    $output = themeblvd_button( $content, $link, $color, $target, $size, $class, $title, $icon_before, $icon_after );
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+        if ( $block == 'true' ) {
+            $block = true;
+        } else {
+            $block = false;
+        }
+
+        $output = themeblvd_button( $content, $link, $color, $target, $size, $class, $title, $icon_before, $icon_after, '', $block );
+
+    } else {
+
+        $output = themeblvd_button( $content, $link, $color, $target, $size, $class, $title, $icon_before, $icon_after );
+
+    }
 
     return $output;
 }
