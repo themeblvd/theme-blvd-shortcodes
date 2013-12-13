@@ -399,7 +399,7 @@ $plugin_url = TB_SHORTCODES_PLUGIN_URI . '/includes/admin/generator/assets/image
 
 								// tabs
 								case 'tabs':
-								a  = '[tabs style="framed" nav="tabs_above" height="true" tab_1="Title #1" tab_2="Title #2" tab_3="Title #3"]<br />';
+								a  = '[tabs style="framed" nav="tabs" height="true" tab_1="Title #1" tab_2="Title #2" tab_3="Title #3"]<br />';
 								a += '[tab_1]Tab 1 content...[/tab_1]<br />';
 								a += '[tab_2]Tab 2 content...[/tab_2]<br />';
 								a += '[tab_3]Tab 3 content...[/tab_3]<br />';

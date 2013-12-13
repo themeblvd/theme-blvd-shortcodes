@@ -96,6 +96,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * [vector_icon] shortcode fix for FontAwesome 4.
 * [label] shortcode fix for Bootstrap 3.
 * [toggle] shortcode fix for Bootstrap 3.
+* Because of Bootstrap 3, [tabs] shortcode no longer has below, right, or left nav options.
 
 = 1.1.2 =
 

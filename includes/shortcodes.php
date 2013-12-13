@@ -810,11 +810,10 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
 
     $default = array(
         'style' 		=> 'framed', 		// framed, open
-        'nav'			=> 'tabs_above',	// tabs_above, tabs_right, tabs_below, tabs_left, pills_above, pills_below
+        'nav'			=> 'tabs',          // tabs, pills
         'height' 		=> '' 				// Fixed height for tabs, true or false
     );
     extract( shortcode_atts( $default, $atts ) );
-
 
     // Since we use the $atts to loop through and
     // display the tabs, we need to remove the other
