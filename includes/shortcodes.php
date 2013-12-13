@@ -764,7 +764,7 @@ function themeblvd_shortcode_label( $atts, $content = null ) {
 /**
  * Vector Icon (from Bootstrap and Font Awesome)
  *
- * <i class="icon-{whatever}"></i>
+ * <i class="fa fa-{whatever}"></i>
  *
  * @since 1.0.0
  *
@@ -883,8 +883,22 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
  * @return string $output Content to output for shortcode
  */
 function themeblvd_shortcode_accordion( $atts, $content = null ) {
-	$accordion_id = uniqid( 'accordion_'.rand() );
-	return '<div id="'.$accordion_id.'" class="tb-accordion">'.do_shortcode($content).'</div>';
+
+    $accordion_id = uniqid( 'accordion_'.rand() );
+
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+        // Bootstrap 3
+        $output = sprintf( '<div id="%s" class="tb-accordion">%s</div>', $accordion_id, do_shortcode( $content ) );
+
+    } else {
+
+        // Bootstrap 1 & 2
+        $output = sprintf( '<div id="%s" class="tb-accordion">%s</div>', $accordion_id, do_shortcode( $content ) );
+
+    }
+
+    return $output;
 }
 
 /**
@@ -898,35 +912,78 @@ function themeblvd_shortcode_accordion( $atts, $content = null ) {
  */
 function themeblvd_shortcode_toggle( $atts, $content = null ) {
 
-    $last = isset( $atts[0] ) ? $last = ' accordion-group-last' : null;
 	$default = array(
         'title' => '',
         'open'  => 'false'
     );
 	extract( shortcode_atts( $default, $atts ) );
 
-    // Is toggle open?
-    $classes = 'accordion-body collapse';
-    $icon = 'icon-plus-sign';
-    if( $open == 'true' ) {
-        $classes .= ' in';
-        $icon = 'icon-minus-sign';
-    }
-
     // Individual toggle ID (NOT the Accordion ID)
 	$toggle_id = uniqid( 'toggle_'.rand() );
 
-    // Start output
-	$output  = '<div class="accordion-group'.$last.'">';
-	$output .= '<div class="accordion-heading">';
-	$output .= '<a class="accordion-toggle" data-toggle="collapse" href="#'.$toggle_id.'"><i class="'.$icon.' switch-me"></i> '.$title.'</a>';
-	$output .= '</div><!-- .accordion-heading (end) -->';
-	$output .= '<div id="'.$toggle_id.'" class="'.$classes.'">';
-	$output .= '<div class="accordion-inner">';
-	$output .= apply_filters( 'themeblvd_the_content', $content );
-	$output .= '</div><!-- .accordion-inner (end) -->';
-	$output .= '</div><!-- .accordion-body (end) -->';
-	$output .= '</div><!-- .accordion-group (end) -->';
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+        // Bootstrap 3
+
+        // Last toggle?
+        $last = isset( $atts[0] ) ? $last = ' panel-group-last' : null;
+
+        // Is toggle open?
+        $classes = 'panel-collapse collapse';
+        $icon = 'plus-circle';
+        if( $open == 'true' ) {
+            $classes .= ' in';
+            $icon = 'minus-circle';
+        }
+
+        // Bootstrap color
+        $color = apply_filters( 'themeblvd_toggle_shortcode_color', 'default' );
+
+        // Bootstrap 3 output
+        $output = '
+            <div class="panel-group '.$last.'">
+                <div class="tb-panel panel panel-'.$color.'">
+                    <div class="panel-heading">
+                        <a class="panel-title" data-toggle="collapse" data-parent="" href="#'.$toggle_id.'">
+                            <i class="fa fa-'.$icon.' switch-me"></i> '.$title.'
+                        </a>
+                    </div><!-- .panel-heading (end) -->
+                    <div id="'.$toggle_id.'" class="'.$classes.'">
+                        <div class="panel-body">
+                            '.apply_filters( 'themeblvd_the_content', $content ).'
+                        </div><!-- .panel-body (end) -->
+                    </div><!-- .panel-collapse (end) -->
+                </div><!-- .panel (end) -->
+            </div><!-- .panel-group (end) -->';
+
+    } else {
+
+        // Bootstrap 1 & 2 output
+
+        // Last toggle?
+        $last = isset( $atts[0] ) ? $last = ' accordion-group-last' : null;
+
+        // Is toggle open?
+        $classes = 'accordion-body collapse';
+        $icon = 'sign';
+        if( $open == 'true' ) {
+            $classes .= ' in';
+            $icon = 'minus-sign';
+        }
+
+        // Output
+        $output  = '<div class="accordion-group'.$last.'">';
+    	$output .= '<div class="accordion-heading">';
+    	$output .= '<a class="accordion-toggle" data-toggle="collapse" href="#'.$toggle_id.'"><i class="icon-'.$icon.' switch-me"></i> '.$title.'</a>';
+    	$output .= '</div><!-- .accordion-heading (end) -->';
+    	$output .= '<div id="'.$toggle_id.'" class="'.$classes.'">';
+    	$output .= '<div class="accordion-inner">';
+    	$output .= apply_filters( 'themeblvd_the_content', $content );
+    	$output .= '</div><!-- .accordion-inner (end) -->';
+    	$output .= '</div><!-- .accordion-body (end) -->';
+    	$output .= '</div><!-- .accordion-group (end) -->';
+
+    }
 
     return $output;
 }
