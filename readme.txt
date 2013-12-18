@@ -2,7 +2,7 @@
 Author URI: http://www.jasonbobich.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 1.1.3
+Stable Tag: 1.2.0
 
 This plugin works in conjuction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
@@ -72,7 +72,7 @@ Theme Blvd themes already come with basic lightbox integration, and this plugin 
 
 Additionally, there is a featured called "Auto Lightbox" which will automatically convert images inserted into pages and posts into the `[lightbox]` shortcode when they link to a lightbox-compatible URL. Note that you can disable this functionality from *Settings > Writing* in your WordPress admin.
 
-[View Documentation and Examples](hhttp://shortcodes.themeblvd.com/shortcodes/lightbox/)
+[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/lightbox/)
 
 = Raw Shortcode =
 
@@ -91,7 +91,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
-= 1.1.3 =
+= 1.2.0 =
 
 * `[vector_icon]` shortcode fix for FontAwesome 4.
 * `[icon_list]` shortcode fix for FontAwesome 4.
