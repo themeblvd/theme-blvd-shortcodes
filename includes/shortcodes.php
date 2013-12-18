@@ -801,14 +801,17 @@ function themeblvd_shortcode_icon_link( $atts, $content = null ) {
 	    	break;
     }
 
-    if( ! $title )
+    if( ! $title ) {
         $title = $content;
-    if( $class )
-        $class = ' '.$class;
+    }
 
-    $output  = '<span class="tb-icon-link'.$class.'">'; // Can't use class starting in "icon-" or it will conflict with Bootstrap
-    $output .= '<i class="icon-'.$icon.'"></i>';
-    $output .= '<a href="'.$link.'" title="'.$title.'" class="icon-link-'.$icon.'" target="'.$target.'">'.$content.'</a>';
+    if( $class ) {
+        $class = ' '.$class;
+    }
+
+    $output  = sprintf( '<span class="tb-icon-link%s">', $class );
+    $output .= sprintf( '<i class="icon fa fa-%s"></i>', $icon );
+    $output .= sprintf( '<a href="%s" title="%s" class="icon-link-%s" target="%s">%s</a>', $link, $title, $icon, $target, $content );
     $output .= '</span>';
 
     return $output;
