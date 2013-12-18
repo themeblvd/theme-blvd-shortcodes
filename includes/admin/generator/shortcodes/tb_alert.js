@@ -8,15 +8,15 @@ themeblvdShortcodeAtts={
 		{
 			label:"Style",
 			id:"style",
-			help:"Select the style of the alert.", 
-			controlType:"select-control", 
-			selectValues:['info', 'success', 'danger', 'message']
+			help:"Select the style of the alert.",
+			controlType:"select-control",
+			selectValues:['info', 'success', 'danger', 'warning']
 		},
 		{
 			label:"Close Button",
 			id:"close",
-			help:"Select whether you\'d like the website visitor to be able to close the alert box or not.", 
-			controlType:"select-control", 
+			help:"Select whether you\'d like the website visitor to be able to close the alert box or not.",
+			controlType:"select-control",
 			selectValues:['false', 'true']
 		}
 	],

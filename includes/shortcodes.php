@@ -299,15 +299,15 @@ function themeblvd_shortcode_box( $atts, $content = null ) {
     extract( shortcode_atts( $default, $atts ) );
 
     // Classes
-    $classes = 'info-box info-box-'.$style;
+    $classes = sprintf( 'info-box info-box-%s', $style );
 
     // Add icon
     if( $icon ) {
     	$classes .= ' info-box-has-icon';
-    	$content = '<i class="icon icon-'.$icon.'"></i>'.$content;
+    	$content = sprintf( '<i class="icon fa fa-%s"></i>%s', $icon, $content );
     }
 
-    $output = '<div class="'.$classes.'">'.apply_filters('themeblvd_the_content', $content).'</div>';
+    $output = sprintf( '<div class="%s">%s</div>', $classes, apply_filters( 'themeblvd_the_content', $content ) );
 
     return $output;
 }
@@ -324,24 +324,34 @@ function themeblvd_shortcode_box( $atts, $content = null ) {
 function themeblvd_shortcode_alert( $atts, $content = null ) {
 
     $default = array(
-        'style' => 'blue', // info, success, danger, 'message'
+        'style' => 'blue', // info, success, danger, warning
         'close' => 'false' // true, false
     );
     extract( shortcode_atts( $default, $atts ) );
 
+    // In Bootstrap 3, 'message' was changed to 'warning'
+    if ( 'message' == $style ) {
+        $style = 'warning';
+    }
+
     // CSS classes
     $classes = 'alert';
-    if( in_array( $style, array( 'info', 'success', 'danger', 'message' ) ) ) // Twitter Bootstrap options
-    	$classes .= ' alert-'.$style;
-    if( $close == 'true' )
+
+    if( in_array( $style, array( 'info', 'success', 'danger', 'warning' ) ) ) { // Twitter Bootstrap options
+    	$classes .= sprintf( ' alert-%s', $style );
+    }
+
+    if( $close == 'true' ) {
     	$classes .= ' fade in';
+    }
 
     // Start output
-    $output = '<div class="'.$classes.'">';
+    $output = sprintf( '<div class="%s">', $classes );
 
     // Add a close button?
-    if( $close == 'true' )
+    if( $close == 'true' ) {
     	$output .= '<button type="button" class="close" data-dismiss="alert">×</button>';
+    }
 
     // Finish output
     $output .= $content.'</div><!-- .alert (end) -->';
@@ -489,7 +499,7 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
     $default = array(
     	'text' 			=> 'Link Text', // Text for link or button leading to popup
 		'title' 		=> '', 			// Title for anchor, will default to "text" option
-		'color' 		=> '', 			// Color of button, only applies if button style is selected
+		'color' 		=> 'default', 	// Color of button, only applies if button style is selected
 		'size'			=> '',			// Size of button,
 		'icon_before'	=> '', 			// Icon before button or link's text
 		'icon_after' 	=> '', 			// Icon after button or link's text
@@ -503,15 +513,18 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
 
     // Button/Link
     $link = '';
-    if( $title )
+    if( $title ) {
     	$title = $text;
+    }
+
     $link = themeblvd_button( $text, '#'.$popup_id, $color, null, $size, null, $title, $icon_before, $icon_after, 'data-toggle="modal"' );
 	$link = apply_filters('themeblvd_the_content', $link);
 
     // Classes for popup
-    $classes = 'modal hide';
-    if( $animate == 'true' )
+    $classes = 'modal';
+    if( $animate == 'true' ) {
     	$classes .= ' fade';
+    }
 
     // Header
     $header_html = '';
@@ -524,14 +537,27 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
 
     // Output
     $output  = $link;
-    $output .= '<div class="'.$classes.'" id="'.$popup_id.'">';
+    $output .= '<div class="'.$classes.'" id="'.$popup_id.'" tabindex="-1" role="dialog" aria-hidden="true">';
+    $output .= '<div class="modal-dialog">';
+    $output .= '<div class="modal-content">';
+
     $output .= $header_html;
+
     $output .= '<div class="modal-body">';
     $output .= apply_filters('themeblvd_the_content', $content);
     $output .= '</div><!-- .modal-body (end) -->';
     $output .= '<div class="modal-footer">';
-    $output .= '<a href="#" class="btn" data-dismiss="modal">'.themeblvd_get_local('close').'</a>';
+
+    $close_class = 'btn btn-default';
+    if ( apply_filters( 'themeblvd_btn_gradient', false ) ) {
+        $close_class .= ' btn-gradient';
+    }
+    $output .= '<a href="#" class="'.$close_class.'" data-dismiss="modal">'.themeblvd_get_local('close').'</a>';
+
     $output .= '</div><!-- .modal-footer (end) -->';
+
+    $output .= '</div><!-- .modal-content (end) -->';
+    $output .= '</div><!-- .modal-dialog (end) -->';
     $output .= '</div><!-- .modal (end) -->';
 
     return $output;
