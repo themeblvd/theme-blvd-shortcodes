@@ -93,6 +93,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.2.0 =
 
+* Added `[blockquote]` shortcode for easier Bootstrap quote formatting.
 * `[vector_icon]` shortcode fix for FontAwesome 4.
 * `[icon_list]` shortcode fix for FontAwesome 4.
 * `[icon_link]` shortcode fix for FontAwesome 4.

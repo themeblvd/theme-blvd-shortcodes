@@ -25,6 +25,7 @@
  *		- popup				=> @since 1.0.0
  *      - lightbox          => @since 1.1.0
  *      - lightbox_gallery  => @since 1.1.0
+ *      - blockquote        => @since 1.2.0
  * (3) Inline Elements
  *		- icon				=> @since 1.0.0
  *		- icon_link 		=> @since 1.0.0
@@ -707,6 +708,35 @@ function themeblvd_shortcode_lightbox_gallery( $atts, $content = null ) {
 
     return sprintf( '<div class="themeblvd-gallery">%s</div>', do_shortcode($content) );
 
+}
+
+/**
+ * Blockquote
+ *
+ * @since 1.2.0
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @param string $content The enclosed content
+ */
+function themeblvd_shortcode_blockquote( $atts ) {
+
+    $defaults = array(
+        'quote'         => '',
+        'source'        => '',      // Source of quote
+        'source_link'   => '',      // URL to link source to
+        'align'         => '',      // How to align blockquote - left, right
+        'max_width'     => '',      // Meant to be used with align left/right - 300px, 50%, etc
+        'class'         => ''       // Any additional CSS classes
+    );
+    $atts = wp_parse_args( $atts, $defaults );
+
+    $output = '';
+
+    if ( function_exists( 'themeblvd_get_blockquote' ) ) {
+        $output = themeblvd_get_blockquote( $atts );
+    }
+
+    return $output;
 }
 
 /*-----------------------------------------------------------*/

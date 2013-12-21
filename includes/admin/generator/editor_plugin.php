@@ -470,6 +470,7 @@ $plugin_url = TB_SHORTCODES_PLUGIN_URI . '/includes/admin/generator/assets/image
 										a.addWithDialog(c,"Popup","popup");
 										a.addWithDialog(c,"Progress Bar","progress_bar");
 									c=b.addMenu({title:"Inline Elements"});
+										a.addWithDialog(c,"Blockquote","blockquote");
 										a.addWithDialog(c,"Drop Cap","dropcap");
 										a.addWithDialog(c,"Highlight","highlight");
 										a.addWithDialog(c,"Icon Link","iconlink");
