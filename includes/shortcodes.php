@@ -1038,7 +1038,7 @@ function themeblvd_shortcode_accordion( $atts, $content = null ) {
     if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
 
         // Bootstrap 3
-        $output = sprintf( '<div id="%s" class="tb-accordion">%s</div>', $accordion_id, do_shortcode( $content ) );
+        $output = sprintf( '<div id="%s" class="tb-accordion panel-group">%s</div>', $accordion_id, do_shortcode( $content ) );
 
     } else {
 
@@ -1075,7 +1075,7 @@ function themeblvd_shortcode_toggle( $atts, $content = null ) {
         // Bootstrap 3
 
         // Last toggle?
-        $last = isset( $atts[0] ) ? $last = ' panel-group-last' : null;
+        $last = isset( $atts[0] ) ? $last = ' panel-last' : null;
 
         // Is toggle open?
         $classes = 'panel-collapse collapse';
@@ -1090,20 +1090,18 @@ function themeblvd_shortcode_toggle( $atts, $content = null ) {
 
         // Bootstrap 3 output
         $output = '
-            <div class="panel-group '.$last.'">
-                <div class="tb-panel panel panel-'.$color.'">
-                    <div class="panel-heading">
-                        <a class="panel-title" data-toggle="collapse" data-parent="" href="#'.$toggle_id.'">
-                            <i class="fa fa-'.$icon.' switch-me"></i> '.$title.'
-                        </a>
-                    </div><!-- .panel-heading (end) -->
-                    <div id="'.$toggle_id.'" class="'.$classes.'">
-                        <div class="panel-body">
-                            '.apply_filters( 'themeblvd_the_content', $content ).'
-                        </div><!-- .panel-body (end) -->
-                    </div><!-- .panel-collapse (end) -->
-                </div><!-- .panel (end) -->
-            </div><!-- .panel-group (end) -->';
+            <div class="tb-panel panel panel-'.$color.$last.'">
+                <div class="panel-heading">
+                    <a class="panel-title" data-toggle="collapse" data-parent="" href="#'.$toggle_id.'">
+                        <i class="fa fa-'.$icon.' switch-me"></i> '.$title.'
+                    </a>
+                </div><!-- .panel-heading (end) -->
+                <div id="'.$toggle_id.'" class="'.$classes.'">
+                    <div class="panel-body">
+                        '.apply_filters( 'themeblvd_the_content', $content ).'
+                    </div><!-- .panel-body (end) -->
+                </div><!-- .panel-collapse (end) -->
+            </div><!-- .panel (end) -->';
 
     } else {
 
