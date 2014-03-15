@@ -26,6 +26,7 @@
  *      - lightbox          => @since 1.1.0
  *      - lightbox_gallery  => @since 1.1.0
  *      - blockquote        => @since 1.2.0
+ *      - jumbotron         => @since 1.3.0
  * (3) Inline Elements
  *		- icon				=> @since 1.0.0
  *		- icon_link 		=> @since 1.0.0
@@ -729,12 +730,49 @@ function themeblvd_shortcode_blockquote( $atts ) {
         'max_width'     => '',      // Meant to be used with align left/right - 300px, 50%, etc
         'class'         => ''       // Any additional CSS classes
     );
-    $atts = wp_parse_args( $atts, $defaults );
+    $atts = shortcode_atts( $defaults, $atts );
 
-    $output = '';
+    $output = __('Your theme does not support the [blockquote] shortcode.', 'themeblvd_shortcodes');
 
     if ( function_exists( 'themeblvd_get_blockquote' ) ) {
         $output = themeblvd_get_blockquote( $atts );
+    }
+
+    return $output;
+}
+
+/**
+ * Jumbotron
+ *
+ * @since 1.3.0
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @param string $content Content in shortcode
+ * @param string $content The enclosed content
+ */
+function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
+
+    $defaults = array(
+        'title'         => '',      // Title of unit
+        'text_align'    => 'left',  // How to align text - left, right, center
+        'align'         => '',      // How to align jumbotron - left, right
+        'max_width'     => '',      // Meant to be used with align left/right - 300px, 50%, etc
+        'class'         => '',      // Any additional CSS classes
+        'wpautop'       => 'true'   // Whether to apply wpautop on content
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+
+    $output = __('Your theme does not support the [jumbotron] shortcode.', 'themeblvd_shortcodes');
+
+    if ( function_exists( 'themeblvd_get_jumbotron' ) ) {
+
+        if ( $atts['wpautop'] === 'false' ) {
+            $atts['wpautop'] = false;
+        } else {
+            $atts['wpautop'] = true;
+        }
+
+        $output = themeblvd_get_jumbotron( $atts, $content );
     }
 
     return $output;

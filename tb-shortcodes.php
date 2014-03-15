@@ -112,6 +112,7 @@ function themeblvd_shortcodes_init() {
 		add_shortcode( 'lightbox', 'themeblvd_shortcode_lightbox' );
 		add_shortcode( 'lightbox_gallery', 'themeblvd_shortcode_lightbox_gallery' );
 		add_shortcode( 'blockquote', 'themeblvd_shortcode_blockquote' );
+		add_shortcode( 'jumbotron', 'themeblvd_shortcode_jumbotron' );
 
 		// Inline Elements
 		add_shortcode( 'icon', 'themeblvd_shortcode_icon' );
