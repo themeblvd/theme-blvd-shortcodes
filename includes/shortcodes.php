@@ -41,6 +41,7 @@
  * 		- slider			=> @since 1.0.0
  *		- post_grid_slider	=> @since 1.0.0
  *		- post_list_slider	=> @since 1.0.0
+ *      - gallery_slider    => @since 1.3.0
  * (6) Display Posts
  *		- post_grid			=> @since 1.0.0
  *		- post_list			=> @since 1.0.0
@@ -1347,6 +1348,51 @@ function themeblvd_shortcode_post_list_slider( $atts ) {
 	echo '</div><!-- .element-inner (end) -->';
 	echo '</div><!-- .element (end) -->';
 	return ob_get_clean();
+}
+
+/**
+ * Gallery Slider
+ *
+ * @since 1.3.0
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ */
+function themeblvd_shortcode_gallery_slider( $atts ) {
+
+    // This shortcode requires Theme Blvd Framework 2.4.2+
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.2', '<' ) ) {
+        return __( 'Your theme does not support the [gallery_slider] shortcode. You must be using a theme with Theme Blvd Framework 2.4.2+', 'themeblvd_shortcodes' );
+    }
+
+    $default = array(
+        'ids'           => '',                  // Comma separated attachments ID's
+        'size'          => '',                  // Crop size for images
+        'thumb_size'    => 'square_smallest',   // Size of nav thumbnail images
+        'interval'      => '5000',              // Milliseconds between transitions
+        'pause'         => 'true',              // Whether to pause on hover
+        'wrap'          => 'true',              // Whether sliders continues auto rotate after first pass
+        'nav_standard'  => 'false',             // Whether to show standard nav indicator dots
+        'nav_arrows'    => 'true',              // Whether to show standard nav arrows
+        'nav_thumbs'    => 'true'               // Whether to show nav thumbnails (added by Theme Blvd framework)
+    );
+    $atts = shortcode_atts( $default, $atts );
+
+    // Setup [gallery]
+    $gallery = sprintf( '[gallery ids="%s"]', $atts['ids'] );
+
+    // Remove ID's from $atts
+    unset( $atts['ids'] );
+
+    // Convert booleans
+    foreach( $atts as $key => $value ) {
+        if ( $value === 'true' ) {
+            $atts[$key] = true;
+        } else if ( $value === 'false' ) {
+            $atts[$key] = false;
+        }
+    }
+
+    return themeblvd_get_gallery_slider( $gallery, $atts );
 }
 
 /*-----------------------------------------------------------*/

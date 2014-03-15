@@ -54,6 +54,12 @@ When using the [Theme Blvd Sliders](http://wordpress.org/extend/plugins/theme-bl
 
 [View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/shortcodes-sliders/)
 
+= Gallery Slider =
+
+In a similar way that you'd create a typical WordPress gallery, you can create a quick slider of images from your media library.
+
+[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/shortcodes-gallery-slider/)
+
 = Small Components =
 
 Thanks to Twitter Bootstrap integration, this group of shortcodes adds some extra goodies for your website.
@@ -93,7 +99,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.3.0 =
 
-
+* Added [gallery_slider] shortcode (requires Theme Blvd Framework 2.4.2+).
 
 = 1.2.0 =
 
