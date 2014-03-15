@@ -326,7 +326,7 @@ function themeblvd_shortcode_box( $atts, $content = null ) {
 function themeblvd_shortcode_alert( $atts, $content = null ) {
 
     $default = array(
-        'style' => 'blue', // info, success, danger, warning
+        'style' => 'info', // info, success, danger, warning
         'close' => 'false' // true, false
     );
     extract( shortcode_atts( $default, $atts ) );
