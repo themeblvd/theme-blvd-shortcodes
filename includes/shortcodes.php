@@ -1023,23 +1023,45 @@ function themeblvd_shortcode_label( $atts, $content = null ) {
 function themeblvd_shortcode_vector_icon( $atts ) {
 
     $default = array(
-        'icon' 	=> 'pencil',
-        'size'	=> ''
+        'icon'      => 'pencil',    // FontAwesome icon id
+        'color'     => '',          // Text color of icon - Ex: #666
+        'size'      => '',          // Font size for icon - Ex: 1.5em, 20px, etc
+        'rotate'    => '',          // Optional rotation of the icon - 90, 180, 270
+        'flip'      => '',          // Optional flip of the icon - horizontal, vertical
+        'class'     => ''           // CSS class
     );
     extract( shortcode_atts( $default, $atts ) );
 
-    $size_style = '';
+    // Remove "fa-" if the user added it to the icon ID
+    $icon = str_replace('fa-', '', $icon);
 
-    if( $size ) {
-        $size_style = sprintf( ' style="font-size: %s;"', $size );
+    $style = '';
+
+    if ( $size ) {
+        $style .= sprintf( 'font-size: %s;', $size );
+    }
+    if ( $color ) {
+        $style .= sprintf( 'color: %s;', $color );
     }
 
-    $class = sprintf( 'fa fa-%s', $icon ); // FontAwesome 4
+    $icon_class = sprintf( 'fa fa-%s', $icon ); // FontAwesome 4
     if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '<' ) ) {
-        $class = sprintf( 'icon-%s', $icon ); // FontAwesome 1-3
+        $icon_class = sprintf( 'icon-%s', $icon ); // FontAwesome 1-3
     }
 
-    return sprintf( '<i class="%s"%s></i>', $class, $size_style );
+    if ( $rotate ) {
+        $icon_class .= sprintf( ' fa-rotate-%s', $rotate );
+    }
+
+    if ( $flip ) {
+        $icon_class .= sprintf( ' fa-flip-%s', $flip );
+    }
+
+    if ( $class ) {
+        $icon_class .= sprintf( ' %s', $class );
+    }
+
+    return sprintf( '<i class="%s" style="%s"></i>', $icon_class, $style );
 }
 
 /*-----------------------------------------------------------*/
