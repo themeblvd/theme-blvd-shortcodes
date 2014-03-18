@@ -99,6 +99,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Added "gallery" option to Mini Post Grid - Ex: `[mini_post_grid gallery="1,2,3,4"]`
 * Added "color" option to `[icon_link]` for the color of the icon.
 * Fixed "icon" option for `[label]` with FontAwesome 4.
+* Updated `[icon_list]` to use FontAwesome 4's "fa-ul" and "fa-li" classes.
 
 = 1.2.0 =
 
