@@ -1004,7 +1004,7 @@ function themeblvd_shortcode_label( $atts, $content = null ) {
     $class .= ' label-'.$style;
 
     if ( $icon ) {
-    	$content = '<i class="icon-'.$icon.'"></i> '.$content;
+    	$content = '<i class="fa fa-'.$icon.'"></i> '.$content;
     }
 
     return '<span class="'.$class.'">'.do_shortcode($content).'</span><!-- .label (end) -->';
