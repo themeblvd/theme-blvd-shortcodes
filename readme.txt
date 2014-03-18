@@ -12,12 +12,6 @@ Within the Theme Blvd framework there are many internal elements and other 3rd p
 
 After activating this plugin, you'll know it's ready to go by viewing the Edit Page or Edit Post screen and seeing the plugin's [shortcode generator](http://shortcodes.themeblvd.com/generator) within your Visual Editor. You'll then have access to the following shortcodes for use within your website.
 
-= Alerts & Info Boxes =
-
-These shortcodes provide you with a quick way to inform your readers of important information within a post or page.
-
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/alerts/)
-
 = Buttons =
 
 Use Twitter Bootstrap's button styling along with tons of additional color options added by the Theme Blvd framework.
@@ -29,6 +23,12 @@ Use Twitter Bootstrap's button styling along with tons of additional color optio
 The column shortcodes allow you to structure your content into rows of various size columns within your pages and posts.
 
 [View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/columns/)
+
+= Components =
+
+Thanks to Twitter Bootstrap integration, this group of shortcodes adds some extra goodies for your website.
+
+[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/small-components/)
 
 = Display Posts =
 
@@ -59,12 +59,6 @@ When using the [Theme Blvd Sliders](http://wordpress.org/extend/plugins/theme-bl
 In a similar way that you'd create a typical WordPress gallery, you can create a quick slider of images from your media library.
 
 [View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/shortcodes-gallery-slider/)
-
-= Small Components =
-
-Thanks to Twitter Bootstrap integration, this group of shortcodes adds some extra goodies for your website.
-
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/small-components/)
 
 = Tabs & Toggles =
 
