@@ -884,6 +884,7 @@ function themeblvd_shortcode_icon_link( $atts, $content = null ) {
 
     $default = array(
         'icon' 		=> '',      // alert, approved, camera, cart, doc, download, media, note, notice, quote, warning
+        'color'     => '',      // text color of icon - Ex: #666
         'link' 		=> '',
         'target' 	=> '_self',
         'class' 	=> '',
@@ -932,8 +933,13 @@ function themeblvd_shortcode_icon_link( $atts, $content = null ) {
         $class = ' '.$class;
     }
 
+    $style ='';
+    if ( $color ) {
+        $style = sprintf( 'color: %s', $color );
+    }
+
     $output  = sprintf( '<span class="tb-icon-link%s">', $class );
-    $output .= sprintf( '<i class="icon fa fa-%s"></i>', $icon );
+    $output .= sprintf( '<i class="icon fa fa-%s" style="%s"></i>', $icon, $style );
     $output .= sprintf( '<a href="%s" title="%s" class="icon-link-%s" target="%s">%s</a>', $link, $title, $icon, $target, $content );
     $output .= '</span>';
 
