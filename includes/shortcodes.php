@@ -883,7 +883,7 @@ function themeblvd_shortcode_icon( $atts, $content = null ) {
 function themeblvd_shortcode_icon_link( $atts, $content = null ) {
 
     $default = array(
-        'icon' 		=> '', // alert, approved, camera, cart, doc, download, media, note, notice, quote, warning
+        'icon' 		=> '',      // alert, approved, camera, cart, doc, download, media, note, notice, quote, warning
         'link' 		=> '',
         'target' 	=> '_self',
         'class' 	=> '',
@@ -1668,7 +1668,7 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
         'query'         => '',          // custom query string
         'thumb'         => 'smaller',   // thumbnail size - small, smaller, or smallest
         'align'         => 'left',      // alignment of grid - left, right, or center
-        'gallery'       => ''           // post ID to pull gallery attachments from, only used if not blank
+        'gallery'       => ''           // Comma separated list of attachmentn IDs - 1,2,3,4
 	);
 	extract( shortcode_atts( $default, $atts ) );
 
@@ -1694,6 +1694,10 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
         $query .= 'offset='.$offset.'&';
         $query .= 'suppress_filters=false'; // Mainly for WPML compat
 
+    }
+
+    if ( $gallery ) {
+        $gallery = sprintf( '[gallery ids="%s" link="file"]', $gallery );
     }
 
 	// Output
