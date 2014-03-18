@@ -101,6 +101,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 * Added [gallery_slider] shortcode (requires Theme Blvd Framework 2.4.2+).
 * Added [jumbotron] shortcode (requires Theme Blvd Framework 2.4.2+).
+* Added [panel] shortcode (requires Theme Blvd Framework 2.4.0+).
 
 = 1.2.0 =
 

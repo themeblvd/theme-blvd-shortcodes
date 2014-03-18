@@ -27,6 +27,7 @@
  *      - lightbox_gallery  => @since 1.1.0
  *      - blockquote        => @since 1.2.0
  *      - jumbotron         => @since 1.3.0
+ *      - panel             => @since 1.3.0
  * (3) Inline Elements
  *		- icon				=> @since 1.0.0
  *		- icon_link 		=> @since 1.0.0
@@ -774,6 +775,59 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
 
         $output = themeblvd_get_jumbotron( $atts, $content );
     }
+
+    return $output;
+}
+
+/**
+ * Panel
+ *
+ * @since 1.3.0
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @param string $content Content in shortcode
+ * @param string $content The enclosed content
+ */
+function themeblvd_shortcode_panel( $atts, $content = null ) {
+
+    $defaults = array(
+        'style'         => 'default',   // Style of panel - primary, success, info, warning, danger
+        'title'         => '',          // Header for panel
+        'footer'        => '',          // Footer for panel
+        'text_align'    => 'left',      // How to align text - left, right, center
+        'align'         => '',          // How to align jumbotron - left, right
+        'max_width'     => '',          // Meant to be used with align left/right - 300px, 50%, etc
+        'class'         => '',          // Any additional CSS classes
+        'wpautop'       => 'true'       // Whether to apply wpautop on content
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+
+    // CSS classes
+    $class = sprintf( 'panel panel-%s text-%s', $atts['style'], $atts['text_align'] );
+
+    if ( $atts['class'] ) {
+        $class .= ' '.$atts['class'];
+    }
+
+    // WP auto?
+    if ( $atts['wpautop'] == 'true' ) {
+        $content = wpautop( $content );
+    }
+
+    // Construct intial panel
+    $output = sprintf( '<div class="%s">', $class );
+
+    if ( $atts['title'] ) {
+        $output .= sprintf( '<div class="panel-heading"><h3 class="panel-title">%s</h3></div>', $atts['title'] );
+    }
+
+    $output .= sprintf( '<div class="panel-body">%s</div>', do_shortcode( $content ) );
+
+    if ( $atts['footer'] ) {
+        $output .= sprintf( '<div class="panel-footer">%s</div>', $atts['footer'] );
+    }
+
+    $output .= '</div><!-- .panel (end) -->';
 
     return $output;
 }
