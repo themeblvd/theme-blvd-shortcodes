@@ -70,30 +70,6 @@ themeblvdShortcodeAtts={
 			id:"query",
 			value:"",
 			help:"Enter a custom WP query string. This is will override numberposts, orderby, order, and offset, setup previously."
-		},
-		{
-			label:"Link",
-			id:"link",
-			help:"Select whether to show a link after your posts or not.", 
-			controlType:"select-control", 
-			selectValues:['true', 'false']
-		},
-		{
-			label:"Link Text",
-			id:"link_text",
-			help:"If you've selected for a link to show, enter in the text for the link."
-		},
-		{
-			label:"Link URL",
-			id:"link_url",
-			help:"If you've selected for a link to show, enter in the URL where you want the link to go."
-		},
-		{
-			label:"Link Target",
-			id:"link_target",
-			help:"If you've selected for a link to show, select the target of the link. _self means the link will open in the same window while _blank means the link will open in a new window.",
-			controlType:"select-control", 
-			selectValues:['_self', '_blank']
 		}
 	],
 	defaultContent:"",

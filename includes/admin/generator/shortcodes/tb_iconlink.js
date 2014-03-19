@@ -16,6 +16,11 @@ themeblvdShortcodeAtts={
 			help:"Enter an ID of a supported icon. You can view your theme's live demo for a full list of compatible vector icons."
 		},
 		{
+			label:"Icon Color",
+			id:"color",
+			help:"Color of the icon – Ex: #660000"
+		},
+		{
 			label:"Link URL",
 			id:"link",
 			help:"ex: http://google.com"
