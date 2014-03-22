@@ -16,7 +16,7 @@ After activating this plugin, you'll know it's ready to go by viewing the Edit P
 
 Use Twitter Bootstrap's button styling along with tons of additional color options added by the Theme Blvd framework.
 
-[View Documentation and Examples](hhttp://shortcodes.themeblvd.com/shortcodes/buttons/)
+[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/buttons/)
 
 = Columns =
 
