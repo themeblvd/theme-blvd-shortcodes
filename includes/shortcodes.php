@@ -653,10 +653,10 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
     if( $atts['frame'] == 'true' && $has_thumb_img ) {
 
         // Wrapping CSS classes
-        $wrap_classes = '';
+        $wrap_classes = 'tb-lightbox-shortcode';
 
         if( $atts['align'] != 'none' ) {
-            $wrap_classes .= 'align'.$atts['align'];
+            $wrap_classes .= ' align'.$atts['align'];
         }
 
         if( $atts['class'] ) {
