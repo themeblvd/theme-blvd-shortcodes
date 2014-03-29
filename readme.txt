@@ -93,6 +93,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.4.0 =
 
+= New shortcode generator.
+
 = 1.3.0 =
 
 * Added `[gallery_slider]` shortcode (requires Theme Blvd Framework 2.4.2+).
