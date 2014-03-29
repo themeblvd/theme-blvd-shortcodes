@@ -1,43 +1,45 @@
 <?php
 /**
- * Shortcode Options
+ * Shortcode Options. These options get added
+ * to Settings > Writing in the WordPress
+ * admin panel.
  */
 class Theme_Blvd_Shortcode_Options {
-	
+
 	/**
 	 * Constructor.
 	 *
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		
+
 		// Go, go Settings API.
 		add_action( 'admin_init', array( $this, 'register' ) );
-	
+
 	}
-	
+
 	/**
 	 * Register setting.
 	 *
 	 * @since 1.0.0
 	 */
 	public function register() {
-		
+
 		// Add the section to General settings
 	 	add_settings_section( 'themeblvd_shortcodes', __('Theme Blvd Shortcodes', 'themeblvd_shortcodes'), array( $this, 'display_section' ), 'writing' );
-	 	
+
 	 	// Add options to "Theme Blvd Shortcodes" section.
 	 	add_settings_field( 'themeblvd_raw', __('Raw Shortcode', 'themeblvd_shortcodes'), array( $this, 'display_option_raw' ), 'writing', 'themeblvd_shortcodes' );
 	 	add_settings_field( 'themeblvd_shortcode_generator', __('Shortcode Generator', 'themeblvd_shortcodes'), array( $this, 'display_option_generator' ), 'writing', 'themeblvd_shortcodes' );
 	 	add_settings_field( 'themeblvd_auto_lightbox', __('Auto Lightbox', 'themeblvd_shortcodes'), array( $this, 'display_option_auto_lightbox' ), 'writing', 'themeblvd_shortcodes' );
-	 	
+
 	 	// Register options
 	 	register_setting( 'writing', 'themeblvd_raw', array( $this, 'sanitize_yes_no' ) );
 	 	register_setting( 'writing', 'themeblvd_shortcode_generator', array( $this, 'sanitize_yes_no' ) );
 	 	register_setting( 'writing', 'themeblvd_auto_lightbox', array( $this, 'sanitize_yes_no' ) );
-	 	
+
 	}
-	
+
 	/**
 	 * Display shortcodes options section.
 	 *
@@ -46,7 +48,7 @@ class Theme_Blvd_Shortcode_Options {
 	public function display_section() {
 		// do nothing - @todo Possibly add description here later if we have more options to add.
 	}
-	
+
 	/**
 	 * Display option to disable [raw] shortcode.
 	 *
@@ -93,7 +95,7 @@ class Theme_Blvd_Shortcode_Options {
 		echo '</select>';
 		echo '<p class="description">'.$desc.'</p>';
 	}
-	
+
 	/**
 	 * Sanitization.
 	 *
@@ -106,5 +108,5 @@ class Theme_Blvd_Shortcode_Options {
 			$output = $input;
 		return $output;
 	}
-	
+
 }
