@@ -211,8 +211,19 @@ class Theme_Blvd_Shortcode_Generator {
 	 * @since 1.4.0
 	 */
 	public function add_button(){
+
 		$text = __( 'Add Shortcode', 'themeblvd_shortcodes' );
-		printf( apply_filters( 'themeblvd_shortcode_button', '<a href="#" id="tb-insert-shortcode" class="button" title="%1$s"><span class="tb-icon"></span>%1$s</a>' ), $text );
+
+		$button = sprintf( '<a href="#" id="tb-insert-shortcode" class="button" title="%s">', $text );
+
+		if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+			$button .= '<span class="tb-icon"></span>'; // admin icon font added in Framework 2.4
+		}
+
+		$button .= $text;
+		$button .= '</a>';
+
+		echo apply_filters( 'themeblvd_shortcode_button', $button );
 	}
 
 	/**
