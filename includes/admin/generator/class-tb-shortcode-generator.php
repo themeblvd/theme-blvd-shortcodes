@@ -468,6 +468,7 @@ class Theme_Blvd_Shortcode_Generator {
 				'name'	=> __( 'Components', 'themeblvd_shortcodes' ),
 				'sub'	=> array(
 					'alert'				=> __('Alert', 'themeblvd_shortcodes'),
+					'divider'			=> __('Divider', 'themeblvd_shortcodes'),
 					'icon_list'			=> __('Icon List', 'themeblvd_shortcodes'),
 					'jumbotron'			=> __('Jumbotron', 'themeblvd_shortcodes'),
 					'panel'				=> __('Panel', 'themeblvd_shortcodes'),
@@ -752,6 +753,22 @@ class Theme_Blvd_Shortcode_Generator {
 				'id' 		=> 'sc_content',
 				'std' 		=> 'Content here...',
 				'type' 		=> 'textarea'
+			)
+		);
+
+		// Divider
+		$options['divider'] = array(
+			'style' => array(
+				'name' 		=> __( 'Style', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'The style of divider line used to breakup your content.', 'themeblvd' ),
+				'id' 		=> 'style',
+				'std' 		=> 'solid',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'solid' 	=> __('Solid Line', 'themeblvd_shortcodes'),
+					'dashed' 	=> __('Dashed Line', 'themeblvd_shortcodes'),
+					'shadow' 	=> __('Shadow Line', 'themeblvd_shortcodes')
+				)
 			)
 		);
 
