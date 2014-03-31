@@ -229,7 +229,7 @@ jQuery(document).ready(function($){
 	});
 
 	// Hide modal window
-	$('#tb-shortcode-generator .media-modal-close').on( 'click', function(){
+	$('#tb-shortcode-generator .media-modal-close, #tb-shortcode-generator .media-modal-backdrop').on( 'click', function(){
 		$('#tb-shortcode-generator').hide();
 		return false;
 	});
