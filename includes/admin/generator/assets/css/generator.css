@@ -42,6 +42,9 @@
 	background: #ffffff;
 	top: 0;
 }
+#tb-shortcode-generator a {
+	outline: none;
+}
 
 /* =Options
 -----------------------------------------------*/
@@ -129,6 +132,7 @@
 	color: #666666;
 	display: inline-block;
 	margin: 10px 5px;
+	outline: 0;
 }
 #tb-shortcode-generator .select-icon:hover {
 	color: #d54e21;
@@ -200,6 +204,7 @@
 	cursor: pointer;
 	display: inline-block;
 	margin: 1px;
+	outline: 0;
 	padding: 1px;
 	position: relative;
 }
