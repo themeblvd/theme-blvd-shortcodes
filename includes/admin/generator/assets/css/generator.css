@@ -1,7 +1,7 @@
 /* ="Add Shortcode" Button
 -----------------------------------------------*/
 
-#tb-insert-shortcode .tb-icon {
+.tb-insert-shortcode .tb-icon {
 	color: #888888;
 	display: inline-block;
 	font-family: "theme-blvd-admin";
@@ -10,7 +10,7 @@
 	width: 18px;
 	height: 18px;
 }
-#tb-insert-shortcode .tb-icon:before {
+.tb-insert-shortcode .tb-icon:before {
 	content: '\e810';
 	font: 400 18px/1 "theme-blvd-admin";
 	speak: none;

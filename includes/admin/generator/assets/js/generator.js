@@ -223,7 +223,7 @@ jQuery(document).ready(function($){
 	/*---------------------------------------*/
 
 	// Show modal window
-	$('#tb-insert-shortcode').on( 'click', function(){
+	$('.tb-insert-shortcode').on( 'click', function(){
 		$('#tb-shortcode-generator').show();
 		return false;
 	});
