@@ -44,6 +44,7 @@ class Theme_Blvd_Shortcode_Generator {
 		// Add hidden modal window
 		add_action( 'admin_footer-post.php', array( $this, 'add_modal' ) );
 		add_action( 'admin_footer-post-new.php', array( $this, 'add_modal' ) );
+		add_action( 'admin_footer-toplevel_page_themeblvd_builder', array( $this, 'add_modal' ) );
 
 	}
 
@@ -184,7 +185,7 @@ class Theme_Blvd_Shortcode_Generator {
 	 * @since 1.4.0
 	 */
 	public function assets( $hook ) {
-		if ( 'post.php' == $hook || 'post-new.php' == $hook ) {
+		if ( 'post.php' == $hook || 'post-new.php' == $hook || 'toplevel_page_themeblvd_builder' == $hook ) {
 
 			// Framework core
 			wp_enqueue_style( 'themeblvd_admin', TB_FRAMEWORK_URI . '/admin/assets/css/admin-style.min.css', null, TB_FRAMEWORK_VERSION );
@@ -210,11 +211,15 @@ class Theme_Blvd_Shortcode_Generator {
 	 *
 	 * @since 1.4.0
 	 */
-	public function add_button(){
+	public function add_button( $editor_id ){
+
+		if ( $editor_id != 'content' && $editor_id != 'themeblvd_editor' ) {
+			return;
+		}
 
 		$text = __( 'Add Shortcode', 'themeblvd_shortcodes' );
 
-		$button = sprintf( '<a href="#" id="tb-insert-shortcode" class="button" title="%s">', $text );
+		$button = sprintf( '<a href="#" class="tb-insert-shortcode button" title="%s">', $text );
 
 		if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
 			$button .= '<span class="tb-icon"></span>'; // admin icon font added in Framework 2.4
