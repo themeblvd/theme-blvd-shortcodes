@@ -1136,7 +1136,11 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
 			);
 			$i++;
 		}
-		$output = '<div class="element element-tabs'.themeblvd_get_classes( 'element_tabs', true ).'">'.themeblvd_tabs( $id, $options ).'</div><!-- .element (end) -->';
+
+		$output  = '<div class="element element-tabs'.themeblvd_get_classes( 'element_tabs', true ).'">';
+        $output .= themeblvd_tabs( $id, $options );
+        $output .= '</div><!-- .element (end) -->';
+
 	} else {
 		$output = '<p class="tb-warning">'.__( 'No tabs found', 'themeblvd_shortcodes' ).'</p>';
 	}
