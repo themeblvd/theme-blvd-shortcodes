@@ -911,8 +911,8 @@ class Theme_Blvd_Shortcode_Generator {
 				'type' 		=> 'text'
 			),
 			'text_align' => array(
-				'name' 		=> __( 'Style', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Style of the panel.', 'themeblvd' ),
+				'name' 		=> __( 'Text Alignment', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'How to align text in panel.', 'themeblvd' ),
 				'id' 		=> 'text_align',
 				'std' 		=> 'left',
 				'type' 		=> 'select',
