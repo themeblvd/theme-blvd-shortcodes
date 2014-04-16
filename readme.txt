@@ -88,7 +88,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Screenshots ==
 
-1. Shortcode Generator
+1. Button leading to Shortcode Generator, which can be used from Visual or Text tab.
+2. Shortcode Generator interface.
 
 == Changelog ==
 
