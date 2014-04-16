@@ -93,7 +93,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.4.0 =
 
-= New shortcode generator.
+* All new shortcode generator.
 
 = 1.3.0 =
 
