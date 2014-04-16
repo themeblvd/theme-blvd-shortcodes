@@ -65,7 +65,7 @@ class Theme_Blvd_Shortcode_Options {
 	 * @since 1.0.4
 	 */
 	public function display_option_generator() {
-		$desc = __( 'If our plugin\'s shortcode generator causes any problems with WordPress\'s Visual Editor and your server setup, you can disable it here.', 'themeblvd_shortcodes' );
+		$desc = __( 'If our plugin\'s shortcode generator causes any unwanted clutter or doesn\'t fully jive with your WordPress setup, you can disable it here.', 'themeblvd_shortcodes' );
 		$this->display_yes_no( 'themeblvd_shortcode_generator', $desc );
 	}
 
@@ -102,10 +102,14 @@ class Theme_Blvd_Shortcode_Options {
 	 * @since 1.0.4
 	 */
 	public function sanitize_yes_no( $input ) {
+
 		$output = '';
 		$answers = array( 'yes', 'no' );
-		if( in_array( $input, $answers ) )
+
+		if( in_array( $input, $answers ) ) {
 			$output = $input;
+		}
+
 		return $output;
 	}
 
