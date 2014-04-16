@@ -11,7 +11,7 @@ This plugin works in conjuction with the Theme Blvd framework to create shortcod
 
 Within the Theme Blvd framework there are many internal elements and other 3rd party items like [Twitter Bootstrap](http://twitter.github.com/bootstrap/) integration to make use of.  When using a Theme Blvd theme, this plugin gives you an extensive pack of shortcodes to extend the framework's functionality to your pages, posts, and custom layouts via shortcodes.
 
-After activating this plugin, you'll know it's ready to go by viewing the Edit Page or Edit Post screen and seeing the plugin's [shortcode generator](http://shortcodes.themeblvd.com/generator) within your Visual Editor. You'll then have access to the following shortcodes for use within your website.
+After activating this plugin, you'll know it's ready to go by viewing the Edit Page or Edit Post screen and seeing the plugin's [shortcode generator](http://shortcodes.themeblvd.com/generator) button above your WordPress Editor. You'll then have access to the following shortcodes for use within your website.
 
 = Buttons =
 
