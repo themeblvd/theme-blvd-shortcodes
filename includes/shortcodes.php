@@ -587,6 +587,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
     $default = array(
         'link'      => '',          // URL being linked to in the lightbox popup
         'thumb'     => '',          // Text or Image URL being used for link to lightbox
+        'caption'   => '',          // Caption below thumbnail
         'width'     => '',          // Width of tumbnail image linking to lighbox
         'align'     => 'none',      // Alignment of thumbnail image
         'title'     => '',          // Title displayed in lightbox link
@@ -631,12 +632,16 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
     // Classes for link's anchor tag
     $anchor_classes = '';
 
-    if( $atts['frame'] == 'true' ) {
+    if ( $atts['frame'] == 'true' ) {
         $anchor_classes .= 'thumbnail '.$atts['icon'];
     }
 
-    if( $atts['frame'] == 'false' && $atts['class'] ) {
+    if ( $atts['frame'] == 'false' && $atts['class'] ) {
         $anchor_classes .= $atts['class'];
+    }
+
+    if( $atts['caption'] ) {
+        $anchor_classes .= ' has-caption';
     }
 
     // Wrap thumbail image/text in link to lightbox
@@ -655,11 +660,11 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
         // Wrapping CSS classes
         $wrap_classes = 'tb-lightbox-shortcode';
 
-        if( $atts['align'] != 'none' ) {
+        if ( $atts['align'] != 'none' ) {
             $wrap_classes .= ' align'.$atts['align'];
         }
 
-        if( $atts['class'] ) {
+        if ( $atts['class'] ) {
             $wrap_classes .= ' '.$atts['class'];
         }
 
@@ -674,6 +679,12 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
         $wrap .= '<div class="featured-image">';
         $wrap .= '<div class="featured-image-inner">';
         $wrap .= '%s';
+
+        // Caption
+        if ( $atts['caption'] ) {
+            $wrap .= sprintf( '<p class="wp-caption-text">%s</p>', $atts['caption'] );
+        }
+
         $wrap .= '</div><!-- .featured-image-inner (end) -->';
         $wrap .= '</div><!-- .featured-image (end) -->';
         $wrap .= '</div><!-- .featured-image-wrapper (end) -->';
@@ -681,6 +692,11 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
         $wrap = apply_filters( 'themeblvd_lightbox_shortcode_thumbnail_wrap', $wrap, $wrap_classes, $style );
 
         $output = sprintf( $wrap, $output );
+
+    } else if ( $atts['caption'] ) {
+
+        $output .= sprintf( '<p class="wp-caption-text">%s</p>', $atts['caption'] );
+
     }
 
     return apply_filters( 'themeblvd_shortcode_lightbox', $output, $atts, $thumb );

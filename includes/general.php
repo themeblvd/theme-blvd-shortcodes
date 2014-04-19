@@ -77,7 +77,7 @@ function themeblvd_content_formatter( $content ) {
  *
  * @param string $html HTML markup for image to be converted
  * @param string $id Attachment ID of image
- * @param string $caption Image's caption, get out of here if this exists
+ * @param string $caption Image's caption
  * @param string $title Title of <img /> tag, should be blank as WP doesn't use any more
  * @param string $align How to align image - none, right, left
  * @param string $url URL being linked to in the lightbox popup
@@ -93,7 +93,10 @@ function themeblvd_lightbox_send_to_editor( $html, $id, $caption, $title, $align
 
 	$atts = array();
 
-	if( ! $caption && $icon = themeblvd_is_lightbox_url( $url ) ) {
+	if( $icon = themeblvd_is_lightbox_url( $url ) ) {
+
+		// We can handle the caption, so we'll remove WP's filter for it.
+		remove_filter( 'image_send_to_editor', 'image_add_caption', 20 );
 
 		global $content_width;
 		$original_content_width = $content_width;
@@ -110,7 +113,7 @@ function themeblvd_lightbox_send_to_editor( $html, $id, $caption, $title, $align
 			'frame'		=> 'true',
 			'icon'		=> $icon 	// video or image
 		);
-		$html = sprintf('[lightbox link="%s" thumb="%s" width="%s" align="%s" title="%s" frame="%s" icon="%s"]', $atts['link'], $atts['thumb'], $atts['width'], $atts['align'], $atts['title'], $atts['frame'], $atts['icon']);
+		$html = sprintf('[lightbox link="%s" thumb="%s" width="%s" align="%s" title="%s" frame="%s" icon="%s" caption="%s"]', $atts['link'], $atts['thumb'], $atts['width'], $atts['align'], $atts['title'], $atts['frame'], $atts['icon'], $caption );
 
 		// Restore admin content width
 		$content_width = $original_content_width;
