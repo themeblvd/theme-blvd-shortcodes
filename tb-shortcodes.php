@@ -58,7 +58,7 @@ function themeblvd_shortcodes_init() {
 		}
 
 		// Auto Lightbox -- Can be disabled from WP > Settings > Writing
-		if( get_option( 'themeblvd_auto_lightbox' ) != 'no' ) {
+		if( get_option( 'themeblvd_auto_lightbox' ) == 'yes' ) {
 			add_filter( 'image_send_to_editor', 'themeblvd_lightbox_send_to_editor', 10, 8 );
 		}
 

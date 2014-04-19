@@ -88,7 +88,7 @@ class Theme_Blvd_Shortcode_Options {
 	 * @param string $desc Description to user of what option does
 	 */
 	public function display_yes_no( $id, $desc ) {
-		$value = get_option($id);
+		$value = get_option($id, 'no');
 		echo '<select name="'.$id.'" id="'.$id.'">';
 		echo '<option value="yes" '.selected( $value, 'yes', false ).'>'.__('Enabled', 'themeblvd_shortcodes').'</option>';
 		echo '<option value="no" '.selected( $value, 'no', false ).'>'.__('Disabled', 'themeblvd_shortcodes').'</option>';
