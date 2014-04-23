@@ -95,6 +95,11 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.4.1 =
 
+* Fixes for `[box]`, `[icon_link]`, and `[label]` shortcodes' icon to work with older themes using FontAwesome 3.
+* Added "caption" parameter to [lightbox] shortcode.
+* Auto Lightbox feature will now work when image has a caption.
+* Auto Lightbox feature now disabled by default. Go to *WP Admin > Settings > Writing > Theme Blvd Shortcodes* to enable.
+
 = 1.4.0 =
 
 * All new shortcode generator.
