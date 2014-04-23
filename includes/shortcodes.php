@@ -17,7 +17,7 @@
  *		- seven_tenth		=> @since 1.0.0
  * (2) Components
  *		- button 			=> @since 1.0.0
- *		- box				=> @since 1.0.0
+ *		- box				=> @since 1.0.0 @deprecated
  *		- alert				=> @since 1.0.0
  *		- icon_list			=> @since 1.0.0
  *		- divider			=> @since 1.0.0
@@ -308,7 +308,11 @@ function themeblvd_shortcode_box( $atts, $content = null ) {
     // Add icon
     if( $icon ) {
     	$classes .= ' info-box-has-icon';
-    	$content = sprintf( '<i class="icon fa fa-%s"></i>%s', $icon, $content );
+        if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+            $content = sprintf( '<i class="icon fa fa-%s"></i>%s', $icon, $content );
+        } else {
+            $content = sprintf( '<i class="icon-%s"></i>%s', $icon, $content );
+        }
     }
 
     $output = sprintf( '<div class="%s">%s</div>', $classes, apply_filters( 'themeblvd_the_content', $content ) );
@@ -955,7 +959,13 @@ function themeblvd_shortcode_icon_link( $atts, $content = null ) {
     }
 
     $output  = sprintf( '<span class="tb-icon-link%s">', $class );
-    $output .= sprintf( '<i class="icon fa fa-%s" style="%s"></i>', $icon, $style );
+
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+        $output .= sprintf( '<i class="icon fa fa-%s" style="%s"></i>', $icon, $style );
+    } else {
+        $output .= sprintf( '<i class="icon-%s" style="%s"></i>', $icon, $style );
+    }
+
     $output .= sprintf( '<a href="%s" title="%s" class="icon-link-%s" target="%s">%s</a>', $link, $title, $icon, $target, $content );
     $output .= '</span>';
 
@@ -1020,7 +1030,11 @@ function themeblvd_shortcode_label( $atts, $content = null ) {
     $class .= ' label-'.$style;
 
     if ( $icon ) {
-    	$content = '<i class="fa fa-'.$icon.'"></i> '.$content;
+    	if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+            $content = '<i class="fa fa-'.$icon.'"></i> '.$content;
+        } else {
+            $content = '<i class="icon-'.$icon.'"></i> '.$content;
+        }
     }
 
     return '<span class="'.$class.'">'.do_shortcode($content).'</span><!-- .label (end) -->';
