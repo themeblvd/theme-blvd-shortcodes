@@ -56,7 +56,7 @@ class Theme_Blvd_Shortcode_Options {
 	 */
 	public function display_option_raw() {
 		$desc = __( 'Because the [raw] shortcode isn\'t a standard shortcode, having it enabled does effect the output of your content and may conflict with other plugins.', 'themeblvd_shortcodes' );
-		$this->display_yes_no( 'themeblvd_raw', $desc );
+		$this->display_yes_no( 'themeblvd_raw', $desc, 'yes' );
 	}
 
 	/**
@@ -66,7 +66,7 @@ class Theme_Blvd_Shortcode_Options {
 	 */
 	public function display_option_generator() {
 		$desc = __( 'If our plugin\'s shortcode generator causes any unwanted clutter or doesn\'t fully jive with your WordPress setup, you can disable it here.', 'themeblvd_shortcodes' );
-		$this->display_yes_no( 'themeblvd_shortcode_generator', $desc );
+		$this->display_yes_no( 'themeblvd_shortcode_generator', $desc, 'yes' );
 	}
 
 	/**
@@ -76,7 +76,7 @@ class Theme_Blvd_Shortcode_Options {
 	 */
 	public function display_option_auto_lightbox() {
 		$desc = __( 'When inserting an image with this enabled, images linked to YouTube, Vimeo, Quicktime files, and image files will be automatically converted to the [lightbox] shortcode.', 'themeblvd_shortcodes' );
-		$this->display_yes_no( 'themeblvd_auto_lightbox', $desc );
+		$this->display_yes_no( 'themeblvd_auto_lightbox', $desc, 'no' );
 	}
 
 	/**
@@ -87,8 +87,8 @@ class Theme_Blvd_Shortcode_Options {
 	 * @param string $id Registerd ID of option
 	 * @param string $desc Description to user of what option does
 	 */
-	public function display_yes_no( $id, $desc ) {
-		$value = get_option($id, 'no');
+	public function display_yes_no( $id, $desc, $default ) {
+		$value = get_option($id, $default);
 		echo '<select name="'.$id.'" id="'.$id.'">';
 		echo '<option value="yes" '.selected( $value, 'yes', false ).'>'.__('Enabled', 'themeblvd_shortcodes').'</option>';
 		echo '<option value="no" '.selected( $value, 'no', false ).'>'.__('Disabled', 'themeblvd_shortcodes').'</option>';
