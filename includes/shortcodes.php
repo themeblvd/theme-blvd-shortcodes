@@ -3,21 +3,22 @@
  * Theme Blvd Shortcodes
  *
  * (1) Columns
- *		- one_sixth 		=> @since 1.0.0
- *		- one_fourth		=> @since 1.0.0
- *		- one_third			=> @since 1.0.0
- *		- one_half			=> @since 1.0.0
- *		- two_third			=> @since 1.0.0
- *		- three_fourth 		=> @since 1.0.0
- *		- one_fifth			=> @since 1.0.0
- *		- two_fifth			=> @since 1.0.0
- *		- three_fifth		=> @since 1.0.0
- *		- four_fifth		=> @since 1.0.0
- *		- three_tenth		=> @since 1.0.0
- *		- seven_tenth		=> @since 1.0.0
+ *      - column            => @since 1.4.2
+ *		- one_sixth 		=> @since 1.0.0 @deprecated 1.4.2
+ *		- one_fourth		=> @since 1.0.0 @deprecated 1.4.2
+ *		- one_third			=> @since 1.0.0 @deprecated 1.4.2
+ *		- one_half			=> @since 1.0.0 @deprecated 1.4.2
+ *		- two_third			=> @since 1.0.0 @deprecated 1.4.2
+ *		- three_fourth 		=> @since 1.0.0 @deprecated 1.4.2
+ *		- one_fifth			=> @since 1.0.0 @deprecated 1.4.2
+ *		- two_fifth			=> @since 1.0.0 @deprecated 1.4.2
+ *		- three_fifth		=> @since 1.0.0 @deprecated 1.4.2
+ *		- four_fifth		=> @since 1.0.0 @deprecated 1.4.2
+ *		- three_tenth		=> @since 1.0.0 @deprecated 1.4.2
+ *		- seven_tenth		=> @since 1.0.0 @deprecated 1.4.2
  * (2) Components
  *		- button 			=> @since 1.0.0
- *		- box				=> @since 1.0.0 @deprecated
+ *		- box				=> @since 1.0.0 @deprecated 1.4.0
  *		- alert				=> @since 1.0.0
  *		- icon_list			=> @since 1.0.0
  *		- divider			=> @since 1.0.0
@@ -65,85 +66,14 @@
  * @param string $tag Current shortcode tag
  */
 function themeblvd_shortcode_column( $atts, $content = null, $tag = '' ) {
-
-    // Determine if column is last in row
-	$last = '';
-	if( isset( $atts[0] ) && trim( $atts[0] ) == 'last')
-		$last = ' last';
-
-    // Determine width of column
-	$class = 'column ';
-
-    switch ( $tag ) {
-
-        case 'one_sixth' :
-            $class .= 'grid_2';
-            break;
-
-        case 'one_fourth' :
-            $class .= 'grid_3';
-            break;
-
-        case 'one_third' :
-            $class .= 'grid_4';
-            break;
-
-        case 'one_half' :
-            $class .= 'grid_6';
-            break;
-
-        case 'two_third' :
-            $class .= 'grid_8';
-            break;
-
-        case 'three_fourth' :
-            $class .= 'grid_9';
-            break;
-
-        case 'one_fifth' :
-            $class .= 'grid_fifth_1';
-            break;
-
-        case 'two_fifth' :
-            $class .= 'grid_fifth_2';
-            break;
-
-        case 'three_fifth' :
-            $class .= 'grid_fifth_3';
-            break;
-
-        case 'four_fifth' :
-            $class .= 'grid_fifth_4';
-            break;
-
-        case 'three_tenth' :
-            $class .= 'grid_tenth_3';
-            break;
-
-        case 'seven_tenth' :
-            $class .= 'grid_tenth_7';
-            break;
-
-    }
-
-    // Is user adding additional classes?
-    if ( isset( $atts['class'] ) ) {
-        $class .= ' '.$atts['class'];
-    }
-
-    // Force wpautop in shortcode? (not relevant if columns not wrapped in [raw])
-    if ( isset( $atts['wpautop'] ) && trim( $atts['wpautop'] ) == 'true') {
-        $content = wpautop( $content );
-    }
-
-    // Return column
-	$content = '<div class="'.$class.$last.'">'.$content.'</div><!-- .column (end) -->';
-    return do_shortcode( $content );
+    $column = Theme_Blvd_Column_Shortcode::get_instance();
+    return $column->get( $atts, $content, $tag );
 }
 
 /**
  * Clear Row
  *
+ * @deprecated 1.4.2
  * @since 1.0.0
  */
 function themeblvd_shortcode_clear() {

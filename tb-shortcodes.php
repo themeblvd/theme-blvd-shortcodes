@@ -70,6 +70,7 @@ function themeblvd_shortcodes_init() {
 
 		// Include shortcodes
 		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/shortcodes.php' );
+		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/class-tb-column-shortcode.php' );
 
 		// [raw] -- Can be disabled from WP > Settings > Writing
 		if( get_option( 'themeblvd_raw' ) != 'no' ) {
@@ -86,25 +87,27 @@ function themeblvd_shortcodes_init() {
 
 		}
 
-		// Columns -- @todo clean this mess up, and create single [column] shortcode
-		add_shortcode( 'one_sixth', 'themeblvd_shortcode_column' );			// 1/6
-		add_shortcode( 'one_fourth', 'themeblvd_shortcode_column' );		// 1/4
-		add_shortcode( 'one_third', 'themeblvd_shortcode_column' );			// 1/3
-		add_shortcode( 'one_half', 'themeblvd_shortcode_column' );			// 1/2
-		add_shortcode( 'two_third', 'themeblvd_shortcode_column' );			// 2/3
-		add_shortcode( 'three_fourth', 'themeblvd_shortcode_column' );		// 3/4
-		add_shortcode( 'one_fifth', 'themeblvd_shortcode_column' );			// 1/5
-		add_shortcode( 'two_fifth', 'themeblvd_shortcode_column' );			// 2/5
-		add_shortcode( 'three_fifth', 'themeblvd_shortcode_column' );		// 3/5
-		add_shortcode( 'four_fifth', 'themeblvd_shortcode_column' );		// 4/5
-		add_shortcode( 'three_tenth', 'themeblvd_shortcode_column' );		// 3/10
-		add_shortcode( 'seven_tenth', 'themeblvd_shortcode_column' );		// 7/10
-		add_shortcode( 'clear', 'themeblvd_shortcode_clear' );				// Clear row
+		// Columns
+		add_shortcode ( 'column', 'themeblvd_shortcode_column' );			// All columns
+
+		add_shortcode( 'one_sixth', 'themeblvd_shortcode_column' );			// 1/6 @deprecated 1.4.2
+		add_shortcode( 'one_fourth', 'themeblvd_shortcode_column' );		// 1/4 @deprecated 1.4.2
+		add_shortcode( 'one_third', 'themeblvd_shortcode_column' );			// 1/3 @deprecated 1.4.2
+		add_shortcode( 'one_half', 'themeblvd_shortcode_column' );			// 1/2 @deprecated 1.4.2
+		add_shortcode( 'two_third', 'themeblvd_shortcode_column' );			// 2/3 @deprecated 1.4.2
+		add_shortcode( 'three_fourth', 'themeblvd_shortcode_column' );		// 3/4 @deprecated 1.4.2
+		add_shortcode( 'one_fifth', 'themeblvd_shortcode_column' );			// 1/5 @deprecated 1.4.2
+		add_shortcode( 'two_fifth', 'themeblvd_shortcode_column' );			// 2/5 @deprecated 1.4.2
+		add_shortcode( 'three_fifth', 'themeblvd_shortcode_column' );		// 3/5 @deprecated 1.4.2
+		add_shortcode( 'four_fifth', 'themeblvd_shortcode_column' );		// 4/5 @deprecated 1.4.2
+		add_shortcode( 'three_tenth', 'themeblvd_shortcode_column' );		// 3/10 @deprecated 1.4.2
+		add_shortcode( 'seven_tenth', 'themeblvd_shortcode_column' );		// 7/10 @deprecated 1.4.2
+		add_shortcode( 'clear', 'themeblvd_shortcode_clear' );				// Clear row @deprecated 1.4.2
 
 		// Components
 		add_shortcode( 'icon_list', 'themeblvd_shortcode_icon_list' );
 		add_shortcode( 'button', 'themeblvd_shortcode_button' );
-		add_shortcode( 'box', 'themeblvd_shortcode_box' );
+		add_shortcode( 'box', 'themeblvd_shortcode_box' );					// @deprecated 1.4.0
 		add_shortcode( 'alert', 'themeblvd_shortcode_alert' );
 		add_shortcode( 'divider', 'themeblvd_shortcode_divider' );
 		add_shortcode( 'progress_bar', 'themeblvd_shortcode_progress_bar' );

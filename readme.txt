@@ -97,6 +97,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.4.2 =
 
 * Better handling of default option values at *Settings > Writing > Theme Blvd Shortcodes*.
+* Added `[column]` shortcode; other column shortcodes are now deprecated.
 
 = 1.4.1 =
 

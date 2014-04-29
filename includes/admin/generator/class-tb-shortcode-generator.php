@@ -672,66 +672,36 @@ class Theme_Blvd_Shortcode_Generator {
 			'setup' => array(
 				'id' 		=> 'setup',
 				'name'		=> __( 'Setup Columns', 'themeblvd_shortcodes' ),
-				'desc'		=> __( 'Choose the number of columns along with the corresponding width configurations. This will give you a starting point for columns arrangement you can insert into your page or post.', 'themeblvd_shortcodes' ),
+				'desc'		=> null,
 				'type'		=> 'columns',
-				'std'		=> array(
-		           'num' => '3',
-		            'width' => array(
-	                    '1' => 'grid_12',
-	                    '2' => 'grid_6-grid_6',
-	                    '3' => 'grid_4-grid_4-grid_4',
-	                    '4' => 'grid_3-grid_3-grid_3-grid_3',
-	                    '5' => 'grid_fifth_1-grid_fifth_1-grid_fifth_1-grid_fifth_1-grid_fifth_1'
-	                )
-				),
-				'options'	=> 'element'
+				'std'		=> '1/3-1/3-1/3',
+				'options'	=> 'shortcode'
 			),
-			/*
-			'col_1' => array(
-				'id' 		=> 'col_1',
-				'name'		=> __( 'Column #1', 'themeblvd_shortcodes' ),
-				'desc'		=> __( 'Configure the content for the first column.', 'themeblvd_shortcodes' ),
-				'std'		=> 'Column #1...',
-				'type'		=> 'textarea',
-				'class'		=> 'col_1 section-content'
-			),
-			'col_2' => array(
-				'id' 		=> 'col_2',
-				'name'		=> __( 'Column #2', 'themeblvd_shortcodes' ),
-				'desc'		=> __( 'Configure the content for the second column.', 'themeblvd_shortcodes' ),
-				'std'		=> 'Column #2...',
-				'type'		=> 'textarea',
-				'class'		=> 'col_2 section-content'
-			),
-			'col_3' => array(
-				'id' 		=> 'col_3',
-				'name'		=> __( 'Column #3', 'themeblvd_shortcodes' ),
-				'desc'		=> __( 'Configure the content for the third column.', 'themeblvd_shortcodes' ),
-				'std'		=> 'Column #3...',
-				'type'		=> 'textarea',
-				'class'		=> 'col_3 section-content'
-			),
-			'col_4' => array(
-				'id' 		=> 'col_4',
-				'name'		=> __( 'Column #4', 'themeblvd_shortcodes' ),
-				'desc'		=> __( 'Configure the content for the fourth column.', 'themeblvd_shortcodes' ),
-				'std'		=> 'Column #4...',
-				'type'		=> 'textarea',
-				'class'		=> 'col_4 section-content'
-			),
-			'col_5' => array(
-				'id' 		=> 'col_5',
-				'name'		=> __( 'Column #5', 'themeblvd_shortcodes' ),
-				'desc'		=> __( 'Configure the content for the fifth column.', 'themeblvd_shortcodes' ),
-				'std'		=> 'Column #5...',
-				'type'		=> 'textarea',
-				'class'		=> 'col_5 section-content'
-			),
-			*/
 			'subgroup_end' => array(
 		    	'type'		=> 'subgroup_end'
-		    )
+		    ),
+		    'wpautop' => array(
+		    	'id' 		=> 'wpautop',
+				'desc'		=> __( 'Apply WordPress automatic formatting to content of columns.', 'themeblvd_builder' ),
+				'type'		=> 'checkbox',
+				'std'		=> '1'
+			)
 		);
+
+		if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
+			$options['column']['setup']['desc'] = __( 'Choose the number of columns along with the corresponding width configurations. This will give you a starting point for columns arrangement you can insert into your page or post.', 'themeblvd_shortcodes' );
+			$options['column']['setup']['std'] = array(
+	           'num' => '3',
+	           'width' => array(
+                    '1' => 'grid_12',
+                    '2' => 'grid_6-grid_6',
+                    '3' => 'grid_4-grid_4-grid_4',
+                    '4' => 'grid_3-grid_3-grid_3-grid_3',
+                    '5' => 'grid_fifth_1-grid_fifth_1-grid_fifth_1-grid_fifth_1-grid_fifth_1'
+                )
+			);
+			$options['column']['setup']['options'] = 'element';
+		}
 
 		/*--------------------------------------------*/
 		/* Components
@@ -2408,19 +2378,23 @@ class Theme_Blvd_Shortcode_Generator {
 
 			$default_content .= '[raw]<br>';
 
-			$default_content .= '[one_third]<br>';
+			$default_content .= '[column size="1/3" wpautop="true"]<br>';
 			$default_content .= 'Column 1...<br>';
-			$default_content .= '[/one_third]<br>';
+			$default_content .= '[/column]<br>';
 
-			$default_content .= '[one_third]<br>';
+			$default_content .= '[column size="1/3" wpautop="true"]<br>';
 			$default_content .= 'Column 2...<br>';
-			$default_content .= '[/one_third]<br>';
+			$default_content .= '[/column]<br>';
 
-			$default_content .= '[one_third last]<br>';
+			if ( version_compare(TB_FRAMEWORK_VERSION, '2.5.0', '<') ) {
+				$default_content .= '[column size="1/3" wpautop="true" last]<br>';
+			} else {
+				$default_content .= '[column size="1/3" wpautop="true"]<br>';
+			}
+
 			$default_content .= 'Column 3...<br>';
-			$default_content .= '[/one_third]<br>';
+			$default_content .= '[/column]<br>';
 
-			$default_content .= '[clear]<br>';
 			$default_content .= '[/raw]';
 
 		} else if ( $shortcode == 'tabs' ) {
