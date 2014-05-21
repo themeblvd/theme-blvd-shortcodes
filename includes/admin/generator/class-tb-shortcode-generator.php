@@ -1023,7 +1023,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['blockquote'] = array(
 			'quote' => array(
 				'name' 		=> __( 'Quote Text', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The main text of the quote. You can not use HTML here.', 'themeblvd' ),
+				'desc' 		=> __( 'The main text of the quote. You cannot use HTML here.', 'themeblvd' ),
 				'id' 		=> 'quote',
 				'std' 		=> 'Quote text...',
 				'type' 		=> 'textarea'
@@ -1072,7 +1072,7 @@ class Theme_Blvd_Shortcode_Generator {
 		    ),
 			'class' => array(
 				'name' 		=> __( 'CSS Class (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Any CSS classes you\'d like to add.', 'themeblvd' ),
+				'desc' 		=> __( 'Any CSS classes you\'d like to add.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'class',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -2394,6 +2394,10 @@ class Theme_Blvd_Shortcode_Generator {
 
 			$default_content .= 'Column 3...<br>';
 			$default_content .= '[/column]<br>';
+
+			if ( version_compare(TB_FRAMEWORK_VERSION, '2.5.0', '<') ) {
+				$default_content .= '[clear]<br>';
+			}
 
 			$default_content .= '[/raw]';
 
