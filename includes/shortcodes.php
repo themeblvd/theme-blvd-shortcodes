@@ -1046,6 +1046,8 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
     );
     extract( shortcode_atts( $default, $atts ) );
 
+    $output = '';
+
     // Since we use the $atts to loop through and
     // display the tabs, we need to remove the other
     // data, now that we've extracted it to other
@@ -1062,48 +1064,93 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
         unset( $atts['height'] );
     }
 
+    // Verify style
+    if ( $style != 'framed' || $style != 'open' ) {
+        $style = 'framed';
+    }
+
+    // For those using old method for tabs
+    if ( in_array( $nav, array( 'tabs_above', 'tabs_above', 'tabs_right', 'tabs_left' ) ) ) {
+        $nav = 'tabs';
+    } else if ( in_array( $nav, array( 'pills_above', 'pills_above' ) ) ) {
+        $nav = 'pills';
+    }
+
+    // Verify tabs
+    if ( $nav != 'tabs' || $nav != 'pills' ) {
+        $nav = 'tabs';
+    }
+
+    // Height
+    if ( $height == 'true' ) {
+        $height = 1;
+    } else {
+        $height = 0;
+    }
+
     $id = uniqid( 'tabs_'.rand() );
     $num = count( $atts ) - 1;
 	$i = 1;
+    $tabs = array();
+    $names = array();
 
-    // Setup options pass
-    $options = array(
-    	'setup' => array(
-    		'num' 	=> $num,
-    		'style' => $style,
-    		'nav' 	=> $nav,
-    		'names' => array()
-    	)
-    );
-
-    // Add in height to options as true boolean
-    if ( ! $height || 'false' === $height ) {
-        $height = false;
+    // Setup options
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+        $options = array(
+            'nav'     => $nav,
+    		'style'   => $style,
+    		'height'  => $height,
+            'tabs'    => array()
+        );
     } else {
-        $height = true;
+        $options = array(
+            'setup' => array(
+                'num'   => $num,
+                'style' => $style,
+                'nav'   => $nav,
+                'names' => array()
+            ),
+            'height'  => $height,
+        );
     }
 
-    $options['height'] = $height;
-
     if( is_array( $atts ) && count( $atts ) > 0 ) {
-		foreach( $atts as $key => $tab ) {
-			$options['setup']['names']['tab_'.$i] = $tab;
-			$tab_content = explode( '[/'.$key.']', $content );
-			$tab_content = explode( '['.$key.']', $tab_content[0] );
-			$options['tab_'.$i] = array(
-				'type' => 'raw',
-				'raw' => $tab_content[1],
-			);
-			$i++;
-		}
+        foreach( $atts as $key => $tab ) {
+            $names['tab_'.$i] = $tab; // for theme framework prior to v2.5
+            $tab_content = explode( '[/'.$key.']', $content );
+            $tab_content = explode( '['.$key.']', $tab_content[0] );
+            $tabs['tab_'.$i] = array(
+                'title' => $tab,
+                'type'  => 'raw', // for theme framework prior to v2.5
+                'raw'   => $tab_content[1], // for theme framework prior to v2.5
+                'content' => array(
+                    'type' => 'raw',
+                    'raw' => $tab_content[1],
+                    'raw_format' => 1
+                )
+            );
+            $i++;
+        }
+    } else {
+        $output .= '<p class="tb-warning">'.__( 'No tabs found', 'themeblvd_shortcodes' ).'</p>';
+    }
 
-		$output  = '<div class="element element-tabs'.themeblvd_get_classes( 'element_tabs', true ).'">';
+    if ( ! $output ) {
+
+        if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+             $options['tabs'] = $tabs;
+        } else {
+            $options['setup']['names'] = $names;
+            foreach ( $tabs as $tab_id => $tab ) {
+                $options[$tab_id] = $tab;
+            }
+        }
+
+        $output .= '<div class="element element-tabs'.themeblvd_get_classes( 'element_tabs', true ).'">';
         $output .= themeblvd_tabs( $id, $options );
         $output .= '</div><!-- .element (end) -->';
+    }
 
-	} else {
-		$output = '<p class="tb-warning">'.__( 'No tabs found', 'themeblvd_shortcodes' ).'</p>';
-	}
     return $output;
 }
 
