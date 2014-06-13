@@ -36,6 +36,7 @@
  *		- dropcap			=> @since 1.0.0
  *		- label				=> @since 1.0.0
  *		- vector_icon		=> @since 1.0.0
+ *      - lead              => @since 1.4.2
  * (3) Tabs, Accordion, & Toggles
  *		- tabs				=> @since 1.0.0
  *		- accordion			=> @since 1.0.0
@@ -1022,6 +1023,35 @@ function themeblvd_shortcode_vector_icon( $atts ) {
     }
 
     return sprintf( '<i class="%s" style="%s"></i>', $icon_class, $style );
+}
+
+/**
+ * Lead text (from Bootstrap)
+ *
+ * @since 1.4.2
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @param string $content The enclosed content
+ */
+function themeblvd_shortcode_lead( $atts, $content = null ) {
+
+    $default = array(
+        'size'      => 0   // Optional font size, 20px, 1.5em, etc.
+    );
+    extract( shortcode_atts( $default, $atts ) );
+
+    $output = '<span class="lead"';
+
+    if ( $size ) {
+        $output .= sprintf( ' style="font-size: %s"', $size );
+    }
+
+    $output .= '>';
+    $output .= $content;
+    $output .= '</span>';
+
+    return $output;
+
 }
 
 /*-----------------------------------------------------------*/

@@ -18,6 +18,7 @@ jQuery(document).ready(function($){
 				include_content = $preview.data('content'),
 				raw = $preview.data('raw'),
 				clean = $preview.data('clean'),
+				counter = 0,
 				arg,
 				val;
 
@@ -85,7 +86,15 @@ jQuery(document).ready(function($){
 							content = val;
 						}
 					}
+
+					if ( arg != 'sc_content' ) {
+						counter++;
+					}
 				});
+
+				if ( counter == 0 ) {
+					markup = markup.replace(' ', '');
+				}
 
 				markup += ']';
 

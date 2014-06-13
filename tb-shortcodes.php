@@ -125,6 +125,7 @@ function themeblvd_shortcodes_init() {
 		add_shortcode( 'dropcap', 'themeblvd_shortcode_dropcap' );
 		add_shortcode( 'label', 'themeblvd_shortcode_label' );
 		add_shortcode( 'vector_icon', 'themeblvd_shortcode_vector_icon' );
+		add_shortcode( 'lead', 'themeblvd_shortcode_lead' );
 
 		// Tabs, Toggles, and Accordion
 		add_shortcode( 'tabs', 'themeblvd_shortcode_tabs' );

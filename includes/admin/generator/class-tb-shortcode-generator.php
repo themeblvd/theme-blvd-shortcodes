@@ -507,7 +507,8 @@ class Theme_Blvd_Shortcode_Generator {
 					'dropcap'		=> __('Dropcap', 'themeblvd_shortcodes'),
 					'highlight'		=> __('Highlight Text', 'themeblvd_shortcodes'),
 					'icon_link'		=> __('Icon Link', 'themeblvd_shortcodes'),
-					'label'			=> __('Label', 'themeblvd_shortcodes')
+					'label'			=> __('Label', 'themeblvd_shortcodes'),
+					'lead'			=> __('Lead Text', 'themeblvd_shortcodes')
 				)
 			),
 			/*
@@ -1484,7 +1485,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['highlight'] = array(
 			'sc_content' => array(
 				'name' 		=> __( 'Content', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Content to be highlighted.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( 'Enter a single paragraph of text you\'d like to be highlighted.', 'themeblvd' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'This text will be highlighted.',
 				'type' 		=> 'textarea'
@@ -1578,6 +1579,17 @@ class Theme_Blvd_Shortcode_Generator {
 				'id' 		=> 'icon',
 				'std' 		=> '',
 				'type' 		=> 'text'
+			)
+		);
+
+		// Lead text
+		$options['lead'] = array(
+			'sc_content' => array(
+				'name' 		=> __( 'Lead Text', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Enter a single paragraph of text you\'d like to show a bit larger than the standard body text.', 'themeblvd' ),
+				'id' 		=> 'sc_content',
+				'std' 		=> 'This text will show larger than the standard body text.',
+				'type' 		=> 'textarea'
 			)
 		);
 
