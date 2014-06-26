@@ -19,8 +19,9 @@ jQuery(document).ready(function($){
 				raw = $preview.data('raw'),
 				clean = $preview.data('clean'),
 				counter = 0,
-				arg,
-				val;
+				arg = '',
+				val = '',
+				custom_button = false;
 
 			if ( raw ) {
 				markup += '[raw]<br>';
@@ -60,7 +61,7 @@ jQuery(document).ready(function($){
 
 			} else {
 
-				markup += '['+type+' ';
+				markup += '['+type;
 
 				$section.find('.of-input, .of-radio-img-radio').each(function(){
 
@@ -70,6 +71,16 @@ jQuery(document).ready(function($){
 
 					arg = $(this).attr('id');
 					val = $(this).val();
+
+					// Any argments that should be skipped
+					if ( arg == 'custom_include_bg' || arg == 'custom_include_border' ) {
+						return;
+					}
+
+					// Check for custom button
+					if ( type == 'button' && arg == 'color' && val == 'custom' ) {
+						custom_button = true;
+					}
 
 					// Image radio's ID's aren't structured the same as other inputs
 					if ( $(this).hasClass('of-radio-img-radio') ) {
@@ -92,9 +103,54 @@ jQuery(document).ready(function($){
 					}
 				});
 
+				// Handle custom button arguments
+				if ( custom_button ) {
+
+					var button_args = {};
+
+					$section.find('.section-button').find('input.color-picker, .checkbox').each(function(){
+
+						var $el = $(this);
+
+						arg = $el.attr('id');
+						arg = arg.replace('custom_', '');
+
+						if ( $el.hasClass('checkbox') ) {
+							if ( $el.prop('checked') ) {
+								val = 'true';
+							} else {
+								val = 'false';
+							}
+						} else {
+							val = $el.val();
+						}
+
+						button_args[arg] = val;
+					});
+
+					for ( var arg in button_args ) {
+    					if ( button_args.hasOwnProperty(arg) ) {
+
+    						if ( arg == 'bg' || arg == 'border' ) {
+    							if ( arg == 'bg' && button_args.include_bg == 'true' ) {
+    								markup += ' '+arg+'="'+button_args[arg]+'"';
+    							} else if ( arg == 'border' && button_args.include_border == 'true' ) {
+    								markup += ' '+arg+'="'+button_args[arg]+'"';
+    							}
+    						} else {
+    							markup += ' '+arg+'="'+button_args[arg]+'"';
+    						}
+
+    					}
+    				}
+
+				}
+
+				/*
 				if ( counter == 0 ) {
 					markup = markup.replace(' ', '');
 				}
+				*/
 
 				markup += ']';
 
@@ -416,6 +472,13 @@ jQuery(document).ready(function($){
 	$('#tb-shortcode-generator #wpautop').off('change.generator');
 	$('#tb-shortcode-generator .shortcode-options-column .section-columns select').off('change.generator');
 
+	if ( $.isFunction( $.fn.wpColorPicker ) ) {
+		$('.section-button .color-picker').wpColorPicker({
+			change: function(test) {
+				themeblvd_generator.preview( $(this).closest('.shortcode-options') );
+			}
+		});
+	}
 
 	/*---------------------------------------*/
 	/* Setup icon browser
@@ -476,6 +539,13 @@ jQuery(document).ready(function($){
 		// Update input
 		$('#tb-shortcode-generator input[name="button[color]"]').val( $(this).data('color') );
 
+		// Show/hide custom color option
+		if ( $(this).data('color') == 'custom' ) {
+			$(this).closest('.options-wrap').find('.section-button').show();
+		} else {
+			$(this).closest('.options-wrap').find('.section-button').hide();
+		}
+
 		// Update live preview
 		themeblvd_generator.preview( $(this).closest('.shortcode-options') );
 
@@ -524,9 +594,9 @@ jQuery(document).ready(function($){
 
 	$('#tb-shortcode-to-editor').on( 'click', function(){
 
-		var modal = $(this).closest('#tb-shortcode-generator'),
+		var $modal = $(this).closest('#tb-shortcode-generator'),
 			type = $(this).data('insert'),
-			content = modal.find('.shortcode-preview-'+type).html(),
+			content = $modal.find('.shortcode-preview-'+type).html(),
 			text = true;
 
 		if ( $('#wp-content-wrap').hasClass('tmce-active') ) {
@@ -544,8 +614,11 @@ jQuery(document).ready(function($){
 		// Send shortcode to WP Editor
 		window.send_to_editor(content);
 
+		// Allow page to scroll again
+		$('body').removeClass('themeblvd-stop-scroll');
+
 		// Hide modal window
-		modal.hide();
+		$modal.hide();
 
 		return false;
 	});

@@ -182,19 +182,47 @@ function themeblvd_shortcode_button( $atts, $content = null ) {
     $output = '';
 
     $default = array(
-        'link' 			=> '',
-        'color' 		=> 'default',
-        'target' 		=> '_self',
-        'size' 			=> '',
-        'class' 		=> '',
-        'title' 		=> '',
-        'icon_before' 	=> '',
-        'icon_after' 	=> '',
-        'block'         => 'false'
+        'link'              => '',
+        'color'             => 'default',
+        'target'            => '_self',
+        'size'              => '',
+        'class'             => '',
+        'title'             => '',
+        'icon_before'       => '',
+        'icon_after'        => '',
+        'block'             => 'false',
+        'bg'                => '#ffffff',
+        'bg_hover'          => '#ebebeb',
+        'border'            => '#cccccc',
+        'text'              => '#333333',
+        'text_hover'        => '#333333',
+        'include_bg'        => 1,
+        'include_border'    => 1
     );
     extract( shortcode_atts( $default, $atts ) );
 
+    $final_class = 'btn-shortcode';
+
+    if ( $class ) {
+        $final_class .= ' '.$class;
+    }
+
     if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+        $addon = '';
+
+        if ( $color == 'custom' && version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+
+            if ( $include_bg != 'true' ) {
+                $bg = 'transparent';
+            }
+
+            if ( $include_border != 'true' ) {
+               $border = 'transparent';
+            }
+
+            $addon = sprintf( 'style="background-color: %1$s; border-color: %2$s; color: %3$s;" data-bg="%1$s" data-bg-hover="%4$s" data-text="%3$s" data-text-hover="%5$s"', $bg, $border, $text, $bg_hover, $text_hover );
+        }
 
         if ( $block == 'true' ) {
             $block = true;
@@ -202,11 +230,11 @@ function themeblvd_shortcode_button( $atts, $content = null ) {
             $block = false;
         }
 
-        $output = themeblvd_button( $content, $link, $color, $target, $size, $class, $title, $icon_before, $icon_after, '', $block );
+        $output = themeblvd_button( $content, $link, $color, $target, $size, $final_class, $title, $icon_before, $icon_after, $addon, $block );
 
     } else {
 
-        $output = themeblvd_button( $content, $link, $color, $target, $size, $class, $title, $icon_before, $icon_after );
+        $output = themeblvd_button( $content, $link, $color, $target, $size, $final_class, $title, $icon_before, $icon_after );
 
     }
 
@@ -1040,7 +1068,7 @@ function themeblvd_shortcode_lead( $atts, $content = null ) {
     );
     extract( shortcode_atts( $default, $atts ) );
 
-    $output = '<span class="lead"';
+    $output = '<p class="lead"';
 
     if ( $size ) {
         $output .= sprintf( ' style="font-size: %s"', $size );
@@ -1048,7 +1076,7 @@ function themeblvd_shortcode_lead( $atts, $content = null ) {
 
     $output .= '>';
     $output .= $content;
-    $output .= '</span>';
+    $output .= '</p>';
 
     return $output;
 

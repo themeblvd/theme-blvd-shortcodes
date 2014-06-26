@@ -581,6 +581,14 @@ class Theme_Blvd_Shortcode_Generator {
 				'type' 		=> 'text',
 				'class'		=> 'hide'
 			),
+			'custom' => array(		// Hidden option, to interact with button's color browser
+				'name' 		=> __( 'Custom Button Color', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Configure the style of your custom button design.', 'themeblvd' ),
+				'id' 		=> 'custom',
+				'std' 		=> 'default',
+				'type' 		=> 'button',
+				'class'		=> 'hide'
+			),
 			'sc_content' => array(
 				'name' 		=> __( 'Button Text', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'The text of the button.', 'themeblvd' ),
@@ -654,12 +662,16 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'class' => array(
 				'name' 		=> __( 'Button CSS Class (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'This will allow you to add an extra CSS class for styling to the button.', 'themeblvd' ),
+				'desc' 		=> __( 'This will allow you to add an extra CSS class for styling to the button.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'class',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			)
 		);
+
+		if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+			$options['button']['size']['options']['x-large'] = __('Extra Large', 'themeblvd_shortcodes');
+		}
 
 		/*--------------------------------------------*/
 		/* Columns
@@ -683,7 +695,7 @@ class Theme_Blvd_Shortcode_Generator {
 		    ),
 		    'wpautop' => array(
 		    	'id' 		=> 'wpautop',
-				'desc'		=> __( 'Apply WordPress automatic formatting to content of columns.', 'themeblvd_builder' ),
+				'desc'		=> __( 'Apply WordPress automatic formatting to content of columns.', 'themeblvd_shortcodes' ),
 				'type'		=> 'checkbox',
 				'std'		=> '1'
 			)

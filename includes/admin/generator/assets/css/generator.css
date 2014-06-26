@@ -63,7 +63,13 @@
 #tb-shortcode-generator #optionsframework .tb-fancy-select select {
 	margin-top: 0;
 }
-.colorpicker {
+#tb-shortcode-generator #optionsframework .wp-color-result {
+	border-bottom: 1px solid #cccccc;
+}
+#tb-shortcode-generator #optionsframework .section-button input[type="text"].color-picker {
+	padding: 3px 5px;
+}
+#tb-shortcode-generator #optionsframework .colorpicker {
 	z-index: 170000;
 }
 
@@ -227,10 +233,17 @@
 	margin-top: -10px;
 }
 #tb-shortcode-generator .color-browser .select-color span.btn-default,
-#tb-shortcode-generator .color-browser .select-color span.white {
+#tb-shortcode-generator .color-browser .select-color span.white,
+#tb-shortcode-generator .color-browser .select-color span.custom {
 	border: 1px solid #cccccc;
-	width: 39px;
-	height: 39px;
+	width: 38px;
+	height: 38px;
+}
+
+/* Custom */
+#tb-shortcode-generator .color-browser .custom {
+	background: #ffffff url(../images/custom.png) center center no-repeat;
+	background-size: 18px 19px;
 }
 
 /* Black */
