@@ -752,10 +752,31 @@ class Theme_Blvd_Shortcode_Generator {
 				'id' 		=> 'style',
 				'std' 		=> 'solid',
 				'type' 		=> 'select',
-				'options' 	=> array(
-					'solid' 	=> __('Solid Line', 'themeblvd_shortcodes'),
-					'dashed' 	=> __('Dashed Line', 'themeblvd_shortcodes'),
-					'shadow' 	=> __('Shadow Line', 'themeblvd_shortcodes')
+				'options'		=> array(
+					'shadow' 		=> __( 'Shadow Line', 'themeblvd_builder' ),
+					'solid' 		=> __( 'Solid Line', 'themeblvd_builder' ),
+			        'dashed' 		=> __( 'Dashed Line', 'themeblvd_builder' ),
+					'double-solid' 	=> __( 'Double Solid Lines', 'themeblvd_builder' ),
+					'double-dashed' => __( 'Double Dashed Lines', 'themeblvd_builder' )
+				)
+			),
+			'width' => array(
+				'id' 		=> 'width',
+				'name'		=> __( 'Divider Width', 'themeblvd_builder' ),
+				'desc'		=> __( 'If you\'d like to restrict the width of the divider enter an integer in pixels.<br>Ex: 100', 'themeblvd_builder' ),
+				'std' 		=> '',
+				'type'		=> 'text'
+			),
+			'placement' => array(
+				'id' 		=> 'placement',
+				'name'		=> __( 'Divider Placement', 'themeblvd_builder' ),
+				'desc'		=> __( 'Select how you\'d like the divider to separate the content.', 'themeblvd_builder' ),
+				'std'		=> 'equal',
+				'type'		=> 'select',
+				'options'	=> array(
+					'equal' 	=> __( 'Divider is in between content', 'themeblvd_builder' ),
+					'up' 		=> __( 'Divider is closer to content above', 'themeblvd_builder' ),
+					'down' 		=> __( 'Divider is closer to content below', 'themeblvd_builder' )
 				)
 			)
 		);

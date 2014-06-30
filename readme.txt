@@ -98,7 +98,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Better handling of default option values at *Settings > Writing > Theme Blvd Shortcodes*.
 * Added `[column]` shortcode; other column shortcodes are now deprecated.
 * Added `[lead]` shortcode.
-* Added custom color selection for `[button]` (requires Theme Blvd Framework 2.5+).
+* Added custom color selection for `[button]` shortcode (requires Theme Blvd Framework 2.5+).
+* Improvements to `[divider]` shortcode (requires Theme Blvd Framework 2.5+).
 
 = 1.4.1 =
 

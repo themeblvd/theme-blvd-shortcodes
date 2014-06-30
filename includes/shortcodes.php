@@ -337,11 +337,20 @@ function themeblvd_shortcode_alert( $atts, $content = null ) {
 function themeblvd_shortcode_divider( $atts, $content = null ) {
 
     $default = array(
-        'style' => 'solid' // dashed, shadow, solid
+        'style'     => 'shadow',    // Style of divider - dashed, shadow, solid, double-solid, double-dashed
+        'width'     => '',          // A width for the divider in pixels
+        'placement' => 'equal'      // Where the divider sits between the content - equal, above (closer to content above), below (closer to content below)
     );
-    extract( shortcode_atts( $default, $atts ) );
+    $atts = shortcode_atts( $default, $atts );
 
-    return themeblvd_divider( $style );
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+        $atts['type'] = $atts['style'];
+        $output = themeblvd_divider( $atts );
+    } else {
+        $output = themeblvd_divider( $atts['style'] );
+    }
+
+    return $output;
 }
 
 /**
