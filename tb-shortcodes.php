@@ -66,7 +66,9 @@ function themeblvd_shortcodes_init() {
 		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/admin/options/class-tb-shortcode-options.php' );
 		$_themeblvd_shortcode_options = new Theme_Blvd_Shortcode_Options();
 
-	} else {
+	}
+
+	if ( ! is_admin() || ( defined('DOING_AJAX') && DOING_AJAX ) ) {
 
 		// Include shortcodes
 		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/shortcodes.php' );
