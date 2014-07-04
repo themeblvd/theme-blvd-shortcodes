@@ -29,6 +29,7 @@
  *      - blockquote        => @since 1.2.0
  *      - jumbotron         => @since 1.3.0
  *      - panel             => @since 1.3.0
+ *      - testimonial       => @since 1.4.2
  * (3) Inline Elements
  *		- icon				=> @since 1.0.0
  *		- icon_link 		=> @since 1.0.0
@@ -774,7 +775,7 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
  *
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content Content in shortcode
- * @param string $content The enclosed content
+ * @param string $output The enclosed content
  */
 function themeblvd_shortcode_panel( $atts, $content = null ) {
 
@@ -818,6 +819,50 @@ function themeblvd_shortcode_panel( $atts, $content = null ) {
     $output .= '</div><!-- .panel (end) -->';
 
     return $output;
+}
+
+/**
+ * Testimonial
+ *
+ * @since 1.4.2
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @param string $content Content in shortcode
+ * @param string $output The enclosed content
+ */
+function themeblvd_shortcode_testimonial( $atts, $content = null ) {
+
+    // This shortcode requires Theme Blvd Framework 2.5+
+    if ( ! function_exists('themeblvd_get_team_member') ) {
+        return __( 'Your theme does not support the [testimonial] shortcode. You must be using a theme with Theme Blvd Framework 2.5+', 'themeblvd_shortcodes' );
+    }
+
+    $defaults = array(
+        'text'          => '',      // Text for testimonial
+        'name'          => '',      // Name of person giving testimonial
+        'tagline'       => '',      // Tagline or position of person giving testimonial
+        'company'       => '',      // Company of person giving testimonial
+        'company_url'   => '',      // Company URL of person giving testimonial
+        'image'         => array()  // Image of person giving testimonial
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+
+    // Re-format image
+    $image = $atts['image'];
+
+    $atts['image'] = array();
+
+    if ( $image ) {
+        $atts['image']['src'] = $image;
+        $atts['image']['title'] = $atts['name'];
+    }
+
+    // Content
+    if ( $content ) {
+        $atts['text'] = $content;
+    }
+
+    return themeblvd_get_testimonial( $atts );
 }
 
 /*-----------------------------------------------------------*/

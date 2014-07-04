@@ -479,7 +479,8 @@ class Theme_Blvd_Shortcode_Generator {
 					'panel'				=> __('Panel', 'themeblvd_shortcodes'),
 					'popup'				=> __('Popup', 'themeblvd_shortcodes'),
 					'progress_bar'		=> __('Progress Bar', 'themeblvd_shortcodes'),
-					'blockquote'		=> __('Quote', 'themeblvd_shortcodes')
+					'blockquote'		=> __('Quote', 'themeblvd_shortcodes'),
+					'testimonial'		=> __('Testimonial', 'themeblvd_shortcodes')
 				)
 			),
 			array(
@@ -583,7 +584,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'custom' => array(		// Hidden option, to interact with button's color browser
 				'name' 		=> __( 'Custom Button Color', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Configure the style of your custom button design.', 'themeblvd' ),
+				'desc' 		=> __( 'Configure the style of your custom button design.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'custom',
 				'std' 		=> 'default',
 				'type' 		=> 'button',
@@ -591,21 +592,21 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'sc_content' => array(
 				'name' 		=> __( 'Button Text', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The text of the button.', 'themeblvd' ),
+				'desc' 		=> __( 'The text of the button.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'Button Text...',
 				'type' 		=> 'text'
 			),
 			'link' => array(
 				'name' 		=> __( 'Link URL', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The full URL of where you want the button to link.<br />Ex: http://yourwebsite.com/example/', 'themeblvd' ),
+				'desc' 		=> __( 'The full URL of where you want the button to link.<br />Ex: http://yourwebsite.com/example/', 'themeblvd_shortcodes' ),
 				'id' 		=> 'link',
 				'std' 		=> 'http://yourwebsite.com/example/',
 				'type' 		=> 'text'
 			),
 			'size' => array(
 				'name' 		=> __( 'Button Size', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The size of how the button displays.', 'themeblvd' ),
+				'desc' 		=> __( 'The size of how the button displays.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'size',
 				'std' 		=> 'default',
 				'type' 		=> 'select',
@@ -618,21 +619,21 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'icon_before' => array(
 				'name' 		=> __( 'Icon Before Button Text (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Icon before text of button. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Icon before text of button. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'icon_before',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'icon_after' => array(
 				'name' 		=> __( 'Icon After Button Text (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Icon after text of button. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Icon after text of button. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'icon_after',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'target' => array(
 				'name' 		=> __( 'Button Target', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How the button opens the link.', 'themeblvd' ),
+				'desc' 		=> __( 'How the button opens the link.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'target',
 				'std' 		=> '_self',
 				'type' 		=> 'select',
@@ -644,7 +645,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'block' => array(
 				'name' 		=> __( 'Block Display', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to display the button as a block-level element or not. As a block-level element, the button will stretch full-width to fill its container, opposed to sitting inline with the content.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to display the button as a block-level element or not. As a block-level element, the button will stretch full-width to fill its container, opposed to sitting inline with the content.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'block',
 				'std' 		=> 'false',
 				'type' 		=> 'select',
@@ -655,7 +656,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'title' => array(
 				'name' 		=> __( 'Button Title (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'For you SEO folks, this controls the button\'s HTML title tag. If left blank, this will just default to the button\'s text.', 'themeblvd' ),
+				'desc' 		=> __( 'For you SEO folks, this controls the button\'s HTML title tag. If left blank, this will just default to the button\'s text.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'title',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -724,7 +725,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['alert'] = array(
 			'style' => array(
 				'name' 		=> __( 'Style', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The style of the alert.', 'themeblvd' ),
+				'desc' 		=> __( 'The style of the alert.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'style',
 				'std' 		=> 'info',
 				'type' 		=> 'select',
@@ -737,7 +738,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'sc_content' => array(
 				'name' 		=> __( 'Content', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>The content of the alert.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>The content of the alert.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'Content here...',
 				'type' 		=> 'textarea'
@@ -748,35 +749,35 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['divider'] = array(
 			'style' => array(
 				'name' 		=> __( 'Style', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The style of divider line used to breakup your content.', 'themeblvd' ),
+				'desc' 		=> __( 'The style of divider line used to breakup your content.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'style',
 				'std' 		=> 'solid',
 				'type' 		=> 'select',
 				'options'		=> array(
-					'shadow' 		=> __( 'Shadow Line', 'themeblvd_builder' ),
-					'solid' 		=> __( 'Solid Line', 'themeblvd_builder' ),
-			        'dashed' 		=> __( 'Dashed Line', 'themeblvd_builder' ),
-					'double-solid' 	=> __( 'Double Solid Lines', 'themeblvd_builder' ),
-					'double-dashed' => __( 'Double Dashed Lines', 'themeblvd_builder' )
+					'shadow' 		=> __( 'Shadow Line', 'themeblvd_shortcodes' ),
+					'solid' 		=> __( 'Solid Line', 'themeblvd_shortcodes' ),
+			        'dashed' 		=> __( 'Dashed Line', 'themeblvd_shortcodes' ),
+					'double-solid' 	=> __( 'Double Solid Lines', 'themeblvd_shortcodes' ),
+					'double-dashed' => __( 'Double Dashed Lines', 'themeblvd_shortcodes' )
 				)
 			),
 			'width' => array(
 				'id' 		=> 'width',
-				'name'		=> __( 'Divider Width', 'themeblvd_builder' ),
-				'desc'		=> __( 'If you\'d like to restrict the width of the divider enter an integer in pixels.<br>Ex: 100', 'themeblvd_builder' ),
+				'name'		=> __( 'Divider Width', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'If you\'d like to restrict the width of the divider enter an integer in pixels.<br>Ex: 100', 'themeblvd_shortcodes' ),
 				'std' 		=> '',
 				'type'		=> 'text'
 			),
 			'placement' => array(
 				'id' 		=> 'placement',
-				'name'		=> __( 'Divider Placement', 'themeblvd_builder' ),
-				'desc'		=> __( 'Select how you\'d like the divider to separate the content.', 'themeblvd_builder' ),
+				'name'		=> __( 'Divider Placement', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'Select how you\'d like the divider to separate the content.', 'themeblvd_shortcodes' ),
 				'std'		=> 'equal',
 				'type'		=> 'select',
 				'options'	=> array(
-					'equal' 	=> __( 'Divider is in between content', 'themeblvd_builder' ),
-					'up' 		=> __( 'Divider is closer to content above', 'themeblvd_builder' ),
-					'down' 		=> __( 'Divider is closer to content below', 'themeblvd_builder' )
+					'equal' 	=> __( 'Divider is in between content', 'themeblvd_shortcodes' ),
+					'up' 		=> __( 'Divider is closer to content above', 'themeblvd_shortcodes' ),
+					'down' 		=> __( 'Divider is closer to content below', 'themeblvd_shortcodes' )
 				)
 			)
 		);
@@ -785,21 +786,21 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['icon_list'] = array(
 			'sc_content' => array(
 				'name' 		=> __( 'List', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>The HTML list you are wrapping the shortcode in. Each item of this list will appear with an icon.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>The HTML list you are wrapping the shortcode in. Each item of this list will appear with an icon.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> "<ul>\n<li>List item 1</li>\n<li>List item 2</li>\n<li>List item 3</li>\n</ul>",
 				'type' 		=> 'textarea'
 			),
 			'icon' => array(
 				'name' 		=> __( 'Icon', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Icon to be applied to each list item. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Icon to be applied to each list item. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'icon',
 				'std' 		=> 'caret-right',
 				'type' 		=> 'text'
 			),
 			'color' => array(
 				'name' 		=> __( 'Icon Color (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'A color for the icons - Ex: #666666', 'themeblvd' ),
+				'desc' 		=> __( 'A color for the icons - Ex: #666666', 'themeblvd_shortcodes' ),
 				'id' 		=> 'color',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -810,21 +811,21 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['jumbotron'] = array(
 			'title' => array(
 				'name' 		=> __( 'Title (Optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Enter a title for the unit.', 'themeblvd' ),
+				'desc' 		=> __( 'Enter a title for the unit.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'title',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'sc_content' => array(
 				'name' 		=> __( 'Content', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>The content of the unit.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>The content of the unit.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'Content here...',
 				'type' 		=> 'textarea'
 			),
 			'text_align' => array(
 				'name' 		=> __( 'Text Alignment', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How you\'d like all text in the unit aligned.', 'themeblvd' ),
+				'desc' 		=> __( 'How you\'d like all text in the unit aligned.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'text_align',
 				'std' 		=> 'left',
 				'type' 		=> 'select',
@@ -840,7 +841,7 @@ class Theme_Blvd_Shortcode_Generator {
 		    ),
 			'align' => array(
 				'name' 		=> __( 'Unit Alignment', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How you\'d like to align the entire unit on the page.', 'themeblvd' ),
+				'desc' 		=> __( 'How you\'d like to align the entire unit on the page.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'align',
 				'std' 		=> 'none',
 				'type' 		=> 'select',
@@ -854,7 +855,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'max_width' => array(
 				'name' 		=> __( 'Maximum Width', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'If you\'ve aligned the entire unit in the previous option, you\'ll need to enter a width for the unit here, or else you won\'t see any effect - 300px, 50%, etc.', 'themeblvd' ),
+				'desc' 		=> __( 'If you\'ve aligned the entire unit in the previous option, you\'ll need to enter a width for the unit here, or else you won\'t see any effect - 300px, 50%, etc.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'max_width',
 				'std' 		=> '',
 				'type' 		=> 'text',
@@ -865,7 +866,7 @@ class Theme_Blvd_Shortcode_Generator {
 		    ),
 			'wpautop' => array(
 				'name' 		=> __( 'WordPress Auto Formatting', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to apply wpautop on content. This shortcode will work best if you leave this set to true and wrap the [jumbotron] shortcode in the [raw] shortcode as shown in the example above. This way, WordPress’s automatic formatting will be applied when the shortcode is rendered <em>only</em>, and will turn out nicer.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to apply wpautop on content. This shortcode will work best if you leave this set to true and wrap the [jumbotron] shortcode in the [raw] shortcode as shown in the example above. This way, WordPress’s automatic formatting will be applied when the shortcode is rendered <em>only</em>, and will turn out nicer.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'wpautop',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -880,7 +881,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['panel'] = array(
 			'style' => array(
 				'name' 		=> __( 'Style', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Style of the panel.', 'themeblvd' ),
+				'desc' 		=> __( 'Style of the panel.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'style',
 				'std' 		=> 'default',
 				'type' 		=> 'select',
@@ -895,28 +896,28 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'sc_content' => array(
 				'name' 		=> __( 'Content', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>The content of the panel.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>The content of the panel.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'Content here...',
 				'type' 		=> 'textarea'
 			),
 			'title' => array(
 				'name' 		=> __( 'Title (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The title of the panel.', 'themeblvd' ),
+				'desc' 		=> __( 'The title of the panel.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'title',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'footer' => array(
 				'name' 		=> __( 'Footer text (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Footer text for the panel.', 'themeblvd' ),
+				'desc' 		=> __( 'Footer text for the panel.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'footer',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'text_align' => array(
 				'name' 		=> __( 'Text Alignment', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to align text in panel.', 'themeblvd' ),
+				'desc' 		=> __( 'How to align text in panel.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'text_align',
 				'std' 		=> 'left',
 				'type' 		=> 'select',
@@ -928,7 +929,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'class' => array(
 				'name' 		=> __( 'CSS Class (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Any CSS classes you\'d like to add.', 'themeblvd' ),
+				'desc' 		=> __( 'Any CSS classes you\'d like to add.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'class',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -939,21 +940,21 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['popup'] = array(
 			'header' => array(
 				'name' 		=> __( 'Header Text (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Optional header text for the top of the popup.', 'themeblvd' ),
+				'desc' 		=> __( 'Optional header text for the top of the popup.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'header',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'sc_content' => array(
 				'name' 		=> __( 'Content', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Content of the popup.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Content of the popup.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'Content here...',
 				'type' 		=> 'textarea'
 			),
 			'animate' => array(
 				'name' 		=> __( 'Popup Animation', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether the popup animates in or not, when it shows.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether the popup animates in or not, when it shows.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'animate',
 				'std' 		=> 'false',
 				'type' 		=> 'select',
@@ -964,14 +965,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'text' => array(
 				'name' 		=> __( 'Button Text', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Text of the button to bring in the popup.', 'themeblvd' ),
+				'desc' 		=> __( 'Text of the button to bring in the popup.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'text',
 				'std' 		=> 'Button Text',
 				'type' 		=> 'text'
 			),
 			'color' => array(
 				'name' 		=> __( 'Button Color', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Color of button to popup.', 'themeblvd' ),
+				'desc' 		=> __( 'Color of button to popup.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'color',
 				'std' 		=> 'default',
 				'type' 		=> 'select',
@@ -979,7 +980,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'size' => array(
 				'name' 		=> __( 'Button Size', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Select the style of the panel.', 'themeblvd' ),
+				'desc' 		=> __( 'Select the style of the panel.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'size',
 				'std' 		=> 'default',
 				'type' 		=> 'select',
@@ -992,14 +993,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'icon_before' => array(
 				'name' 		=> __( 'Icon Before Button Text (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Icon before text of button to popup. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Icon before text of button to popup. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'icon_before',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'icon_after' => array(
 				'name' 		=> __( 'Icon After Button Text (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Icon after text of button to popup. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Icon after text of button to popup. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'icon_after',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -1010,14 +1011,14 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['progress_bar'] = array(
 			'percent' => array(
 				'name' 		=> __( 'Bar Percent', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'A percentage of how far the bar is – 25, 50, 80, etc.', 'themeblvd' ),
+				'desc' 		=> __( 'A percentage of how far the bar is – 25, 50, 80, etc.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'percent',
 				'std' 		=> '100',
 				'type' 		=> 'text'
 			),
 			'color' => array(
 				'name' 		=> __( 'Bar Color', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Color of the bar.', 'themeblvd' ),
+				'desc' 		=> __( 'Color of the bar.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'color',
 				'std' 		=> 'default',
 				'type' 		=> 'select',
@@ -1031,7 +1032,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'striped' => array(
 				'name' 		=> __( 'Striped', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether the bar has the striped effect or not.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether the bar has the striped effect or not.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'striped',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1042,7 +1043,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'animated' => array(
 				'name' 		=> __( 'Animated', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether the bar has the animated effect or not. Note that this does not work in IE8 or IE9.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether the bar has the animated effect or not. Note that this does not work in IE8 or IE9.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'animated',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1057,21 +1058,21 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['blockquote'] = array(
 			'quote' => array(
 				'name' 		=> __( 'Quote Text', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The main text of the quote. You cannot use HTML here.', 'themeblvd' ),
+				'desc' 		=> __( 'The main text of the quote. You cannot use HTML here.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'quote',
 				'std' 		=> 'Quote text...',
 				'type' 		=> 'textarea'
 			),
 			'source' => array(
 				'name' 		=> __( 'Quote Source (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Optional source for the quote.<br />Ex: John Smith', 'themeblvd' ),
+				'desc' 		=> __( 'Optional source for the quote.<br />Ex: John Smith', 'themeblvd_shortcodes' ),
 				'id' 		=> 'source',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'source_link' => array(
 				'name' 		=> __( 'Quote Source URL (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Optional website URL to the source you entered in the previous option.<br />Ex: http://google.com', 'themeblvd' ),
+				'desc' 		=> __( 'Optional website URL to the source you entered in the previous option.<br />Ex: http://google.com', 'themeblvd_shortcodes' ),
 				'id' 		=> 'source_link',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -1082,7 +1083,7 @@ class Theme_Blvd_Shortcode_Generator {
 		    ),
 			'align' => array(
 				'name' 		=> __( 'Alignment', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to align the entire quote block.', 'themeblvd' ),
+				'desc' 		=> __( 'How to align the entire quote block.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'align',
 				'std' 		=> 'none',
 				'type' 		=> 'select',
@@ -1095,7 +1096,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'max_width' => array(
 				'name' 		=> __( 'Maximum Width', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'If you\'ve aligned the block quote in the previous option, you\'ll need to enter a width here, or else you won\'t see the proper result - 300px, 50%, etc.', 'themeblvd' ),
+				'desc' 		=> __( 'If you\'ve aligned the block quote in the previous option, you\'ll need to enter a width here, or else you won\'t see the proper result - 300px, 50%, etc.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'max_width',
 				'std' 		=> '',
 				'type' 		=> 'text',
@@ -1113,6 +1114,56 @@ class Theme_Blvd_Shortcode_Generator {
 			)
 		);
 
+		// Testimonial
+		$options['testimonial'] = array(
+		    'sc_content' => array(
+				'name' 		=> __( 'Testimonial Text', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Enter any text of the testimonial.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'sc_content',
+				'std' 		=> 'Testimonial here...',
+				'type' 		=> 'textarea'
+			),
+			'name' => array(
+				'id' 		=> 'name',
+				'name' 		=> __( 'Name', 'themeblvd_shortcodes'),
+				'desc'		=> __( 'Enter the name of the person giving the testimonial.', 'themeblvd_shortcodes'),
+				'type'		=> 'text'
+		    ),
+		    'tagline' => array(
+				'id' 		=> 'tagline',
+				'name' 		=> __( 'Tagline (optional)', 'themeblvd_shortcodes'),
+				'desc'		=> __( 'Enter a tagline for the person giving the testimonial.<br>Ex: Founder and CEO', 'themeblvd_shortcodes'),
+				'type'		=> 'text'
+		    ),
+		    'company' => array(
+				'id' 		=> 'company',
+				'name' 		=> __( 'Company (optional)', 'themeblvd_shortcodes'),
+				'desc'		=> __( 'Enter the company the person giving the testimonial belongs to.', 'themeblvd_shortcodes'),
+				'type'		=> 'text'
+		    ),
+		    'company_url' => array(
+				'id' 		=> 'company_url',
+				'name' 		=> __( 'Company URL (optional)', 'themeblvd_shortcodes'),
+				'desc'		=> __( 'Enter the website URL for the company or the person giving the testimonial.', 'themeblvd_shortcodes'),
+				'type'		=> 'text',
+				'pholder'	=> 'http://'
+		    ),
+		    /*
+		    'image' => array(
+				'id' 		=> 'image',
+				'name' 		=> __( 'Image (optional)', 'themeblvd_shortcodes'),
+				'desc'		=> __( 'Select a small image for the person giving the testimonial. This will look best if you select an image size that is square.', 'themeblvd_shortcodes'),
+				'type'		=> 'upload'
+		    )
+		    */
+		    'image' => array(
+				'id' 		=> 'image',
+				'name' 		=> __( 'Image (optional)', 'themeblvd_shortcodes'),
+				'desc'		=> __( 'Enter the URL for an image of the person giving the testimonial. This will look best if you select an image size that is square.<br>Ex: http://yoursite.com/image.jpg', 'themeblvd_shortcodes'),
+				'type'		=> 'text',
+		    )
+		);
+
 		/*--------------------------------------------*/
 		/* Display Posts
 		/*--------------------------------------------*/
@@ -1121,42 +1172,42 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['post_grid'] = array(
 			'category_name' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd' ),
+				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
 				'id' 		=> 'category_name',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'tag' => array(
 				'name' 		=> __( 'Option 2: Posts By Tag', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd' ),
+				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd_shortcodes' ),
 				'id' 		=> 'tag',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'portfolio' => array(
 				'name' 		=> __( 'Option 3: Posts By Portfolio', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd' ),
+				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd_shortcodes' ),
 				'id' 		=> 'portfolio',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'columns' => array(
 				'name' 		=> __( 'Columns', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Number of posts per row in the grid of posts.', 'themeblvd' ),
+				'desc' 		=> __( 'Number of posts per row in the grid of posts.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'columns',
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
 			'rows' => array(
 				'name' 		=> __( 'Rows', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Number of rows in the grid of posts.', 'themeblvd' ),
+				'desc' 		=> __( 'Number of rows in the grid of posts.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'rows',
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
 			'orderby' => array(
 				'name' 		=> __( 'Order By', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'What to order the posts by.', 'themeblvd' ),
+				'desc' 		=> __( 'What to order the posts by.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'orderby',
 				'std' 		=> 'date',
 				'type' 		=> 'select',
@@ -1169,7 +1220,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'order' => array(
 				'name' 		=> __( 'Order', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to order the posts.', 'themeblvd' ),
+				'desc' 		=> __( 'How to order the posts.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'order',
 				'std' 		=> 'DESC',
 				'type' 		=> 'select',
@@ -1180,21 +1231,21 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'offset' => array(
 				'name' 		=> __( 'Offset', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd' ),
+				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'offset',
 				'std' 		=> '0',
 				'type' 		=> 'text'
 			),
 			'crop' => array(
 				'name' 		=> __( 'Featured Image Crop Size', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'You can manually enter a featured image crop size to force on the featured images of the post grid, if you wish.', 'themeblvd' ),
+				'desc' 		=> __( 'You can manually enter a featured image crop size to force on the featured images of the post grid, if you wish.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'crop',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'query' => array(
 				'name' 		=> __( 'Custom Query', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'query',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -1205,7 +1256,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['post_list'] = array(
 			'thumbs' => array(
 				'name' 		=> __( 'Thumbnail Size', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'This determines the size of the featured images. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd' ),
+				'desc' 		=> __( 'This determines the size of the featured images. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'thumbs',
 				'std' 		=> 'default',
 				'type' 		=> 'select',
@@ -1218,7 +1269,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'post_content' => array(
 				'name' 		=> __( 'Post Content', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How the content of posts display. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd' ),
+				'desc' 		=> __( 'How the content of posts display. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'post_content',
 				'std' 		=> 'default',
 				'type' 		=> 'select',
@@ -1230,35 +1281,35 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'category_name' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd' ),
+				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
 				'id' 		=> 'category_name',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'tag' => array(
 				'name' 		=> __( 'Option 2: Posts By Tag', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd' ),
+				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd_shortcodes' ),
 				'id' 		=> 'tag',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'portfolio' => array(
 				'name' 		=> __( 'Option 3: Posts By Portfolio', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd' ),
+				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd_shortcodes' ),
 				'id' 		=> 'portfolio',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'numberposts' => array(
 				'name' 		=> __( 'Number of Posts', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The number of posts to display for the post list.', 'themeblvd' ),
+				'desc' 		=> __( 'The number of posts to display for the post list.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'numberposts',
 				'std' 		=> '4',
 				'type' 		=> 'text'
 			),
 			'orderby' => array(
 				'name' 		=> __( 'Order By', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'What to order the posts by.', 'themeblvd' ),
+				'desc' 		=> __( 'What to order the posts by.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'orderby',
 				'std' 		=> 'date',
 				'type' 		=> 'select',
@@ -1271,7 +1322,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'order' => array(
 				'name' 		=> __( 'Order', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to order the posts.', 'themeblvd' ),
+				'desc' 		=> __( 'How to order the posts.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'order',
 				'std' 		=> 'DESC',
 				'type' 		=> 'select',
@@ -1282,14 +1333,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'offset' => array(
 				'name' 		=> __( 'Offset', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd' ),
+				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'offset',
 				'std' 		=> '0',
 				'type' 		=> 'text'
 			),
 			'query' => array(
 				'name' 		=> __( 'Custom Query', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'query',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -1300,28 +1351,28 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['mini_post_grid'] = array(
 			'category_name' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd' ),
+				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
 				'id' 		=> 'category_name',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'tag' => array(
 				'name' 		=> __( 'Option 2: Posts By Tag', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd' ),
+				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd_shortcodes' ),
 				'id' 		=> 'tag',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'numberposts' => array(
 				'name' 		=> __( 'Number of Posts', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The number of posts to display for the post grid.', 'themeblvd' ),
+				'desc' 		=> __( 'The number of posts to display for the post grid.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'numberposts',
 				'std' 		=> '4',
 				'type' 		=> 'text'
 			),
 			'orderby' => array(
 				'name' 		=> __( 'Order By', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'What to order the posts by.', 'themeblvd' ),
+				'desc' 		=> __( 'What to order the posts by.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'orderby',
 				'std' 		=> 'date',
 				'type' 		=> 'select',
@@ -1334,7 +1385,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'order' => array(
 				'name' 		=> __( 'Order', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to order the posts.', 'themeblvd' ),
+				'desc' 		=> __( 'How to order the posts.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'order',
 				'std' 		=> 'DESC',
 				'type' 		=> 'select',
@@ -1345,21 +1396,21 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'offset' => array(
 				'name' 		=> __( 'Offset', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd' ),
+				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'offset',
 				'std' 		=> '0',
 				'type' 		=> 'text'
 			),
 			'query' => array(
 				'name' 		=> __( 'Custom Query', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'query',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'align' => array(
 				'name' 		=> __( 'Alignment', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to align grid of thumbnails.', 'themeblvd' ),
+				'desc' 		=> __( 'How to align grid of thumbnails.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'align',
 				'std' 		=> 'left',
 				'type' 		=> 'select',
@@ -1370,7 +1421,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'gallery' => array(
 				'name' 		=> __( 'Galery Override', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'If you’d like to display images from a gallery instead of featured images of standard posts, you can input the ID’s of the attachments to use in the gallery.', 'themeblvd' ),
+				'desc' 		=> __( 'If you’d like to display images from a gallery instead of featured images of standard posts, you can input the ID’s of the attachments to use in the gallery.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'gallery',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -1381,7 +1432,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['mini_post_list'] = array(
 			'thumb' => array(
 				'name' 		=> __( 'Thumbnail Size', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Size of the featured images for the posts.', 'themeblvd' ),
+				'desc' 		=> __( 'Size of the featured images for the posts.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'thumb',
 				'std' 		=> 'smaller',
 				'type' 		=> 'select',
@@ -1393,7 +1444,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'meta' => array(
 				'name' 		=> __( 'Post Meta', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show post date below post titles.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show post date below post titles.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'meta',
 				'std' 		=> 'show',
 				'type' 		=> 'select',
@@ -1404,28 +1455,28 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'category_name' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd' ),
+				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
 				'id' 		=> 'category_name',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'tag' => array(
 				'name' 		=> __( 'Option 2: Posts By Tag', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd' ),
+				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd_shortcodes' ),
 				'id' 		=> 'tag',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'numberposts' => array(
 				'name' 		=> __( 'Number of Posts', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The number of posts to display for the post list.', 'themeblvd' ),
+				'desc' 		=> __( 'The number of posts to display for the post list.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'numberposts',
 				'std' 		=> '4',
 				'type' 		=> 'text'
 			),
 			'orderby' => array(
 				'name' 		=> __( 'Order By', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'What to order the posts by.', 'themeblvd' ),
+				'desc' 		=> __( 'What to order the posts by.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'orderby',
 				'std' 		=> 'date',
 				'type' 		=> 'select',
@@ -1438,7 +1489,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'order' => array(
 				'name' 		=> __( 'Order', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to order the posts.', 'themeblvd' ),
+				'desc' 		=> __( 'How to order the posts.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'order',
 				'std' 		=> 'DESC',
 				'type' 		=> 'select',
@@ -1449,14 +1500,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'offset' => array(
 				'name' 		=> __( 'Offset', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd' ),
+				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'offset',
 				'std' 		=> '0',
 				'type' 		=> 'text'
 			),
 			'query' => array(
 				'name' 		=> __( 'Custom Query', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'query',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -1470,7 +1521,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['icon'] = array(
 			'image' => array(
 				'name' 		=> __( 'Icon', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Select an icon. For adding icons, you can create a folder in your child theme called "icons" -- Anything placed in that directory will show here after the 24-hour cache period is over.', 'themeblvd' ),
+				'desc' 		=> __( 'Select an icon. For adding icons, you can create a folder in your child theme called "icons" -- Anything placed in that directory will show here after the 24-hour cache period is over.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'image',
 				'std' 		=> 'accepted',
 				'type' 		=> 'images',
@@ -1479,7 +1530,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'align' => array(
 				'name' 		=> __( 'Icon Alignment', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How you\'d like to align the icon.', 'themeblvd' ),
+				'desc' 		=> __( 'How you\'d like to align the icon.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'align',
 				'std' 		=> 'left',
 				'type' 		=> 'select',
@@ -1492,7 +1543,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'width' => array(
 				'name' 		=> __( 'Icon Width', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Display width of the icon -- 48, 24, etc.', 'themeblvd' ),
+				'desc' 		=> __( 'Display width of the icon -- 48, 24, etc.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'width',
 				'std' 		=> '48',
 				'type' 		=> 'text'
@@ -1507,7 +1558,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['dropcap'] = array(
 			'sc_content' => array(
 				'name' 		=> __( 'Dropcap Letter', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The letter you want to appear large, or "dropped."', 'themeblvd' ),
+				'desc' 		=> __( 'The letter you want to appear large, or "dropped."', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'A',
 				'type' 		=> 'text'
@@ -1518,7 +1569,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['highlight'] = array(
 			'sc_content' => array(
 				'name' 		=> __( 'Content', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Enter a single paragraph of text you\'d like to be highlighted.', 'themeblvd' ),
+				'desc' 		=> __( 'Enter a single paragraph of text you\'d like to be highlighted.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'This text will be highlighted.',
 				'type' 		=> 'textarea'
@@ -1529,35 +1580,35 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['icon_link'] = array(
 			'icon' => array(
 				'name' 		=> __( 'Link Icon', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Enter an icon name. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Enter an icon name. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'icon',
 				'std' 		=> 'link',
 				'type' 		=> 'text'
 			),
 			'link' => array(
 				'name' 		=> __( 'Link URL', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The full URL of where you want the link to go.<br />Ex: http://google.com', 'themeblvd' ),
+				'desc' 		=> __( 'The full URL of where you want the link to go.<br />Ex: http://google.com', 'themeblvd_shortcodes' ),
 				'id' 		=> 'link',
 				'std' 		=> 'http://google.com',
 				'type' 		=> 'text'
 			),
 			'sc_content' => array(
 				'name' 		=> __( 'Link Text', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The text of the link.', 'themeblvd' ),
+				'desc' 		=> __( 'The text of the link.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'Link Text...',
 				'type' 		=> 'text'
 			),
 			'color' => array(
 				'name' 		=> __( 'Link Icon Color (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Enter a color for the icon, will default to website\'s link color. - Ex: #666666', 'themeblvd' ),
+				'desc' 		=> __( 'Enter a color for the icon, will default to website\'s link color. - Ex: #666666', 'themeblvd_shortcodes' ),
 				'id' 		=> 'color',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'target' => array(
 				'name' 		=> __( 'Button Target', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How the button opens the link.', 'themeblvd' ),
+				'desc' 		=> __( 'How the button opens the link.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'target',
 				'std' 		=> '_self',
 				'type' 		=> 'select',
@@ -1569,14 +1620,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'title' => array(
 				'name' 		=> __( 'Button Title (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'For you SEO folks, this controls the link\'s HTML title tag. If left blank, this will just default to the link\'s text.', 'themeblvd' ),
+				'desc' 		=> __( 'For you SEO folks, this controls the link\'s HTML title tag. If left blank, this will just default to the link\'s text.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'title',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'class' => array(
 				'name' 		=> __( 'Button CSS Class (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'This will allow you to add an extra CSS class for styling to the link.', 'themeblvd' ),
+				'desc' 		=> __( 'This will allow you to add an extra CSS class for styling to the link.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'class',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -1587,14 +1638,14 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['label'] = array(
 			'sc_content' => array(
 				'name' 		=> __( 'Label Text', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The text of the label.', 'themeblvd' ),
+				'desc' 		=> __( 'The text of the label.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'Label Text...',
 				'type' 		=> 'text'
 			),
 			'style' => array(
 				'name' 		=> __( 'Style', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The style of the label.', 'themeblvd' ),
+				'desc' 		=> __( 'The style of the label.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'style',
 				'std' 		=> 'default',
 				'type' 		=> 'select',
@@ -1608,7 +1659,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'icon' => array(
 				'name' 		=> __( 'Label Icon (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Enter an icon name to appear at the start of the label. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Enter an icon name to appear at the start of the label. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'icon',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -1619,7 +1670,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['lead'] = array(
 			'sc_content' => array(
 				'name' 		=> __( 'Lead Text', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Enter a single paragraph of text you\'d like to show a bit larger than the standard body text.', 'themeblvd' ),
+				'desc' 		=> __( 'Enter a single paragraph of text you\'d like to show a bit larger than the standard body text.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'This text will show larger than the standard body text.',
 				'type' 		=> 'textarea'
@@ -1634,7 +1685,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['slider'] = array(
 			'id' => array(
 				'name' 		=> __( 'Slider ID', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Select from your your custom-built sliders, using the <a href="http://wordpress.org/plugins/theme-blvd-sliders/" target="_blank">Theme Blvd Sliders plugin</a>.', 'themeblvd' ),
+				'desc' 		=> __( 'Select from your your custom-built sliders, using the <a href="http://wordpress.org/plugins/theme-blvd-sliders/" target="_blank">Theme Blvd Sliders plugin</a>.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'id',
 				'std' 		=> '',
 				'type' 		=> 'select',
@@ -1646,28 +1697,28 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['gallery_slider'] = array(
 			'ids' => array(
 				'name' 		=> __( 'Image ID\'s', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Comma separated list of attachments ID’s.<br />Ex: 293,294,295', 'themeblvd' ),
+				'desc' 		=> __( 'Comma separated list of attachments ID’s.<br />Ex: 293,294,295', 'themeblvd_shortcodes' ),
 				'id' 		=> 'ids',
 				'std' 		=> '1,2,3',
 				'type' 		=> 'text'
 			),
 			'size' => array(
 				'name' 		=> __( 'Image Size (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Crop size for images, defaults to displaying raw image sizes.<br />Ex: slider-large', 'themeblvd' ),
+				'desc' 		=> __( 'Crop size for images, defaults to displaying raw image sizes.<br />Ex: slider-large', 'themeblvd_shortcodes' ),
 				'id' 		=> 'size',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'interval' => array(
 				'name' 		=> __( 'Slider Speed', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Milliseconds between auto slide transitions. For example, 5000 milliseconds = 5 seconds.', 'themeblvd' ),
+				'desc' 		=> __( 'Milliseconds between auto slide transitions. For example, 5000 milliseconds = 5 seconds.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'interval',
 				'std' 		=> '5000',
 				'type' 		=> 'text'
 			),
 			'pause' => array(
 				'name' 		=> __( 'Pause on Hover', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to pause slider on mouse hover.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to pause slider on mouse hover.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'pause',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1678,7 +1729,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'nav_standard' => array(
 				'name' 		=> __( 'Standard Navigation', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show standard navigation indicator dots.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show standard navigation indicator dots.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'nav_standard',
 				'std' 		=> 'false',
 				'type' 		=> 'select',
@@ -1689,7 +1740,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'nav_arrows' => array(
 				'name' 		=> __( 'Navigation Arrows', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show standard navigation arrows.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show standard navigation arrows.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'nav_arrows',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1704,7 +1755,7 @@ class Theme_Blvd_Shortcode_Generator {
 		    ),
 			'nav_thumbs' => array(
 				'name' 		=> __( 'Thumbnail Navigation', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to include thumbnail images to navigate the slider.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to include thumbnail images to navigate the slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'nav_thumbs',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1716,7 +1767,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'thumb_size' => array(
 				'name' 		=> __( 'Thumbnail Size', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Select the size of the images for the thumbnail navigation.', 'themeblvd' ),
+				'desc' 		=> __( 'Select the size of the images for the thumbnail navigation.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'thumb_size',
 				'std' 		=> 'square_smallest',
 				'type' 		=> 'select',
@@ -1736,7 +1787,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['post_slider'] = array(
 			'fx' => array(
 				'name' 		=> __( 'Slider Transition', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The transition effect of the slider.', 'themeblvd' ),
+				'desc' 		=> __( 'The transition effect of the slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'fx',
 				'std' 		=> 'slide',
 				'type' 		=> 'select',
@@ -1747,14 +1798,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'timeout' => array(
 				'name' 		=> __( 'Slider Speed', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Seconds in between transitions, 0 for no auto-advancing.', 'themeblvd' ),
+				'desc' 		=> __( 'Seconds in between transitions, 0 for no auto-advancing.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'timeout',
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
 			'nav_standard' => array(
 				'name' 		=> __( 'Navigation Dots', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show standard navigation dots to control slider.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show standard navigation dots to control slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'nav_standard',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1765,7 +1816,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'nav_arrows' => array(
 				'name' 		=> __( 'Navigation Arrows', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show navigation arows to control slider.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show navigation arows to control slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'nav_arrows',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1776,7 +1827,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'pause_play' => array(
 				'name' 		=> __( 'Pause/Play Button', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show pause/play button for slider\'s rotation', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show pause/play button for slider\'s rotation', 'themeblvd_shortcodes' ),
 				'id' 		=> 'pause_play',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1787,7 +1838,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'pause_on_hover' => array(
 				'name' 		=> __( 'Pause on Hover', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to pause slider rotation on mouse hover.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to pause slider rotation on mouse hover.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'pause_on_hover',
 				'std' 		=> 'disable',
 				'type' 		=> 'select',
@@ -1799,7 +1850,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'image' => array(
 				'name' 		=> __( 'Image Display', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to display featured images from the posts to be used in the slider.', 'themeblvd' ),
+				'desc' 		=> __( 'How to display featured images from the posts to be used in the slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'image',
 				'std' 		=> 'full',
 				'type' 		=> 'select',
@@ -1811,14 +1862,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'image_size' => array(
 				'name' 		=> __( 'Image Crop Size', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Crop size for featured image used as each slide.', 'themeblvd' ),
+				'desc' 		=> __( 'Crop size for featured image used as each slide.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'image_size',
 				'std' 		=> 'slider-large',
 				'type' 		=> 'text'
 			),
 			'image_link' => array(
 				'name' 		=> __( 'Image Link', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How each image of the slider links.', 'themeblvd' ),
+				'desc' 		=> __( 'How each image of the slider links.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'image_link',
 				'std' 		=> 'permalink',
 				'type' 		=> 'select',
@@ -1830,35 +1881,35 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'category_name' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd' ),
+				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
 				'id' 		=> 'category_name',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'tag' => array(
 				'name' 		=> __( 'Option 2: Posts By Tag', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd' ),
+				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd_shortcodes' ),
 				'id' 		=> 'tag',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'portfolio' => array(
 				'name' 		=> __( 'Option 3: Posts By Portfolio', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd' ),
+				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd_shortcodes' ),
 				'id' 		=> 'portfolio',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'numberposts' => array(
 				'name' 		=> __( 'Number of Posts', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The number of posts to display for the slider.', 'themeblvd' ),
+				'desc' 		=> __( 'The number of posts to display for the slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'numberposts',
 				'std' 		=> '5',
 				'type' 		=> 'text'
 			),
 			'orderby' => array(
 				'name' 		=> __( 'Order By', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'What to order the posts by.', 'themeblvd' ),
+				'desc' 		=> __( 'What to order the posts by.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'orderby',
 				'std' 		=> 'date',
 				'type' 		=> 'select',
@@ -1871,7 +1922,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'order' => array(
 				'name' 		=> __( 'Order', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to order the posts.', 'themeblvd' ),
+				'desc' 		=> __( 'How to order the posts.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'order',
 				'std' 		=> 'DESC',
 				'type' 		=> 'select',
@@ -1882,21 +1933,21 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'offset' => array(
 				'name' 		=> __( 'Offset', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd' ),
+				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'offset',
 				'std' 		=> '0',
 				'type' 		=> 'text'
 			),
 			'query' => array(
 				'name' 		=> __( 'Custom Query', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'query',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'mobile_fallback' => array(
 				'name' 		=> __( 'Mobile Fallback', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to display on mobile.', 'themeblvd' ),
+				'desc' 		=> __( 'How to display on mobile.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'mobile_fallback',
 				'std' 		=> 'full_list',
 				'type' 		=> 'select',
@@ -1912,7 +1963,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['post_grid_slider'] = array(
 			'fx' => array(
 				'name' 		=> __( 'Slider Transition', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The transition effect of the slider.', 'themeblvd' ),
+				'desc' 		=> __( 'The transition effect of the slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'fx',
 				'std' 		=> 'slide',
 				'type' 		=> 'select',
@@ -1923,14 +1974,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'timeout' => array(
 				'name' 		=> __( 'Slider Speed', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Seconds in between transitions, 0 for no auto-advancing.', 'themeblvd' ),
+				'desc' 		=> __( 'Seconds in between transitions, 0 for no auto-advancing.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'timeout',
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
 			'nav_standard' => array(
 				'name' 		=> __( 'Navigation Dots', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show standard navigation dots to control slider.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show standard navigation dots to control slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'nav_standard',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1941,7 +1992,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'nav_arrows' => array(
 				'name' 		=> __( 'Navigation Arrows', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show navigation arows to control slider.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show navigation arows to control slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'nav_arrows',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1952,7 +2003,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'pause_play' => array(
 				'name' 		=> __( 'Pause/Play Button', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show pause/play button for slider\'s rotation', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show pause/play button for slider\'s rotation', 'themeblvd_shortcodes' ),
 				'id' 		=> 'pause_play',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -1963,49 +2014,49 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'category_name' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd' ),
+				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
 				'id' 		=> 'category_name',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'tag' => array(
 				'name' 		=> __( 'Option 2: Posts By Tag', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd' ),
+				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd_shortcodes' ),
 				'id' 		=> 'tag',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'portfolio' => array(
 				'name' 		=> __( 'Option 3: Posts By Portfolio', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd' ),
+				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd_shortcodes' ),
 				'id' 		=> 'portfolio',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'columns' => array(
 				'name' 		=> __( 'Columns', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Number of posts per row in each slide.', 'themeblvd' ),
+				'desc' 		=> __( 'Number of posts per row in each slide.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'columns',
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
 			'rows' => array(
 				'name' 		=> __( 'Rows', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Number of rows in each slide.', 'themeblvd' ),
+				'desc' 		=> __( 'Number of rows in each slide.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'rows',
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
 			'numberposts' => array(
 				'name' 		=> __( 'Total Number of Posts', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The total number of posts to display for the slider. Use -1 for no limit, in order to pull all posts queried.', 'themeblvd' ),
+				'desc' 		=> __( 'The total number of posts to display for the slider. Use -1 for no limit, in order to pull all posts queried.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'numberposts',
 				'std' 		=> '-1',
 				'type' 		=> 'text'
 			),
 			'orderby' => array(
 				'name' 		=> __( 'Order By', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'What to order the posts by.', 'themeblvd' ),
+				'desc' 		=> __( 'What to order the posts by.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'orderby',
 				'std' 		=> 'date',
 				'type' 		=> 'select',
@@ -2018,7 +2069,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'order' => array(
 				'name' 		=> __( 'Order', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to order the posts.', 'themeblvd' ),
+				'desc' 		=> __( 'How to order the posts.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'order',
 				'std' 		=> 'DESC',
 				'type' 		=> 'select',
@@ -2029,14 +2080,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'offset' => array(
 				'name' 		=> __( 'Offset', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd' ),
+				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'offset',
 				'std' 		=> '0',
 				'type' 		=> 'text'
 			),
 			'query' => array(
 				'name' 		=> __( 'Custom Query', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'query',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -2047,7 +2098,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['post_list_slider'] = array(
 			'fx' => array(
 				'name' 		=> __( 'Slider Transition', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The transition effect of the slider.', 'themeblvd' ),
+				'desc' 		=> __( 'The transition effect of the slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'fx',
 				'std' 		=> 'slide',
 				'type' 		=> 'select',
@@ -2058,14 +2109,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'timeout' => array(
 				'name' 		=> __( 'Slider Speed', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Seconds in between transitions, 0 for no auto-advancing.', 'themeblvd' ),
+				'desc' 		=> __( 'Seconds in between transitions, 0 for no auto-advancing.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'timeout',
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
 			'nav_standard' => array(
 				'name' 		=> __( 'Navigation Dots', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show standard navigation dots to control slider.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show standard navigation dots to control slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'nav_standard',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -2076,7 +2127,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'nav_arrows' => array(
 				'name' 		=> __( 'Navigation Arrows', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show navigation arows to control slider.', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show navigation arows to control slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'nav_arrows',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -2087,7 +2138,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'pause_play' => array(
 				'name' 		=> __( 'Pause/Play Button', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show pause/play button for slider\'s rotation', 'themeblvd' ),
+				'desc' 		=> __( 'Whether to show pause/play button for slider\'s rotation', 'themeblvd_shortcodes' ),
 				'id' 		=> 'pause_play',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
@@ -2098,7 +2149,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'thumbs' => array(
 				'name' 		=> __( 'Thumbnail Size', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'This determines the size of the featured images. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd' ),
+				'desc' 		=> __( 'This determines the size of the featured images. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'thumbs',
 				'std' 		=> 'default',
 				'type' 		=> 'select',
@@ -2111,7 +2162,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'post_content' => array(
 				'name' 		=> __( 'Post Content', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How the content of posts display. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd' ),
+				'desc' 		=> __( 'How the content of posts display. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'post_content',
 				'std' 		=> 'default',
 				'type' 		=> 'select',
@@ -2123,42 +2174,42 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'category_name' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd' ),
+				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
 				'id' 		=> 'category_name',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'tag' => array(
 				'name' 		=> __( 'Option 2: Posts By Tag', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd' ),
+				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd_shortcodes' ),
 				'id' 		=> 'tag',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'portfolio' => array(
 				'name' 		=> __( 'Option 3: Posts By Portfolio', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd' ),
+				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd_shortcodes' ),
 				'id' 		=> 'portfolio',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'posts_per_slide' => array(
 				'name' 		=> __( 'Number of Posts Per Slide', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The number of posts to display for each slide of the slider.', 'themeblvd' ),
+				'desc' 		=> __( 'The number of posts to display for each slide of the slider.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'posts_per_slide',
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
 			'numberposts' => array(
 				'name' 		=> __( 'Total Number of Posts', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The total number of posts to display for the slider. Use -1 for no limit, in order to pull all posts queried.', 'themeblvd' ),
+				'desc' 		=> __( 'The total number of posts to display for the slider. Use -1 for no limit, in order to pull all posts queried.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'numberposts',
 				'std' 		=> '-1',
 				'type' 		=> 'text'
 			),
 			'orderby' => array(
 				'name' 		=> __( 'Order By', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'What to order the posts by.', 'themeblvd' ),
+				'desc' 		=> __( 'What to order the posts by.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'orderby',
 				'std' 		=> 'date',
 				'type' 		=> 'select',
@@ -2171,7 +2222,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'order' => array(
 				'name' 		=> __( 'Order', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to order the posts.', 'themeblvd' ),
+				'desc' 		=> __( 'How to order the posts.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'order',
 				'std' 		=> 'DESC',
 				'type' 		=> 'select',
@@ -2182,14 +2233,14 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'offset' => array(
 				'name' 		=> __( 'Offset', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd' ),
+				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'offset',
 				'std' 		=> '0',
 				'type' 		=> 'text'
 			),
 			'query' => array(
 				'name' 		=> __( 'Custom Query', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'query',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -2203,7 +2254,7 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['tabs'] = array(
 			'num' => array(
 				'name' 		=> __( 'Number of Tabs', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Enter the number of tabs. This will help you to setup this example starting point to insert into your page or post.', 'themeblvd' ),
+				'desc' 		=> __( 'Enter the number of tabs. This will help you to setup this example starting point to insert into your page or post.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'num',
 				'std' 		=> '3',
 				'type' 		=> 'select',
@@ -2224,7 +2275,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'style' => array(
 				'name' 		=> __( 'Style', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The tabs can styled to be framed or open. When the tabs are framed, there will be a box around each tab\'s content.', 'themeblvd' ),
+				'desc' 		=> __( 'The tabs can styled to be framed or open. When the tabs are framed, there will be a box around each tab\'s content.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'style',
 				'std' 		=> 'pills',
 				'type' 		=> 'select',
@@ -2235,7 +2286,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'nav' => array(
 				'name' 		=> __( 'Navigation Style', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The "Tabs" style navigation will be the typical choice here, but use "Pills" for different look.', 'themeblvd' ),
+				'desc' 		=> __( 'The "Tabs" style navigation will be the typical choice here, but use "Pills" for different look.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'nav',
 				'std' 		=> 'tabs',
 				'type' 		=> 'select',
@@ -2252,13 +2303,13 @@ class Theme_Blvd_Shortcode_Generator {
 
 		$options['accordion'] = array(
 			'desc' => array(
-				'desc' 		=> __( 'The [accordion] shortcode is simply a way to group your toggles. When one toggle in an accodion is opened, all other toggles within will be closed.', 'themeblvd' ),
+				'desc' 		=> __( 'The [accordion] shortcode is simply a way to group your toggles. When one toggle in an accodion is opened, all other toggles within will be closed.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'desc',
 				'type' 		=> 'info'
 			),
 			'num' => array(
 				'name' 		=> __( 'Number of Toggles', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Enter the number of toggles. This will help you to setup this example starting point to insert into your page or post.', 'themeblvd' ),
+				'desc' 		=> __( 'Enter the number of toggles. This will help you to setup this example starting point to insert into your page or post.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'num',
 				'std' 		=> '3',
 				'type' 		=> 'select',
@@ -2281,14 +2332,14 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['toggle'] = array(
 			'title' => array(
 				'name' 		=> __( 'Toggle Title', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The title text of the toggle, which is clicked to reveal the content.', 'themeblvd' ),
+				'desc' 		=> __( 'The title text of the toggle, which is clicked to reveal the content.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'title',
 				'std' 		=> 'Title here...',
 				'type' 		=> 'text'
 			),
 			'sc_content' => array(
 				'name' 		=> __( 'Toggle Content', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>The content within the toggle.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd' ),
+				'desc' 		=> __( '<p>The content within the toggle.</p><p><em>Note: The content can be further edited from your WordPress editor after being inserted.</em></p>', 'themeblvd_shortcodes' ),
 				'id' 		=> 'sc_content',
 				'std' 		=> 'Content here...',
 				'type' 		=> 'textarea'
@@ -2302,28 +2353,28 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['vector_icon'] = array(
 			'icon' => array(
 				'name' 		=> __( 'Icon', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Enter an icon name. You can browse available FontAwesome icons in the above browser.', 'themeblvd' ),
+				'desc' 		=> __( 'Enter an icon name. You can browse available FontAwesome icons in the above browser.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'icon',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'color' => array(
 				'name' 		=> __( 'Icon Color (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Enter a color for the icon - Ex: #666666', 'themeblvd' ),
+				'desc' 		=> __( 'Enter a color for the icon - Ex: #666666', 'themeblvd_shortcodes' ),
 				'id' 		=> 'color',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'size' => array(
 				'name' 		=> __( 'Icon Size (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Enter a size for the icon - 20px, 2em, etc.', 'themeblvd' ),
+				'desc' 		=> __( 'Enter a size for the icon - 20px, 2em, etc.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'size',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
 			'rotate' => array(
 				'name' 		=> __( 'Icon Rotation (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Select how you\'d like to rotate the icon.', 'themeblvd' ),
+				'desc' 		=> __( 'Select how you\'d like to rotate the icon.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'rotate',
 				'std' 		=> 'none',
 				'type' 		=> 'select',
@@ -2336,7 +2387,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'flip' => array(
 				'name' 		=> __( 'Icon Flip (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Select how you\'d like to flip the icon.', 'themeblvd' ),
+				'desc' 		=> __( 'Select how you\'d like to flip the icon.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'flip',
 				'std' 		=> 'none',
 				'type' 		=> 'select',
@@ -2348,7 +2399,7 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'class' => array(
 				'name' 		=> __( 'Icon CSS Class (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'For those that are familiar with FontAwesome, here you can add your own CSS class to the icon, if you want.', 'themeblvd' ),
+				'desc' 		=> __( 'For those that are familiar with FontAwesome, here you can add your own CSS class to the icon, if you want.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'class',
 				'std' 		=> '',
 				'type' 		=> 'text'
@@ -2479,7 +2530,7 @@ class Theme_Blvd_Shortcode_Generator {
 						continue;
 					}
 
-					if ( $option['std'] && $option['std'] != 'none' && $option['id'] != 'sc_content' ) {
+					if ( ! empty( $option['std'] ) && $option['std'] != 'none' && $option['id'] != 'sc_content' ) {
 						$default_content .= sprintf( ' %s="%s"', $option['id'], $option['std'] );
 					}
 				}

@@ -119,6 +119,7 @@ function themeblvd_shortcodes_init() {
 		add_shortcode( 'blockquote', 'themeblvd_shortcode_blockquote' );
 		add_shortcode( 'jumbotron', 'themeblvd_shortcode_jumbotron' );
 		add_shortcode( 'panel', 'themeblvd_shortcode_panel' );
+		add_shortcode( 'testimonial', 'themeblvd_shortcode_testimonial' );
 
 		// Inline Elements
 		add_shortcode( 'icon', 'themeblvd_shortcode_icon' );

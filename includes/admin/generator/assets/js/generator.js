@@ -376,6 +376,7 @@ jQuery(document).ready(function($){
 	$('#tb-shortcode-generator').themeblvd('options', 'bind');
 	$('#tb-shortcode-generator').themeblvd('options', 'setup');
 	$('#tb-shortcode-generator').themeblvd('options', 'column-widths');
+	// $('#tb-shortcode-generator').themeblvd('options', 'media-uploader');
 
 	// Generator left-side navigation
 	$('#tb-shortcode-generator .media-menu-item').on( 'click', function(){
