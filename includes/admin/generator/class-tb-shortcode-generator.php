@@ -187,6 +187,11 @@ class Theme_Blvd_Shortcode_Generator {
 	public function assets( $hook ) {
 		if ( 'post.php' == $hook || 'post-new.php' == $hook || 'toplevel_page_themeblvd_builder' == $hook ) {
 
+			// WP Built-in scripts
+			wp_enqueue_script( 'jquery-ui-core');
+			wp_enqueue_script( 'jquery-ui-slider' );
+			wp_enqueue_script( 'wp-color-picker' );
+
 			// Framework core
 			wp_enqueue_style( 'themeblvd_admin', TB_FRAMEWORK_URI . '/admin/assets/css/admin-style.min.css', null, TB_FRAMEWORK_VERSION );
 			wp_enqueue_script( 'themeblvd_admin', TB_FRAMEWORK_URI . '/admin/assets/js/shared.min.js', array('jquery'), TB_FRAMEWORK_VERSION );
