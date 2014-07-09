@@ -3,7 +3,7 @@ Author URI: http://www.jasonbobich.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
 Tested up to: 3.9
-Stable Tag: 1.4.2
+Stable Tag: 1.5.0
 
 This plugin works in conjuction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
@@ -93,15 +93,17 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
-= 1.4.2 =
+= 1.5.0 =
 
-* Better handling of default option values at *Settings > Writing > Theme Blvd Shortcodes*.
 * Added `[column]` shortcode; other column shortcodes are now deprecated.
 * Added `[lead]` shortcode.
 * Added `[testimonial]` shortcode (requires Theme Blvd Framework 2.5+).
+* Added `[milestone]` and `[milestone_ring]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added custom color selection for `[button]` shortcode (requires Theme Blvd Framework 2.5+).
 * Improvements to `[divider]` shortcode (requires Theme Blvd Framework 2.5+).
-* Fix to allow shortcodes to work with Ajax requests on the frontend of the site.
+* Improvements to `[progress_bar]` shortcode (requires Theme Blvd Framework 2.5+).
+* Adjustments to allow shortcodes to work with Ajax requests on the frontend of the site.
+* Better handling of default option values at *Settings > Writing > Theme Blvd Shortcodes*.
 
 = 1.4.1 =
 

@@ -536,6 +536,15 @@ class Theme_Blvd_Shortcode_Generator {
 				)
 			),
 			array(
+				'id'	=> 'stats',
+				'name'	=> __( 'Stats', 'themeblvd_shortcodes' ),
+				'sub'	=> array(
+					'milestone'			=> __('Milestone', 'themeblvd_shortcodes'),
+					'milestone_ring'	=> __('Milestone Ring', 'themeblvd_shortcodes'),
+					'progress_bar'		=> __('Progress Bar', 'themeblvd_shortcodes')
+				)
+			),
+			array(
 				'id'	=> 'tabs',
 				'name'	=> __( 'Tabs', 'themeblvd_shortcodes' ),
 				'sub'	=> array()
@@ -1009,53 +1018,6 @@ class Theme_Blvd_Shortcode_Generator {
 				'id' 		=> 'icon_after',
 				'std' 		=> '',
 				'type' 		=> 'text'
-			)
-		);
-
-		// Progress Bar
-		$options['progress_bar'] = array(
-			'percent' => array(
-				'name' 		=> __( 'Bar Percent', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'A percentage of how far the bar is – 25, 50, 80, etc.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'percent',
-				'std' 		=> '100',
-				'type' 		=> 'text'
-			),
-			'color' => array(
-				'name' 		=> __( 'Bar Color', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Color of the bar.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'color',
-				'std' 		=> 'default',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'default' 	=> __('Default (blue)', 'themeblvd_shortcodes'),
-					'info' 		=> __('Info (lighter blue)', 'themeblvd_shortcodes'),
-					'success' 	=> __('Success (green)', 'themeblvd_shortcodes'),
-					'danger' 	=> __('Danger (red)', 'themeblvd_shortcodes'),
-					'warning' 	=> __('Warning (yellow)', 'themeblvd_shortcodes')
-				)
-			),
-			'striped' => array(
-				'name' 		=> __( 'Striped', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether the bar has the striped effect or not.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'striped',
-				'std' 		=> 'true',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'true' 		=> __('True', 'themeblvd_shortcodes'),
-					'false' 	=> __('False', 'themeblvd_shortcodes')
-				)
-			),
-			'animated' => array(
-				'name' 		=> __( 'Animated', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether the bar has the animated effect or not. Note that this does not work in IE8 or IE9.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'animated',
-				'std' 		=> 'true',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'true' 		=> __('True', 'themeblvd_shortcodes'),
-					'false' 	=> __('False', 'themeblvd_shortcodes')
-				)
 			)
 		);
 
@@ -2249,6 +2211,142 @@ class Theme_Blvd_Shortcode_Generator {
 				'id' 		=> 'query',
 				'std' 		=> '',
 				'type' 		=> 'text'
+			)
+		);
+
+		/*--------------------------------------------*/
+		/* Stats
+		/*--------------------------------------------*/
+
+		// Progress Bar
+		$options['progress_bar'] = array(
+			'label' => array(
+				'name' 		=> __( 'Label', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Enter a label for what this bar represents.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'label',
+				'std' 		=> 'Graphic Design',
+				'type' 		=> 'text'
+			),
+			'percent' => array(
+				'name' 		=> __( 'Bar Percent', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'A percentage of how far the bar is.<br>Ex: 25, 50, 80, etc.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'percent',
+				'std' 		=> '50',
+				'type' 		=> 'text'
+			),
+			'color' => array(
+				'name' 		=> __( 'Bar Color', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Color of the bar.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'color',
+				'std' 		=> '#428bca',
+				'type' 		=> 'color'
+			),
+			'striped' => array(
+				'name' 		=> __( 'Striped', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Whether the bar has the striped effect or not.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'striped',
+				'std' 		=> 'false',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
+				)
+			)
+		);
+
+		// Milestone
+		$options['milestone'] = array(
+			'milestone' => array(
+				'id' 		=> 'milestone',
+				'name'		=> __('Milestone', 'themeblvd'),
+				'desc'		=> __('Enter the accomplished milestone Optionally, you may include symbols before and/or after the number.<br>Ex: 500, $500, 500+, etc', 'themeblvd'),
+				'std'		=> '500',
+				'type'		=> 'text'
+			),
+			'color' => array(
+				'id' 		=> 'color',
+				'name'		=> __('Milestone Color', 'themeblvd'),
+				'desc'		=> __('Text color for the milestone number.', 'themeblvd'),
+				'std'		=> '#0c9df0',
+				'type'		=> 'color'
+			),
+			'text' => array(
+				'id' 		=> 'text',
+				'name'		=> __('Description', 'themeblvd'),
+				'desc'		=> __('Enter a very simple description for the milestone number.', 'themeblvd'),
+				'std'		=> 'Cups of Coffee',
+				'type'		=> 'text'
+			),
+			'boxed' => array(
+				'id' 		=> 'boxed',
+				'name'		=> __('Boxed', 'themeblvd'),
+				'desc'		=> __('Select whether or not to wrap the milestone in a box.', 'themeblvd'),
+				'std' 		=> 'false',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
+				)
+			)
+		);
+
+		// Milestone Ring
+		$options['milestone_ring'] = array(
+			'percent' => array(
+				'id' 		=> 'percent',
+				'name'		=> __('Milestone Percent', 'themeblvd'),
+				'desc'		=> __('Enter an integer that is a fraction of 100. This will be represented as a visual percentage.<br>Ex: 25, 50, 75, etc.', 'themeblvd'),
+				'std'		=> '75',
+				'type'		=> 'text'
+			),
+			'color' => array(
+				'id' 		=> 'color',
+				'name'		=> __('Milestone Color', 'themeblvd'),
+				'desc'		=> __('This is the color of the milestone ring, which is a visual representation of the percentage.', 'themeblvd'),
+				'std'		=> '#0c9df0',
+				'type'		=> 'color'
+			),
+			'display' => array(
+				'id' 		=> 'display',
+				'name'		=> __('Display', 'themeblvd'),
+				'desc'		=> __('Enter the text to display in the middle of the block.<br>Ex: 25%, 50%, 75%, etc.', 'themeblvd'),
+				'std'		=> '75%',
+				'type'		=> 'text'
+			),
+			'title' => array(
+				'id' 		=> 'title',
+				'name'		=> __('Title (optional)', 'themeblvd'),
+				'desc'		=> __('Enter a short title to display below the milestone.', 'themeblvd'),
+				'type'		=> 'text'
+			),
+			'text' => array(
+				'id' 		=> 'text',
+				'name'		=> __('Description (optional)', 'themeblvd'),
+				'desc'		=> __('Enter a short description to display below the milestone.', 'themeblvd'),
+				'type'		=> 'textarea',
+			),
+			'text_align' => array(
+				'id' 		=> 'text_align',
+				'name'		=> __('Text Alignment', 'themeblvd'),
+				'desc'		=> __('If you\'ve entered a title and/or description, select how would you like the text aligned.', 'themeblvd'),
+				'std'		=> 'center',
+				'type'		=> 'select',
+				'options'	=> array(
+					'left' 		=> __( 'Left', 'themeblvd_builder' ),
+					'right' 	=> __( 'Right', 'themeblvd_builder' ),
+					'center' 	=> __( 'Center', 'themeblvd_builder' )
+				)
+			),
+			'boxed' => array(
+				'id' 		=> 'boxed',
+				'name'		=> __('Boxed', 'themeblvd'),
+				'desc'		=> __('Select whether or not to wrap the milestone in a box.', 'themeblvd'),
+				'std' 		=> 'false',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
+				)
 			)
 		);
 

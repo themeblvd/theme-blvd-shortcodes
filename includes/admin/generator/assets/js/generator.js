@@ -63,7 +63,7 @@ jQuery(document).ready(function($){
 
 				markup += '['+type;
 
-				$section.find('.of-input, .of-radio-img-radio').each(function(){
+				$section.find('.of-input, .of-radio-img-radio, .tb-color-picker').each(function(){
 
 					if( $(this).hasClass('of-radio-img-radio') && !$(this).prop('checked') ) {
 						return;
@@ -474,8 +474,8 @@ jQuery(document).ready(function($){
 	$('#tb-shortcode-generator .shortcode-options-column .section-columns select').off('change.generator');
 
 	if ( $.isFunction( $.fn.wpColorPicker ) ) {
-		$('.section-button .color-picker').wpColorPicker({
-			change: function(test) {
+		$('#tb-shortcode-generator .color-picker, .tb-color-picker').wpColorPicker({
+			change: function() {
 				themeblvd_generator.preview( $(this).closest('.shortcode-options') );
 			}
 		});

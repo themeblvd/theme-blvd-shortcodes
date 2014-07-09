@@ -3,33 +3,32 @@
  * Theme Blvd Shortcodes
  *
  * (1) Columns
- *      - column            => @since 1.4.2
- *		- one_sixth 		=> @since 1.0.0 @deprecated 1.4.2
- *		- one_fourth		=> @since 1.0.0 @deprecated 1.4.2
- *		- one_third			=> @since 1.0.0 @deprecated 1.4.2
- *		- one_half			=> @since 1.0.0 @deprecated 1.4.2
- *		- two_third			=> @since 1.0.0 @deprecated 1.4.2
- *		- three_fourth 		=> @since 1.0.0 @deprecated 1.4.2
- *		- one_fifth			=> @since 1.0.0 @deprecated 1.4.2
- *		- two_fifth			=> @since 1.0.0 @deprecated 1.4.2
- *		- three_fifth		=> @since 1.0.0 @deprecated 1.4.2
- *		- four_fifth		=> @since 1.0.0 @deprecated 1.4.2
- *		- three_tenth		=> @since 1.0.0 @deprecated 1.4.2
- *		- seven_tenth		=> @since 1.0.0 @deprecated 1.4.2
+ *      - column            => @since 1.5.0
+ *		- one_sixth 		=> @since 1.0.0 @deprecated 1.5.0
+ *		- one_fourth		=> @since 1.0.0 @deprecated 1.5.0
+ *		- one_third			=> @since 1.0.0 @deprecated 1.5.0
+ *		- one_half			=> @since 1.0.0 @deprecated 1.5.0
+ *		- two_third			=> @since 1.0.0 @deprecated 1.5.0
+ *		- three_fourth 		=> @since 1.0.0 @deprecated 1.5.0
+ *		- one_fifth			=> @since 1.0.0 @deprecated 1.5.0
+ *		- two_fifth			=> @since 1.0.0 @deprecated 1.5.0
+ *		- three_fifth		=> @since 1.0.0 @deprecated 1.5.0
+ *		- four_fifth		=> @since 1.0.0 @deprecated 1.5.0
+ *		- three_tenth		=> @since 1.0.0 @deprecated 1.5.0
+ *		- seven_tenth		=> @since 1.0.0 @deprecated 1.5.0
  * (2) Components
  *		- button 			=> @since 1.0.0
  *		- box				=> @since 1.0.0 @deprecated 1.4.0
  *		- alert				=> @since 1.0.0
  *		- icon_list			=> @since 1.0.0
  *		- divider			=> @since 1.0.0
- * 		- progess_bar		=> @since 1.0.0
  *		- popup				=> @since 1.0.0
  *      - lightbox          => @since 1.1.0
  *      - lightbox_gallery  => @since 1.1.0
  *      - blockquote        => @since 1.2.0
  *      - jumbotron         => @since 1.3.0
  *      - panel             => @since 1.3.0
- *      - testimonial       => @since 1.4.2
+ *      - testimonial       => @since 1.5.0
  * (3) Inline Elements
  *		- icon				=> @since 1.0.0
  *		- icon_link 		=> @since 1.0.0
@@ -37,7 +36,7 @@
  *		- dropcap			=> @since 1.0.0
  *		- label				=> @since 1.0.0
  *		- vector_icon		=> @since 1.0.0
- *      - lead              => @since 1.4.2
+ *      - lead              => @since 1.5.0
  * (3) Tabs, Accordion, & Toggles
  *		- tabs				=> @since 1.0.0
  *		- accordion			=> @since 1.0.0
@@ -52,6 +51,10 @@
  *		- post_list			=> @since 1.0.0
  *		- mini_post_grid	=> @since 1.0.0
  *		- mini_post_list	=> @since 1.0.0
+ * (7) Stats
+ *      - progess_bar       => @since 1.0.0
+ *      - milestone         => @since 1.5.0
+ *      - milestone_ring    => @since 1.5.0
  */
 
 /*-----------------------------------------------------------*/
@@ -75,7 +78,7 @@ function themeblvd_shortcode_column( $atts, $content = null, $tag = '' ) {
 /**
  * Clear Row
  *
- * @deprecated 1.4.2
+ * @deprecated 1.5.0
  * @since 1.0.0
  */
 function themeblvd_shortcode_clear() {
@@ -350,114 +353,6 @@ function themeblvd_shortcode_divider( $atts, $content = null ) {
     } else {
         $output = themeblvd_divider( $atts['style'] );
     }
-
-    return $output;
-}
-
-/**
- * Progress Bar (from Bootstrap)
- *
- * @since 1.0.0
- *
- * @param array $atts Standard WordPress shortcode attributes
- * @return string $output Content to output for shortcode
- */
-function themeblvd_shortcode_progress_bar( $atts ) {
-
-    $default = array(
-        'color' 	=> '',		// default, danger, success, info, warning
-        'percent' 	=> '100',	// Percent of bar - 30, 60, 80, etc.
-        'striped' 	=> 'false',	// true, false
-        'animate' 	=> 'false'	// true, false
-    );
-    extract( shortcode_atts( $default, $atts ) );
-
-    $wrap_classes = '';
-
-    // Wrap classes for Bootstrap 3+
-    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
-        $wrap_classes = 'progress';
-    }
-
-    // Start classes
-    $classes = '';
-
-    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
-
-        // Bootstrap 3+
-        $classes = 'progress-bar';
-
-    } else {
-
-        // Bootstrap 1 & 2 (@deprecated)
-        $classes = 'progress';
-
-    }
-
-    // Color
-    if( $color ) {
-
-        if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
-
-            // Bootstrap 3+
-            $classes .= ' progress-bar-'.$color;
-
-        } else {
-
-            // Bootstrap 1 & 2 (@deprecated)
-            $classes .= ' progress-'.$color;
-        }
-    }
-
-    // Striped?
-    if( $striped == 'true' ) {
-    	if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
-
-            // Bootstrap 3+
-            $wrap_classes .= ' progress-striped';
-
-        } else {
-
-            // Bootstrap 1 & 2 (@deprecated)
-            $classes .= ' progress-striped';
-
-        }
-    }
-
-    // Animated?
-    if( $animate == 'true' ) {
-        if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
-
-            // Bootstrap 3
-            $wrap_classes .= ' active';
-
-        } else {
-
-            // Bootstrap 1 & 2 (@deprecated)
-            $classes .= ' active';
-
-        }
-    }
-
-    // Output
-    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
-
-        // Bootstrap 3+
-        $output  = '<div class="'.$wrap_classes.'">';
-        $output .= '    <div class="'.$classes.'" role="progressbar" aria-valuenow="'.$percent.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent.'%;">';
-        $output .= '        <span class="sr-only">'.$percent.'%</span>';
-        $output .= '    </div>';
-        $output .= '</div>';
-
-    } else {
-
-        // Bootstrap 1 & 2 (@deprecated)
-        $output  = '<div class="'.$classes.'">';
-        $output .= '    <div class="bar" style="width: '.$percent.'%;"></div>';
-        $output .= '</div>';
-
-    }
-
 
     return $output;
 }
@@ -824,7 +719,7 @@ function themeblvd_shortcode_panel( $atts, $content = null ) {
 /**
  * Testimonial
  *
- * @since 1.4.2
+ * @since 1.5.0
  *
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content Content in shortcode
@@ -1110,7 +1005,7 @@ function themeblvd_shortcode_vector_icon( $atts ) {
 /**
  * Lead text (from Bootstrap)
  *
- * @since 1.4.2
+ * @since 1.5.0
  *
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content The enclosed content
@@ -1917,6 +1812,187 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
 
     // Output
     $output = themeblvd_get_mini_post_list( $query, $thumb, $meta );
+
+    return $output;
+}
+
+/*-----------------------------------------------------------*/
+/* Stats
+/*-----------------------------------------------------------*/
+
+/**
+ * Milestone
+ *
+ * @since 1.5.0
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @return string $output Content to output for shortcode
+ */
+function themeblvd_shortcode_milestone( $atts ) {
+
+    if ( ! function_exists('themeblvd_get_milestone') ) {
+        return __('Your theme does not support the [milestone] shortcode.', 'themeblvd_shortcodes');
+    }
+
+    $default = array(
+        'milestone'     => '100',       // The number for the milestone
+        'color'         => '#0c9df0',   // Color of text for milestone number
+        'text'          => '',          // Brief text to describe milestone
+        'boxed'         => 'false'      // Whether to wrap milestone in borered box
+    );
+    $atts = shortcode_atts( $default, $atts );
+
+    if ( $atts['boxed'] === 'true' ) {
+        $atts['boxed'] = '1';
+    } else {
+        $atts['boxed'] = '0';
+    }
+
+    return themeblvd_get_milestone( $atts );
+}
+
+/**
+ * Milestone Ring
+ *
+ * @since 1.5.0
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @return string $output Content to output for shortcode
+ */
+function themeblvd_shortcode_milestone_ring( $atts ) {
+
+    if ( ! function_exists('themeblvd_get_milestone_ring') ) {
+        return __('Your theme does not support the [milestone_ring] shortcode.', 'themeblvd_shortcodes');
+    }
+
+    $default = array(
+        'percent'       => '75',        // Percentage for pie chart
+        'color'         => '#0c9df0',   // Color of the milestone percentage
+        'track_color'   => '#eeeeee',   // Color track containing milestone ring (currently no option in builder, may add in the future)
+        'display'       => '',          // Text in the middle of the pie chart
+        'title'         => '',          // Title below pie chart
+        'text'          => '',          // Description below title
+        'text_align'    => 'center',    // Text alignment - left, right, or center
+        'boxed'         => 'false'      // Whether to wrap milestone in borered box
+    );
+    $atts = shortcode_atts( $default, $atts );
+
+    if ( $atts['boxed'] === 'true' ) {
+        $atts['boxed'] = '1';
+    } else {
+        $atts['boxed'] = '0';
+    }
+
+    return themeblvd_get_milestone_ring( $atts );
+}
+
+/**
+ * Progress Bar (from Bootstrap)
+ *
+ * @since 1.0.0
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @return string $output Content to output for shortcode
+ */
+function themeblvd_shortcode_progress_bar( $atts ) {
+
+    $default = array(
+        'color'         => '',          // default, danger, success, info, warning, or custom hex
+        'percent'       => '100',       // Percent of bar - 30, 60, 80, etc.
+        'striped'       => 'false',     // true, false
+        'label'         => ''           // Label of what this bar represents, like "Graphic Design"
+    );
+    extract( shortcode_atts( $default, $atts ) );
+
+    // Bootstrap 3 and Theme Blvd framework 2.5+
+    if ( function_exists( 'themeblvd_get_progress_bar' ) ) {
+
+        $args = shortcode_atts( $default, $atts );
+
+        $args['value'] = $args['percent'];
+        unset($args['percent']);
+
+        if ( $args['striped'] === 'true' ) {
+            $args['striped'] = '1';
+        } else {
+            $args['striped'] = '0';
+        }
+
+        $args['label_value'] = $args['value'].'%';
+
+        return themeblvd_get_progress_bar( $args );
+    }
+
+    $wrap_classes = '';
+
+    // Wrap classes for Bootstrap 3+
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+        $wrap_classes = 'progress';
+    }
+
+    // Start classes
+    $classes = '';
+
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+        // Bootstrap 3+
+        $classes = 'progress-bar';
+
+    } else {
+
+        // Bootstrap 1 & 2 (@deprecated)
+        $classes = 'progress';
+
+    }
+
+    // Color
+    if( $color ) {
+
+        if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+            // Bootstrap 3+
+            $classes .= ' progress-bar-'.$color;
+
+        } else {
+
+            // Bootstrap 1 & 2 (@deprecated)
+            $classes .= ' progress-'.$color;
+        }
+    }
+
+    // Striped?
+    if( $striped == 'true' ) {
+        if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+            // Bootstrap 3+
+            $wrap_classes .= ' progress-striped';
+
+        } else {
+
+            // Bootstrap 1 & 2 (@deprecated)
+            $classes .= ' progress-striped';
+
+        }
+    }
+
+    // Output
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+        // Bootstrap 3+
+        $output  = '<div class="'.$wrap_classes.'">';
+        $output .= '    <div class="'.$classes.'" role="progressbar" aria-valuenow="'.$percent.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent.'%;">';
+        $output .= '        <span class="sr-only">'.$percent.'%</span>';
+        $output .= '    </div>';
+        $output .= '</div>';
+
+    } else {
+
+        // Bootstrap 1 & 2 (@deprecated)
+        $output  = '<div class="'.$classes.'">';
+        $output .= '    <div class="bar" style="width: '.$percent.'%;"></div>';
+        $output .= '</div>';
+
+    }
 
     return $output;
 }
