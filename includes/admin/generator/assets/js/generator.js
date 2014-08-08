@@ -607,6 +607,9 @@ jQuery(document).ready(function($){
 		// Remove any HTML from shortcode content
 		content = content.replace(/<hr>/gi, '');
 
+		// HTML decode, if necessary
+		content = $("<div/>").html(content).text();
+
 		// Remove line break HTML if going to raw Text editor
 		if ( text ) {
 			content = content.replace(/<br>/gi, '\n');

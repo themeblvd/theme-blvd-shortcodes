@@ -104,6 +104,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Improvements to `[progress_bar]` shortcode (requires Theme Blvd Framework 2.5+).
 * Adjustments to allow shortcodes to work with Ajax requests on the frontend of the site.
 * Better handling of default option values at *Settings > Writing > Theme Blvd Shortcodes*.
+* Fixed issues with inserting `[icon_list]` from shortcode generator.
 
 = 1.4.1 =
 
