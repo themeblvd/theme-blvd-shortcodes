@@ -234,7 +234,8 @@
 }
 #tb-shortcode-generator .color-browser .select-color span.btn-default,
 #tb-shortcode-generator .color-browser .select-color span.white,
-#tb-shortcode-generator .color-browser .select-color span.custom {
+#tb-shortcode-generator .color-browser .select-color span.custom,
+#tb-shortcode-generator .color-browser .select-color span.primary {
 	border: 1px solid #cccccc;
 	width: 38px;
 	height: 38px;
@@ -244,6 +245,12 @@
 #tb-shortcode-generator .color-browser .custom {
 	background: #ffffff url(../images/custom.png) center center no-repeat;
 	background-size: 18px 19px;
+}
+
+/* Primary */
+#tb-shortcode-generator .color-browser .primary {
+	background: #ffffff url(../images/primary.png) center center no-repeat;
+	background-size: 20px 21px;
 }
 
 /* Black */
@@ -429,6 +436,20 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#a7170c', EndColorStr='#490502');
 }
 
+/* Royal Blue (match original Bootstrap "primary") */
+#tb-shortcode-generator .color-browser .royal {
+	background-color: #428bca;
+}
+#tb-shortcode-generator .color-browser.tb-btn-gradient .royal {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#428bca), to(#2d6ca2));
+	background-image: -webkit-linear-gradient(top, #428bca, #2d6ca2);
+	background-image: -moz-linear-gradient(top, #428bca, #2d6ca2);
+	background-image: -o-linear-gradient(top, #428bca, #2d6ca2);
+	background-image: -ms-linear-gradient(top, #428bca, #2d6ca2);
+	background-image: linear-gradient(top, #428bca, #2d6ca2);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#428bca', EndColorStr='#2d6ca2');
+}
+
 /* Slate Grey */
 #tb-shortcode-generator .color-browser .slate_grey {
 	background-color: #7f8d9c;
@@ -526,6 +547,7 @@
 	border-color: #ccc;ilter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+/*
 .btn-primary {
 	background-color: #428bca;
 }
@@ -538,6 +560,7 @@
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff428bca', endColorstr='#ff2d6ca2', GradientType=0);
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 }
+*/
 .btn-success {
 	background-color: #5cb85c;
 }

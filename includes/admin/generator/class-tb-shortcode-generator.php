@@ -327,7 +327,7 @@ class Theme_Blvd_Shortcode_Generator {
 
 												$color_browser_ags = array(
 													'title'	=> __('Button Color', 'themeblvd_shortcodes'),
-													'desc' 	=> __('<p>Select a color for your button.</p><p><em>Note: The "default" color may vary from theme-to-theme.</em></p>', 'themeblvd_shortcodes'),
+													'desc' 	=> __('<p>Select a color for your button.</p><p><em>Note: The "default" and "primary" colors may vary from theme-to-theme.</em></p>', 'themeblvd_shortcodes'),
 													'std'	=> 'default'
 												);
 												$this->color_browser( $color_browser_ags );
@@ -2722,8 +2722,13 @@ class Theme_Blvd_Shortcode_Generator {
 		echo '<div class="controls">';
 
 		$colors = themeblvd_colors();
+		// $colors = array('custom' => $colors['custom']) + $colors; // Shift "custom" from 2nd position to 1st
 
 		foreach ( $colors as $id => $name ) {
+
+			if ( $id == 'custom' || $id == 'default' ) {
+				$name = str_replace(' Color', '', $name);
+			}
 
 			$wrap_class = 'select-color-wrap tooltip-wrap';
 			if ( $id == $args['std'] ) {
@@ -2733,7 +2738,7 @@ class Theme_Blvd_Shortcode_Generator {
 			printf('<div class="%s">', $wrap_class );
 
 			$color_class = sprintf( 'color-%1$s %1$s', $id );
-			if ( in_array( $id, array( 'default', 'primary', 'info', 'warning', 'danger', 'success' ) ) ) {
+			if ( in_array( $id, array( 'default', 'info', 'warning', 'danger', 'success' ) ) ) {
 				$color_class = str_replace( ' '.$id, ' btn-'.$id, $color_class );
 			}
 
