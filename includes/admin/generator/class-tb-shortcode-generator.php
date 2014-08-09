@@ -192,14 +192,14 @@ class Theme_Blvd_Shortcode_Generator {
 			wp_enqueue_script( 'jquery-ui-slider' );
 			wp_enqueue_script( 'wp-color-picker' );
 
+			// WP Built-in styles
+			wp_enqueue_style( 'wp-color-picker' );
+
 			// Framework core
 			wp_enqueue_style( 'themeblvd_admin', TB_FRAMEWORK_URI . '/admin/assets/css/admin-style.min.css', null, TB_FRAMEWORK_VERSION );
 			wp_enqueue_script( 'themeblvd_admin', TB_FRAMEWORK_URI . '/admin/assets/js/shared.min.js', array('jquery'), TB_FRAMEWORK_VERSION );
 
 			wp_enqueue_style( 'themeblvd_options', TB_FRAMEWORK_URI . '/admin/options/css/admin-style.min.css', null, TB_FRAMEWORK_VERSION );
-
-			wp_enqueue_style( 'color-picker', TB_FRAMEWORK_URI . '/admin/options/css/colorpicker.min.css' );
-			wp_enqueue_script( 'color-picker', TB_FRAMEWORK_URI . '/admin/options/js/colorpicker.min.js', array('jquery') );
 
 			// FontAwesome
 			wp_enqueue_style( 'fontawesome', TB_FRAMEWORK_URI . '/assets/plugins/fontawesome/css/font-awesome.min.css', null, TB_FRAMEWORK_VERSION );
@@ -817,7 +817,7 @@ class Theme_Blvd_Shortcode_Generator {
 				'desc' 		=> __( 'A color for the icons - Ex: #666666', 'themeblvd_shortcodes' ),
 				'id' 		=> 'color',
 				'std' 		=> '',
-				'type' 		=> 'text'
+				'type' 		=> 'color'
 			)
 		);
 
@@ -836,6 +836,20 @@ class Theme_Blvd_Shortcode_Generator {
 				'id' 		=> 'sc_content',
 				'std' 		=> 'Content here...',
 				'type' 		=> 'textarea'
+			),
+			'bg_color' => array(
+				'name' 		=> __( 'Background Color', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select the background color of the unit.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'bg_color',
+				'std' 		=> '',
+				'type' 		=> 'color'
+			),
+			'text_color' => array(
+				'name' 		=> __( 'Text Color', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select the color of the text in the unit.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'text_color',
+				'std' 		=> '',
+				'type' 		=> 'color'
 			),
 			'text_align' => array(
 				'name' 		=> __( 'Text Alignment', 'themeblvd_shortcodes' ),
@@ -1221,6 +1235,7 @@ class Theme_Blvd_Shortcode_Generator {
 
 		// Post List
 		$options['post_list'] = array(
+			/*
 			'thumbs' => array(
 				'name' 		=> __( 'Thumbnail Size', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'This determines the size of the featured images. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd_shortcodes' ),
@@ -1234,6 +1249,7 @@ class Theme_Blvd_Shortcode_Generator {
 					'hide' 		=> __('Hide Thumbnails', 'themeblvd_shortcodes')
 				)
 			),
+			*/
 			'post_content' => array(
 				'name' 		=> __( 'Post Content', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'How the content of posts display. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd_shortcodes' ),
@@ -1571,7 +1587,7 @@ class Theme_Blvd_Shortcode_Generator {
 				'desc' 		=> __( 'Enter a color for the icon, will default to website\'s link color. - Ex: #666666', 'themeblvd_shortcodes' ),
 				'id' 		=> 'color',
 				'std' 		=> '',
-				'type' 		=> 'text'
+				'type' 		=> 'color'
 			),
 			'target' => array(
 				'name' 		=> __( 'Button Target', 'themeblvd_shortcodes' ),
@@ -2466,7 +2482,7 @@ class Theme_Blvd_Shortcode_Generator {
 				'desc' 		=> __( 'Enter a color for the icon - Ex: #666666', 'themeblvd_shortcodes' ),
 				'id' 		=> 'color',
 				'std' 		=> '',
-				'type' 		=> 'text'
+				'type' 		=> 'color'
 			),
 			'size' => array(
 				'name' 		=> __( 'Icon Size (optional)', 'themeblvd_shortcodes' ),

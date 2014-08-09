@@ -100,6 +100,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Added `[testimonial]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added `[milestone]` and `[milestone_ring]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added custom color selection for `[button]` shortcode (requires Theme Blvd Framework 2.5+).
+* Added custom text/background color selection for `[jumbotron]` shortcode (requires Theme Blvd Framework 2.5+).
 * Improvements to `[divider]` shortcode (requires Theme Blvd Framework 2.5+).
 * Improvements to `[progress_bar]` shortcode (requires Theme Blvd Framework 2.5+).
 * Adjustments to allow shortcodes to work with Ajax requests on the frontend of the site.

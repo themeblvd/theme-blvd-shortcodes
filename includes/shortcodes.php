@@ -347,9 +347,9 @@ function themeblvd_shortcode_divider( $atts, $content = null ) {
     );
     $atts = shortcode_atts( $default, $atts );
 
-    if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+    if ( function_exists('themeblvd_get_divider') ) {
         $atts['type'] = $atts['style'];
-        $output = themeblvd_divider( $atts );
+        $output = themeblvd_get_divider( $atts );
     } else {
         $output = themeblvd_divider( $atts['style'] );
     }
@@ -639,6 +639,8 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
 
     $defaults = array(
         'title'         => '',      // Title of unit
+        'bg_color'      => '',      // Background hex color value
+        'text_color'    => '',      // Text hex color value
         'text_align'    => 'left',  // How to align text - left, right, center
         'align'         => '',      // How to align jumbotron - left, right
         'max_width'     => '',      // Meant to be used with align left/right - 300px, 50%, etc
@@ -679,39 +681,47 @@ function themeblvd_shortcode_panel( $atts, $content = null ) {
         'title'         => '',          // Header for panel
         'footer'        => '',          // Footer for panel
         'text_align'    => 'left',      // How to align text - left, right, center
-        'align'         => '',          // How to align jumbotron - left, right
+        'align'         => '',          // How to align panel - left, right
         'max_width'     => '',          // Meant to be used with align left/right - 300px, 50%, etc
         'class'         => '',          // Any additional CSS classes
         'wpautop'       => 'true'       // Whether to apply wpautop on content
     );
     $atts = shortcode_atts( $defaults, $atts );
 
-    // CSS classes
-    $class = sprintf( 'panel panel-%s text-%s', $atts['style'], $atts['text_align'] );
-
-    if ( $atts['class'] ) {
-        $class .= ' '.$atts['class'];
-    }
-
     // WP auto?
     if ( $atts['wpautop'] == 'true' ) {
         $content = wpautop( $content );
     }
 
-    // Construct intial panel
-    $output = sprintf( '<div class="%s">', $class );
+    if ( function_exists('themeblvd_get_panel') ) { // framework 2.5+
 
-    if ( $atts['title'] ) {
-        $output .= sprintf( '<div class="panel-heading"><h3 class="panel-title">%s</h3></div>', $atts['title'] );
+        $output = themeblvd_get_panel( $atts, $content );
+
+    } else {
+
+        // CSS classes
+        $class = sprintf( 'panel panel-%s text-%s', $atts['style'], $atts['text_align'] );
+
+        if ( $atts['class'] ) {
+            $class .= ' '.$atts['class'];
+        }
+
+        // Construct panel
+        $output = sprintf( '<div class="%s">', $class );
+
+        if ( $atts['title'] ) {
+            $output .= sprintf( '<div class="panel-heading"><h3 class="panel-title">%s</h3></div>', $atts['title'] );
+        }
+
+        $output .= sprintf( '<div class="panel-body">%s</div>', do_shortcode( $content ) );
+
+        if ( $atts['footer'] ) {
+            $output .= sprintf( '<div class="panel-footer">%s</div>', $atts['footer'] );
+        }
+
+        $output .= '</div><!-- .panel (end) -->';
+
     }
-
-    $output .= sprintf( '<div class="panel-body">%s</div>', do_shortcode( $content ) );
-
-    if ( $atts['footer'] ) {
-        $output .= sprintf( '<div class="panel-footer">%s</div>', $atts['footer'] );
-    }
-
-    $output .= '</div><!-- .panel (end) -->';
 
     return $output;
 }
@@ -1072,7 +1082,7 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
     }
 
     // Verify style
-    if ( $style != 'framed' || $style != 'open' ) {
+    if ( $style != 'framed' && $style != 'open' ) {
         $style = 'framed';
     }
 
@@ -1084,7 +1094,7 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
     }
 
     // Verify tabs
-    if ( $nav != 'tabs' || $nav != 'pills' ) {
+    if ( $nav != 'tabs' && $nav != 'pills' ) {
         $nav = 'tabs';
     }
 
@@ -1145,17 +1155,21 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
     if ( ! $output ) {
 
         if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+
              $options['tabs'] = $tabs;
+             $output .= themeblvd_get_tabs( $id, $options );
+
         } else {
+
             $options['setup']['names'] = $names;
             foreach ( $tabs as $tab_id => $tab ) {
                 $options[$tab_id] = $tab;
             }
-        }
 
-        $output .= '<div class="element element-tabs'.themeblvd_get_classes( 'element_tabs', true ).'">';
-        $output .= themeblvd_tabs( $id, $options );
-        $output .= '</div><!-- .element (end) -->';
+            $output .= '<div class="element element-tabs'.themeblvd_get_classes( 'element_tabs', true ).'">';
+            $output .= themeblvd_tabs( $id, $options );
+            $output .= '</div><!-- .element (end) -->';
+        }
     }
 
     return $output;
@@ -1209,7 +1223,18 @@ function themeblvd_shortcode_toggle( $atts, $content = null ) {
     // Individual toggle ID (NOT the Accordion ID)
 	$toggle_id = uniqid( 'toggle_'.rand() );
 
-    if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+
+        $args = array(
+            'title'     => $title,
+            'open'      => $open,
+            'content'   => $content,
+            'last'      => isset($atts[0]) ? true : false
+        );
+
+        $output = themeblvd_get_toggle( $args );
+
+    } else if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
 
         // Bootstrap 3
 
@@ -1569,6 +1594,7 @@ function themeblvd_shortcode_post_grid( $atts ) {
 
     // Build $options array compatible to element's function
     $options = array(
+        'display'       => 'grid',
         'columns' 		=> $columns,
         'rows' 			=> $rows,
         'tag'           => $tag,
@@ -1581,37 +1607,52 @@ function themeblvd_shortcode_post_grid( $atts ) {
         'query' 		=> $query,
         'link_text' 	=> $link_text,
         'link_url' 		=> $link_url,
-        'link_target' 	=> $link_target
+        'link_target' 	=> $link_target,
+        'class'         => 'shortcode-grid-wrap'
     );
 
     // Categories
-    if( $cat )
+    if( $cat ) {
         $options['cat'] = $cat;
-    elseif( $category_name )
+    } elseif( $category_name ) {
         $options['category_name'] = $category_name;
-    elseif( $categories )
+    } elseif( $categories ) {
         $options['category_name'] = $categories; // @deprecated
+    }
 
     // Add in the booleans
-    if( $link === 'true' )
+    if( $link === 'true' ) {
         $options['link'] = 1;
-    else if( $link === 'false' )
+    } else if( $link === 'false' ) {
         $options['link'] = 0;
-    else
+    } else {
         $options['link'] = $default['link'];
+    }
 
-	// Output
-	ob_start();
-	echo '<div class="element element-post_grid'.themeblvd_get_classes( 'element_post_grid', true ).'">';
-	echo '<div class="element-inner">';
-	echo '<div class="element-inner-wrap">';
-	echo '<div class="grid-protection">';
-	themeblvd_posts( $options, 'grid', 'primary' );
-	echo '</div><!-- .grid-protection (end) -->';
-	echo '</div><!-- .element-inner-wrap (end) -->';
-	echo '</div><!-- .element-inner (end) -->';
-	echo '</div><!-- .element (end) -->';
-	return ob_get_clean();
+    if ( function_exists('themeblvd_post_grid') ) {
+
+        ob_start();
+        themeblvd_post_grid($options);
+        $output = ob_get_clean();
+
+    } else {
+
+        // Output
+    	ob_start();
+    	echo '<div class="element element-post_grid'.themeblvd_get_classes( 'element_post_grid', true ).'">';
+    	echo '<div class="element-inner">';
+    	echo '<div class="element-inner-wrap">';
+    	echo '<div class="grid-protection">';
+    	themeblvd_posts( $options, 'grid', 'primary' );
+    	echo '</div><!-- .grid-protection (end) -->';
+    	echo '</div><!-- .element-inner-wrap (end) -->';
+    	echo '</div><!-- .element-inner (end) -->';
+    	echo '</div><!-- .element (end) -->';
+    	$output = ob_get_clean();
+
+    }
+
+    return $output;
 }
 
 /**
@@ -1630,7 +1671,7 @@ function themeblvd_shortcode_post_list( $atts ) {
         'tag'           => '',                  // tag: Tag(s) to include/exclude
         'portfolio'     => '',                  // portfolio: Portfolio(s) slugs to include, requires Portfolios plugin
         'portfolio_tag' => '',                  // portfolio_tag: Portfolio Tag(s) to include, requires Portfolios plugin
-        'thumbs' 		=> 'default',			// thumbs: Size of post thumbnails - default, small, full, hide
+        'thumbs' 		=> 'default',			// thumbs: Size of post thumbnails - default, true, false
 		'post_content' 	=> 'default',			// content: Show excerpts or full content - default, content, excerpt
 		'numberposts' 	=> 3,					// numberposts: Total number of posts, -1 for all posts
         'orderby' 		=> 'date',				// orderby: date, title, comment_count, rand
@@ -1646,6 +1687,7 @@ function themeblvd_shortcode_post_list( $atts ) {
 
     // Build $options array compatible to element's function
     $options = array(
+        'display'       => 'list',
         'thumbs' 		=> $thumbs,
         'content' 		=> $post_content,
         'tag'           => $tag,
@@ -1658,37 +1700,52 @@ function themeblvd_shortcode_post_list( $atts ) {
         'query' 		=> $query,
         'link_text' 	=> $link_text,
         'link_url' 		=> $link_url,
-        'link_target' 	=> $link_target
+        'link_target' 	=> $link_target,
+        'class'         => 'shortcode-list-wrap'
     );
 
     // Categories
-    if( $cat )
+    if( $cat ) {
         $options['cat'] = $cat;
-    elseif( $category_name )
+    } else if( $category_name ) {
         $options['category_name'] = $category_name;
-    elseif( $categories )
+    } elseif( $categories ) {
         $options['category_name'] = $categories; // @deprecated
+    }
 
     // Add in the booleans
-    if( $link === 'true' )
+    if( $link === 'true' ) {
     	$options['link'] = 1;
-    else if( $link === 'false' )
+    } else if( $link === 'false' ) {
     	$options['link'] = 0;
-    else
+    } else {
     	$options['link'] = $default['link'];
+    }
 
-	// Output
-	ob_start();
-	echo '<div class="element element-post_list'.themeblvd_get_classes( 'element_post_list', true ).'">';
-	echo '<div class="element-inner">';
-	echo '<div class="element-inner-wrap">';
-	echo '<div class="grid-protection">';
-	themeblvd_posts( $options, 'list', 'primary' );
-	echo '</div><!-- .grid-protection (end) -->';
-	echo '</div><!-- .element-inner-wrap (end) -->';
-	echo '</div><!-- .element-inner (end) -->';
-	echo '</div><!-- .element (end) -->';
-	return ob_get_clean();
+    if ( function_exists('themeblvd_post_list') ) {
+
+        ob_start();
+        themeblvd_post_list($options);
+        $output = ob_get_clean();
+
+    } else {
+
+        // @deprecated
+    	ob_start();
+    	echo '<div class="element element-post_list'.themeblvd_get_classes( 'element_post_list', true ).'">';
+    	echo '<div class="element-inner">';
+    	echo '<div class="element-inner-wrap">';
+    	echo '<div class="grid-protection">';
+    	themeblvd_posts( $options, 'list', 'primary' );
+    	echo '</div><!-- .grid-protection (end) -->';
+    	echo '</div><!-- .element-inner-wrap (end) -->';
+    	echo '</div><!-- .element-inner (end) -->';
+    	echo '</div><!-- .element (end) -->';
+    	$output = ob_get_clean();
+
+    }
+
+    return $output;
 }
 
 /**
@@ -1902,25 +1959,24 @@ function themeblvd_shortcode_progress_bar( $atts ) {
         'striped'       => 'false',     // true, false
         'label'         => ''           // Label of what this bar represents, like "Graphic Design"
     );
-    extract( shortcode_atts( $default, $atts ) );
+    $atts = shortcode_atts( $default, $atts );
+
 
     // Bootstrap 3 and Theme Blvd framework 2.5+
     if ( function_exists( 'themeblvd_get_progress_bar' ) ) {
 
-        $args = shortcode_atts( $default, $atts );
+        $atts['value'] = $atts['percent'];
+        unset($atts['percent']);
 
-        $args['value'] = $args['percent'];
-        unset($args['percent']);
-
-        if ( $args['striped'] === 'true' ) {
-            $args['striped'] = '1';
+        if ( $atts['striped'] === 'true' ) {
+            $atts['striped'] = '1';
         } else {
-            $args['striped'] = '0';
+            $atts['striped'] = '0';
         }
 
-        $args['label_value'] = $args['value'].'%';
+        $atts['label_value'] = $atts['value'].'%';
 
-        return themeblvd_get_progress_bar( $args );
+        return themeblvd_get_progress_bar( $atts );
     }
 
     $wrap_classes = '';
@@ -1946,22 +2002,22 @@ function themeblvd_shortcode_progress_bar( $atts ) {
     }
 
     // Color
-    if( $color ) {
+    if( $atts['color'] ) {
 
         if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
 
             // Bootstrap 3+
-            $classes .= ' progress-bar-'.$color;
+            $classes .= ' progress-bar-'.$atts['color'];
 
         } else {
 
             // Bootstrap 1 & 2 (@deprecated)
-            $classes .= ' progress-'.$color;
+            $classes .= ' progress-'.$atts['color'];
         }
     }
 
     // Striped?
-    if( $striped == 'true' ) {
+    if( $atts['striped'] == 'true' ) {
         if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
 
             // Bootstrap 3+
@@ -1980,8 +2036,8 @@ function themeblvd_shortcode_progress_bar( $atts ) {
 
         // Bootstrap 3+
         $output  = '<div class="'.$wrap_classes.'">';
-        $output .= '    <div class="'.$classes.'" role="progressbar" aria-valuenow="'.$percent.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent.'%;">';
-        $output .= '        <span class="sr-only">'.$percent.'%</span>';
+        $output .= '    <div class="'.$classes.'" role="progressbar" aria-valuenow="'.$atts['percent'].'" aria-valuemin="0" aria-valuemax="100" style="width: '.$atts['percent'].'%;">';
+        $output .= '        <span class="sr-only">'.$atts['percent'].'%</span>';
         $output .= '    </div>';
         $output .= '</div>';
 
@@ -1989,7 +2045,7 @@ function themeblvd_shortcode_progress_bar( $atts ) {
 
         // Bootstrap 1 & 2 (@deprecated)
         $output  = '<div class="'.$classes.'">';
-        $output .= '    <div class="bar" style="width: '.$percent.'%;"></div>';
+        $output .= '    <div class="bar" style="width: '.$atts['percent'].'%;"></div>';
         $output .= '</div>';
 
     }

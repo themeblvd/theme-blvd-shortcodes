@@ -474,11 +474,24 @@ jQuery(document).ready(function($){
 	$('#tb-shortcode-generator .shortcode-options-column .section-columns select').off('change.generator');
 
 	if ( $.isFunction( $.fn.wpColorPicker ) ) {
-		$('#tb-shortcode-generator .color-picker, .tb-color-picker').wpColorPicker({
+		$('#tb-shortcode-generator .color-picker, #tb-shortcode-generator .tb-color-picker').wpColorPicker({
 			change: function() {
+				themeblvd_generator.preview( $(this).closest('.shortcode-options') );
+			},
+			clear: function() {
 				themeblvd_generator.preview( $(this).closest('.shortcode-options') );
 			}
 		});
+
+		$('#tb-shortcode-generator .wp-color-result').on('click', function(){
+			themeblvd_generator.preview( $(this).closest('.shortcode-options') );
+		});
+
+		/*
+		$('#tb-shortcode-generator .iris-palette').on('click', function(){
+			themeblvd_generator.preview( $(this).closest('.shortcode-options') );
+		});
+		*/
 	}
 
 	/*---------------------------------------*/
@@ -533,22 +546,24 @@ jQuery(document).ready(function($){
 	// Select a color
 	$('#tb-shortcode-generator .color-browser .select-color').on( 'click', function(){
 
+		var $el = $(this);
+
 		// Select color
-		$(this).closest('.color-browser').find('.select-color-wrap').removeClass('selected');
-		$(this).closest('.select-color-wrap').addClass('selected');
+		$el.closest('.color-browser').find('.select-color-wrap').removeClass('selected');
+		$el.closest('.select-color-wrap').addClass('selected');
 
 		// Update input
-		$('#tb-shortcode-generator input[name="button[color]"]').val( $(this).data('color') );
+		$('#tb-shortcode-generator input[name="button[color]"]').val( $el.data('color') );
 
 		// Show/hide custom color option
-		if ( $(this).data('color') == 'custom' ) {
-			$(this).closest('.options-wrap').find('.section-button').show();
+		if ( $el.data('color') == 'custom' ) {
+			$el.closest('.options-wrap').find('.section-button').show();
 		} else {
-			$(this).closest('.options-wrap').find('.section-button').hide();
+			$el.closest('.options-wrap').find('.section-button').hide();
 		}
 
 		// Update live preview
-		themeblvd_generator.preview( $(this).closest('.shortcode-options') );
+		themeblvd_generator.preview( $el.closest('.shortcode-options') );
 
 		return false;
 
