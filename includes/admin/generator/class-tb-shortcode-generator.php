@@ -222,6 +222,12 @@ class Theme_Blvd_Shortcode_Generator {
 			return;
 		}
 
+		$screen = get_current_screen();
+
+		if ( $screen->base == 'press-this' ) {
+			return;
+		}
+
 		$text = __( 'Add Shortcode', 'themeblvd_shortcodes' );
 
 		$button = sprintf( '<a href="#" class="tb-insert-shortcode button" title="%s">', $text );
@@ -531,8 +537,7 @@ class Theme_Blvd_Shortcode_Generator {
 					'slider'			=> __('Custom Slider', 'themeblvd_shortcodes'),
 					'gallery_slider'	=> __('Gallery Slider', 'themeblvd_shortcodes'),
 					'post_slider'		=> __('Post Slider', 'themeblvd_shortcodes'),
-					'post_grid_slider'	=> __('Post Grid Slider', 'themeblvd_shortcodes'),
-					'post_list_slider'	=> __('Post List Slider', 'themeblvd_shortcodes')
+					'post_grid_slider'	=> __('Post Grid Slider', 'themeblvd_shortcodes')
 				)
 			),
 			array(
@@ -1249,7 +1254,6 @@ class Theme_Blvd_Shortcode_Generator {
 					'hide' 		=> __('Hide Thumbnails', 'themeblvd_shortcodes')
 				)
 			),
-			*/
 			'post_content' => array(
 				'name' 		=> __( 'Post Content', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'How the content of posts display. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd_shortcodes' ),
@@ -1262,6 +1266,7 @@ class Theme_Blvd_Shortcode_Generator {
 					'excerpt' 	=> __('Excerpts', 'themeblvd_shortcodes')
 				)
 			),
+			*/
 			'category_name' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
@@ -1494,6 +1499,21 @@ class Theme_Blvd_Shortcode_Generator {
 				'id' 		=> 'query',
 				'std' 		=> '',
 				'type' 		=> 'text'
+			),
+			'columns' => array(
+				'name' 		=> __( 'Column Spread', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Here, you can choose to list out your posts separated into columns.<br><br><em>Note: For best results, set your "Number of Posts" option above to a number divisable by the number of columns.</em>', 'themeblvd_shortcodes' ),
+				'id' 		=> 'columns',
+				'std' 		=> '',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'1'			=> __( 'Don\'t spread across multiple columns', 'themeblvd_shortcodes' ),
+					'2'			=> __( '2 Columns', 'themeblvd_shortcodes' ),
+					'3' 		=> __( '3 Columns', 'themeblvd_shortcodes' ),
+					'4' 		=> __( '4 Columns', 'themeblvd_shortcodes' ),
+					'5' 		=> __( '5 Columns', 'themeblvd_shortcodes' ),
+					'6' 		=> __( '6 Columns', 'themeblvd_shortcodes' )
+				)
 			)
 		);
 
@@ -1687,9 +1707,9 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'size' => array(
 				'name' 		=> __( 'Image Size (optional)', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Crop size for images, defaults to displaying raw image sizes.<br />Ex: slider-large', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Crop size for images, use "full" to display uncropped versions of the images.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'size',
-				'std' 		=> '',
+				'std' 		=> 'slider-large',
 				'type' 		=> 'text'
 			),
 			'interval' => array(
@@ -1704,6 +1724,17 @@ class Theme_Blvd_Shortcode_Generator {
 				'desc' 		=> __( 'Whether to pause slider on mouse hover.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'pause',
 				'std' 		=> 'true',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
+				)
+			),
+			'frame' => array(
+				'name' 		=> __( 'Frame', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Whether to wrap the slider in a frame or not.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'frame',
+				'std' 		=> 'false',
 				'type' 		=> 'select',
 				'options' 	=> array(
 					'true' 		=> __('True', 'themeblvd_shortcodes'),
@@ -1755,9 +1786,9 @@ class Theme_Blvd_Shortcode_Generator {
 				'std' 		=> 'square_smallest',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'square_small' 		=> __('Small', 'themeblvd_shortcodes'),
-					'square_smaller' 	=> __('Smaller', 'themeblvd_shortcodes'),
-					'square_smallest' 	=> __('Smallest', 'themeblvd_shortcodes')
+					'small' 	=> __('Small', 'themeblvd_shortcodes'),
+					'smaller' 	=> __('Smaller', 'themeblvd_shortcodes'),
+					'smallest' 	=> __('Smallest', 'themeblvd_shortcodes')
 				),
 				'class'		=> 'receiver receiver-true'
 			),
@@ -1944,17 +1975,6 @@ class Theme_Blvd_Shortcode_Generator {
 
 		// Post Slider
 		$options['post_grid_slider'] = array(
-			'fx' => array(
-				'name' 		=> __( 'Slider Transition', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The transition effect of the slider.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'fx',
-				'std' 		=> 'slide',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'fade' 		=> __('Fade', 'themeblvd_shortcodes'),
-					'slide' 	=> __('Slide', 'themeblvd_shortcodes')
-				)
-			),
 			'timeout' => array(
 				'name' 		=> __( 'Slider Speed', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'Seconds in between transitions, 0 for no auto-advancing.', 'themeblvd_shortcodes' ),
@@ -1962,59 +1982,16 @@ class Theme_Blvd_Shortcode_Generator {
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
-			'nav_standard' => array(
-				'name' 		=> __( 'Navigation Dots', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show standard navigation dots to control slider.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'nav_standard',
+			'nav' => array(
+				'name' 		=> __( 'Slider Navigation', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Whether to show slider navigation.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'nav',
 				'std' 		=> 'true',
 				'type' 		=> 'select',
 				'options' 	=> array(
 					'true' 		=> __('True', 'themeblvd_shortcodes'),
 					'false' 	=> __('False', 'themeblvd_shortcodes')
 				)
-			),
-			'nav_arrows' => array(
-				'name' 		=> __( 'Navigation Arrows', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show navigation arows to control slider.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'nav_arrows',
-				'std' 		=> 'true',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'true' 		=> __('True', 'themeblvd_shortcodes'),
-					'false' 	=> __('False', 'themeblvd_shortcodes')
-				)
-			),
-			'pause_play' => array(
-				'name' 		=> __( 'Pause/Play Button', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show pause/play button for slider\'s rotation', 'themeblvd_shortcodes' ),
-				'id' 		=> 'pause_play',
-				'std' 		=> 'true',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'true' 		=> __('True', 'themeblvd_shortcodes'),
-					'false' 	=> __('False', 'themeblvd_shortcodes')
-				)
-			),
-			'category_name' => array(
-				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
-				'id' 		=> 'category_name',
-				'std' 		=> '',
-				'type' 		=> 'text'
-			),
-			'tag' => array(
-				'name' 		=> __( 'Option 2: Posts By Tag', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd_shortcodes' ),
-				'id' 		=> 'tag',
-				'std' 		=> '',
-				'type' 		=> 'text'
-			),
-			'portfolio' => array(
-				'name' 		=> __( 'Option 3: Posts By Portfolio', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd_shortcodes' ),
-				'id' 		=> 'portfolio',
-				'std' 		=> '',
-				'type' 		=> 'text'
 			),
 			'columns' => array(
 				'name' 		=> __( 'Columns', 'themeblvd_shortcodes' ),
@@ -2023,137 +2000,12 @@ class Theme_Blvd_Shortcode_Generator {
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
-			'rows' => array(
-				'name' 		=> __( 'Rows', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Number of rows in each slide.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'rows',
-				'std' 		=> '3',
-				'type' 		=> 'text'
-			),
-			'numberposts' => array(
-				'name' 		=> __( 'Total Number of Posts', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The total number of posts to display for the slider. Use -1 for no limit, in order to pull all posts queried.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'numberposts',
-				'std' 		=> '-1',
-				'type' 		=> 'text'
-			),
-			'orderby' => array(
-				'name' 		=> __( 'Order By', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'What to order the posts by.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'orderby',
-				'std' 		=> 'date',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'date' 			=> __('Date', 'themeblvd_shortcodes'),
-					'title' 		=> __('Title', 'themeblvd_shortcodes'),
-					'comment_count' => __('Number of Comments', 'themeblvd_shortcodes'),
-					'rand' 			=> __('Random', 'themeblvd_shortcodes')
-				)
-			),
-			'order' => array(
-				'name' 		=> __( 'Order', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to order the posts.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'order',
-				'std' 		=> 'DESC',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'DESC' 		=> __('Descending', 'themeblvd_shortcodes'),
-					'ASC' 		=> __('Ascending', 'themeblvd_shortcodes')
-				)
-			),
-			'offset' => array(
-				'name' 		=> __( 'Offset', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'offset',
-				'std' 		=> '0',
-				'type' 		=> 'text'
-			),
-			'query' => array(
-				'name' 		=> __( 'Custom Query', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd_shortcodes' ),
-				'id' 		=> 'query',
-				'std' 		=> '',
-				'type' 		=> 'text'
-			)
-		);
-
-		// Post Slider
-		$options['post_list_slider'] = array(
-			'fx' => array(
-				'name' 		=> __( 'Slider Transition', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The transition effect of the slider.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'fx',
-				'std' 		=> 'slide',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'fade' 		=> __('Fade', 'themeblvd_shortcodes'),
-					'slide' 	=> __('Slide', 'themeblvd_shortcodes')
-				)
-			),
-			'timeout' => array(
-				'name' 		=> __( 'Slider Speed', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Seconds in between transitions, 0 for no auto-advancing.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'timeout',
-				'std' 		=> '3',
-				'type' 		=> 'text'
-			),
-			'nav_standard' => array(
-				'name' 		=> __( 'Navigation Dots', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show standard navigation dots to control slider.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'nav_standard',
-				'std' 		=> 'true',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'true' 		=> __('True', 'themeblvd_shortcodes'),
-					'false' 	=> __('False', 'themeblvd_shortcodes')
-				)
-			),
-			'nav_arrows' => array(
-				'name' 		=> __( 'Navigation Arrows', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show navigation arows to control slider.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'nav_arrows',
-				'std' 		=> 'true',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'true' 		=> __('True', 'themeblvd_shortcodes'),
-					'false' 	=> __('False', 'themeblvd_shortcodes')
-				)
-			),
-			'pause_play' => array(
-				'name' 		=> __( 'Pause/Play Button', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show pause/play button for slider\'s rotation', 'themeblvd_shortcodes' ),
-				'id' 		=> 'pause_play',
-				'std' 		=> 'true',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'true' 		=> __('True', 'themeblvd_shortcodes'),
-					'false' 	=> __('False', 'themeblvd_shortcodes')
-				)
-			),
-			'thumbs' => array(
-				'name' 		=> __( 'Thumbnail Size', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'This determines the size of the featured images. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'thumbs',
-				'std' 		=> 'default',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'default' 	=> __('Default', 'themeblvd_shortcodes'),
-					'small' 	=> __('Small', 'themeblvd_shortcodes'),
-					'full' 		=> __('Full Width', 'themeblvd_shortcodes'),
-					'hide' 		=> __('Hide Thumbnails', 'themeblvd_shortcodes')
-				)
-			),
-			'post_content' => array(
-				'name' 		=> __( 'Post Content', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How the content of posts display. If left to default, it will take the general setting from your Theme Options page.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'post_content',
-				'std' 		=> 'default',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'default' 	=> __('Default', 'themeblvd_shortcodes'),
-					'content' 	=> __('Full Content', 'themeblvd_shortcodes'),
-					'excerpt' 	=> __('Excerpts', 'themeblvd_shortcodes')
-				)
+			'slides' => array(
+		    	'id' 		=> 'slides',
+				'name'		=> __( 'Maximum Number of Slides', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'Enter in the maximum number of slides you\'d like to show. The number you enter here will be multiplied by the amount of columns you selected in the previous option to figure out how many posts should be showed in the slider. You can leave this option blank if you\'d like to show all posts from your configured query.', 'themeblvd_shortcodes' ),
+				'type'		=> 'text',
+				'std'		=> '3'
 			),
 			'category_name' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
@@ -2174,20 +2026,6 @@ class Theme_Blvd_Shortcode_Generator {
 				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd_shortcodes' ),
 				'id' 		=> 'portfolio',
 				'std' 		=> '',
-				'type' 		=> 'text'
-			),
-			'posts_per_slide' => array(
-				'name' 		=> __( 'Number of Posts Per Slide', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The number of posts to display for each slide of the slider.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'posts_per_slide',
-				'std' 		=> '3',
-				'type' 		=> 'text'
-			),
-			'numberposts' => array(
-				'name' 		=> __( 'Total Number of Posts', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The total number of posts to display for the slider. Use -1 for no limit, in order to pull all posts queried.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'numberposts',
-				'std' 		=> '-1',
 				'type' 		=> 'text'
 			),
 			'orderby' => array(
@@ -2348,9 +2186,9 @@ class Theme_Blvd_Shortcode_Generator {
 				'std'		=> 'center',
 				'type'		=> 'select',
 				'options'	=> array(
-					'left' 		=> __( 'Left', 'themeblvd_builder' ),
-					'right' 	=> __( 'Right', 'themeblvd_builder' ),
-					'center' 	=> __( 'Center', 'themeblvd_builder' )
+					'left' 		=> __( 'Left', 'themeblvd_shortcodes' ),
+					'right' 	=> __( 'Right', 'themeblvd_shortcodes' ),
+					'center' 	=> __( 'Center', 'themeblvd_shortcodes' )
 				)
 			),
 			'boxed' => array(

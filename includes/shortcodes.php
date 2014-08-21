@@ -484,7 +484,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
             $thumb .= sprintf( ' width="%s"', $atts['width'] );
         }
 
-        if( $atts['frame'] == 'false' && $atts['align'] != 'none' ) {
+        if( $atts['frame'] === 'false' && $atts['align'] != 'none' ) {
             // If image is framed, the alignment will be on the frame
             $thumb .= sprintf( ' class="align%s"', $atts['align'] );
         }
@@ -492,19 +492,14 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
         $thumb .= ' />';
     }
 
-    // Add image overlay if framed thumbnail
-    if( $atts['frame'] == 'true' && $has_thumb_img ) {
-        $thumb .= themeblvd_get_image_overlay();
-    }
-
     // Classes for link's anchor tag
-    $anchor_classes = '';
+    $anchor_classes = 'tb-thumb-link '.$atts['icon'];
 
-    if ( $atts['frame'] == 'true' ) {
-        $anchor_classes .= 'thumbnail '.$atts['icon'];
+    if ( $atts['frame'] === 'true' ) {
+        $anchor_classes .= ' thumbnail';
     }
 
-    if ( $atts['frame'] == 'false' && $atts['class'] ) {
+    if ( $atts['frame'] === 'false' && $atts['class'] ) {
         $anchor_classes .= $atts['class'];
     }
 
@@ -523,7 +518,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
     $output .= themeblvd_get_link_to_lightbox( $args );
 
     // Wrap link and thumbnail image in frame
-    if( $atts['frame'] == 'true' && $has_thumb_img ) {
+    if( $atts['frame'] === 'true' && $has_thumb_img ) {
 
         // Wrapping CSS classes
         $wrap_classes = 'tb-lightbox-shortcode';
@@ -543,9 +538,6 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
         }
 
         $wrap  = '<div class="'.$wrap_classes.'" style="'.$style.'">';
-        $wrap .= '<div class="featured-image-wrapper">';
-        $wrap .= '<div class="featured-image">';
-        $wrap .= '<div class="featured-image-inner">';
         $wrap .= '%s';
 
         // Caption
@@ -553,9 +545,6 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
             $wrap .= sprintf( '<p class="wp-caption-text">%s</p>', $atts['caption'] );
         }
 
-        $wrap .= '</div><!-- .featured-image-inner (end) -->';
-        $wrap .= '</div><!-- .featured-image (end) -->';
-        $wrap .= '</div><!-- .featured-image-wrapper (end) -->';
         $wrap .= '</div>';
         $wrap = apply_filters( 'themeblvd_lightbox_shortcode_thumbnail_wrap', $wrap, $wrap_classes, $style );
 
@@ -568,7 +557,6 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
     }
 
     return apply_filters( 'themeblvd_shortcode_lightbox', $output, $atts, $thumb );
-
 }
 
 /**
@@ -1313,99 +1301,98 @@ function themeblvd_shortcode_toggle( $atts, $content = null ) {
 function themeblvd_shortcode_post_grid_slider( $atts ) {
 
     $default = array(
-        'fx' 			=> 'slide', 	// fx: Transition of slider - fade, slide
-        'timeout' 		=> 0, 			// timeout: Seconds in between transitions, 0 for no auto-advancing
-        'nav_standard' 	=> 1, 			// nav_standard: Show standard nav dots to control slider - true or false
-        'nav_arrows' 	=> 1, 			// nav_arrows: Show directional arrows to control slider - true or false
-        'pause_play' 	=> 1, 			// pause_play: Show pause/play button - true or false
-        'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude
+        // query params
         'cat'           => '',          // cat: Category ID(s) to include/exclude
         'category_name' => '',          // category_name: Category slug(s) to include/exclude
         'tag'           => '',          // tag: Tag(s) to include/exclude
         'portfolio'     => '',          // portfolio: Portfolio(s) slugs to include, requires Portfolios plugin
         'portfolio_tag' => '',          // portfolio_tag: Portfolio Tag(s) to include, requires Portfolios plugin
-        'columns' 		=> 3,			// columns: Number of posts per row
-        'rows' 			=> 3,			// rows: Number of rows per slide
-        'numberposts' 	=> -1,			// numberposts: Total number of posts, -1 for all posts
+        'columns' 		=> '3',			// columns: Number of posts per row
         'orderby' 		=> 'date',		// orderby: date, title, comment_count, rand
         'order' 		=> 'DESC',		// order: DESC, ASC
         'offset' 		=> 0,			// offset: Number of posts to offset off the start, defaults to 0
         'query'         => '',          // query: custom query string
-        'crop'			=> ''			// crop: Can manually enter a featured image crop size
+
+        // slider stuff
+        'slides'        => '3',         // slides: number of slides
+        'timeout'       => 0,           // timeout: Seconds in between transitions, 0 for no auto-advancing
+        'nav'           => 'true',      // Whether to show nav
+
+        // post grid display
+        'thumbs'        => '',          // thumbs: show, hide
+        'meta'          => '',          // meta: show, hide
+        'excerpt'       => '',          // excerpt: show, hide
+        'more'          => '',          // more: hide, text, button
+        'crop'			=> '',			// crop: Can manually enter a featured image crop size
+
+        // @deprecated
+        'fx'            => 'slide',     // fx: Transition of slider - fade, slide
+        'nav_standard'  => 1,           // nav_standard: Show standard nav dots to control slider - true or false
+        'nav_arrows'    => 1,           // nav_arrows: Show directional arrows to control slider - true or false
+        'pause_play'    => 1,           // pause_play: Show pause/play button - true or false
+        'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude
+        'rows'          => 3,            // rows: Number of rows per slide
+        'numberposts'   => '-1',        // numberposts: Total number of posts, -1 for all posts
     );
-    extract( shortcode_atts( $default, $atts ) );
+    $atts = shortcode_atts( $default, $atts );
 
     // Generate unique ID
 	$id = uniqid( 'grid_'.rand() );
 
-    // Build $options array compatible to element's function
-    $options = array(
-        'fx' 			=> $fx,
-        'timeout' 		=> $timeout,
-        'columns' 		=> $columns,
-        'rows' 			=> $rows,
-        'numberposts' 	=> $numberposts,
-        'orderby' 		=> $orderby,
-        'order' 		=> $order,
-        'offset' 		=> $offset,
-        'query'         => $query,
-        'crop' 			=> $crop
-    );
+    // Slider display
+    $atts['display'] = 'slider';
+    $atts['context'] = 'grid';
+    $atts['shortcode'] = true;
 
-    // Add in the booleans
-    if( $nav_standard === 'true' )
-    	$options['nav_standard'] = 1;
-    else if( $nav_standard === 'false' )
-    	$options['nav_standard'] = 0;
-    else
-    	$options['nav_standard'] = $default['nav_standard'];
+    // bool
+    if ( $atts['nav'] === 'true' ) {
+        $atts['nav'] = 1;
+    } else {
+        $atts['nav'] = 0;
+    }
 
-    if( $nav_arrows === 'true' )
-    	$options['nav_arrows'] = 1;
-    else if( $nav_arrows === 'false' )
-    	$options['nav_arrows'] = 0;
-    else
-    	$options['nav_arrows'] = $default['nav_arrows'];
+    if ( function_exists('themeblvd_loop') ) {
 
-    if( $pause_play === 'true' )
-    	$options['pause_play'] = 1;
-    else if( $pause_play === 'false' )
-    	$options['pause_play'] = 0;
-    else
-    	$options['pause_play'] = $default['pause_play'];
+        ob_start();
+        themeblvd_loop($atts);
+        $output = ob_get_clean();
 
-    // Categories
-    if( $cat )
-        $options['cat'] = $cat;
-    elseif( $category_name )
-        $options['category_name'] = $category_name;
-    elseif( $categories )
-        $options['category_name'] = $categories; // @deprecated
+    } else {
 
-    // Tags
-    if( $tag )
-        $options['tag'] = $tag;
+        if ( $atts['nav_standard'] === 'true' ) {
+            $atts['nav_standard'] = 1;
+        } else if ( $atts['nav_standard'] === 'false' ) {
+            $atts['nav_standard'] = 0;
+        }
 
-    // Portfolios
-    if( $portfolio )
-        $options['portfolio'] = $portfolio;
+        if ( $atts['nav_arrows'] === 'true' ) {
+            $atts['nav_arrows'] = 1;
+        } else if ( $atts['nav_arrows'] === 'false' ) {
+            $atts['nav_arrows'] = 0;
+        }
 
-    // Portfolios
-    if( $portfolio_tag )
-        $options['portfolio_tag'] = $portfolio_tag;
+        if ( $atts['pause_play'] === 'true' ) {
+            $atts['pause_play'] = 1;
+        } else if ( $atts['pause_play'] === 'false' ) {
+            $atts['pause_play'] = 0;
+        }
 
-	// Output
-	ob_start();
-	echo '<div class="element element-post_grid_slider'.themeblvd_get_classes( 'element_post_grid_slider', true ).'">';
-	echo '<div class="element-inner">';
-	echo '<div class="element-inner-wrap">';
-	echo '<div class="grid-protection">';
-	themeblvd_post_slider( $id, $options, 'grid', 'primary' );
-	echo '</div><!-- .grid-protection (end) -->';
-	echo '</div><!-- .element-inner-wrap (end) -->';
-	echo '</div><!-- .element-inner (end) -->';
-	echo '</div><!-- .element (end) -->';
-	return ob_get_clean();
+    	// Output
+    	ob_start();
+    	echo '<div class="element element-post_grid_slider'.themeblvd_get_classes( 'element_post_grid_slider', true ).'">';
+    	echo '<div class="element-inner">';
+    	echo '<div class="element-inner-wrap">';
+    	echo '<div class="grid-protection">';
+    	themeblvd_post_slider( $id, $atts, 'grid', 'primary' );
+    	echo '</div><!-- .grid-protection (end) -->';
+    	echo '</div><!-- .element-inner-wrap (end) -->';
+    	echo '</div><!-- .element-inner (end) -->';
+    	echo '</div><!-- .element (end) -->';
+    	$output = ob_get_clean();
+
+    }
+
+    return $output;
 }
 
 /**
@@ -1416,6 +1403,11 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
  * @param array $atts Standard WordPress shortcode attributes
  */
 function themeblvd_shortcode_post_list_slider( $atts ) {
+
+    if ( version_compare(TB_FRAMEWORK_VERSION, '2.5.0', '>=') ) {
+        $msg = 'The [<span>post_list_slider</span>] shortcode is no longer supported in your theme. Use [<span>post_slider</span>] or [<span>post_grid_slider</span>] instead.';
+        return '<p>[post_list_slider]</p>'.themeblvd_get_alert( array('style' => 'warning', 'content' => $msg) );
+    }
 
     $default = array(
         'fx' 				=> 'slide', 	// fx: Transition of slider - fade, slide
@@ -1529,14 +1521,15 @@ function themeblvd_shortcode_gallery_slider( $atts ) {
 
     $default = array(
         'ids'           => '',                  // Comma separated attachments ID's
-        'size'          => '',                  // Crop size for images
-        'thumb_size'    => 'square_smallest',   // Size of nav thumbnail images
+        'size'          => 'slider-large',      // Crop size for images
         'interval'      => '5000',              // Milliseconds between transitions
         'pause'         => 'true',              // Whether to pause on hover
         'wrap'          => 'true',              // Whether sliders continues auto rotate after first pass
         'nav_standard'  => 'false',             // Whether to show standard nav indicator dots
         'nav_arrows'    => 'true',              // Whether to show standard nav arrows
-        'nav_thumbs'    => 'true'               // Whether to show nav thumbnails (added by Theme Blvd framework)
+        'nav_thumbs'    => 'true',              // Whether to show nav thumbnails (added by Theme Blvd framework)
+        'thumb_size'    => 'smallest',          // Size of nav thumbnail images - small, smaller, smallest or custom int
+        'frame'         => 'false'              // Whether to wrap gallery slider in frame
     );
     $atts = shortcode_atts( $default, $atts );
 
@@ -1545,6 +1538,11 @@ function themeblvd_shortcode_gallery_slider( $atts ) {
 
     // Remove ID's from $atts
     unset( $atts['ids'] );
+
+    // Backup for those using old square_* crop sizes
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+        $atts['thumb_size'] = str_replace( 'square_', '', $atts['thumb_size'] );
+    }
 
     // Convert booleans
     foreach( $atts as $key => $value ) {
@@ -1585,54 +1583,53 @@ function themeblvd_shortcode_post_grid( $atts ) {
         'offset' 		=> 0,					// offset: Number of posts to offset off the start, defaults to 0
         'query' 		=> '',					// custom query string
         'crop'			=> '',					// crop: Can manually enter a featured image crop size
-        'link' 			=> 0,					// link: Show link after posts, true or false
-        'link_text' 	=> 'View All Posts', 	// link_text: Text for the link
-        'link_url' 		=> 'http://google.com',	// link_url: URL where link should go
-        'link_target' 	=> '_self' 				// link_target: Where link opens - _self, _blank
+        'thumbs'        => '',                  // thumbs: show, hide
+        'meta'          => '',                  // meta: show, hide
+        'excerpt'       => '',                  // excerpt: show, hide
+        'more'          => ''                   // more: hide, text, button
     );
-    extract( shortcode_atts( $default, $atts ) );
+    $atts = shortcode_atts( $default, $atts );
 
     // Build $options array compatible to element's function
     $options = array(
         'display'       => 'grid',
-        'columns' 		=> $columns,
-        'rows' 			=> $rows,
-        'tag'           => $tag,
-        'portfolio'     => $portfolio,
-        'portfolio_tag' => $portfolio_tag,
-        'orderby' 		=> $orderby,
-        'order' 		=> $order,
-        'offset' 		=> $offset,
-        'crop' 			=> $crop,
-        'query' 		=> $query,
-        'link_text' 	=> $link_text,
-        'link_url' 		=> $link_url,
-        'link_target' 	=> $link_target,
+        'columns' 		=> $atts['columns'],
+        'rows' 			=> $atts['rows'],
+        'tag'           => $atts['tag'],
+        'portfolio'     => $atts['portfolio'],
+        'portfolio_tag' => $atts['portfolio_tag'],
+        'orderby' 		=> $atts['orderby'],
+        'order' 		=> $atts['order'],
+        'offset' 		=> $atts['offset'],
+        'crop' 			=> $atts['crop'],
+        'query' 		=> $atts['query'],
+        'thumbs'        => $atts['thumbs'],
+        'meta'          => $atts['meta'],
+        'excerpt'       => $atts['excerpt'],
+        'more'          => $atts['more'],
+        'context'       => 'grid',
+        'shortcode'     => true,
         'class'         => 'shortcode-grid-wrap'
     );
 
     // Categories
-    if( $cat ) {
-        $options['cat'] = $cat;
-    } elseif( $category_name ) {
-        $options['category_name'] = $category_name;
-    } elseif( $categories ) {
-        $options['category_name'] = $categories; // @deprecated
+    if( $atts['cat'] ) {
+        $options['cat'] = $atts['cat'] ;
+    } else if( $atts['category_name'] ) {
+        $options['category_name'] = $atts['category_name'] ;
+    } else if( $atts['categories'] ) {
+        $options['category_name'] = $atts['categories']; // @deprecated
     }
 
-    // Add in the booleans
-    if( $link === 'true' ) {
-        $options['link'] = 1;
-    } else if( $link === 'false' ) {
-        $options['link'] = 0;
-    } else {
-        $options['link'] = $default['link'];
+    // Thumbs
+    if ( $options['thumbs'] == 'show' ) {
+        $options['thumbs'] = 'full';
     }
 
-    if ( function_exists('themeblvd_post_grid') ) {
+    if ( function_exists('themeblvd_loop') ) {
 
         ob_start();
-        themeblvd_post_grid($options);
+        themeblvd_loop($options);
         $output = ob_get_clean();
 
     } else {
@@ -1671,61 +1668,56 @@ function themeblvd_shortcode_post_list( $atts ) {
         'tag'           => '',                  // tag: Tag(s) to include/exclude
         'portfolio'     => '',                  // portfolio: Portfolio(s) slugs to include, requires Portfolios plugin
         'portfolio_tag' => '',                  // portfolio_tag: Portfolio Tag(s) to include, requires Portfolios plugin
-        'thumbs' 		=> 'default',			// thumbs: Size of post thumbnails - default, true, false
-		'post_content' 	=> 'default',			// content: Show excerpts or full content - default, content, excerpt
+		//'post_content' 	=> 'default',			// content: Show excerpts or full content - default, content, excerpt
 		'numberposts' 	=> 3,					// numberposts: Total number of posts, -1 for all posts
         'orderby' 		=> 'date',				// orderby: date, title, comment_count, rand
         'order' 		=> 'DESC',				// order: DESC, ASC
         'offset' 		=> 0,					// offset: Number of posts to offset off the start, defaults to 0
-        'link'			=> 0,					// link: Show link after posts, true or false
-        'link_text' 	=> 'View All Posts', 	// link_text: Text for the link
-        'link_url' 		=> 'http://google.com',	// link_url: URL where link should go
-        'link_target' 	=> '_self', 			// link_target: Where link opens - _self, _blank
-        'query' 		=> '' 					// custom query string
+        'query' 		=> '', 					// custom query string
+        'thumbs'        => '',                  // thumbs: show, hide
+        'meta'          => '',                  // meta: show, hide
+        'more'          => ''                   // more: hide, text, button
     );
-    extract( shortcode_atts( $default, $atts ) );
+    $atts = shortcode_atts( $default, $atts );
 
     // Build $options array compatible to element's function
     $options = array(
         'display'       => 'list',
-        'thumbs' 		=> $thumbs,
-        'content' 		=> $post_content,
-        'tag'           => $tag,
-        'portfolio'     => $portfolio,
-        'portfolio_tag' => $portfolio_tag,
-        'numberposts' 	=> $numberposts,
-        'orderby' 		=> $orderby,
-        'order' 		=> $order,
-        'offset' 		=> $offset,
-        'query' 		=> $query,
-        'link_text' 	=> $link_text,
-        'link_url' 		=> $link_url,
-        'link_target' 	=> $link_target,
-        'class'         => 'shortcode-list-wrap'
+        'thumbs' 		=> $atts['thumbs'],
+        'content' 		=> 'excerpt',
+        'tag'           => $atts['tag'],
+        'portfolio'     => $atts['portfolio'],
+        'portfolio_tag' => $atts['portfolio_tag'],
+        'posts_per_page'=> $atts['numberposts'],
+        'orderby' 		=> $atts['orderby'],
+        'order' 		=> $atts['order'],
+        'offset' 		=> $atts['offset'],
+        'query' 		=> $atts['query'],
+        'thumbs'        => $atts['thumbs'],
+        'meta'          => $atts['meta'],
+        'more'          => $atts['more'],
+        'context'       => 'list',
+        'shortcode'     => true
     );
 
     // Categories
-    if( $cat ) {
-        $options['cat'] = $cat;
-    } else if( $category_name ) {
-        $options['category_name'] = $category_name;
-    } elseif( $categories ) {
-        $options['category_name'] = $categories; // @deprecated
+    if( $atts['cat'] ) {
+        $options['cat'] = $atts['cat'] ;
+    } else if( $atts['category_name'] ) {
+        $options['category_name'] = $atts['category_name'] ;
+    } else if( $atts['categories'] ) {
+        $options['category_name'] = $atts['categories']; // @deprecated
     }
 
-    // Add in the booleans
-    if( $link === 'true' ) {
-    	$options['link'] = 1;
-    } else if( $link === 'false' ) {
-    	$options['link'] = 0;
-    } else {
-    	$options['link'] = $default['link'];
+    // Thumbs
+    if ( $options['thumbs'] == 'show' ) {
+        $options['thumbs'] = 'full';
     }
 
-    if ( function_exists('themeblvd_post_list') ) {
+    if ( function_exists('themeblvd_loop') ) {
 
         ob_start();
-        themeblvd_post_list($options);
+        themeblvd_loop($options);
         $output = ob_get_clean();
 
     } else {
@@ -1773,39 +1765,62 @@ function themeblvd_shortcode_mini_post_grid( $atts ) {
         'align'         => 'left',      // alignment of grid - left, right, or center
         'gallery'       => ''           // Comma separated list of attachmentn IDs - 1,2,3,4
 	);
-	extract( shortcode_atts( $default, $atts ) );
+	$atts = shortcode_atts( $default, $atts );
 
-    // Build query
-    if( ! $query ) {
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
 
-        // Categories
-        if( $categories ) // @deprecated
-            $query .= 'category_name='.$categories.'&';
-        if( $cat )
-            $query .= 'cat='.$cat.'&';
-        if( $category_name )
-            $query .= 'category_name='.$category_name.'&';
+        // Build query
+        if( ! $atts['query'] ) {
 
-        // Tags
-        if( $tag )
-            $query .= 'tag='.$tag.'&';
+            $query = '';
 
-        // Continue query
-        $query .= 'numberposts='.$numberposts.'&';
-        $query .= 'orderby='.$orderby.'&';
-        $query .= 'order='.$order.'&';
-        $query .= 'offset='.$offset.'&';
-        $query .= 'suppress_filters=false'; // Mainly for WPML compat
+            // Categories
+            if( $atts['categories'] ) { // @deprecated
+                $query .= 'category_name='.$atts['categories'].'&';
+            }
 
+            if( $atts['cat'] ) {
+                $query .= 'cat='.$atts['cat'].'&';
+            }
+
+            if( $atts['category_name'] ) {
+                $query .= 'category_name='.$atts['category_name'].'&';
+            }
+
+            // Tags
+            if( $atts['tag'] ) {
+                $query .= 'tag='.$atts['tag'].'&';
+            }
+
+            // Continue query
+            $query .= 'numberposts='.$atts['numberposts'].'&';
+            $query .= 'orderby='.$atts['orderby'].'&';
+            $query .= 'order='.$atts['order'].'&';
+            $query .= 'offset='.$atts['offset'].'&';
+            $query .= 'suppress_filters=false'; // Mainly for WPML compat
+
+        } else {
+
+            $query = $atts['query'];
+
+        }
     }
 
-    if ( $gallery ) {
-        $gallery = sprintf( '[gallery ids="%s" link="file"]', $gallery );
+    if ( $atts['gallery'] ) {
+        $atts['gallery'] = sprintf( '[gallery ids="%s" link="file"]', $atts['gallery'] );
     }
+
+    $atts['posts_per_page'] = $atts['numberposts'];
+
+    $atts['shortcode'] = true;
 
 	// Output
-	$output = themeblvd_get_mini_post_grid( $query, $align, $thumb, $gallery );
-
+    if ( version_compare ( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
+        // @deprecated
+        $output = themeblvd_get_mini_post_grid( $query, $atts['align'], $atts['thumb'], $atts['gallery'] );
+    } else {
+        $output = themeblvd_get_mini_post_grid( $atts, $atts['align'], $atts['thumb'], $atts['gallery'] );
+    }
     return $output;
 
 }
@@ -1832,43 +1847,70 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
         'offset'        => 0,           // offset: Number of posts to offset off the start, defaults to 0
         'query'         => '',          // custom query string
         'thumb'         => 'smaller',   // thumbnail size - small, smaller, smallest, or hide
-        'meta'          => 'show'       // show meta or not - show or hide
+        'meta'          => 'show',      // show meta or not - show or hide
+        'columns'       => '0'          // Optional number of columns to spread posts among
 	);
-	extract( shortcode_atts( $default, $atts ) );
+	$atts = shortcode_atts( $default, $atts );
 
-    // Build query
-    if( ! $query ) {
+    if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
 
-        // Categories
-        if( $categories ) // @deprecated
-            $query .= 'category_name='.$categories.'&';
-        if( $cat )
-            $query .= 'cat='.$cat.'&';
-        if( $category_name )
-            $query .= 'category_name='.$category_name.'&';
+        // Build query
+        if( ! $atts['query'] ) {
 
-        // Tags
-        if( $tag )
-            $query .= 'tag='.$tag.'&';
+            $query = '';
 
-        // Continue query
-        $query .= 'numberposts='.$numberposts.'&';
-        $query .= 'orderby='.$orderby.'&';
-        $query .= 'order='.$order.'&';
-        $query .= 'offset='.$offset.'&';
-        $query .= 'suppress_filters=false'; // Mainly for WPML compat
+            // Categories
+            if( $atts['categories'] ) { // @deprecated
+                $query .= 'category_name='.$atts['categories'] .'&';
+            }
 
+            if( $atts['cat'] ) {
+                $query .= 'cat='.$atts['cat'].'&';
+            }
+
+            if( $atts['category_name'] ) {
+                $query .= 'category_name='.$atts['category_name'].'&';
+            }
+
+            // Tags
+            if( $atts['tag'] ) {
+                $query .= 'tag='.$atts['tag'].'&';
+            }
+
+            // Continue query
+            $query .= 'numberposts='.$atts['numberposts'].'&';
+            $query .= 'orderby='.$atts['orderby'].'&';
+            $query .= 'order='.$atts['order'].'&';
+            $query .= 'offset='.$atts['offset'].'&';
+            $query .= 'suppress_filters=false'; // Mainly for WPML compat
+
+        } else {
+
+            $query = $atts['query'];
+
+        }
     }
 
     // Format thumbnail size
-    if( $thumb == 'hide' )
-    $thumb = false;
+    if( $thumb == 'hide' ) {
+        $thumb = false;
+    }
 
     // Format meta
     $meta == 'show' ? $meta = true : $meta = false;
 
+    // Number of posts
+    $atts['posts_per_page'] = $atts['numberposts'];
+
+    $atts['shortcode'] = true;
+
     // Output
-    $output = themeblvd_get_mini_post_list( $query, $thumb, $meta );
+    if ( version_compare ( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
+        // @deprecated
+        $output = themeblvd_get_mini_post_list( $query, $atts['thumb'], $atts['meta'] );
+    } else {
+        $output = themeblvd_get_mini_post_list( $atts, $atts['thumb'], $atts['meta'] );
+    }
 
     return $output;
 }

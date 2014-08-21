@@ -106,6 +106,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Adjustments to allow shortcodes to work with Ajax requests on the frontend of the site.
 * Better handling of default option values at *Settings > Writing > Theme Blvd Shortcodes*.
 * Fixed issues with inserting `[icon_list]` from shortcode generator.
+* Removed `[post_list_slider]` for newer themes, use `[post_slider]` or `[post_grid_slider]` instead.
 
 = 1.4.1 =
 
