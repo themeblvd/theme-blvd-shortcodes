@@ -1832,21 +1832,22 @@ class Theme_Blvd_Shortcode_Generator {
 
 		// Post Slider
 		$options['post_slider'] = array(
-			'fx' => array(
-				'name' 		=> __( 'Slider Transition', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'The transition effect of the slider.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'fx',
-				'std' 		=> 'slide',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'fade' 		=> __('Fade', 'themeblvd_shortcodes'),
-					'slide' 	=> __('Slide', 'themeblvd_shortcodes')
-				)
+			'style' => array(
+				'name' 		=> __( 'Display Style', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select one of the preset style for how the post slider displays. When referring to "included elements" it\'s referring to post titles, meta, excerpts, and buttons configured in the following options.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'style',
+				'std' 		=> '1',
+				'type' 		=> 'radio',
+				'options'	=> apply_filters('themeblvd_post_slider_styles', array(
+					'1'			=> __('<strong>Style #1:</strong> Display included elements open and center on each slide.', 'themeblvd_shortcodes'),
+					'2'			=> __('<strong>Style #2:</strong> Display included elements in a shaded content area positioned to the side of each slide.', 'themeblvd_shortcodes'),
+					'3'			=> __('<strong>Style #3:</strong> An open, more magazine-style post slider.', 'themeblvd_shortcodes')
+				))
 			),
-			'timeout' => array(
+			'interval' => array(
 				'name' 		=> __( 'Slider Speed', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'Seconds in between transitions, 0 for no auto-advancing.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'timeout',
+				'id' 		=> 'interval',
 				'std' 		=> '3',
 				'type' 		=> 'text'
 			),
@@ -1872,64 +1873,74 @@ class Theme_Blvd_Shortcode_Generator {
 					'false' 	=> __('False', 'themeblvd_shortcodes')
 				)
 			),
-			'pause_play' => array(
-				'name' 		=> __( 'Pause/Play Button', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Whether to show pause/play button for slider\'s rotation', 'themeblvd_shortcodes' ),
-				'id' 		=> 'pause_play',
-				'std' 		=> 'true',
+			'nav_thumbs' => array(
+				'name' 		=> __( 'Navigation Thumbnails', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Whether to show thumbnail navigation to control slider.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'nav_thumbs',
+				'std' 		=> 'false',
 				'type' 		=> 'select',
 				'options' 	=> array(
 					'true' 		=> __('True', 'themeblvd_shortcodes'),
 					'false' 	=> __('False', 'themeblvd_shortcodes')
 				)
 			),
-			'pause_on_hover' => array(
+			'pause' => array(
 				'name' 		=> __( 'Pause on Hover', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'Whether to pause slider rotation on mouse hover.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'pause_on_hover',
-				'std' 		=> 'disable',
+				'id' 		=> 'pause',
+				'std' 		=> 'false',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'disable' 		=> __('No pause on hover', 'themeblvd_shortcodes'),
-					'pause_on' 		=> __('Pause on hover only', 'themeblvd_shortcodes'),
-					'pause_on_off' 	=> __('Pause on hover, resume on hover off', 'themeblvd_shortcodes')
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
 				)
 			),
-			'image' => array(
-				'name' 		=> __( 'Image Display', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to display featured images from the posts to be used in the slider.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'image',
-				'std' 		=> 'full',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'full' 			=> __('Full Width', 'themeblvd_shortcodes'),
-					'align-right' 	=> __('Aligned Right', 'themeblvd_shortcodes'),
-					'align-left' 	=> __('Aligned Left', 'themeblvd_shortcodes')
-				)
-			),
-			'image_size' => array(
+			'crop' => array(
 				'name' 		=> __( 'Image Crop Size', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'Crop size for featured image used as each slide.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'image_size',
+				'id' 		=> 'crop',
 				'std' 		=> 'slider-large',
 				'type' 		=> 'text'
 			),
-			'image_link' => array(
-				'name' 		=> __( 'Image Link', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How each image of the slider links.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'image_link',
-				'std' 		=> 'permalink',
+			'slide_link' => array(
+				'name' 		=> __( 'Link Handling', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select how the user interacts with each slide and where they\'re directed to.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'slide_link',
+				'std' 		=> 'button',
 				'type' 		=> 'select',
-				'options' 	=> array(
-					'none' 		=> __('No link', 'themeblvd_shortcodes'),
-					'permalink' => __('Link to post', 'themeblvd_shortcodes'),
-					'lightbox' 	=> __('Link to enlarged image in lightbox', 'themeblvd_shortcodes')
+				'options'	=> array(
+					'none'			=> __('No linking', 'themeblvd_shortcodes'),
+					'image_post'	=> __('Images link to posts', 'themeblvd_shortcodes'),
+					'image_link'	=> __('Images link to each post\'s featured image link setting', 'themeblvd_shortcodes'),
+					'button'		=> __('Slides have buttons linking to posts', 'themeblvd_shortcodes'),
 				)
 			),
-			'category_name' => array(
+			'button_text' => array(
+				'name' 		=> __( 'Button Text', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'If you selected to show buttons, here you can set the text of the buttons.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'button_text',
+				'std' 		=> 'View Post',
+				'type' 		=> 'text'
+			),
+			'button_size' => array(
+				'id' 		=> 'button_size',
+				'name'		=> __( 'Button Size', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'If you selected to show buttons, here you can set the size of the buttons.', 'themeblvd_shortcodes' ),
+				'type'		=> 'select',
+				'std'		=> 'default',
+				'options'	=> array(
+					'mini' 		=> __( 'Mini', 'themeblvd_shortcodes' ),
+					'small' 	=> __( 'Small', 'themeblvd_shortcodes' ),
+					'default' 	=> __( 'Normal', 'themeblvd_shortcodes' ),
+					'large' 	=> __( 'Large', 'themeblvd_shortcodes' ),
+					'x-large' 	=> __( 'Extra Large', 'themeblvd_shortcodes' )
+				),
+				'class'		=> 'hide receiver receiver-button'
+			),
+			'category' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
-				'id' 		=> 'category_name',
+				'id' 		=> 'category',
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
@@ -1992,16 +2003,48 @@ class Theme_Blvd_Shortcode_Generator {
 				'std' 		=> '',
 				'type' 		=> 'text'
 			),
-			'mobile_fallback' => array(
-				'name' 		=> __( 'Mobile Fallback', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'How to display on mobile.', 'themeblvd_shortcodes' ),
-				'id' 		=> 'mobile_fallback',
-				'std' 		=> 'full_list',
-				'type' 		=> 'select',
+			'dark_text'	=> array(
+				'name' 		=> __( 'Use Dark Text', 'themeblvd_shortcodes' ),
+				'id'		=> 'dark_text',
+				'desc'		=> __( 'Use dark navigation elements and dark text for any titles and descriptions.', 'themeblvd_shortcodes'),
+				'std'		=> 'false',
+				'type'		=> 'select',
 				'options' 	=> array(
-					'full_list' 	=> __('List out slides', 'themeblvd_shortcodes'),
-					'first_slide' 	=> __('Display first slide', 'themeblvd_shortcodes'),
-					'display' 		=> __('Attempt to display full slider', 'themeblvd_shortcodes'),
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
+				)
+			),
+			'title'	=> array(
+				'name' 		=> __( 'Show Post Titles', 'themeblvd_shortcodes' ),
+				'id'		=> 'title',
+				'desc'		=> __( 'Display title for each post.', 'themeblvd_shortcodes'),
+				'std'		=> 'true',
+				'type'		=> 'select',
+				'options' 	=> array(
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
+				)
+			),
+			'meta'	=> array(
+				'name' 		=> __( 'Show Post Meta', 'themeblvd_shortcodes' ),
+				'id'		=> 'meta',
+				'desc'		=> __( 'Display meta info for each post.', 'themeblvd_shortcodes'),
+				'std'		=> 'true',
+				'type'		=> 'select',
+				'options' 	=> array(
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
+				)
+			),
+			'excerpts'	=> array(
+				'name' 		=> __( 'Show Post Excerpts', 'themeblvd_shortcodes' ),
+				'id'		=> 'excerpts',
+				'desc'		=> __( 'Display excerpt for each post.', 'themeblvd_shortcodes'),
+				'std'		=> 'false',
+				'type'		=> 'select',
+				'options' 	=> array(
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
 				)
 			)
 		);

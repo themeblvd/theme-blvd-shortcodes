@@ -139,6 +139,10 @@ function themeblvd_shortcodes_init() {
 		add_shortcode( 'post_list_slider', 'themeblvd_shortcode_post_list_slider' );
 		add_shortcode( 'gallery_slider', 'themeblvd_shortcode_gallery_slider' );
 
+		if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+			add_shortcode( 'post_slider', 'themeblvd_shortcode_post_slider' );
+		}
+
 		// Display Posts
 		add_shortcode( 'post_grid', 'themeblvd_shortcode_post_grid' );
 		add_shortcode( 'post_list', 'themeblvd_shortcode_post_list' );

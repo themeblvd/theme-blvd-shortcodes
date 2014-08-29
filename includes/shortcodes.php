@@ -42,9 +42,9 @@
  *		- accordion			=> @since 1.0.0
  *		- toggle			=> @since 1.0.0
  * (5) Sliders
- * 		- slider			=> @since 1.0.0
- *		- post_grid_slider	=> @since 1.0.0
- *		- post_list_slider	=> @since 1.0.0
+ *      - post_slider       => @since 1.5.0 (moved from Sliders plugin)
+ *      - post_grid_slider  => @since 1.0.0
+ *      - post_list_slider  => @since 1.0.0
  *      - gallery_slider    => @since 1.3.0
  * (6) Display Posts
  *		- post_grid			=> @since 1.0.0
@@ -1290,6 +1290,86 @@ function themeblvd_shortcode_toggle( $atts, $content = null ) {
 /*-----------------------------------------------------------*/
 /* Sliders
 /*-----------------------------------------------------------*/
+
+/**
+ * Post Slider
+ *
+ * @since 1.5.0
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ */
+function themeblvd_shortcode_post_slider( $atts ) {
+
+    $default = array(
+        'style'             => '1',             // Display style - 1, 2, 3
+        'interval'          => '0',             // Time between auto trasitions in seconds
+        'nav_standard'      => 'true',          // Show standard nav - true, false
+        'nav_arrows'        => 'true',          // Show nav arrows - true, false
+        'nav_thumbs'        => 'false',         // Show nav thumbnails - true, false
+        'pause'             => 'false',         // Pause on hover - true, false
+        'crop'              => 'slider-large',  // Crop size for full-size images
+        'slide_link'        => 'button',        // Where image link goes - none, image_post, image_link, button
+        'button_text'       => 'View Post',     // Text for button (if button)
+        'button_size'       => 'default',       // Size of button (if button) - mini, small, default, large, x-large
+        'tag'               => '',              // Tag(s) to include/exclude
+        'category'          => '',              // Category slug(s) to include
+        'cat'               => '',              // Category ID(s) to include/exclude
+        'portfolio'         => '',              // Portfolio(s) slugs to include, requires Portfolios plugin
+        'portfolio_tag'     => '',              // Portfolio Tag(s) to include, requires Portfolios plugin
+        'numberposts'       => '5',             // Number of posts/slides
+        'orderby'           => 'date',          // Orderby param for posts query
+        'order'             => 'DESC',          // Order param for posts query
+        'query'             => '',              // Custom query string
+        'thumb_link'        => 'true',          // Whether linked images have animation
+        'dark_text'         => 'false',         // Whether to use dark text
+        'title'             => 'true',          // Whether to show titles
+        'meta'              => 'true',          // Whether to shoe meta
+        'excerpts'          => 'false'          // Whether to show excerpts
+    );
+    $atts = shortcode_atts( $default, $atts );
+
+    // display style
+    if ( intval($atts['style']) ) {
+        $atts['style'] = 'style-'.$atts['style'];
+    }
+
+    // Provide compat with some older options
+    if ( ! empty($atts['timeout']) ) {
+        $atts['interval'] = $atts['timeout'];
+    }
+
+    if ( ! empty($atts['pause_on_hover']) ) {
+        if ( $atts['pause_on_hover'] == 'pause_on' || $atts['pause_on_hover'] == 'pause_on_off' ) {
+            $atts['pause'] = 'true';
+        }
+    }
+
+    if ( ! empty($atts['image_size']) ) {
+        $atts['crop'] = $atts['image_size'];
+    }
+
+    if ( ! empty($atts['button']) ) {
+        $atts['button_text'] = $atts['button'];
+    }
+
+    // Handle booleans
+    foreach ( $atts as $key => $value ) {
+        if ( $value === 'true' ) {
+            $atts[$key] = true;
+        } else if ( $value === 'false' ) {
+            $atts[$key] = false;
+        }
+    }
+
+    // Handle any query-related atts
+    if ( $atts['category'] ) {
+        $atts['category_name'] = $atts['category'];
+    }
+
+    $atts['posts_per_page'] = $atts['numberposts'];
+
+    return themeblvd_get_post_slider($atts);
+}
 
 /**
  * Post Grid Slider
