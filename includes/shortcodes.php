@@ -1521,6 +1521,8 @@ function themeblvd_shortcode_gallery_slider( $atts ) {
 
     $default = array(
         'ids'           => '',                  // Comma separated attachments ID's
+        'title'         => 'false',             // Whether to show titles
+        'caption'       => 'false',             // Whether to show captions
         'size'          => 'slider-large',      // Crop size for images
         'interval'      => '5000',              // Milliseconds between transitions
         'pause'         => 'true',              // Whether to pause on hover
@@ -1529,6 +1531,7 @@ function themeblvd_shortcode_gallery_slider( $atts ) {
         'nav_arrows'    => 'true',              // Whether to show standard nav arrows
         'nav_thumbs'    => 'true',              // Whether to show nav thumbnails (added by Theme Blvd framework)
         'thumb_size'    => 'smallest',          // Size of nav thumbnail images - small, smaller, smallest or custom int
+        'dark_text'     => 'false',             // Whether to use dark text for title/descriptions/standard nav, use when images are light
         'frame'         => 'false'              // Whether to wrap gallery slider in frame
     );
     $atts = shortcode_atts( $default, $atts );

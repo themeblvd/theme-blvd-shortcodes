@@ -1705,8 +1705,30 @@ class Theme_Blvd_Shortcode_Generator {
 				'std' 		=> '1,2,3',
 				'type' 		=> 'text'
 			),
+			'title' => array(
+				'name' 		=> __( 'Titles', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Whether to display titles of attachments over slides.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'title',
+				'std' 		=> 'false',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
+				)
+			),
+			'caption' => array(
+				'name' 		=> __( 'Captions', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Whether to display captions of attachments over slides.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'caption',
+				'std' 		=> 'false',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
+				)
+			),
 			'size' => array(
-				'name' 		=> __( 'Image Size (optional)', 'themeblvd_shortcodes' ),
+				'name' 		=> __( 'Image Size', 'themeblvd_shortcodes' ),
 				'desc' 		=> __( 'Crop size for images, use "full" to display uncropped versions of the images.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'size',
 				'std' 		=> 'slider-large',
@@ -1794,7 +1816,18 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'subgroup_end' => array(
 		    	'type'		=> 'subgroup_end'
-		    )
+		    ),
+		    'dark_text' => array(
+				'name' 		=> __( 'Dark Text', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Whether to use dark text for titles, captions, and standard nav; use when images are light.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'dark_text',
+				'std' 		=> 'false',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'true' 		=> __('True', 'themeblvd_shortcodes'),
+					'false' 	=> __('False', 'themeblvd_shortcodes')
+				)
+			)
 		);
 
 		// Post Slider
