@@ -99,6 +99,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Added `[lead]` shortcode.
 * Added `[testimonial]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added `[milestone]` and `[milestone_ring]` shortcode (requires Theme Blvd Framework 2.5+).
+* Added `[post_showcase]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added custom color selection for `[button]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added custom text/background color selection for `[jumbotron]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added titles and captions to `[gallery_slider]` (requires Theme Blvd Framework 2.5+).

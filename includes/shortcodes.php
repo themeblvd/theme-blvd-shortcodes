@@ -43,11 +43,12 @@
  *		- toggle			=> @since 1.0.0
  * (5) Sliders
  *      - post_slider       => @since 1.5.0 (moved from Sliders plugin)
- *      - post_grid_slider  => @since 1.0.0
- *      - post_list_slider  => @since 1.0.0
+ *		- post_grid_slider	=> @since 1.0.0
+ *		- post_list_slider	=> @since 1.0.0
  *      - gallery_slider    => @since 1.3.0
  * (6) Display Posts
  *		- post_grid			=> @since 1.0.0
+ *      - post_showcase     => @since 1.5.0
  *		- post_list			=> @since 1.0.0
  *		- mini_post_grid	=> @since 1.0.0
  *		- mini_post_list	=> @since 1.0.0
@@ -1644,38 +1645,88 @@ function themeblvd_shortcode_gallery_slider( $atts ) {
 /*-----------------------------------------------------------*/
 
 /**
- * Post Grid
+ * Post Grid and Post Showcase
  *
  * @since 1.0.0
  *
  * @param array $atts Standard WordPress shortcode attributes
  */
-function themeblvd_shortcode_post_grid( $atts ) {
+function themeblvd_shortcode_post_grid( $atts, $content = null, $tag = '' ) {
 
     $default = array(
+
+        // shared between both shortcodes
         'categories'    => '',                  // @deprecated -- Category slug(s) to include/exclude
         'cat'           => '',                  // cat: Category ID(s) to include/exclude
         'category_name' => '',                  // category_name: Category slug(s) to include/exclude
         'tag'           => '',                  // tag: Tag(s) to include/exclude
         'portfolio'     => '',                  // portfolio: Portfolio(s) slugs to include, requires Portfolios plugin
         'portfolio_tag' => '',                  // portfolio_tag: Portfolio Tag(s) to include, requires Portfolios plugin
-        'columns' 		=> 3,					// columns: Number of posts per row
-        'rows' 			=> 3,					// rows: Number of rows per slide
+        'columns' 		=> '3',					// columns: Number of posts per row
+        'rows' 			=> '3',					// rows: Number of rows per slide
         'orderby' 		=> 'date',				// orderby: date, title, comment_count, rand
         'order' 		=> 'DESC',				// order: DESC, ASC
-        'offset' 		=> 0,					// offset: Number of posts to offset off the start, defaults to 0
-        'query' 		=> '',					// custom query string
-        'crop'			=> '',					// crop: Can manually enter a featured image crop size
+        'offset' 		=> '0',					// offset: Number of posts to offset off the start, defaults to 0
+        'query' 		=> '',					// query: custom query string
+        'filter'        => 'false',             // filter: Whether to use filtering - false or taxonomy name to filter by
+        'filter_max'    => '-1',                // filter_max: Maximum posts to pull when using filtering
+        'masonry'       => 'false',             // masonry: Whether to use masonry or not
+        'masonry_max'   => '12',                // masonry_max: Number of posts if using masonry
+        'excerpt'       => '',                  // excerpt: show, hide
+        'crop'          => '',                  // crop: Can manually enter a featured image crop size
+
+        // [post_grid]
         'thumbs'        => '',                  // thumbs: show, hide
         'meta'          => '',                  // meta: show, hide
-        'excerpt'       => '',                  // excerpt: show, hide
-        'more'          => ''                   // more: hide, text, button
+        'more'          => '',                  // more: hide, text, button
+
+        // [post_showcase]
+        'titles'        => ''                   // titles: Whether to show post titles when items are hovered on
     );
     $atts = shortcode_atts( $default, $atts );
 
+    // Convert booleans
+    foreach( $atts as $key => $value ) {
+        if ( $value === 'true' ) {
+            $atts[$key] = true;
+        } else if ( $value === 'false' ) {
+            $atts[$key] = false;
+        }
+    }
+
+    // Display and context
+    if ( $tag == 'post_showcase' ) {
+        $display = $context = 'showcase';
+    } else {
+        $display = $context = 'grid';
+    }
+
+    if ( $atts['filter'] ) {
+
+        if ( $atts['masonry'] ) {
+            $display = 'masonry_filter';
+        } else {
+            $display = 'filter';
+        }
+
+        if ( ! $atts['filter_max'] ) {
+            $atts['filter_max'] = '-1'; // just to be safe
+        }
+
+    } else if ( $atts['masonry'] ) {
+
+        $display = 'masonry';
+
+    }
+
+    // Allow user to use "tag" instead of "post_tag"
+    if ( $atts['filter'] == 'tag' ) {
+        $atts['filter'] = 'post_tag';
+    }
+
     // Build $options array compatible to element's function
     $options = array(
-        'display'       => 'grid',
+        'display'       => $display,
         'columns' 		=> $atts['columns'],
         'rows' 			=> $atts['rows'],
         'tag'           => $atts['tag'],
@@ -1686,13 +1737,17 @@ function themeblvd_shortcode_post_grid( $atts ) {
         'offset' 		=> $atts['offset'],
         'crop' 			=> $atts['crop'],
         'query' 		=> $atts['query'],
+        'filter'        => $atts['filter'],
+        'filter_max'    => $atts['filter_max'],
+        'posts_per_page'=> $atts['masonry_max'],
         'thumbs'        => $atts['thumbs'],
         'meta'          => $atts['meta'],
         'excerpt'       => $atts['excerpt'],
+        'titles'        => $atts['titles'],
         'more'          => $atts['more'],
-        'context'       => 'grid',
+        'context'       => $context,
         'shortcode'     => true,
-        'class'         => 'shortcode-grid-wrap'
+        'class'         => "shortcode-{$context}-wrap"
     );
 
     // Categories
