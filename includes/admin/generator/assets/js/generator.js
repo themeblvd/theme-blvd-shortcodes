@@ -87,7 +87,7 @@ jQuery(document).ready(function($){
 						arg = arg.replace(new RegExp('_'+val, 'g'), '');
 					}
 
-					if ( val ) {
+					if ( val && val !== '0' ) {
 
 						if ( ( type == 'icon' || val != 'none' ) && arg != 'sc_content' ) {
 							markup += ' '+arg+'="'+val+'"';
@@ -146,12 +146,6 @@ jQuery(document).ready(function($){
 
 				}
 
-				/*
-				if ( counter == 0 ) {
-					markup = markup.replace(' ', '');
-				}
-				*/
-
 				markup += ']';
 
 				if ( include_content ) {
@@ -161,7 +155,7 @@ jQuery(document).ready(function($){
 					content = content.replace(/(\r\n|\n|\r)/gm, '<br>');
 
 					if ( ( raw || clean ) && content ) {
-						markup += '<br>'+content+'</br />';
+						markup += '<br>'+content+'<br>';
 					} else {
 						markup += content;
 					}
