@@ -47,6 +47,7 @@
  *		- post_list_slider	=> @since 1.0.0
  *      - gallery_slider    => @since 1.3.0
  * (6) Display Posts
+ *      - blog              => @since 1.5.0
  *		- post_grid			=> @since 1.0.0
  *      - post_showcase     => @since 1.5.0
  *		- post_list			=> @since 1.0.0
@@ -1791,13 +1792,13 @@ function themeblvd_shortcode_post_grid( $atts, $content = null, $tag = '' ) {
 }
 
 /**
- * Post List
+ * Post List and Blog
  *
  * @since 1.0.0
  *
  * @param array $atts Standard WordPress shortcode attributes
  */
-function themeblvd_shortcode_post_list( $atts ) {
+function themeblvd_shortcode_post_list( $atts, $content = '', $tag = '' ) {
 
     $default = array(
         'categories' 	=> '',					// @deprecated -- Category slug(s) to include/exclude
@@ -1806,21 +1807,41 @@ function themeblvd_shortcode_post_list( $atts ) {
         'tag'           => '',                  // tag: Tag(s) to include/exclude
         'portfolio'     => '',                  // portfolio: Portfolio(s) slugs to include, requires Portfolios plugin
         'portfolio_tag' => '',                  // portfolio_tag: Portfolio Tag(s) to include, requires Portfolios plugin
-		//'post_content' 	=> 'default',			// content: Show excerpts or full content - default, content, excerpt
-		'numberposts' 	=> 3,					// numberposts: Total number of posts, -1 for all posts
+		'numberposts' 	=> '3',					// numberposts: Total number of posts, -1 for all posts
         'orderby' 		=> 'date',				// orderby: date, title, comment_count, rand
         'order' 		=> 'DESC',				// order: DESC, ASC
-        'offset' 		=> 0,					// offset: Number of posts to offset off the start, defaults to 0
+        'offset' 		=> '0',					// offset: Number of posts to offset off the start, defaults to 0
         'query' 		=> '', 					// custom query string
+        'filter'        => 'false',             // filter: Whether to use filtering - false or taxonomy name to filter by
         'thumbs'        => '',                  // thumbs: show, hide
         'meta'          => '',                  // meta: show, hide
         'more'          => ''                   // more: hide, text, button
     );
     $atts = shortcode_atts( $default, $atts );
 
+    if ( $tag == 'blog' ) {
+        $display = $context = 'blog';
+    } else {
+        $display = $context = 'list';
+    }
+
+    // Convert booleans
+    foreach( $atts as $key => $value ) {
+        if ( $value === 'true' ) {
+            $atts[$key] = true;
+        } else if ( $value === 'false' ) {
+            $atts[$key] = false;
+        }
+    }
+
+    // Allow user to use "tag" instead of "post_tag"
+    if ( $atts['filter'] == 'tag' ) {
+        $atts['filter'] = 'post_tag';
+    }
+
     // Build $options array compatible to element's function
     $options = array(
-        'display'       => 'list',
+        'display'       => $display,
         'thumbs' 		=> $atts['thumbs'],
         'content' 		=> 'excerpt',
         'tag'           => $atts['tag'],
@@ -1831,11 +1852,13 @@ function themeblvd_shortcode_post_list( $atts ) {
         'order' 		=> $atts['order'],
         'offset' 		=> $atts['offset'],
         'query' 		=> $atts['query'],
+        'filter'        => $atts['filter'],
         'thumbs'        => $atts['thumbs'],
         'meta'          => $atts['meta'],
         'more'          => $atts['more'],
-        'context'       => 'list',
-        'shortcode'     => true
+        'context'       => $context,
+        'shortcode'     => true,
+        'class'         => "shortcode-{$context}-wrap"
     );
 
     // Categories

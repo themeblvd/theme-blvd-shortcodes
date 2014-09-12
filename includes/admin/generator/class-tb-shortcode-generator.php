@@ -498,6 +498,7 @@ class Theme_Blvd_Shortcode_Generator {
 				'id'	=> 'display_posts',
 				'name'	=> __( 'Display Posts', 'themeblvd_shortcodes' ),
 				'sub'	=> array(
+					'blog'				=> __('Blog', 'themeblvd_shortcodes'),
 					'post_grid'			=> __('Post Grid', 'themeblvd_shortcodes'),
 					'post_showcase'		=> __('Post Showcase', 'themeblvd_shortcodes'),
 					'post_list'			=> __('Post List', 'themeblvd_shortcodes'),
@@ -1155,6 +1156,100 @@ class Theme_Blvd_Shortcode_Generator {
 		/* Display Posts
 		/*--------------------------------------------*/
 
+		// Blog
+		$options['blog'] = array(
+			'category_name' => array(
+				'name' 		=> __( 'Option 1: Posts By Category', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'themeblvd_shortcodes' ),
+				'id' 		=> 'category_name',
+				'std' 		=> '',
+				'type' 		=> 'text'
+			),
+			'tag' => array(
+				'name' 		=> __( 'Option 2: Posts By Tag', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Tag to include posts from.<br />Ex: my-tag', 'themeblvd_shortcodes' ),
+				'id' 		=> 'tag',
+				'std' 		=> '',
+				'type' 		=> 'text'
+			),
+			'portfolio' => array(
+				'name' 		=> __( 'Option 3: Posts By Portfolio', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Portfolio to include posts from, requires <a href="http://wordpress.org/plugins/portfolios/" target="_blank">Portfolios plugin</a>.<br />Ex: my-portfolio', 'themeblvd_shortcodes' ),
+				'id' 		=> 'portfolio',
+				'std' 		=> '',
+				'type' 		=> 'text'
+			),
+			'numberposts' => array(
+				'name' 		=> __( 'Number of Posts', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'The number of posts to display for the post list. If you\'re using filtering, make sure to set this to a high number, or use <code>-1</code> to have no limit on the amount of posts queried.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'numberposts',
+				'std' 		=> '4',
+				'type' 		=> 'text'
+			),
+			'orderby' => array(
+				'name' 		=> __( 'Order By', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'What to order the posts by.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'orderby',
+				'std' 		=> '',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'0' 			=> __('Date', 'themeblvd_shortcodes'),
+					'title' 		=> __('Title', 'themeblvd_shortcodes'),
+					'comment_count' => __('Number of Comments', 'themeblvd_shortcodes'),
+					'rand' 			=> __('Random', 'themeblvd_shortcodes')
+				)
+			),
+			'order' => array(
+				'name' 		=> __( 'Order', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'How to order the posts.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'order',
+				'std' 		=> '',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'0' 		=> __('Descending', 'themeblvd_shortcodes'),
+					'ASC' 		=> __('Ascending', 'themeblvd_shortcodes')
+				)
+			),
+			'offset' => array(
+				'name' 		=> __( 'Offset', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'How many posts to offset from the start of the query.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'offset',
+				'std' 		=> '0',
+				'type' 		=> 'text'
+			),
+			'query' => array(
+				'name' 		=> __( 'Custom Query', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( '<p>Custom query string to include posts.<br />Ex: foo=bar&foo2=bar2</p><p><em>Note: This is for advanced users and will override all other query-related options above.</em></p>', 'themeblvd_shortcodes' ),
+				'id' 		=> 'query',
+				'std' 		=> '',
+				'type' 		=> 'text'
+			),
+			'thumbs' => array(
+				'name' 		=> __( 'Featured Images', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Choose whether or not you want featured images to show for each post.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'thumbs',
+				'std' 		=> '',
+				'type' 		=> 'select',
+				'options' => array(
+					'0' 		=> __( 'Use default blog setting', 'themeblvd_shortcodes' ),
+					'show'		=> __( 'Show featured images', 'themeblvd_shortcodes' ), // will be converted to "full" by shortcode
+					'hide' 		=> __( 'Hide featured images', 'themeblvd_shortcodes' )
+				)
+			),
+			'meta' => array(
+				'name' 		=> __( 'Meta Information', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select if you\'d like the meta information (like date posted, author, etc) to show for each post.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'meta',
+				'std' 		=> '',
+				'type' 		=> 'select',
+				'options' 	=> array(
+					'0' 		=> __( 'Use default blog setting', 'themeblvd_shortcodes' ),
+					'show'		=> __( 'Show meta info', 'themeblvd_shortcodes' ),
+					'hide' 		=> __( 'Hide meta info', 'themeblvd_shortcodes' )
+				)
+			)
+		);
+
 		// Post Grid
 		$options['post_grid'] = array(
 			'category_name' => array(
@@ -1232,8 +1327,8 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'filter' => array(
 				'id' 		=> 'filter',
-				'name'		=> __( 'Filtering', 'themeblvd_builder' ),
-				'desc'		=> __( 'If you want to use filtering, select how the posts should be filtered by the website visitor.', 'themeblvd_builder' ),
+				'name'		=> __( 'Filtering', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'If you want to use filtering, select how the posts should be filtered by the website visitor.', 'themeblvd_shortcodes' ),
 				'type'		=> 'select',
 				'std'		=> '',
 				'options' => array(
@@ -1246,15 +1341,15 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'filter_max' => array(
 		    	'id' 		=> 'filter_max',
-				'name'		=> __( 'Filtering: Max Number of Posts', 'themeblvd_builder' ),
-				'desc'		=> __( 'If you\'re using filtering, you can use this option to limit the total number of posts queried. Ex: <code>50</code>', 'themeblvd_builder' ),
+				'name'		=> __( 'Filtering: Max Number of Posts', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'If you\'re using filtering, you can use this option to limit the total number of posts queried. Ex: <code>50</code>', 'themeblvd_shortcodes' ),
 				'type'		=> 'text',
 				'std'		=> ''
 			),
 			'masonry' => array(
 				'id' 		=> 'masonry',
-				'name'		=> __( 'Masonry', 'themeblvd_builder' ),
-				'desc'		=> __( 'Select if you\'d like the grid to be display in masonry mode.', 'themeblvd_builder' ),
+				'name'		=> __( 'Masonry', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'Select if you\'d like the grid to be display in masonry mode.', 'themeblvd_shortcodes' ),
 				'type'		=> 'select',
 				'std'		=> '',
 				'options' => array(
@@ -1264,46 +1359,46 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'masonry_max' => array(
 		    	'id' 		=> 'masonry_max',
-				'name'		=> __( 'Masonry: Max Number of Posts', 'themeblvd_builder' ),
-				'desc'		=> __( 'If using masonry (and not filtering), the maximum number of total posts to pull. Ex: <code>12</code>', 'themeblvd_builder' ),
+				'name'		=> __( 'Masonry: Max Number of Posts', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'If using masonry (and not filtering), the maximum number of total posts to pull. Ex: <code>12</code>', 'themeblvd_shortcodes' ),
 				'type'		=> 'text',
 				'std'		=> ''
 			),
 			'meta' => array(
-				'name' 		=> __( 'Meta Information', 'themeblvd_builder' ),
-				'desc' 		=> __( 'Select if you\'d like the meta information (like date posted, author, etc) to show for each post.', 'themeblvd_builder' ),
+				'name' 		=> __( 'Meta Information', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select if you\'d like the meta information (like date posted, author, etc) to show for each post.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'meta',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'0'			=> __( 'Use default post grid setting', 'themeblvd_builder' ),
-					'show'		=> __( 'Show meta info', 'themeblvd_builder' ),
-					'hide' 		=> __( 'Hide meta info', 'themeblvd_builder' )
+					'0'			=> __( 'Use default post grid setting', 'themeblvd_shortcodes' ),
+					'show'		=> __( 'Show meta info', 'themeblvd_shortcodes' ),
+					'hide' 		=> __( 'Hide meta info', 'themeblvd_shortcodes' )
 				)
 			),
 			'excerpt' => array(
-				'name' 		=> __( 'Excerpt', 'themeblvd_builder' ),
-				'desc' 		=> __( 'Select if you\'d like to show the excerpt or not for each post.', 'themeblvd_builder' ),
+				'name' 		=> __( 'Excerpt', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select if you\'d like to show the excerpt or not for each post.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'excerpt',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'0'			=> __( 'Use default post grid setting', 'themeblvd_builder' ),
-					'show'		=> __( 'Show excerpts', 'themeblvd_builder' ),
-					'hide' 		=> __( 'Hide excerpts', 'themeblvd_builder' )
+					'0'			=> __( 'Use default post grid setting', 'themeblvd_shortcodes' ),
+					'show'		=> __( 'Show excerpts', 'themeblvd_shortcodes' ),
+					'hide' 		=> __( 'Hide excerpts', 'themeblvd_shortcodes' )
 				)
 			),
 			'more' => array(
-				'name' 		=> __( 'Read More', 'themeblvd_builder' ),
-				'desc' 		=> __( 'What would you like to show for each post to lead the reader to the full post?', 'themeblvd_builder' ),
+				'name' 		=> __( 'Read More', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'What would you like to show for each post to lead the reader to the full post?', 'themeblvd_shortcodes' ),
 				'id' 		=> 'more',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'0'			=> __( 'Use default post grid setting', 'themeblvd_builder' ),
-					'text' 		=> __( 'Show text link', 'themeblvd_builder' ),
-					'button'	=> __( 'Show button', 'themeblvd_builder' ),
-					'none'		=> __( 'Show no button or text link', 'themeblvd_builder' )
+					'0'			=> __( 'Use default post grid setting', 'themeblvd_shortcodes' ),
+					'text' 		=> __( 'Show text link', 'themeblvd_shortcodes' ),
+					'button'	=> __( 'Show button', 'themeblvd_shortcodes' ),
+					'none'		=> __( 'Show no button or text link', 'themeblvd_shortcodes' )
 				)
 			),
 			'crop' => array(
@@ -1393,8 +1488,8 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'filter' => array(
 				'id' 		=> 'filter',
-				'name'		=> __( 'Filtering', 'themeblvd_builder' ),
-				'desc'		=> __( 'If you want to use filtering, select how the posts should be filtered by the website visitor.', 'themeblvd_builder' ),
+				'name'		=> __( 'Filtering', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'If you want to use filtering, select how the posts should be filtered by the website visitor.', 'themeblvd_shortcodes' ),
 				'type'		=> 'select',
 				'std'		=> '',
 				'options' => array(
@@ -1407,15 +1502,15 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'filter_max' => array(
 		    	'id' 		=> 'filter_max',
-				'name'		=> __( 'Filtering: Max Number of Posts', 'themeblvd_builder' ),
-				'desc'		=> __( 'If you\'re using filtering, you can use this option to limit the total number of posts queried. Ex: <code>50</code>', 'themeblvd_builder' ),
+				'name'		=> __( 'Filtering: Max Number of Posts', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'If you\'re using filtering, you can use this option to limit the total number of posts queried. Ex: <code>50</code>', 'themeblvd_shortcodes' ),
 				'type'		=> 'text',
 				'std'		=> ''
 			),
 			'masonry' => array(
 				'id' 		=> 'masonry',
-				'name'		=> __( 'Masonry', 'themeblvd_builder' ),
-				'desc'		=> __( 'Select if you\'d like the grid to be display in masonry mode.', 'themeblvd_builder' ),
+				'name'		=> __( 'Masonry', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'Select if you\'d like the grid to be display in masonry mode.', 'themeblvd_shortcodes' ),
 				'type'		=> 'select',
 				'std'		=> 'true',
 				'options' => array(
@@ -1425,33 +1520,33 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'masonry_max' => array(
 		    	'id' 		=> 'masonry_max',
-				'name'		=> __( 'Masonry: Max Number of Posts', 'themeblvd_builder' ),
-				'desc'		=> __( 'If using masonry (and not filtering), the maximum number of total posts to pull. Ex: <code>12</code>', 'themeblvd_builder' ),
+				'name'		=> __( 'Masonry: Max Number of Posts', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'If using masonry (and not filtering), the maximum number of total posts to pull. Ex: <code>12</code>', 'themeblvd_shortcodes' ),
 				'type'		=> 'text',
 				'std'		=> '12'
 			),
 			'titles' => array(
-				'name' 		=> __( 'Titles', 'themeblvd_builder' ),
-				'desc' 		=> __( 'Select if you\'d like to show the title or not for each post.', 'themeblvd_builder' ),
+				'name' 		=> __( 'Titles', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select if you\'d like to show the title or not for each post.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'titles',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'0'			=> __( 'Use default post showcase setting', 'themeblvd_builder' ),
-					'show'		=> __( 'Show titles', 'themeblvd_builder' ),
-					'hide' 		=> __( 'Hide titles', 'themeblvd_builder' )
+					'0'			=> __( 'Use default post showcase setting', 'themeblvd_shortcodes' ),
+					'show'		=> __( 'Show titles', 'themeblvd_shortcodes' ),
+					'hide' 		=> __( 'Hide titles', 'themeblvd_shortcodes' )
 				)
 			),
 			'excerpt' => array(
-				'name' 		=> __( 'Excerpt', 'themeblvd_builder' ),
-				'desc' 		=> __( 'Select if you\'d like to show the excerpt or not for each post.', 'themeblvd_builder' ),
+				'name' 		=> __( 'Excerpt', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select if you\'d like to show the excerpt or not for each post.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'excerpt',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'0'			=> __( 'Use default post showcase setting', 'themeblvd_builder' ),
-					'show'		=> __( 'Show excerpts', 'themeblvd_builder' ),
-					'hide' 		=> __( 'Hide excerpts', 'themeblvd_builder' )
+					'0'			=> __( 'Use default post showcase setting', 'themeblvd_shortcodes' ),
+					'show'		=> __( 'Show excerpts', 'themeblvd_shortcodes' ),
+					'hide' 		=> __( 'Hide excerpts', 'themeblvd_shortcodes' )
 				)
 			),
 			'crop' => array(
@@ -1534,8 +1629,8 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'filter' => array(
 				'id' 		=> 'filter',
-				'name'		=> __( 'Filtering', 'themeblvd_builder' ),
-				'desc'		=> __( 'If you want to use filtering, select how the posts should be filtered by the website visitor.', 'themeblvd_builder' ),
+				'name'		=> __( 'Filtering', 'themeblvd_shortcodes' ),
+				'desc'		=> __( 'If you want to use filtering, select how the posts should be filtered by the website visitor.', 'themeblvd_shortcodes' ),
 				'type'		=> 'select',
 				'std'		=> '',
 				'options' => array(
@@ -1547,40 +1642,40 @@ class Theme_Blvd_Shortcode_Generator {
 				)
 			),
 			'thumbs' => array(
-				'name' 		=> __( 'Featured Images', 'themeblvd_builder' ),
-				'desc' 		=> __( 'Choose whether or not you want featured images to show for each post.', 'themeblvd_builder' ),
+				'name' 		=> __( 'Featured Images', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Choose whether or not you want featured images to show for each post.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'thumbs',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' => array(
-					'0' 		=> __( 'Use default post list setting', 'themeblvd_builder' ),
-					'show'		=> __( 'Show featured images', 'themeblvd_builder' ), // will be converted to "full" by shortcode
-					'hide' 		=> __( 'Hide featured images', 'themeblvd_builder' )
+					'0' 		=> __( 'Use default post list setting', 'themeblvd_shortcodes' ),
+					'show'		=> __( 'Show featured images', 'themeblvd_shortcodes' ), // will be converted to "full" by shortcode
+					'hide' 		=> __( 'Hide featured images', 'themeblvd_shortcodes' )
 				)
 			),
 			'meta' => array(
-				'name' 		=> __( 'Meta Information', 'themeblvd_builder' ),
-				'desc' 		=> __( 'Select if you\'d like the meta information (like date posted, author, etc) to show for each post.', 'themeblvd_builder' ),
+				'name' 		=> __( 'Meta Information', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select if you\'d like the meta information (like date posted, author, etc) to show for each post.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'meta',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'0' 		=> __( 'Use default post list setting', 'themeblvd_builder' ),
-					'show'		=> __( 'Show meta info', 'themeblvd_builder' ),
-					'hide' 		=> __( 'Hide meta info', 'themeblvd_builder' )
+					'0' 		=> __( 'Use default post list setting', 'themeblvd_shortcodes' ),
+					'show'		=> __( 'Show meta info', 'themeblvd_shortcodes' ),
+					'hide' 		=> __( 'Hide meta info', 'themeblvd_shortcodes' )
 				)
 			),
 			'more' => array(
-				'name' 		=> __( 'Read More', 'themeblvd_builder' ),
-				'desc' 		=> __( 'What would you like to show for each post to lead the reader to the full post?', 'themeblvd_builder' ),
+				'name' 		=> __( 'Read More', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'What would you like to show for each post to lead the reader to the full post?', 'themeblvd_shortcodes' ),
 				'id' 		=> 'more',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'0' 		=> __( 'Use default post list setting', 'themeblvd_builder' ),
-					'text' 		=> __( 'Show text link', 'themeblvd_builder' ),
-					'button'	=> __( 'Show button', 'themeblvd_builder' ),
-					'none'		=> __( 'Show no button or text link', 'themeblvd_builder' )
+					'0' 		=> __( 'Use default post list setting', 'themeblvd_shortcodes' ),
+					'text' 		=> __( 'Show text link', 'themeblvd_shortcodes' ),
+					'button'	=> __( 'Show button', 'themeblvd_shortcodes' ),
+					'none'		=> __( 'Show no button or text link', 'themeblvd_shortcodes' )
 				)
 			)
 		);
@@ -2394,40 +2489,40 @@ class Theme_Blvd_Shortcode_Generator {
 				'type' 		=> 'text'
 			),
 			'meta' => array(
-				'name' 		=> __( 'Meta Information', 'themeblvd_builder' ),
-				'desc' 		=> __( 'Select if you\'d like the meta information (like date posted, author, etc) to show for each post.', 'themeblvd_builder' ),
+				'name' 		=> __( 'Meta Information', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select if you\'d like the meta information (like date posted, author, etc) to show for each post.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'meta',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'0'			=> __( 'Use default post grid setting', 'themeblvd_builder' ),
-					'show'		=> __( 'Show meta info', 'themeblvd_builder' ),
-					'hide' 		=> __( 'Hide meta info', 'themeblvd_builder' )
+					'0'			=> __( 'Use default post grid setting', 'themeblvd_shortcodes' ),
+					'show'		=> __( 'Show meta info', 'themeblvd_shortcodes' ),
+					'hide' 		=> __( 'Hide meta info', 'themeblvd_shortcodes' )
 				)
 			),
 			'excerpt' => array(
-				'name' 		=> __( 'Excerpt', 'themeblvd_builder' ),
-				'desc' 		=> __( 'Select if you\'d like to show the excerpt or not for each post.', 'themeblvd_builder' ),
+				'name' 		=> __( 'Excerpt', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select if you\'d like to show the excerpt or not for each post.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'excerpt',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'0'			=> __( 'Use default post grid setting', 'themeblvd_builder' ),
-					'show'		=> __( 'Show excerpts', 'themeblvd_builder' ),
-					'hide' 		=> __( 'Hide excerpts', 'themeblvd_builder' )
+					'0'			=> __( 'Use default post grid setting', 'themeblvd_shortcodes' ),
+					'show'		=> __( 'Show excerpts', 'themeblvd_shortcodes' ),
+					'hide' 		=> __( 'Hide excerpts', 'themeblvd_shortcodes' )
 				)
 			),
 			'more' => array(
-				'name' 		=> __( 'Read More', 'themeblvd_builder' ),
-				'desc' 		=> __( 'What would you like to show for each post to lead the reader to the full post?', 'themeblvd_builder' ),
+				'name' 		=> __( 'Read More', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'What would you like to show for each post to lead the reader to the full post?', 'themeblvd_shortcodes' ),
 				'id' 		=> 'more',
 				'std' 		=> '',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'0'			=> __( 'Use default post grid setting', 'themeblvd_builder' ),
-					'text' 		=> __( 'Show text link', 'themeblvd_builder' ),
-					'button'	=> __( 'Show button', 'themeblvd_builder' ),
-					'none'		=> __( 'Show no button or text link', 'themeblvd_builder' )
+					'0'			=> __( 'Use default post grid setting', 'themeblvd_shortcodes' ),
+					'text' 		=> __( 'Show text link', 'themeblvd_shortcodes' ),
+					'button'	=> __( 'Show button', 'themeblvd_shortcodes' ),
+					'none'		=> __( 'Show no button or text link', 'themeblvd_shortcodes' )
 				)
 			),
 			'crop' => array(

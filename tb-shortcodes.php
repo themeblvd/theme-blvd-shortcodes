@@ -146,6 +146,7 @@ function themeblvd_shortcodes_init() {
 		// Display Posts
 		add_shortcode( 'post_grid', 'themeblvd_shortcode_post_grid' );
 		add_shortcode( 'post_showcase', 'themeblvd_shortcode_post_grid' );
+		add_shortcode( 'blog', 'themeblvd_shortcode_post_list' );
 		add_shortcode( 'post_list', 'themeblvd_shortcode_post_list' );
 		add_shortcode( 'mini_post_grid', 'themeblvd_shortcode_mini_post_grid' );
 		add_shortcode( 'mini_post_list', 'themeblvd_shortcode_mini_post_list' );

@@ -100,9 +100,12 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Added `[testimonial]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added `[milestone]` and `[milestone_ring]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added `[post_showcase]` shortcode (requires Theme Blvd Framework 2.5+).
+* Added `[blog]` shortcode; this is similar to previous `[post_list]`.
 * Added custom color selection for `[button]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added custom text/background color selection for `[jumbotron]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added titles and captions to `[gallery_slider]` (requires Theme Blvd Framework 2.5+).
+* Added filter option to post lists and post grids (requires Theme Blvd Framework 2.5+).
+* Added masonry option to post grids (requires Theme Blvd Framework 2.5+).
 * Improvements to `[divider]` shortcode (requires Theme Blvd Framework 2.5+).
 * Improvements to `[progress_bar]` shortcode (requires Theme Blvd Framework 2.5+).
 * Adjustments to allow shortcodes to work with Ajax requests on the frontend of the site.
