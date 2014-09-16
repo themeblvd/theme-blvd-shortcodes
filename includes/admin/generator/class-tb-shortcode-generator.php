@@ -1650,6 +1650,7 @@ class Theme_Blvd_Shortcode_Generator {
 				'options' => array(
 					'0' 		=> __( 'Use default post list setting', 'themeblvd_shortcodes' ),
 					'show'		=> __( 'Show featured images', 'themeblvd_shortcodes' ), // will be converted to "full" by shortcode
+					'date'		=> __( 'Show date block', 'themeblvd_shortcodes' ),
 					'hide' 		=> __( 'Hide featured images', 'themeblvd_shortcodes' )
 				)
 			),
@@ -1770,9 +1771,11 @@ class Theme_Blvd_Shortcode_Generator {
 				'std' 		=> 'smaller',
 				'type' 		=> 'select',
 				'options' 	=> array(
+					'hide'		=> __('Hide', 'themeblvd_shortcodes' ),
 					'small' 	=> __('Small', 'themeblvd_shortcodes'),
 					'smaller' 	=> __('Smaller', 'themeblvd_shortcodes'),
-					'smallest' 	=> __('Smallest', 'themeblvd_shortcodes')
+					'smallest' 	=> __('Smallest', 'themeblvd_shortcodes'),
+					'date'		=> __('Date Block', 'themeblvd_shortcodes' )
 				)
 			),
 			'meta' => array(

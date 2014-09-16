@@ -1813,7 +1813,7 @@ function themeblvd_shortcode_post_list( $atts, $content = '', $tag = '' ) {
         'offset' 		=> '0',					// offset: Number of posts to offset off the start, defaults to 0
         'query' 		=> '', 					// custom query string
         'filter'        => 'false',             // filter: Whether to use filtering - false or taxonomy name to filter by
-        'thumbs'        => '',                  // thumbs: show, hide
+        'thumbs'        => '',                  // thumbs: show, hide, or date
         'meta'          => '',                  // meta: show, hide
         'more'          => ''                   // more: hide, text, button
     );
@@ -2007,7 +2007,7 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
         'order'         => 'DESC',      // order: DESC, ASC
         'offset'        => 0,           // offset: Number of posts to offset off the start, defaults to 0
         'query'         => '',          // custom query string
-        'thumb'         => 'smaller',   // thumbnail size - small, smaller, smallest, or hide
+        'thumb'         => 'smaller',   // thumbnail size - small, smaller, smallest, date, or hide
         'meta'          => 'show',      // show meta or not - show or hide
         'columns'       => '0'          // Optional number of columns to spread posts among
 	);
