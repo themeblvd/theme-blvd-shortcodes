@@ -419,12 +419,16 @@ class Theme_Blvd_Shortcode_Generator {
 												} else {
 
 													$options = $this->get_options( $group['id'] );
-													$output = themeblvd_option_fields( $group['id'], $options, array(), false );
 
 													printf( '<div class="shortcode-options shortcode-options-%1$s" data-type="%1$s">', $group['id'] );
 													$this->preview( $group['id'] );
 													echo '<div class="options-wrap">';
-													echo $output[0];
+
+													if ( $options ) {
+														$output = themeblvd_option_fields( $group['id'], $options, array(), false );
+														echo $output[0];
+													}
+
 													echo '</div><!-- .options-wrap (end) -->';
 													echo '</div><!-- .shortcode-options (end) -->';
 
@@ -532,6 +536,11 @@ class Theme_Blvd_Shortcode_Generator {
 				'sub'	=> array()
 			),
 			*/
+			array(
+				'id'	=> 'pricing_table',
+				'name'	=> __( 'Pricing Table', 'themeblvd_shortcodes' ),
+				'sub'	=> array()
+			),
 			array(
 				'id'	=> 'sliders',
 				'name'	=> __( 'Sliders', 'themeblvd_shortcodes' ),
@@ -2029,6 +2038,12 @@ class Theme_Blvd_Shortcode_Generator {
 		);
 
 		/*--------------------------------------------*/
+		/* Pricing Table
+		/*--------------------------------------------*/
+
+		$options['pricing_table'] = array();
+
+		/*--------------------------------------------*/
 		/* Sliders
 		/*--------------------------------------------*/
 
@@ -2833,6 +2848,8 @@ class Theme_Blvd_Shortcode_Generator {
 			)
 		);
 
+		$options = apply_filters( 'themeblvd_shortcodes_options', $options );
+
 		return apply_filters( 'themeblvd_shortcodes_options_'.$type, $options[$type] );
 	}
 
@@ -2943,6 +2960,38 @@ class Theme_Blvd_Shortcode_Generator {
 			$default_content .= '[toggle title="Toggle #2"]Content of toggle #2.[/toggle]<br>';
 			$default_content .= '[toggle title="Toggle #3"]Content of toggle #3.[/toggle]<br>';
 			$default_content .= '[/accordion]';
+
+		} else if ( $shortcode == 'pricing_table' ) {
+
+			$default_content .= '[raw]<br>';
+			$default_content .= '[pricing_table currency="$" currency_placement="before"]<br><br>';
+
+			$default_content .= '[pricing_column title="Bronze" price="40" price_subline="Per Month" button_text="Buy Now" button_url="#"]<br>';
+			$default_content .= 'Feature 1<br>';
+			$default_content .= 'Feature 2<br>';
+			$default_content .= 'Feature 3<br>';
+			$default_content .= '[/pricing_column]<br><br>';
+
+			$default_content .= '[pricing_column title="Silver" title_subline="Best Value" price="60" price_subline="Per Month" highlight="royal" popout="true" button_color="royal" button_text="Buy Now" button_url="#"]<br>';
+			$default_content .= 'Feature 1<br>';
+			$default_content .= 'Feature 2<br>';
+			$default_content .= 'Feature 3<br>';
+			$default_content .= '[/pricing_column]<br><br>';
+
+			$default_content .= '[pricing_column title="Gold" price_subline="Per Month" price="80" price_subline="Per Month" button_text="Buy Now" button_url="#"]<br>';
+			$default_content .= 'Feature 1<br>';
+			$default_content .= 'Feature 2<br>';
+			$default_content .= 'Feature 3<br>';
+			$default_content .= '[/pricing_column]<br><br>';
+
+			$default_content .= '[pricing_column title="Platinum" price_subline="Per Month" price="100" price_subline="Per Month" button_text="Buy Now" button_url="#"]<br>';
+			$default_content .= 'Feature 1<br>';
+			$default_content .= 'Feature 2<br>';
+			$default_content .= 'Feature 3<br>';
+			$default_content .= '[/pricing_column]<br><br>';
+
+			$default_content .= '[/pricing_table]<br>';
+			$default_content .= '[/raw]';
 
 		} else {
 

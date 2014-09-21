@@ -97,6 +97,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 * Added `[column]` shortcode; other column shortcodes are now deprecated.
 * Added `[lead]` shortcode.
+* Added `[pricing_table]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added `[testimonial]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added `[milestone]` and `[milestone_ring]` shortcode (requires Theme Blvd Framework 2.5+).
 * Added `[post_showcase]` shortcode (requires Theme Blvd Framework 2.5+).

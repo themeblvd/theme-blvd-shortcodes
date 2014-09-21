@@ -29,6 +29,7 @@
  *      - jumbotron         => @since 1.3.0
  *      - panel             => @since 1.3.0
  *      - testimonial       => @since 1.5.0
+ *      - pricing_table     => @since 1.5.0
  * (3) Inline Elements
  *		- icon				=> @since 1.0.0
  *		- icon_link 		=> @since 1.0.0
@@ -760,6 +761,78 @@ function themeblvd_shortcode_testimonial( $atts, $content = null ) {
     return themeblvd_get_testimonial( $atts );
 }
 
+/**
+ * Pricing table
+ *
+ * @since 1.5.0
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @param string $content Content in shortcode
+ * @param string $output The enclosed content
+ */
+function themeblvd_shortcode_pricing_table( $atts, $content = null ) {
+
+    // This shortcode requires Theme Blvd Framework 2.5+
+    if ( ! function_exists('themeblvd_get_pricing_table') ) {
+        return __( 'Your theme does not support the [pricing_table] shortcode. You must be using a theme with Theme Blvd Framework 2.5+', 'themeblvd_shortcodes' );
+    }
+
+    $defaults = array(
+        'currency'              => '$',         // Symbol to represent currency
+        'currency_placement'    => 'before'     // Whether to place the currency symbol before or after prices
+    );
+    $atts = shortcode_atts( $defaults, $atts );
+
+    $cols = array();
+    $pattern = str_replace( 'pricing_table', 'pricing_table|pricing_column', get_shortcode_regex() );
+
+    if ( preg_match_all( '/'. $pattern .'/s', $content, $m ) ) {
+
+        if ( ! empty( $m[0] ) ) {
+            foreach ( $m[0] as $key => $val ) {
+                $cols[$key] = shortcode_parse_atts( $m[3][$key] );
+                $cols[$key]['features'] = trim( $m[5][$key] );
+
+                if ( ! empty( $cols[$key]['button_text'] ) ) {
+                    $cols[$key]['button'] = true;
+                }
+            }
+        }
+
+
+    }
+
+    return themeblvd_get_pricing_table( $cols, $atts );
+}
+
+/**
+ * Build data for the column of a pricing table to
+ * pass back to [pricing_table] shortcode.
+ *
+ * @since 1.5.0
+ *
+ * @param array $atts Standard WordPress shortcode attributes
+ * @param string $content Content in shortcode
+ * @param string $output The enclosed content
+ */
+function themeblvd_shortcode_pricing_columns( $m ) {
+
+    $cols = array();
+
+    // echo '<pre>'; print_r($m); echo '</pre>';
+
+
+
+
+    $atts = shortcode_parse_atts( $m[3] );
+
+    echo '<pre>'; print_r($atts); echo '</pre>';
+
+
+    // $features = $m[5];
+
+}
+
 /*-----------------------------------------------------------*/
 /* Inline Elements
 /*-----------------------------------------------------------*/
@@ -1405,7 +1478,7 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         'meta'          => '',          // meta: show, hide
         'excerpt'       => '',          // excerpt: show, hide
         'more'          => '',          // more: hide, text, button
-        'crop'			=> '',			// crop: Can manually enter a featured image crop size
+        'crop'			=> 'tb_grid',	// crop: Can manually enter a featured image crop size
 
         // @deprecated
         'fx'            => 'slide',     // fx: Transition of slider - fade, slide
