@@ -633,7 +633,7 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
         'bg_color'      => '',      // Background hex color value
         'text_color'    => '',      // Text hex color value
         'text_align'    => 'left',  // How to align text - left, right, center
-        'align'         => '',      // How to align jumbotron - left, right
+        'align'         => '',      // How to align jumbotron - left, right, center
         'max_width'     => '',      // Meant to be used with align left/right - 300px, 50%, etc
         'class'         => '',      // Any additional CSS classes
         'wpautop'       => 'true'   // Whether to apply wpautop on content
@@ -643,6 +643,8 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
     $output = __('Your theme does not support the [jumbotron] shortcode.', 'themeblvd_shortcodes');
 
     if ( function_exists( 'themeblvd_get_jumbotron' ) ) {
+
+        $atts['max'] = $atts['max_width'];
 
         if ( $atts['wpautop'] === 'false' ) {
             $atts['wpautop'] = false;
