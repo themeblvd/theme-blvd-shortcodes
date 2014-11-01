@@ -9,14 +9,14 @@ class Theme_Blvd_Shortcode_Generator {
 	 *
 	 * @since 1.4.0
 	 */
-	private $sliders = array();
+	public $sliders = array();
 
 	/**
 	 * An array of framework's image icons.
 	 *
 	 * @since 1.4.0
 	 */
-	private $image_icons = array();
+	public $image_icons = array();
 
 	/**
 	 * An array of framework's vector FontAwesome icons.
@@ -24,6 +24,13 @@ class Theme_Blvd_Shortcode_Generator {
 	 * @since 1.4.0
 	 */
 	private $vector_icons = array();
+
+	/**
+	 * Legacy object, if neccessary
+	 *
+	 * @since 1.5.0
+	 */
+	private $legacy = null;
 
 	/**
 	 * Constructor.
@@ -122,6 +129,15 @@ class Theme_Blvd_Shortcode_Generator {
 
 			}
 
+			/*--------------------------------------------*/
+			/* Run legacy?
+			/*--------------------------------------------*/
+
+			if ( class_exists('Theme_Blvd_Shortcode_Generator_Legacy') ) {
+				$this->legacy = new Theme_Blvd_Shortcode_Generator_Legacy($this);
+
+			}
+
 		}
 
 		/*--------------------------------------------*/
@@ -200,6 +216,11 @@ class Theme_Blvd_Shortcode_Generator {
 			wp_enqueue_script( 'themeblvd_admin', TB_FRAMEWORK_URI . '/admin/assets/js/shared.min.js', array('jquery'), TB_FRAMEWORK_VERSION );
 
 			wp_enqueue_style( 'themeblvd_options', TB_FRAMEWORK_URI . '/admin/options/css/admin-style.min.css', null, TB_FRAMEWORK_VERSION );
+
+			if ( $this->legacy ) {
+				wp_enqueue_style( 'color-picker', TB_FRAMEWORK_URI . '/admin/options/css/colorpicker.min.css' );
+				wp_enqueue_script( 'color-picker', TB_FRAMEWORK_URI . '/admin/options/js/colorpicker.min.js', array('jquery') );
+			}
 
 			// FontAwesome
 			wp_enqueue_style( 'fontawesome', TB_FRAMEWORK_URI . '/assets/plugins/fontawesome/css/font-awesome.min.css', null, TB_FRAMEWORK_VERSION );
@@ -472,6 +493,11 @@ class Theme_Blvd_Shortcode_Generator {
 	 * @since 1.4.0
 	 */
 	private function get_groups() {
+
+		if ( $this->legacy ) {
+			return $this->legacy->get_groups();
+		}
+
 		$groups = array(
 			array(
 				'id'	=> 'button',
@@ -586,6 +612,10 @@ class Theme_Blvd_Shortcode_Generator {
 	 * @return $options array array of options for a shortcode
 	 */
 	private function get_options( $type ) {
+
+		if ( $this->legacy ) {
+			return $this->legacy->get_options( $type );
+		}
 
 		// Note: For utilizeing a shortcode that includes content like:
 		// [example]Content...[/example]

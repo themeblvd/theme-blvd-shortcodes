@@ -53,7 +53,13 @@ function themeblvd_shortcodes_init() {
 
 		// Add shortcode generator -- Can be disabled from WP > Settings > Writing
 		if( get_option( 'themeblvd_shortcode_generator' ) != 'no' ) {
+
 			include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/admin/generator/class-tb-shortcode-generator.php' );
+
+			if ( version_compare(TB_FRAMEWORK_VERSION, '2.5.0', '<') ) {
+				include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/admin/generator/class-tb-shortcode-generator-legacy.php' );
+			}
+
 			$_themeblvd_shortcode_generator = new Theme_Blvd_Shortcode_Generator();
 		}
 
