@@ -630,8 +630,11 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
 
     $defaults = array(
         'title'         => '',      // Title of unit
-        'bg_color'      => '',      // Background hex color value
-        'text_color'    => '',      // Text hex color value
+        'bg_color'      => '',      // Background hex color value (framework 2.5+)
+        'title_size'    => '',      // Title text size (framework 2.5+)
+        'title_color'   => '',      // Title text hex color value (framework 2.5+)
+        'text_size'     => '',      // Content text size (framework 2.5+)
+        'text_color'    => '',      // Content text hex color value (framework 2.5+)
         'text_align'    => 'left',  // How to align text - left, right, center
         'align'         => '',      // How to align jumbotron - left, right, center
         'max_width'     => '',      // Meant to be used with align left/right - 300px, 50%, etc
@@ -639,6 +642,22 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
         'wpautop'       => 'true'   // Whether to apply wpautop on content
     );
     $atts = shortcode_atts( $defaults, $atts );
+
+    if ( ! $atts['title_size'] ) {
+        unset($atts['title_size']);
+    }
+
+    if ( ! $atts['title_color'] ) {
+        unset($atts['title_color']);
+    }
+
+    if ( ! $atts['text_size'] ) {
+        unset($atts['text_size']);
+    }
+
+    if ( ! $atts['text_color'] ) {
+        unset($atts['text_color']);
+    }
 
     $output = __('Your theme does not support the [jumbotron] shortcode.', 'themeblvd_shortcodes');
 

@@ -730,10 +730,6 @@ class Theme_Blvd_Shortcode_Generator {
 			)
 		);
 
-		if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
-			$options['button']['size']['options']['x-large'] = __('Extra Large', 'themeblvd_shortcodes');
-		}
-
 		/*--------------------------------------------*/
 		/* Columns
 		/*--------------------------------------------*/
@@ -761,21 +757,6 @@ class Theme_Blvd_Shortcode_Generator {
 				'std'		=> '1'
 			)
 		);
-
-		if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
-			$options['column']['setup']['desc'] = __( 'Choose the number of columns along with the corresponding width configurations. This will give you a starting point for columns arrangement you can insert into your page or post.', 'themeblvd_shortcodes' );
-			$options['column']['setup']['std'] = array(
-	           'num' => '3',
-	           'width' => array(
-                    '1' => 'grid_12',
-                    '2' => 'grid_6-grid_6',
-                    '3' => 'grid_4-grid_4-grid_4',
-                    '4' => 'grid_3-grid_3-grid_3-grid_3',
-                    '5' => 'grid_fifth_1-grid_fifth_1-grid_fifth_1-grid_fifth_1-grid_fifth_1'
-                )
-			);
-			$options['column']['setup']['options'] = 'element';
-		}
 
 		/*--------------------------------------------*/
 		/* Components
@@ -890,9 +871,44 @@ class Theme_Blvd_Shortcode_Generator {
 				'std' 		=> '',
 				'type' 		=> 'color'
 			),
+			'title_size' => array(
+				'name' 		=> __( 'Title Text Size', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select the size of the title text in the unit.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'title_size',
+				'std'		=> '30px',
+				'type'		=> 'slide',
+				'options'	=> array(
+					'units'	=> 'px',
+					'min'	=> '10',
+					'max'	=> '50',
+					'step'	=> '1'
+				)
+			),
+			/*
+			'title_color' => array(
+				'name' 		=> __( 'Title Text Color', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select the color of the title text in the unit.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'title_color',
+				'std' 		=> '',
+				'type' 		=> 'color'
+			),
+			*/
+			'text_size' => array(
+				'name' 		=> __( 'Content Text Size', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select the size of the content text in the unit.', 'themeblvd_shortcodes' ),
+				'id' 		=> 'text_size',
+				'std'		=> '18px',
+				'type'		=> 'slide',
+				'options'	=> array(
+					'units'	=> 'px',
+					'min'	=> '10',
+					'max'	=> '50',
+					'step'	=> '1'
+				)
+			),
 			'text_color' => array(
-				'name' 		=> __( 'Text Color', 'themeblvd_shortcodes' ),
-				'desc' 		=> __( 'Select the color of the text in the unit.', 'themeblvd_shortcodes' ),
+				'name' 		=> __( 'Content Text Color', 'themeblvd_shortcodes' ),
+				'desc' 		=> __( 'Select the color of all the text in the unit.', 'themeblvd_shortcodes' ),
 				'id' 		=> 'text_color',
 				'std' 		=> '',
 				'type' 		=> 'color'
