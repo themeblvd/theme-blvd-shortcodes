@@ -617,7 +617,12 @@ jQuery(document).ready(function($){
 		content = content.replace(/<hr>/gi, '');
 
 		// HTML decode, if necessary
-		content = $("<div/>").html(content).text();
+		if ( type == 'icon_list' ) {
+			content = $("<div/>").html(content).text();
+			content = content.replace(/<ul>/gi, '\n<ul>\n');
+			content = content.replace(/<\/li>/gi, '<\/li>\n');
+			content = content.replace(/<\/ul>/gi, '<\/ul>\n');
+		}
 
 		// Remove line break HTML if going to raw Text editor
 		if ( text ) {
