@@ -451,7 +451,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
 
     // Shortcode requires framework 2.3+
     if ( ! function_exists( 'themeblvd_is_lightbox_url' ) ) {
-        $error = __('You must be using a theme with Theme Blvd framework v2.3+ to use the [lightbox] shortcode.', 'themeblvd_shortcodes' );
+        $error = __('You must be using a theme with Theme Blvd framework v2.3+ to use the [lightbox] shortcode.', 'theme-blvd-shortcodes' );
         return sprintf( '<div class="alert">%s</div>', $error );
     }
 
@@ -575,7 +575,7 @@ function themeblvd_shortcode_lightbox_gallery( $atts, $content = null ) {
 
     // Shortcode requires framework 2.3+
     if ( ! function_exists( 'themeblvd_is_lightbox_url' ) ) {
-        $error = __('You must be using a theme with Theme Blvd framework v2.3+ to use the [lightbox] shortcode.', 'themeblvd_shortcodes' );
+        $error = __('You must be using a theme with Theme Blvd framework v2.3+ to use the [lightbox] shortcode.', 'theme-blvd-shortcodes' );
         return sprintf( '<div class="alert">%s</div>', $error );
     }
 
@@ -608,7 +608,7 @@ function themeblvd_shortcode_blockquote( $atts ) {
     );
     $atts = shortcode_atts( $defaults, $atts );
 
-    $output = __('Your theme does not support the [blockquote] shortcode.', 'themeblvd_shortcodes');
+    $output = __('Your theme does not support the [blockquote] shortcode.', 'theme-blvd-shortcodes');
 
     if ( function_exists( 'themeblvd_get_blockquote' ) ) {
         $output = themeblvd_get_blockquote( $atts );
@@ -659,7 +659,7 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
         unset($atts['text_color']);
     }
 
-    $output = __('Your theme does not support the [jumbotron] shortcode.', 'themeblvd_shortcodes');
+    $output = __('Your theme does not support the [jumbotron] shortcode.', 'theme-blvd-shortcodes');
 
     if ( function_exists( 'themeblvd_get_jumbotron' ) ) {
 
@@ -751,7 +751,7 @@ function themeblvd_shortcode_testimonial( $atts, $content = null ) {
 
     // This shortcode requires Theme Blvd Framework 2.5+
     if ( ! function_exists('themeblvd_get_team_member') ) {
-        return __( 'Your theme does not support the [testimonial] shortcode. You must be using a theme with Theme Blvd Framework 2.5+', 'themeblvd_shortcodes' );
+        return __( 'Your theme does not support the [testimonial] shortcode. You must be using a theme with Theme Blvd Framework 2.5+', 'theme-blvd-shortcodes' );
     }
 
     $defaults = array(
@@ -795,7 +795,7 @@ function themeblvd_shortcode_pricing_table( $atts, $content = null ) {
 
     // This shortcode requires Theme Blvd Framework 2.5+
     if ( ! function_exists('themeblvd_get_pricing_table') ) {
-        return __( 'Your theme does not support the [pricing_table] shortcode. You must be using a theme with Theme Blvd Framework 2.5+', 'themeblvd_shortcodes' );
+        return __( 'Your theme does not support the [pricing_table] shortcode. You must be using a theme with Theme Blvd Framework 2.5+', 'theme-blvd-shortcodes' );
     }
 
     $defaults = array(
@@ -1233,7 +1233,7 @@ function themeblvd_shortcode_tabs( $atts, $content = null ) {
             $i++;
         }
     } else {
-        $output .= '<p class="tb-warning">'.__( 'No tabs found', 'themeblvd_shortcodes' ).'</p>';
+        $output .= '<p class="tb-warning">'.__( 'No tabs found', 'theme-blvd-shortcodes' ).'</p>';
     }
 
     if ( ! $output ) {
@@ -1692,7 +1692,7 @@ function themeblvd_shortcode_gallery_slider( $atts ) {
 
     // This shortcode requires Theme Blvd Framework 2.4.2+
     if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.2', '<' ) ) {
-        return __( 'Your theme does not support the [gallery_slider] shortcode. You must be using a theme with Theme Blvd Framework 2.4.2+', 'themeblvd_shortcodes' );
+        return __( 'Your theme does not support the [gallery_slider] shortcode. You must be using a theme with Theme Blvd Framework 2.4.2+', 'theme-blvd-shortcodes' );
     }
 
     $default = array(
@@ -2185,7 +2185,7 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
 function themeblvd_shortcode_milestone( $atts ) {
 
     if ( ! function_exists('themeblvd_get_milestone') ) {
-        return __('Your theme does not support the [milestone] shortcode.', 'themeblvd_shortcodes');
+        return __('Your theme does not support the [milestone] shortcode.', 'theme-blvd-shortcodes');
     }
 
     $default = array(
@@ -2216,7 +2216,7 @@ function themeblvd_shortcode_milestone( $atts ) {
 function themeblvd_shortcode_milestone_ring( $atts ) {
 
     if ( ! function_exists('themeblvd_get_milestone_ring') ) {
-        return __('Your theme does not support the [milestone_ring] shortcode.', 'themeblvd_shortcodes');
+        return __('Your theme does not support the [milestone_ring] shortcode.', 'theme-blvd-shortcodes');
     }
 
     $default = array(
