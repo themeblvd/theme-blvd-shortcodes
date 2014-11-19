@@ -57,6 +57,7 @@ class Theme_Blvd_Column_Shortcode {
 		$output = '';
 
 		$default = array(
+			0 			=> '',		// For row close
 			'size' 		=> '',		// The fraction for the width of the column
 			'wpautop'	=> 'true',	// Whether wpautop happens within the column
 			'class'		=> ''		// CSS class to override framework grid class
@@ -79,7 +80,7 @@ class Theme_Blvd_Column_Shortcode {
 	    $this->add($size);
 
 	    // Setup the CSS class for the column
-	    $class = $this->get_class( $size, $atts['class'] );
+	    $class = $this->get_class( $size, $atts );
 
 	    // Start column output
 	    $output .= '<div class="'.$class.'">';
@@ -93,7 +94,7 @@ class Theme_Blvd_Column_Shortcode {
 	    $output .= '</div>';
 
 	    // Close row
-	    if ( $this->total >= 99 || ( isset($atts[0]) && trim($atts[0] ) == 'last') ) {
+	    if ( $this->total >= 99 || ( isset($atts[0]) && trim($atts[0]) == 'last') ) {
 	    	$output .= $this->close_row();
 	    	$this->total = 0;
 	    }
@@ -142,7 +143,7 @@ class Theme_Blvd_Column_Shortcode {
 	 *
 	 * @since 1.4.2
 	 */
-	public function get_class( $size, $custom ) {
+	public function get_class( $size, $atts ) {
 
 		$class = '';
 
@@ -151,7 +152,8 @@ class Theme_Blvd_Column_Shortcode {
 			// @deprecated
 			$class .= 'column ';
 			$class .= $this->to_class($size);
-			if ( $this->total >= 99 || ( isset($atts[0]) && trim($atts[0] ) == 'last') ) {
+
+			if ( $this->total >= 99 || ( isset($atts[0]) && trim($atts[0]) == 'last') ) {
 				$class .= ' last';
 			}
 
@@ -162,8 +164,8 @@ class Theme_Blvd_Column_Shortcode {
 
 		}
 
-		if ( $custom ) {
-			$class .= ' '.$custom;
+		if ( $atts['class'] ) {
+			$class .= ' '.$atts['class'];
 		}
 
 		return $class;
