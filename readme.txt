@@ -95,9 +95,11 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.5.2 =
 
+* Fixed "numberposts" attribute with `[post_list]` shortcode.
+
 = 1.5.1 =
 
-* Fixed issues with "last" attribute not closing rows properly in 2.2-2.4 framework themes.
+* Fixed issues with "last" attribute not closing rows properly.
 * GlotPress compatibility (for 2015 wordpress.org release).
 
 = 1.5.0 =

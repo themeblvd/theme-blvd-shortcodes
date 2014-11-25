@@ -1942,6 +1942,7 @@ function themeblvd_shortcode_post_list( $atts, $content = '', $tag = '' ) {
         'portfolio'     => $atts['portfolio'],
         'portfolio_tag' => $atts['portfolio_tag'],
         'posts_per_page'=> $atts['numberposts'],
+        'numberposts'   => $atts['numberposts'], // @deprecated
         'orderby' 		=> $atts['orderby'],
         'order' 		=> $atts['order'],
         'offset' 		=> $atts['offset'],
