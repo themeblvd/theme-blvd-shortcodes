@@ -771,6 +771,7 @@ class Theme_Blvd_Shortcode_Generator_Legacy {
 					'hide' 		=> __('Hide Thumbnails', 'theme-blvd-shortcodes')
 				)
 			),
+			/*
 			'post_content' => array(
 				'name' 		=> __( 'Post Content', 'theme-blvd-shortcodes' ),
 				'desc' 		=> __( 'How the content of posts display. If left to default, it will take the general setting from your Theme Options page.', 'theme-blvd-shortcodes' ),
@@ -783,6 +784,7 @@ class Theme_Blvd_Shortcode_Generator_Legacy {
 					'excerpt' 	=> __('Excerpts', 'theme-blvd-shortcodes')
 				)
 			),
+			*/
 			'category_name' => array(
 				'name' 		=> __( 'Option 1: Posts By Category', 'theme-blvd-shortcodes' ),
 				'desc' 		=> __( 'Category slug to include posts from.<br />Ex: my-category', 'theme-blvd-shortcodes' ),
