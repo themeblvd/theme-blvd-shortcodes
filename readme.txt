@@ -96,6 +96,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.5.3 =
 
 * Minor fixes to options in shortcode generator.
+* Minor security fix.
 
 = 1.5.2 =
 
