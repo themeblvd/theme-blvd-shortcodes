@@ -14,7 +14,7 @@ function themeblvd_shortcodes_warning() {
 
 	if( ! get_user_meta( $current_user->ID, 'tb-nag-shortcodes-no-framework' ) ) {
 		echo '<div class="updated">';
-		echo '<p>'.__( 'You currently have the "Theme Blvd Shortcodes" plugin activated, however you are not using a theme with Theme Blvd Framework v2.2+, and so this plugin will not do anything.', 'theme-blvd-shortcodes' ).'</p>';
+		echo '<p><strong>Theme Blvd Shortcodes: </strong>'.__( 'You are not using a theme with the Theme Blvd Framework, and so this plugin will not do anything.', 'theme-blvd-shortcodes' ).'</p>';
 		echo '<p><a href="'.themeblvd_shortcodes_disable_url('shortcodes-no-framework').'">'.__('Dismiss this notice', 'theme-blvd-shortcodes').'</a> | <a href="http://www.themeblvd.com" target="_blank">'.__('Visit ThemeBlvd.com', 'theme-blvd-shortcodes').'</a></p>';
 		echo '</div>';
 	}
