@@ -2148,12 +2148,31 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
     }
 
     // Format thumbnail size
-    if( $thumb == 'hide' ) {
+    $thumb = $atts['thumb'];
+
+    if ( ! $thumb || $thumb == 'hide' ) {
         $thumb = false;
     }
 
+    if ( $thumb ) {
+
+        $check = array('small', 'smaller', 'smallest');
+
+        if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+            $check[] = 'date';
+        }
+
+        if ( ! in_array($thumb, $check) ) {
+            $thumb = 'smaller';
+        }
+    }
+
     // Format meta
-    $meta == 'show' ? $meta = true : $meta = false;
+    $meta = false;
+
+    if ( $atts['meta'] == 'show' ) {
+        $meta = true;
+    }
 
     // Number of posts
     $atts['posts_per_page'] = $atts['numberposts'];
@@ -2162,13 +2181,35 @@ function themeblvd_shortcode_mini_post_list( $atts ) {
 
     // Output
     if ( version_compare ( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
+
         // @deprecated
-        $output = themeblvd_get_mini_post_list( $query, $atts['thumb'], $atts['meta'] );
+
+        if ( ! $thumb ) { // a crazy asinine hack for older themes
+            add_filter('themeblvd_mini_post_list_thumb_size', 'themeblvd_shortcode_mini_post_list_hack');
+        }
+
+        $output = themeblvd_get_mini_post_list( $query, $thumb, $meta );
+
+        if ( ! $thumb ) { // Finish the crazy asinine hack for older themes
+            remove_filter('themeblvd_mini_post_list_thumb_size', 'themeblvd_shortcode_mini_post_list_hack');
+        }
+
     } else {
-        $output = themeblvd_get_mini_post_list( $atts, $atts['thumb'], $atts['meta'] );
+        $output = themeblvd_get_mini_post_list( $atts, $thumb, $meta );
     }
 
     return $output;
+}
+
+/**
+ * When we want to hide the thumbnails, temporarily filter
+ * in a thumbnail size, just to avoid PHP warning in
+ * older themes. Yeah, it's weird and makes no sense...
+ *
+ * @since 1.5.4
+ */
+function themeblvd_shortcode_mini_post_list_hack() {
+    return 'tb_small';
 }
 
 /*-----------------------------------------------------------*/

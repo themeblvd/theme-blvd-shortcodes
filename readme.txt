@@ -95,6 +95,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.5.4 =
 
+* Fixes to `[mini_post_list]` options.
+
 = 1.5.3 =
 
 * Minor fixes to options in shortcode generator.

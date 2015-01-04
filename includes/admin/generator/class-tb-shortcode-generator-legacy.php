@@ -943,6 +943,7 @@ class Theme_Blvd_Shortcode_Generator_Legacy {
 				'std' 		=> 'smaller',
 				'type' 		=> 'select',
 				'options' 	=> array(
+					'hide' 		=> __('Hide', 'theme-blvd-shortcodes'),
 					'small' 	=> __('Small', 'theme-blvd-shortcodes'),
 					'smaller' 	=> __('Smaller', 'theme-blvd-shortcodes'),
 					'smallest' 	=> __('Smallest', 'theme-blvd-shortcodes')
