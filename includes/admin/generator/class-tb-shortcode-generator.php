@@ -412,11 +412,12 @@ class Theme_Blvd_Shortcode_Generator {
 
 														$options = $this->get_options( $id );
 														$output = themeblvd_option_fields( $id, $options, array(), false );
+														$output = str_replace('id="excerpt"', 'id="excerpt-option"', $output[0]);
 
 														printf( '<div class="shortcode-options shortcode-options-%s %s" data-type="%s">', $id, $hide, $id );
 														$this->preview( $group['id'], $id );
 														echo '<div class="options-wrap">';
-														echo $output[0];
+														echo $output;
 														echo '</div><!-- .options-wrap (end) -->';
 														echo '</div><!-- .shortcode-options (end) -->';
 
@@ -435,7 +436,8 @@ class Theme_Blvd_Shortcode_Generator {
 
 													if ( $options ) {
 														$output = themeblvd_option_fields( $group['id'], $options, array(), false );
-														echo $output[0];
+														$output = str_replace('id="excerpt"', 'id="excerpt-option"', $output[0]);
+														echo $output;
 													}
 
 													echo '</div><!-- .options-wrap (end) -->';

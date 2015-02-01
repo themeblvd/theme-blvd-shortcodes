@@ -95,6 +95,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.5.5 =
 
+* Fixed: When publishing a new page with shortcode generator active, there was a side effect of `$post->post_excerpt` getting saved as `0`, from an unrelated option in the generator with id "excerpt".
+
 = 1.5.4 =
 
 * Fixes to `[mini_post_list]` options.
