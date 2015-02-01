@@ -368,20 +368,6 @@ class Theme_Blvd_Shortcode_Generator {
 												break;
 
 											/*--------------------------------------------*/
-											/* Columns
-											/*--------------------------------------------*/
-
-											$options = $this->get_options( 'column' );
-											$output = themeblvd_option_fields( 'column', $options, array(), false );
-
-											echo '<div class="shortcode-options shortcode-options-column" data-type="column">';
-											$this->preview( 'column' );
-											echo '<div class="options-wrap">';
-											echo $output[0];
-											echo '</div><!-- .options-wrap (end) -->';
-											echo '</div><!-- .shortcode-options (end) -->';
-
-											/*--------------------------------------------*/
 											/* Icons
 											/*--------------------------------------------*/
 
