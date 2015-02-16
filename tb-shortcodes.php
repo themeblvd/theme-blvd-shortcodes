@@ -7,7 +7,7 @@ Author: Theme Blvd
 Author URI: http://themeblvd.com
 License: GPL2
 
-    Copyright 2013  Theme Blvd
+    Copyright 2015  Theme Blvd
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License version 2,
