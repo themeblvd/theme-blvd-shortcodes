@@ -1776,7 +1776,8 @@ function themeblvd_shortcode_post_grid( $atts, $content = null, $tag = '' ) {
         'more'          => '',                  // more: hide, text, button
 
         // [post_showcase]
-        'titles'        => ''                   // titles: Whether to show post titles when items are hovered on
+        'titles'        => '',                  // titles: Whether to show post titles when items are hovered on
+        'gutters'       => ''                   // gutters: Whether to have spacing between posts
     );
     $atts = shortcode_atts( $default, $atts );
 
