@@ -21,7 +21,9 @@ jQuery(document).ready(function($){
 				counter = 0,
 				arg = '',
 				val = '',
-				custom_button = false;
+				custom_button = false,
+				shadow_line = false,
+				has_icon = false;
 
 			if ( raw ) {
 				markup += '[raw]<br>';
@@ -65,7 +67,7 @@ jQuery(document).ready(function($){
 
 				$section.find('.of-input, .of-radio-img-radio, .tb-color-picker').each(function(){
 
-					if( $(this).hasClass('of-radio-img-radio') && !$(this).prop('checked') ) {
+					if ( $(this).hasClass('of-radio-img-radio') && ! $(this).prop('checked') ) {
 						return;
 					}
 
@@ -86,6 +88,23 @@ jQuery(document).ready(function($){
 					// Check for custom button
 					if ( type == 'button' && arg == 'color' && val == 'custom' ) {
 						custom_button = true;
+					}
+
+					// Divider
+					if ( type == 'divider' && arg == 'style' && val == 'shadow' ) {
+						shadow_line = true;
+					}
+
+					if ( shadow_line && arg != 'style' && arg != 'width' ) {
+						return;
+					}
+
+					if ( type == 'divider' && arg == 'icon' && val ) {
+						has_icon = true;
+					}
+
+					if ( type == 'divider' && ! has_icon && ( arg == 'icon_color' || arg == 'icon_size' ) ) {
+						return;
 					}
 
 					// Image radio's ID's aren't structured the same as other inputs

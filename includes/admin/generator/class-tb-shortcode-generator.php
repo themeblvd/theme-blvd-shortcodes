@@ -778,25 +778,86 @@ class Theme_Blvd_Shortcode_Generator {
 
 		// Divider
 		$options['divider'] = array(
+			'sub_group_start_1' => array(
+				'type' 		=> 'subgroup_start',
+				'class'		=> 'show-hide-toggle'
+			),
 			'style' => array(
-				'name' 		=> __( 'Style', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( 'The style of divider line used to breakup your content.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'style',
-				'std' 		=> 'solid',
-				'type' 		=> 'select',
+				'name'		=> __( 'Divider Type', 'theme-blvd-layout-builder' ),
+				'desc'		=> __( 'Select which style of divider you\'d like to use here.', 'theme-blvd-layout-builder' ),
+				'type'		=> 'select',
+				'std'		=> 'solid',
 				'options'		=> array(
-					'shadow' 		=> __( 'Shadow Line', 'theme-blvd-shortcodes' ),
-					'solid' 		=> __( 'Solid Line', 'theme-blvd-shortcodes' ),
-			        'dashed' 		=> __( 'Dashed Line', 'theme-blvd-shortcodes' ),
-					'double-solid' 	=> __( 'Double Solid Lines', 'theme-blvd-shortcodes' ),
-					'double-dashed' => __( 'Double Dashed Lines', 'theme-blvd-shortcodes' )
-				)
+					'shadow' 		=> __( 'Shadow Line', 'theme-blvd-layout-builder' ),
+					'solid' 		=> __( 'Solid Line', 'theme-blvd-layout-builder' ),
+			        'dashed' 		=> __( 'Dashed Line', 'theme-blvd-layout-builder' ),
+			        'thick-solid' 	=> __( 'Thick Solid Line', 'theme-blvd-layout-builder' ),
+			        'thick-dashed' 	=> __( 'Thick Dashed Line', 'theme-blvd-layout-builder' ),
+					'double-solid' 	=> __( 'Double Solid Lines', 'theme-blvd-layout-builder' ),
+					'double-dashed' => __( 'Double Dashed Lines', 'theme-blvd-layout-builder' )
+				),
+				'class'		=> 'trigger'
+			),
+			'color' => array(
+				'id' 		=> 'color',
+				'name'		=> __( 'Divider Color', 'theme-blvd-layout-builder' ),
+				'desc'		=> __( 'Select a custom color for your divider.', 'theme-blvd-layout-builder' ),
+				'std'		=> '#cccccc',
+				'type'		=> 'color',
+				'class'		=> 'hide receiver receiver-solid receiver-dashed receiver-thick-solid receiver-thick-dashed receiver-double-solid receiver-double-dashed'
+			),
+			'opacity' => array(
+				'id' 		=> 'opacity',
+				'name'		=> __( 'Divider Opacity', 'theme-blvd-layout-builder' ),
+				'desc'		=> __( 'Select an opacity for your divider. Selecting "1.0" means that the divider is not transparent, at all.', 'theme-blvd-layout-builder' ),
+				'std'		=> '1',
+				'type'		=> 'select',
+				'options'	=> array(
+					'0.1'	=> '0.1',
+					'0.2'	=> '0.2',
+					'0.3'	=> '0.3',
+					'0.4'	=> '0.4',
+					'0.5'	=> '0.5',
+					'0.6'	=> '0.6',
+					'0.7'	=> '0.7',
+					'0.8'	=> '0.8',
+					'0.9'	=> '0.9',
+					'1'		=> '1.0'
+				),
+				'class'		=> 'hide receiver receiver-solid receiver-dashed receiver-thick-solid receiver-thick-dashed receiver-double-solid receiver-double-dashed'
+			),
+			'icon' => array(
+				'id' 		=> 'icon',
+				'name'		=> __( 'Divider Icon', 'theme-blvd-layout-builder' ),
+				'desc'		=> __( '<p>Enter the icon placed in the middle of the divider line. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'theme-blvd-layout-builder' ),
+				'std'		=> '',
+				'type'		=> 'text',
+				'class'		=> 'hide receiver receiver-solid receiver-dashed receiver-thick-solid receiver-thick-dashed receiver-double-solid receiver-double-dashed'
+			),
+			'icon_color' => array(
+				'id' 		=> 'icon_color',
+				'name'		=> __( 'Icon', 'theme-blvd-layout-builder' ),
+				'desc'		=> __( '<p>If you entered an icon, select a color.</p><p><em>Note: You must enter an icon above for this to take effect.</em></p>', 'theme-blvd-layout-builder' ),
+				'std'		=> '#666666',
+				'type'		=> 'color',
+				'class'		=> 'hide receiver receiver-solid receiver-dashed receiver-thick-solid receiver-thick-dashed receiver-double-solid receiver-double-dashed'
+			),
+			'icon_size' => array(
+				'id' 		=> 'icon_size',
+				'name'		=> __( 'Icon Size', 'theme-blvd-layout-builder' ),
+				'desc'		=> __( '<p>If you ented an icon, enter the size in pixels. Ex: 15</p><p><em>You must enter an icon above for this to take effect.</em></p>', 'theme-blvd-layout-builder' ),
+				'std'		=> '15',
+				'type'		=> 'text',
+				'class'		=> 'hide receiver receiver-solid receiver-dashed receiver-thick-solid receiver-thick-dashed receiver-double-solid receiver-double-dashed'
+			),
+			'sub_group_end_1' => array(
+				'type' 		=> 'subgroup_end'
 			),
 			'width' => array(
 				'id' 		=> 'width',
-				'name'		=> __( 'Divider Width', 'theme-blvd-shortcodes' ),
-				'desc'		=> __( 'If you\'d like to restrict the width of the divider enter an integer in pixels.<br>Ex: 100', 'theme-blvd-shortcodes' ),
-				'std' 		=> '',
+				'name'		=> __( 'Divider Width', 'theme-blvd-layout-builder' ),
+				'desc'		=> __( 'If you\'d like to restrict the width of the divider enter an integer in pixels.<br>Ex: 100', 'theme-blvd-layout-builder' ),
 				'type'		=> 'text'
 			),
 			'placement' => array(

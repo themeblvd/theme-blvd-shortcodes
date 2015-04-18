@@ -344,17 +344,31 @@ function themeblvd_shortcode_alert( $atts, $content = null ) {
 function themeblvd_shortcode_divider( $atts, $content = null ) {
 
     $default = array(
-        'style'     => 'shadow',    // Style of divider - dashed, shadow, solid, double-solid, double-dashed
-        'width'     => '',          // A width for the divider in pixels
-        'placement' => 'equal'      // Where the divider sits between the content - equal, above (closer to content above), below (closer to content below)
+        'style'         => 'solid',     // Style of divider - shadow, solid, dashed, thick-solid, thick-dashed, double-solid, double-dashed
+        'color'         => '#cccccc',   // Hex color of divider (not for shadow style)
+        'opacity'       => '1',         // Opacity of divider (not for shadow style)
+        'icon'          => '',          // Icon placed in middle of devider, FontAwesome ID (not for shadow style)
+        'icon_color'    => '#666666',   // Color of icon (not for shadow style)
+        'icon_size'     => '15',        // Font size of icon (not for shadow style)
+        'width'         => '',          // A width for the divider in pixels
+        'placement'     => 'equal'      // Where the divider sits between the content - equal, above (closer to content above), below (closer to content below)
     );
     $atts = shortcode_atts( $default, $atts );
 
     if ( function_exists('themeblvd_get_divider') ) {
+
         $atts['type'] = $atts['style'];
+
+        if ( $atts['icon'] ) {
+            $atts['insert'] = 'icon';
+            $atts['text_color'] = $atts['icon_color'];
+            $atts['text_size'] = $atts['icon_size'];
+        }
+
         $output = themeblvd_get_divider( $atts );
+
     } else {
-        $output = themeblvd_divider( $atts['style'] );
+        $output = themeblvd_divider( $atts['style'] ); // @deprecated
     }
 
     return $output;
