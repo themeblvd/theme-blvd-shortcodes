@@ -105,7 +105,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 * Fixed: When publishing a new page with shortcode generator active, there was a side effect of `$post->post_excerpt` getting saved as `0`, from an unrelated option in the generator with id "excerpt".
 
-= 1.5.4 01/3/2015 =
+= 1.5.4 - 01/3/2015 =
 
 * Fixes to `[mini_post_list]` options.
 
@@ -123,7 +123,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Fixed issues with "last" attribute not closing rows properly.
 * GlotPress compatibility (for 2015 wordpress.org release).
 
-= 1.5.0 - 11/17/2014=
+= 1.5.0 - 11/17/2014 =
 
 * Added `[column]` shortcode; other column shortcodes are now deprecated.
 * Added `[lead]` shortcode.
@@ -152,7 +152,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Auto Lightbox feature will now work when image has a caption.
 * Auto Lightbox feature now disabled by default. Go to *WP Admin > Settings > Writing > Theme Blvd Shortcodes* to enable.
 
-= 1.4.0 - 04/16/2014=
+= 1.4.0 - 04/16/2014 =
 
 * All new shortcode generator.
 
