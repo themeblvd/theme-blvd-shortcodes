@@ -77,6 +77,12 @@ jQuery(document).ready(function($){
 						return;
 					}
 
+					// Fix "excerpt" arg; workaround for bug where WP uses our
+					// id="excerpt" to save excerpt of post.
+					if ( arg == 'excerpt-option' ) {
+						arg = 'excerpt';
+					}
+
 					// Check for custom button
 					if ( type == 'button' && arg == 'color' && val == 'custom' ) {
 						custom_button = true;
