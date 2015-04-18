@@ -1774,6 +1774,7 @@ function themeblvd_shortcode_post_grid( $atts, $content = null, $tag = '' ) {
         'thumbs'        => '',                  // thumbs: show, hide
         'meta'          => '',                  // meta: show, hide
         'more'          => '',                  // more: hide, text, button
+        'more_text'     => '',                  // more_text: Text for more button (not in generator)
 
         // [post_showcase]
         'titles'        => '',                  // titles: Whether to show post titles when items are hovered on
@@ -1841,6 +1842,7 @@ function themeblvd_shortcode_post_grid( $atts, $content = null, $tag = '' ) {
         'excerpt'       => $atts['excerpt'],
         'titles'        => $atts['titles'],
         'more'          => $atts['more'],
+        'more_text'     => $atts['more_text'],
         'context'       => $context,
         'shortcode'     => true,
         'class'         => "shortcode-{$context}-wrap"
@@ -1910,7 +1912,8 @@ function themeblvd_shortcode_post_list( $atts, $content = '', $tag = '' ) {
         'filter'        => 'false',             // filter: Whether to use filtering - false or taxonomy name to filter by
         'thumbs'        => '',                  // thumbs: show, hide, or date
         'meta'          => '',                  // meta: show, hide
-        'more'          => ''                   // more: hide, text, button
+        'more'          => '',                  // more: hide, text, button
+        'more_text'     => ''                   // more_text: Text for more button (not in generator)
     );
     $atts = shortcode_atts( $default, $atts );
 
@@ -1952,6 +1955,7 @@ function themeblvd_shortcode_post_list( $atts, $content = '', $tag = '' ) {
         'thumbs'        => $atts['thumbs'],
         'meta'          => $atts['meta'],
         'more'          => $atts['more'],
+        'more_text'     => $atts['more_text'],
         'context'       => $context,
         'shortcode'     => true,
         'class'         => "shortcode-{$context}-wrap"

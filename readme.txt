@@ -96,6 +96,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.5.6 =
 
 * Added support for `gutters="hide"` in `[post_showcase]` (requires Theme Blvd Framework 2.5+).
+* Allow `more_text` param to work for `[post_grid]` and `[post_list]`, even though it's not in the generator (requires Theme Blvd Framework 2.5+).
 * Fixed: In shortcode generator, `[post_grid]` and `[post_showcase]` outputting incorrect parameter for displaying excerpts.
 * Fixed: In shortcode generator, options with a value of "none" weren't getting inserted when selected.
 
