@@ -95,7 +95,7 @@ jQuery(document).ready(function($){
 
 					if ( val && val !== '0' ) {
 
-						if ( ( type == 'icon' || val != 'none' ) && arg != 'sc_content' ) {
+						if ( arg != 'sc_content' ) {
 							markup += ' '+arg+'="'+val+'"';
 						}
 

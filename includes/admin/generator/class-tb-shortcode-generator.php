@@ -923,10 +923,10 @@ class Theme_Blvd_Shortcode_Generator {
 				'name' 		=> __( 'Unit Alignment', 'theme-blvd-shortcodes' ),
 				'desc' 		=> __( 'How you\'d like to align the entire unit on the page.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'align',
-				'std' 		=> 'none',
+				'std' 		=> '0',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'none' 		=> __('None', 'theme-blvd-shortcodes'),
+					'0' 		=> __('None', 'theme-blvd-shortcodes'),
 					'left' 		=> __('Left', 'theme-blvd-shortcodes'),
 					'right' 	=> __('Right', 'theme-blvd-shortcodes'),
 					'center' 	=> __('Center', 'theme-blvd-shortcodes')
@@ -1118,10 +1118,10 @@ class Theme_Blvd_Shortcode_Generator {
 				'name' 		=> __( 'Alignment', 'theme-blvd-shortcodes' ),
 				'desc' 		=> __( 'How to align the entire quote block.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'align',
-				'std' 		=> 'none',
+				'std' 		=> '0',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'none' 		=> __('None', 'theme-blvd-shortcodes'),
+					'0' 		=> __('None', 'theme-blvd-shortcodes'),
 					'left' 		=> __('Left', 'theme-blvd-shortcodes'),
 					'right' 	=> __('Right', 'theme-blvd-shortcodes')
 				),
@@ -2309,7 +2309,7 @@ class Theme_Blvd_Shortcode_Generator {
 				'std' 		=> 'button',
 				'type' 		=> 'select',
 				'options'	=> array(
-					'none'			=> __('No linking', 'theme-blvd-shortcodes'),
+					'0'				=> __('No linking', 'theme-blvd-shortcodes'),
 					'image_post'	=> __('Images link to posts', 'theme-blvd-shortcodes'),
 					'image_link'	=> __('Images link to each post\'s featured image link setting', 'theme-blvd-shortcodes'),
 					'button'		=> __('Slides have buttons linking to posts', 'theme-blvd-shortcodes'),
@@ -2854,10 +2854,10 @@ class Theme_Blvd_Shortcode_Generator {
 				'name' 		=> __( 'Icon Rotation (optional)', 'theme-blvd-shortcodes' ),
 				'desc' 		=> __( 'Select how you\'d like to rotate the icon.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'rotate',
-				'std' 		=> 'none',
+				'std' 		=> '0',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'none' 		=> __('None', 'theme-blvd-shortcodes'),
+					'0' 		=> __('None', 'theme-blvd-shortcodes'),
 					'90' 		=> '90',
 					'180' 		=> '180',
 					'270' 		=> '270'
@@ -2867,10 +2867,10 @@ class Theme_Blvd_Shortcode_Generator {
 				'name' 		=> __( 'Icon Flip (optional)', 'theme-blvd-shortcodes' ),
 				'desc' 		=> __( 'Select how you\'d like to flip the icon.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'flip',
-				'std' 		=> 'none',
+				'std' 		=> '0',
 				'type' 		=> 'select',
 				'options' 	=> array(
-					'none' 		=> __('None', 'theme-blvd-shortcodes'),
+					'0' 		=> __('None', 'theme-blvd-shortcodes'),
 					'horizontal'=> __('Horizontal', 'theme-blvd-shortcodes'),
 					'vertical' 	=> __('Vertical', 'theme-blvd-shortcodes')
 				)
@@ -3042,7 +3042,7 @@ class Theme_Blvd_Shortcode_Generator {
 						continue;
 					}
 
-					if ( ! empty( $option['std'] ) && $option['std'] != 'none' && $option['id'] != 'sc_content' ) {
+					if ( ! empty( $option['std'] ) && $option['id'] != 'sc_content' ) {
 						$default_content .= sprintf( ' %s="%s"', $option['id'], $option['std'] );
 					}
 				}
