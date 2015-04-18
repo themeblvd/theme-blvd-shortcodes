@@ -5,11 +5,11 @@ Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
 Tested up to: 3.9
 Stable Tag: 1.5.6
 
-This plugin works in conjuction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
+This plugin works in conjunction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
 == Description ==
 
-Within the Theme Blvd framework there are many internal elements and other 3rd party items like [Twitter Bootstrap](http://twitter.github.com/bootstrap/) integration to make use of.  When using a Theme Blvd theme, this plugin gives you an extensive pack of shortcodes to extend the framework's functionality to your pages, posts, and custom layouts via shortcodes.
+Within themes using the Theme Blvd framework, there are many internal elements and other 3rd-party items like [Twitter Bootstrap](http://twitter.github.com/bootstrap/) [FontAwesome](http://fortawesome.github.io/Font-Awesome/) integration to make use of.  When using a [Theme Blvd theme](http://themeforest.net/user/ThemeBlvd/portfolio?ref=ThemeBlvd), this plugin gives you an extensive pack of shortcodes to extend the framework's functionality to your pages, posts, and custom layouts via shortcodes.
 
 After activating this plugin, you'll know it's ready to go by viewing the Edit Page or Edit Post screen and seeing the plugin's [shortcode generator](http://shortcodes.themeblvd.com/generator) button above your WordPress Editor. You'll then have access to the following shortcodes for use within your website.
 
@@ -93,7 +93,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
-= 1.5.6 =
+= 1.5.6 - 04/18/2015 =
 
 * Added support for `gutters="hide"` in `[post_showcase]` (requires Theme Blvd Framework 2.5+).
 * Added more options to `[divider]` shortcode, similar to Layout Builder (requires Theme Blvd Framework 2.5+).
@@ -101,29 +101,29 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Fixed: In shortcode generator, `[post_grid]` and `[post_showcase]` outputting incorrect parameter for displaying excerpts.
 * Fixed: In shortcode generator, options with a value of "none" weren't getting inserted when selected.
 
-= 1.5.5 =
+= 1.5.5 - 02/1/2015 =
 
 * Fixed: When publishing a new page with shortcode generator active, there was a side effect of `$post->post_excerpt` getting saved as `0`, from an unrelated option in the generator with id "excerpt".
 
-= 1.5.4 =
+= 1.5.4 01/3/2015 =
 
 * Fixes to `[mini_post_list]` options.
 
-= 1.5.3 =
+= 1.5.3 - 12/9/2015 =
 
 * Minor fixes to options in shortcode generator.
 * Minor security fix.
 
-= 1.5.2 =
+= 1.5.2 - 11/24/2014 =
 
 * Fixed "numberposts" attribute with `[post_list]` shortcode.
 
-= 1.5.1 =
+= 1.5.1 - 11/19/2014 =
 
 * Fixed issues with "last" attribute not closing rows properly.
 * GlotPress compatibility (for 2015 wordpress.org release).
 
-= 1.5.0 =
+= 1.5.0 - 11/17/2014=
 
 * Added `[column]` shortcode; other column shortcodes are now deprecated.
 * Added `[lead]` shortcode.
@@ -145,18 +145,18 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Fixed issues with inserting `[icon_list]` from shortcode generator.
 * Removed `[post_list_slider]` for newer themes, use `[post_slider]` or `[post_grid_slider]` instead.
 
-= 1.4.1 =
+= 1.4.1 - 04/23/2014 =
 
 * Fixes for `[box]`, `[icon_link]`, and `[label]` shortcodes' icon to work with older themes using FontAwesome 3.
 * Added "caption" parameter to [lightbox] shortcode.
 * Auto Lightbox feature will now work when image has a caption.
 * Auto Lightbox feature now disabled by default. Go to *WP Admin > Settings > Writing > Theme Blvd Shortcodes* to enable.
 
-= 1.4.0 =
+= 1.4.0 - 04/16/2014=
 
 * All new shortcode generator.
 
-= 1.3.0 =
+= 1.3.0 - 03/23/2014 =
 
 * Added `[gallery_slider]` shortcode (requires Theme Blvd Framework 2.4.2+).
 * Added `[jumbotron]` shortcode (requires Theme Blvd Framework 2.4.2+).
@@ -167,7 +167,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Fixed "icon" option for `[label]` with FontAwesome 4.
 * Updated `[icon_list]` to use FontAwesome 4's "fa-ul" and "fa-li" classes.
 
-= 1.2.0 =
+= 1.2.0 - 02/18/14 =
 
 * Added `[blockquote]` shortcode for easier Bootstrap quote formatting.
 * `[vector_icon]` shortcode fix for FontAwesome 4.
@@ -179,15 +179,15 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * `[progress_bar]` shortcode fix for Bootstrap 3.
 * Because of Bootstrap 3, `[tabs]` shortcode no longer has below, right, or left nav options.
 
-= 1.1.2 =
+= 1.1.2 - 08/27/13 =
 
 * Another small fix to the `[post_slider]` parameters for shortcode generator.
 
-= 1.1.1 =
+= 1.1.1 - 08/06/13 =
 
 * Fixed `[post_slider]` parameters for shortcode generator.
 
-= 1.1.0 =
+= 1.1.0 - 08/02/13 =
 
 * Added compatibility for [Portfolios](http://wordpress.org/plugins/portfolios/) plugin. With this plugin activated you can use "portfolio" and "portfolio_tag" parameters with `[post_grid]`, `[post_list]`, `[post_grid_slider]`, `[post_list_slider]`.
 * Added `[lightbox]` and `[lightbox_gallery]` shortcode.
@@ -197,19 +197,19 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Added optional "class" parameter to all column shortcodes.
 * Fixed "Dismiss" link not working on notices for some admin pages.
 
-= 1.0.6 =
+= 1.0.6 - 04/19/13 =
 
 * Added "tag" parameter for `[post_list]` and `[post_grid]`.
 * Added optional `wpautop=true` parameter on column shortcodes to allow forcing wpautop when wrapping column sets in `[raw]`.
 
-= 1.0.5 =
+= 1.0.5 - 03/23/13 =
 
 * Added custom "query" parameter for post list/grid slider shortcodes.
 * Added feature to start toggle as open. -- `[toggle open="true"]`
 * Fixed wpautop happenning before do_shortcode on "themeblvd_the_content".
 * Accounted for framework now adding more filters to "themeblvd_the_content" when adding in `[raw]` shortcode.
 
-= 1.0.4 =
+= 1.0.4 - 01/16/13 =
 
 * Added option at WP > Settings > Writing to turn off Shortcode generator from Visual Editor.
 * Added CSS classes to `[icon]` shortcode for any potential custom styling.
@@ -217,7 +217,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 * Added "tag" parameter for `[mini_post_list]`, `[mini_post_grid]`, `[post_list_slider]`, and `[post_grid_slider]`.
 * Updated generator options for modified shortcodes.
 
-= 1.0.3 =
+= 1.0.3 - 12/28/12 =
 
 * Added `[post_slider]` to shortcode generator.
 * Added custom query option to shortcode generator with applicable shortcodes.
@@ -227,15 +227,15 @@ size.
 * Fixed PHP warning with `[toggle]` shortcode.
 * Added compatibility for WPML with `[mini_post_list]` and `[mini_post_grid]`.
 
-= 1.0.2 =
+= 1.0.2 - 12/25/12 =
 
 * Added feature to override `[icon]` shortcode images from your Child theme. -- Just create a folder called "icons" in the root of your Child theme and any icons there will take presedence.
 * Added "width" parameter to `[icon]` shortcode. -- Defaults to 45px and will make implementing retina icons easier.
 
-= 1.0.1 =
+= 1.0.1 - 09/18/12 =
 
 * Fixed option forms not showing up with shortcode generator in ThickBox popup.
 
-= 1.0.0 =
+= 1.0.0 - 09/06/12 =
 
 * This is the first release.
