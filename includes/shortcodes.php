@@ -17,10 +17,10 @@
  *		- three_tenth		=> @since 1.0.0 @deprecated 1.5.0
  *		- seven_tenth		=> @since 1.0.0 @deprecated 1.5.0
  * (2) Components
+ *		- icon_list			=> @since 1.0.0
  *		- button 			=> @since 1.0.0
  *		- box				=> @since 1.0.0 @deprecated 1.4.0
  *		- alert				=> @since 1.0.0
- *		- icon_list			=> @since 1.0.0
  *		- divider			=> @since 1.0.0
  *		- popup				=> @since 1.0.0
  *      - lightbox          => @since 1.1.0
