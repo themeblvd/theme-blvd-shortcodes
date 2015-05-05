@@ -645,9 +645,9 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
     $defaults = array(
         'title'         => '',      // Title of unit
         'bg_color'      => '',      // Background hex color value (framework 2.5+)
-        'title_size'    => '',      // Title text size (framework 2.5+)
+        'title_size'    => '30px',  // Title text size (framework 2.5+)
         'title_color'   => '',      // Title text hex color value (framework 2.5+)
-        'text_size'     => '',      // Content text size (framework 2.5+)
+        'text_size'     => '18px',  // Content text size (framework 2.5+)
         'text_color'    => '',      // Content text hex color value (framework 2.5+)
         'text_align'    => 'left',  // How to align text - left, right, center
         'align'         => '',      // How to align jumbotron - left, right, center
@@ -657,25 +657,50 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
     );
     $atts = shortcode_atts( $defaults, $atts );
 
-    if ( ! $atts['title_size'] ) {
-        unset($atts['title_size']);
-    }
-
-    if ( ! $atts['title_color'] ) {
-        unset($atts['title_color']);
-    }
-
-    if ( ! $atts['text_size'] ) {
-        unset($atts['text_size']);
-    }
-
-    if ( ! $atts['text_color'] ) {
-        unset($atts['text_color']);
-    }
-
     $output = __('Your theme does not support the [jumbotron] shortcode.', 'theme-blvd-shortcodes');
 
     if ( function_exists( 'themeblvd_get_jumbotron' ) ) {
+
+        // Format content for framework 2.5+
+        if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=') ) {
+
+            $atts['blocks'] = array();
+
+            if ( $atts['title'] ) {
+                $atts['blocks']['block_1'] = array(
+    				'text'				=> $atts['title'],
+    			    'size'				=> $atts['title_size'],
+    			    'color'				=> $atts['title_color'],
+    			    'apply_bg_color'	=> '0',
+    			    'bg_color'			=> '#f2f2f2',
+    			    'bg_opacity'		=> '1',
+    			    'bold'				=> '1',
+    			    'italic'			=> '0',
+    			    'caps'				=> '0',
+    			    'wpautop'			=> '1'
+    			);
+            }
+
+            $atts['blocks']['block_2'] = array(
+                'text'				=> $content,
+                'size'				=> $atts['text_size'],
+                'color'				=> $atts['text_color'],
+                'apply_bg_color'	=> '0',
+                'bg_color'			=> '#f2f2f2',
+                'bg_opacity'		=> '1',
+                'bold'				=> '0',
+                'italic'			=> '0',
+                'caps'				=> '0',
+                'wpautop'			=> '1'
+            );
+
+            $content = null; // content blocks above replace $content in framework 2.5+
+
+        }
+
+        if ( $atts['bg_color'] ) {
+            $atts['apply_bg_color'] = '1';
+        }
 
         $atts['max'] = $atts['max_width'];
 
