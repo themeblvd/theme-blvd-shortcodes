@@ -664,7 +664,10 @@ class Theme_Blvd_Shortcode_Generator {
 					'mini' 			=> __('Mini', 'theme-blvd-shortcodes'),
 					'small' 		=> __('Small', 'theme-blvd-shortcodes'),
 					'default' 		=> __('Default', 'theme-blvd-shortcodes'),
-					'large' 		=> __('Large', 'theme-blvd-shortcodes')
+					'large' 		=> __('Large', 'theme-blvd-shortcodes'),
+					'x-large' 		=> __('X-Large', 'theme-blvd-shortcodes'),
+					'xx-large' 		=> __('XX-Large', 'theme-blvd-shortcodes'),
+					'xxx-large' 	=> __('XXX-Large', 'theme-blvd-shortcodes')
 				)
 			),
 			'icon_before' => array(

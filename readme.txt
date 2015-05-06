@@ -95,6 +95,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.5.7 - XX/XX/XXXX =
 
 * Updated `[jumbotron]` to work with Theme Blvd framework 2.5 updates.
+* Added x-large, xx-large, and xxx-large sizes to generator for `[button]` shortcode (requires Theme Blvd Framework 2.5+).
 
 = 1.5.6 - 04/18/2015 =
 
