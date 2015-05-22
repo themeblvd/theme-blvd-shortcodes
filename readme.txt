@@ -1,5 +1,5 @@
 === Theme Blvd Shortcodes ===
-Author URI: http://www.jasonbobich.com
+Author URI: http://www.themeblvd.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
 Stable Tag: 1.5.7

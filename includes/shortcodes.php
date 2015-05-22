@@ -1546,7 +1546,7 @@ function themeblvd_shortcode_post_grid_slider( $atts ) {
         'nav_arrows'    => 1,           // nav_arrows: Show directional arrows to control slider - true or false
         'pause_play'    => 1,           // pause_play: Show pause/play button - true or false
         'categories'    => '',          // @deprecated -- Category slug(s) to include/exclude
-        'rows'          => 3,            // rows: Number of rows per slide
+        'rows'          => 3,           // rows: Number of rows per slide
         'numberposts'   => '-1',        // numberposts: Total number of posts, -1 for all posts
     );
     $atts = shortcode_atts( $default, $atts );
