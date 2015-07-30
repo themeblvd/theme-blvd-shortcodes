@@ -77,11 +77,7 @@ class Theme_Blvd_Shortcode_Generator {
 
 		$this->image_icons = array();
 
-		if ( function_exists('themeblvd_get_icons') ) { // Framework 2.5+
-
-			$this->image_icons = themeblvd_get_icons( 'image' );
-
-		} else {
+		if ( version_compare(TB_FRAMEWORK_VERSION, '2.5.0', '<') ) { // Image icons only supported prior to framework 2.5
 
 			// Check for cached icons
 			$this->image_icons = get_transient( 'themeblvd_'.get_template().'_image_icons' );
@@ -130,16 +126,6 @@ class Theme_Blvd_Shortcode_Generator {
 				set_transient( 'themeblvd_'.get_template().'_image_icons', $this->image_icons, '86400' ); // 1 day
 
 			}
-
-			/*--------------------------------------------*/
-			/* Run legacy?
-			/*--------------------------------------------*/
-
-			if ( class_exists('Theme_Blvd_Shortcode_Generator_Legacy') ) {
-				$this->legacy = new Theme_Blvd_Shortcode_Generator_Legacy($this);
-
-			}
-
 		}
 
 		/*--------------------------------------------*/
@@ -148,7 +134,7 @@ class Theme_Blvd_Shortcode_Generator {
 
 		if ( function_exists('themeblvd_get_icons') ) { // Framework 2.5+
 
-			$this->vector_icons = themeblvd_get_icons( 'vector' );
+			$this->vector_icons = themeblvd_get_icons('vector');
 
 		} else {
 
@@ -194,6 +180,14 @@ class Theme_Blvd_Shortcode_Generator {
 					set_transient( 'themeblvd_'.get_template().'_vector_icons', $this->vector_icons, '86400' ); // 1 day
 				}
 			}
+		}
+
+		/*--------------------------------------------*/
+		/* Run legacy?
+		/*--------------------------------------------*/
+
+		if ( class_exists('Theme_Blvd_Shortcode_Generator_Legacy') ) {
+			$this->legacy = new Theme_Blvd_Shortcode_Generator_Legacy($this);
 		}
 	}
 
@@ -373,29 +367,33 @@ class Theme_Blvd_Shortcode_Generator {
 
 											case 'icons' :
 
-												// Image Icons
-												$options = $this->get_options( 'icon' );
-
-												$output = themeblvd_option_fields( 'icon', $options, array(), false );
-
-												echo '<div class="shortcode-options shortcode-options-icon" data-type="icon">';
-												echo '<div class="options-wrap">';
-												$this->preview( 'icon' );
-												echo $output[0];
-												echo '</div><!-- .options-wrap (end) -->';
-												echo '</div><!-- .shortcode-options (end) -->';
-
 												// Vector Icons
 												$options = $this->get_options( 'vector_icon' );
 												$output = themeblvd_option_fields( 'vector_icon', $options, array(), false );
 
-												echo '<div class="shortcode-options shortcode-options-vector_icon hide" data-type="vector_icon">';
+												echo '<div class="shortcode-options shortcode-options-vector_icon" data-type="vector_icon">';
 												$this->preview( 'vector_icon' );
 												$this->icon_browser();
 												echo '<div class="options-wrap">';
 												echo $output[0];
 												echo '</div><!-- .options-wrap (end) -->';
 												echo '</div><!-- .shortcode-options (end) -->';
+
+												if ( version_compare(TB_FRAMEWORK_VERSION, '2.5.0', '<') ) {
+
+													// Image Icons
+													$options = $this->get_options( 'icon' );
+
+													$output = themeblvd_option_fields( 'icon', $options, array(), false );
+
+													echo '<div class="shortcode-options shortcode-options-icon hide" data-type="icon">';
+													echo '<div class="options-wrap">';
+													$this->preview( 'icon' );
+													echo $output[0];
+													echo '</div><!-- .options-wrap (end) -->';
+													echo '</div><!-- .shortcode-options (end) -->';
+
+												}
 
 												break;
 
@@ -530,8 +528,7 @@ class Theme_Blvd_Shortcode_Generator {
 				'id'	=> 'icons',
 				'name'	=> __( 'Icons', 'theme-blvd-shortcodes' ),
 				'sub'	=> array(
-					'icon'			=> __('Image Icon', 'theme-blvd-shortcodes'),
-					'vector_icon'	=> __('Vector Icon', 'theme-blvd-shortcodes')
+					'vector_icon'		=> __('FontAwesome Icon', 'theme-blvd-shortcodes')
 				)
 			),
 			array(
@@ -1971,42 +1968,6 @@ class Theme_Blvd_Shortcode_Generator {
 					'5' 		=> __( '5 Columns', 'theme-blvd-shortcodes' ),
 					'6' 		=> __( '6 Columns', 'theme-blvd-shortcodes' )
 				)
-			)
-		);
-
-		/*--------------------------------------------*/
-		/* Image Icons
-		/*--------------------------------------------*/
-
-		$options['icon'] = array(
-			'image' => array(
-				'name' 		=> __( 'Icon', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( 'Select an icon. For adding icons, you can create a folder in your child theme called "icons" -- Anything placed in that directory will show here after the 24-hour cache period is over.', 'theme-blvd-shortcodes' ),
-				'id' 		=> 'image',
-				'std' 		=> 'accepted',
-				'type' 		=> 'images',
-				'options' 	=> $this->image_icons,
-				'img_width'	=> '24' // 1/2 of images' natural widths
-			),
-			'align' => array(
-				'name' 		=> __( 'Icon Alignment', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( 'How you\'d like to align the icon.', 'theme-blvd-shortcodes' ),
-				'id' 		=> 'align',
-				'std' 		=> 'left',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'left' 		=> __('Left', 'theme-blvd-shortcodes'),
-					'right' 	=> __('Right', 'theme-blvd-shortcodes'),
-					'center' 	=> __('Center', 'theme-blvd-shortcodes'),
-					'none' 		=> __('None', 'theme-blvd-shortcodes')
-				)
-			),
-			'width' => array(
-				'name' 		=> __( 'Icon Width', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( 'Display width of the icon -- 48, 24, etc.', 'theme-blvd-shortcodes' ),
-				'id' 		=> 'width',
-				'std' 		=> '48',
-				'type' 		=> 'text'
 			)
 		);
 

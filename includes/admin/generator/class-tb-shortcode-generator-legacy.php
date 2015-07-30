@@ -60,8 +60,8 @@ class Theme_Blvd_Shortcode_Generator_Legacy {
 				'id'	=> 'icons',
 				'name'	=> __( 'Icons', 'theme-blvd-shortcodes' ),
 				'sub'	=> array(
-					'icon'			=> __('Image Icon', 'theme-blvd-shortcodes'),
-					'vector_icon'	=> __('Vector Icon', 'theme-blvd-shortcodes')
+					'vector_icon'	=> __('FontAwesome Icon', 'theme-blvd-shortcodes'),
+					'icon'			=> __('Image Icon', 'theme-blvd-shortcodes')
 				)
 			),
 			array(

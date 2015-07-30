@@ -43,16 +43,16 @@ function themeblvd_shortcodes_init() {
 	include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/general.php' );
 
 	// Check to make sure Theme Blvd Framework 2.2+ is running
-	if( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '<' ) ) {
+	if ( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '<' ) ) {
 		add_action( 'admin_notices', 'themeblvd_shortcodes_warning' );
 		add_action( 'admin_init', 'themeblvd_shortcodes_disable_nag' );
 		return;
 	}
 
-	if( is_admin() ) {
+	if ( is_admin() ) {
 
 		// Add shortcode generator -- Can be disabled from WP > Settings > Writing
-		if( get_option( 'themeblvd_shortcode_generator' ) != 'no' ) {
+		if ( get_option( 'themeblvd_shortcode_generator' ) != 'no' ) {
 
 			include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/admin/generator/class-tb-shortcode-generator.php' );
 
@@ -64,7 +64,7 @@ function themeblvd_shortcodes_init() {
 		}
 
 		// Auto Lightbox -- Can be disabled from WP > Settings > Writing
-		if( get_option( 'themeblvd_auto_lightbox' ) == 'yes' ) {
+		if ( get_option( 'themeblvd_auto_lightbox' ) == 'yes' ) {
 			add_filter( 'image_send_to_editor', 'themeblvd_lightbox_send_to_editor', 10, 8 );
 		}
 
@@ -81,7 +81,7 @@ function themeblvd_shortcodes_init() {
 		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/class-tb-column-shortcode.php' );
 
 		// [raw] -- Can be disabled from WP > Settings > Writing
-		if( get_option( 'themeblvd_raw' ) != 'no' ) {
+		if ( get_option( 'themeblvd_raw' ) != 'no' ) {
 
 			remove_filter( 'the_content', 'wptexturize' );
 			remove_filter( 'the_content', 'wpautop' );
@@ -128,13 +128,16 @@ function themeblvd_shortcodes_init() {
 		add_shortcode( 'pricing_table', 'themeblvd_shortcode_pricing_table' );
 
 		// Inline Elements
-		add_shortcode( 'icon', 'themeblvd_shortcode_icon' );
 		add_shortcode( 'icon_link', 'themeblvd_shortcode_icon_link' );
 		add_shortcode( 'highlight', 'themeblvd_shortcode_highlight' );
 		add_shortcode( 'dropcap', 'themeblvd_shortcode_dropcap' );
 		add_shortcode( 'label', 'themeblvd_shortcode_label' );
-		add_shortcode( 'vector_icon', 'themeblvd_shortcode_vector_icon' );
 		add_shortcode( 'lead', 'themeblvd_shortcode_lead' );
+		add_shortcode( 'vector_icon', 'themeblvd_shortcode_vector_icon' );
+
+		if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
+			add_shortcode( 'icon', 'themeblvd_shortcode_icon' ); // @deprecated
+		}
 
 		// Tabs, Toggles, and Accordion
 		add_shortcode( 'tabs', 'themeblvd_shortcode_tabs' );

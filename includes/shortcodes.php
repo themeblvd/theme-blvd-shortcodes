@@ -901,6 +901,7 @@ function themeblvd_shortcode_pricing_columns( $m ) {
  * 48px Icon (NOT Font Awesome icons)
  *
  * @since 1.0.0
+ * @deprecated 1.5.8
  *
  * @param array $atts Standard WordPress shortcode attributes
  * @param string $content The enclosed content
@@ -916,12 +917,13 @@ function themeblvd_shortcode_icon( $atts, $content = null ) {
     extract( shortcode_atts( $default, $atts ) );
 
     // Icon image URL
-    if( file_exists( get_stylesheet_directory().'/icons/'.$image.'.png' ) )
+    if ( file_exists( get_stylesheet_directory().'/icons/'.$image.'.png' ) ) {
         $image_url = get_stylesheet_directory_uri().'/icons/'.$image.'.png';
-    else if( version_compare( TB_FRAMEWORK_VERSION, '2.3.0', '<') )
+    } else if( version_compare( TB_FRAMEWORK_VERSION, '2.3.0', '<') ) {
         $image_url = get_template_directory_uri().'/framework/frontend/assets/images/shortcodes/icons/'.$image.'.png';
-    else
+    } else {
         $image_url = get_template_directory_uri().'/framework/assets/images/shortcodes/icons/'.$image.'.png';
+    }
 
     // Alignment
     $align != 'none' ? $align = ' align'.$align : $align = null;

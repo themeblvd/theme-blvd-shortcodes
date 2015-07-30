@@ -94,6 +94,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.5.8 - XX/XX/XXXX =
 
+Removed: The `[icon]` shortcode has been removed in Theme Blvd Framework 2.5+ themes. Use `[vector_icon]` instead.
+
 = 1.5.7 - 05/29/2015 =
 
 * Updated `[jumbotron]` to work with Theme Blvd framework 2.5 updates.
