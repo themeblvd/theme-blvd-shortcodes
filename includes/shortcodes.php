@@ -865,34 +865,6 @@ function themeblvd_shortcode_pricing_table( $atts, $content = null ) {
     return themeblvd_get_pricing_table( $cols, $atts );
 }
 
-/**
- * Build data for the column of a pricing table to
- * pass back to [pricing_table] shortcode.
- *
- * @since 1.5.0
- *
- * @param array $atts Standard WordPress shortcode attributes
- * @param string $content Content in shortcode
- * @param string $output The enclosed content
- */
-function themeblvd_shortcode_pricing_columns( $m ) {
-
-    $cols = array();
-
-    // echo '<pre>'; print_r($m); echo '</pre>';
-
-
-
-
-    $atts = shortcode_parse_atts( $m[3] );
-
-    echo '<pre>'; print_r($atts); echo '</pre>';
-
-
-    // $features = $m[5];
-
-}
-
 /*-----------------------------------------------------------*/
 /* Inline Elements
 /*-----------------------------------------------------------*/
