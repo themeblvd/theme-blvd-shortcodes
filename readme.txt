@@ -12,71 +12,32 @@ Within themes using the Theme Blvd framework, there are many internal elements a
 
 After activating this plugin, you'll know it's ready to go by viewing the Edit Page or Edit Post screen and seeing the plugin's [shortcode generator](http://shortcodes.themeblvd.com/generator) button above your WordPress Editor. You'll then have access to the following shortcodes for use within your website.
 
-= Buttons =
+= Theme Compatibility =
 
-Use Twitter Bootstrap's button styling along with tons of additional color options added by the Theme Blvd framework.
+This plugin works with the following themes only.
 
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/buttons/)
+**Theme Blvd Framework 2.5+ Themes**
 
-= Columns =
+* [Jump Start](http://wpjumpstart.com)
+* [Denali](http://themeblvd.com/links/buy-denali)
 
-The column shortcodes allow you to structure your content into rows of various size columns within your pages and posts.
+**Theme Blvd Framework 2.2-2.4 Themes**
 
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/columns/)
+* [Akita](http://themeforest.net/item/akita-responsive-wordpress-theme/1530025?ref=themeblvd)
+* [Alyeska](http://themeforest.net/item/alyeska-responsive-wordpress-theme/164366?ref=themeblvd)
+* [Arcadian](http://themeforest.net/item/the-arcadian-responsive-wordpress-theme/1266406?ref=themeblvd)
+* [Barely Corporate](http://themeforest.net/item/barely-corporate-responsive-wordpress-theme/93069?ref=themeblvd)
+* [Breakout](http://www.mojo-themes.com/item/breakout-premium-wordpress-theme/?r=themeblvd)
+* [Commodore](http://themeforest.net/item/commodore-responsive-wordpress-theme/111713?ref=themeblvd)
+* [Swagger](http://themeforest.net/item/swagger-responsive-wordpress-theme/930581?ref=themeblvd)
 
-= Components =
+Full shortcodes and compatibility table: [See Table](http://demoblvd.com/plugins/shortcodes/theme-compatibility/)
 
-Thanks to Twitter Bootstrap integration, this group of shortcodes adds some extra goodies for your website.
+= Documentation and Usage Examples =
 
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/small-components/)
+Theme Blvd Framework 2.5+ Themes: [View Documentation and Examples](http://shortcodes.themeblvd.com)
 
-= Display Posts =
-
-This group of shortcodes allow you to utilize the Theme Blvd framework's extensive system for displaying posts in both grid and list format.
-
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/shortcodes-display-posts/)
-
-= Image Icons =
-
-An oldie, but a classic; use this shortcode to display any of the image icons bundled with the Theme Blvd framework.
-
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/shortcodes-icons/)
-
-= Inline Elements =
-
-This group of shortcodes include some classic inline items like labels, icon links, text highlighting, the drop cap, and the newly added vector icon shortcode to take advantage of FontAwesome integration.
-
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/inline-element/)
-
-= Sliders =
-
-When using the [Theme Blvd Sliders](http://wordpress.org/extend/plugins/theme-blvd-sliders/) plugin, you've already got access to the `[slider]` shortcode. However, in addition to that you'll also get a fancy post grid slider and post list slider.
-
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/shortcodes-sliders/)
-
-= Gallery Slider =
-
-In a similar way that you'd create a typical WordPress gallery, you can create a quick slider of images from your media library.
-
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/shortcodes-gallery-slider/)
-
-= Tabs & Toggles =
-
-The Theme Blvd shortcodes pack wouldn't be complete without the ability create slick jQuery content control via tabs and toggles.
-
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/tabs/)
-
-= Lightbox =
-
-Theme Blvd themes already come with basic lightbox integration, and this plugin will give you a `[lightbox]` shortcode you can use to easily tap into this. You can also wrap a group of `[lightbox]` instances in a `[lightbox_gallery]` for them to be grouped into a gallery within the lightbox.
-
-Additionally, there is a featured called "Auto Lightbox" which will automatically convert images inserted into pages and posts into the `[lightbox]` shortcode when they link to a lightbox-compatible URL. Note that you can disable this functionality from *Settings > Writing* in your WordPress admin.
-
-[View Documentation and Examples](http://shortcodes.themeblvd.com/shortcodes/lightbox/)
-
-= Raw Shortcode =
-
-Any content wrapped in the `[raw]` shortcode will allow you to escape any automatic WordPress formatting. Keep in mind that this is not a standard shortcode, and does modify the content outputted in your site. So, if you find that this conflicts with any other plugins you may be using, you can disable this functionality all together from *Settings > Writing* in your WordPress admin.
+Theme Blvd Framework 2.2-2.4 Themes: [View Documentation and Examples](http://demoblvd.com/legacy/shortcodes)
 
 **NOTE: For this plugin to do anything, you must have a theme with Theme Blvd framework v2.2+ activated.**
 
@@ -84,6 +45,12 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 1. Upload `theme-blvd-shortcodes` folder to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
+
+== Frequently Asked Questions ==
+
+= Having problems with content formatting, when combined with some complex third-party plugins?  =
+
+Any content wrapped in the `[raw]` shortcode will allow you to escape any automatic WordPress formatting. Keep in mind that this is not a standard shortcode, and does modify the content outputted in your site. So, if you find that this conflicts with any other plugins you may be using, you can disable this functionality all together from *Settings > Writing* in your WordPress admin.
 
 == Screenshots ==
 
