@@ -105,8 +105,8 @@ class Theme_Blvd_Shortcode_Generator {
 
 				// Check for icons in the child theme
 				$child_icons = array();
-				$child_icons_url = get_stylesheet_uri().'/icons';
-				$child_icons_dir = get_stylesheet_directory_uri().'/assets/images/shortcodes/icons';
+				$child_icons_url = get_stylesheet_directory_uri().'/icons';
+				$child_icons_dir = get_stylesheet_directory().'/assets/images/shortcodes/icons';
 
 				if ( file_exists( $child_icons_dir ) ) {
 					$child_icons = scandir( $child_icons_dir );
