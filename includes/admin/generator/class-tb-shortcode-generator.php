@@ -270,9 +270,11 @@ class Theme_Blvd_Shortcode_Generator {
 		<div id="tb-shortcode-generator" class="tb-hide">
 			<div class="media-modal wp-core-ui">
 
-				<a class="media-modal-close" href="#" title="Close">
-					<span class="media-modal-icon"></span>
-				</a>
+				<button type="button" class="button-link media-modal-close">
+					<span class="media-modal-icon">
+						<span class="screen-reader-text">x</span>
+					</span>
+				</button>
 
 				<div class="media-modal-content">
 					<div class="media-frame wp-core-ui">

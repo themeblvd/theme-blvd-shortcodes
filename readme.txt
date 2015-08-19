@@ -61,6 +61,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.5.8 - XX/XX/XXXX =
 
+Fixed: Minor admin styling issues with shortcode generator modal in WordPress 4.3.
 Fixed: Child theme image icons not being listed in shortcode generator in Theme Blvd Framework 2.4- themes.
 Removed: The `[icon]` shortcode has been removed in Theme Blvd Framework 2.5+ themes. Use `[vector_icon]` instead.
 
