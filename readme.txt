@@ -59,7 +59,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
-= 1.5.8 - XX/XX/XXXX =
+= 1.5.8 - 08/24/2015 =
 
 Fixed: Minor admin styling issues with shortcode generator modal in WordPress 4.3.
 Fixed: Child theme image icons not being listed in shortcode generator in Theme Blvd Framework 2.4- themes.
