@@ -700,6 +700,8 @@ function themeblvd_shortcode_jumbotron( $atts, $content = null ) {
 
         if ( $atts['bg_color'] ) {
             $atts['apply_bg_color'] = '1';
+            $atts['apply_content_bg'] = '1'; // framework 2.5+
+            $atts['content_bg_color'] = $atts['bg_color']; // framework 2.5+
         }
 
         $atts['max'] = $atts['max_width'];

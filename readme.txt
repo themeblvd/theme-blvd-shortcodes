@@ -61,6 +61,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.5.9 - 09/28/2015 =
 
+* Fixed: Background color not getting applied to `[jumbotron]` with Theme Blvd Framework 2.5+ themes.
+
 = 1.5.8 - 08/24/2015 =
 
 Fixed: Minor admin styling issues with shortcode generator modal in WordPress 4.3.
