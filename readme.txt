@@ -2,7 +2,7 @@
 Author URI: http://www.themeblvd.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 1.5.9
+Stable Tag: 1.5.9.1
 
 This plugin works in conjunction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
@@ -59,15 +59,17 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
+= 1.5.9.1 - 11/11/2015 =
+
 = 1.5.9 - 09/28/2015 =
 
 * Fixed: Background color not getting applied to `[jumbotron]` with Theme Blvd Framework 2.5+ themes.
 
 = 1.5.8 - 08/24/2015 =
 
-Fixed: Minor admin styling issues with shortcode generator modal in WordPress 4.3.
-Fixed: Child theme image icons not being listed in shortcode generator in Theme Blvd Framework 2.4- themes.
-Removed: The `[icon]` shortcode has been removed in Theme Blvd Framework 2.5+ themes. Use `[vector_icon]` instead.
+* Fixed: Minor admin styling issues with shortcode generator modal in WordPress 4.3.
+* Fixed: Child theme image icons not being listed in shortcode generator in Theme Blvd Framework 2.4- themes.
+* Removed: The `[icon]` shortcode has been removed in Theme Blvd Framework 2.5+ themes. Use `[vector_icon]` instead.
 
 = 1.5.7 - 05/29/2015 =
 
