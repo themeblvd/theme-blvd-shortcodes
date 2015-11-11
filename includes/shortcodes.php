@@ -395,61 +395,20 @@ function themeblvd_shortcode_popup( $atts, $content = null ) {
 		'header' 		=> '', 			// Header text for popup
 		'animate' 		=> 'false'		// Whether popup slides in or not - true, false
     );
-    extract( shortcode_atts( $default, $atts ) );
+    $atts = shortcode_atts( $default, $atts );
 
     // ID for popup
-    $popup_id = uniqid( 'popup_'.rand() );
+    $atts['id'] = uniqid( 'popup_'.rand() );
 
-    // Button/Link
-    $link = '';
-    if( $title ) {
-    	$title = $text;
-    }
+    // Set content
+    $atts['content'] = $content;
 
-    $link = themeblvd_button( $text, '#'.$popup_id, $color, null, $size, null, $title, $icon_before, $icon_after, 'data-toggle="modal"' );
-	$link = apply_filters('themeblvd_the_content', $link);
+    // Queue modal to be outputted in footer
+    $popups = Theme_Blvd_Popup_Shortcode::get_instance();
+    $popups->add($atts);
 
-    // Classes for popup
-    $classes = 'modal';
-    if( $animate == 'true' ) {
-    	$classes .= ' fade';
-    }
-
-    // Header
-    $header_html = '';
-    if( $header ) {
-    	$header_html .= '<div class="modal-header">';
-    	$header_html .= '<button type="button" class="close" data-dismiss="modal">×</button>';
-    	$header_html .= '<h3>'.$header.'</h3>';
-    	$header_html .= '</div><!-- modal-header (end) -->';
-    }
-
-    // Output
-    $output  = $link;
-    $output .= '<div class="'.$classes.'" id="'.$popup_id.'" tabindex="-1" role="dialog" aria-hidden="true">';
-    $output .= '<div class="modal-dialog">';
-    $output .= '<div class="modal-content">';
-
-    $output .= $header_html;
-
-    $output .= '<div class="modal-body">';
-    $output .= apply_filters('themeblvd_the_content', $content);
-    $output .= '</div><!-- .modal-body (end) -->';
-    $output .= '<div class="modal-footer">';
-
-    $close_class = 'btn btn-default';
-    if ( apply_filters( 'themeblvd_btn_gradient', false ) ) {
-        $close_class .= ' btn-gradient';
-    }
-    $output .= '<a href="#" class="'.$close_class.'" data-dismiss="modal">'.themeblvd_get_local('close').'</a>';
-
-    $output .= '</div><!-- .modal-footer (end) -->';
-
-    $output .= '</div><!-- .modal-content (end) -->';
-    $output .= '</div><!-- .modal-dialog (end) -->';
-    $output .= '</div><!-- .modal (end) -->';
-
-    return $output;
+    // Set button as output
+    return apply_filters( 'themeblvd_the_content', themeblvd_button( $atts['text'], '#'.$atts['id'], $atts['color'], null, $atts['size'], null, $atts['text'], $atts['icon_before'], $atts['icon_after'], 'data-toggle="modal"' ) );
 }
 
 /**

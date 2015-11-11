@@ -79,6 +79,7 @@ function themeblvd_shortcodes_init() {
 		// Include shortcodes
 		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/shortcodes.php' );
 		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/class-tb-column-shortcode.php' );
+		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/class-tb-popup-shortcode.php' );
 
 		// [raw] -- Can be disabled from WP > Settings > Writing
 		if ( get_option( 'themeblvd_raw' ) != 'no' ) {

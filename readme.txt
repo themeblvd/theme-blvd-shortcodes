@@ -61,6 +61,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.5.9.1 - 11/11/2015 =
 
+* Allow `[popup]` shortcode to work more consistently, when nested within more complex areas.
+
 = 1.5.9 - 09/28/2015 =
 
 * Fixed: Background color not getting applied to `[jumbotron]` with Theme Blvd Framework 2.5+ themes.
