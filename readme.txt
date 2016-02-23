@@ -61,6 +61,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.5.9.2 - XX/XX/XXXX =
 
+* Fixed: Selecting a style for `[post_slider]` in shortcode generator wasn't working.
+
 = 1.5.9.1 - 11/11/2015 =
 
 * Allow `[popup]` shortcode to work more consistently, when nested within more complex areas.

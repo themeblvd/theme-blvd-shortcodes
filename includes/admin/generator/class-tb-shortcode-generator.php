@@ -2263,11 +2263,11 @@ class Theme_Blvd_Shortcode_Generator {
 				'desc' 		=> __( 'Select one of the preset style for how the post slider displays. When referring to "included elements" it\'s referring to post titles, meta, excerpts, and buttons configured in the following options.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'style',
 				'std' 		=> '1',
-				'type' 		=> 'radio',
+				'type' 		=> 'select',
 				'options'	=> apply_filters('themeblvd_post_slider_styles', array(
-					'1'			=> __('<strong>Style #1:</strong> Display included elements open and center on each slide.', 'theme-blvd-shortcodes'),
-					'2'			=> __('<strong>Style #2:</strong> Display included elements in a shaded content area positioned to the side of each slide.', 'theme-blvd-shortcodes'),
-					'3'			=> __('<strong>Style #3:</strong> An open, more magazine-style post slider.', 'theme-blvd-shortcodes')
+					'1'			=> __('Style #1', 'theme-blvd-shortcodes'),
+					'2'			=> __('Style #2', 'theme-blvd-shortcodes'),
+					'3'			=> __('Style #3', 'theme-blvd-shortcodes')
 				))
 			),
 			'interval' => array(
