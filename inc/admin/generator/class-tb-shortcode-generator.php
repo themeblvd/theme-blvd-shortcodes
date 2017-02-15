@@ -222,8 +222,8 @@ class Theme_Blvd_Shortcode_Generator {
 			wp_enqueue_style( 'fontawesome', TB_FRAMEWORK_URI . '/assets/plugins/fontawesome/css/font-awesome.min.css', null, TB_FRAMEWORK_VERSION );
 
 			// Generator
-			wp_enqueue_style( 'tb_shortcode_generator', TB_SHORTCODES_PLUGIN_URI . '/includes/admin/generator/assets/css/generator.min.css', false, TB_SHORTCODES_PLUGIN_VERSION );
-			wp_enqueue_script( 'tb_shortcode_generator', TB_SHORTCODES_PLUGIN_URI . '/includes/admin/generator/assets/js/generator.min.js', false, TB_SHORTCODES_PLUGIN_VERSION );
+			wp_enqueue_style( 'tb_shortcode_generator', TB_SHORTCODES_PLUGIN_URI . '/inc/admin/generator/assets/css/generator.min.css', false, TB_SHORTCODES_PLUGIN_VERSION );
+			wp_enqueue_script( 'tb_shortcode_generator', TB_SHORTCODES_PLUGIN_URI . '/inc/admin/generator/assets/js/generator.min.js', false, TB_SHORTCODES_PLUGIN_VERSION );
 		}
 	}
 

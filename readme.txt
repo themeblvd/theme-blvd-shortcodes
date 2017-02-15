@@ -20,6 +20,7 @@ This plugin works with the following themes only.
 
 * [Jump Start](http://wpjumpstart.com)
 * [Denali](http://themeblvd.com/links/buy-denali)
+* [Gnar](http://themeblvd.com/links/buy-gnar)
 
 **Theme Blvd Framework 2.2-2.4 Themes**
 
