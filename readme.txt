@@ -8,9 +8,9 @@ This plugin works in conjunction with the Theme Blvd framework to create shortco
 
 == Description ==
 
-Within themes using the Theme Blvd framework, there are many internal elements and other 3rd-party items integrated, like [Twitter Bootstrap](http://twitter.github.com/bootstrap/) and [FontAwesome](http://fortawesome.github.io/Font-Awesome/), to make use of.  When using a [Theme Blvd theme](http://themeforest.net/user/ThemeBlvd/portfolio?ref=ThemeBlvd), this plugin gives you an extensive pack of shortcodes to extend the framework's functionality to your pages, posts, and custom layouts via shortcodes.
+Within themes using the Theme Blvd framework, there are many internal elements and other 3rd-party items integrated, like [Twitter Bootstrap](http://twitter.github.com/bootstrap/) and [FontAwesome](http://fortawesome.github.io/Font-Awesome/), to make use of.  When using a [Theme Blvd theme](http://themeblvd.com/themes/), this plugin gives you an extensive pack of shortcodes to extend the framework's functionality to your pages, posts, and custom layouts via shortcodes.
 
-After activating this plugin, you'll know it's ready to go by viewing the Edit Page or Edit Post screen and seeing the plugin's [shortcode generator](http://shortcodes.themeblvd.com/generator) button above your WordPress Editor. You'll then have access to the following shortcodes for use within your website.
+After activating this plugin, you'll know it's ready to go by viewing the Edit Page or Edit Post screen and seeing the plugin's [shortcode generator](https://wordpress.org/plugins/theme-blvd-shortcodes/screenshots/) button above your WordPress Editor. You'll then have access to our shortcodes for use within your website.
 
 = Theme Compatibility =
 
