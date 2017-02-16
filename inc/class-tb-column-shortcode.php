@@ -1,17 +1,22 @@
 <?php
 /**
+ * This file contains specific column shortcode
+ * elements.
+ *
+ * @package Theme Blvd Shortcodes
+ */
+
+/**
  * Column shortcode
  */
 class Theme_Blvd_Column_Shortcode {
-
-	/*--------------------------------------------*/
-	/* Properties, private
-	/*--------------------------------------------*/
 
 	/**
 	 * A single instance of this class.
 	 *
 	 * @since 1.4.2
+	 *
+	 * @var Theme_Blvd_Column_Shortcode
 	 */
 	private static $instance = null;
 
@@ -20,83 +25,92 @@ class Theme_Blvd_Column_Shortcode {
 	 * we can assume it's time to end the row.
 	 *
 	 * @since 1.4.2
+	 *
+	 * @var int
 	 */
 	private $total = 0;
 
-	/*--------------------------------------------*/
-	/* Constructor
-	/*--------------------------------------------*/
-
 	/**
-     * Creates or returns an instance of this class.
-     *
-     * @since 1.4.2
-     *
-     * @return Theme_Blvd_Frontend_Init A single instance of this class.
-     */
+	 * Creates or returns an instance of this class.
+	 *
+	 * @since 1.4.2
+	 *
+	 * @return Theme_Blvd_Column_Shortcode A single instance of this class.
+	 */
 	public static function get_instance() {
 
-		if ( self::$instance == null ) {
-            self::$instance = new self;
-        }
+		if ( null === self::$instance ) {
 
-        return self::$instance;
+			self::$instance = new self;
+
+		}
+
+		return self::$instance;
+
 	}
-
-	/*--------------------------------------------*/
-	/* Methods, general
-	/*--------------------------------------------*/
 
 	/**
 	 * Get the column to output.
 	 *
 	 * @since 1.4.2
+	 *
+	 * @param array  $atts Shortcode attributes..
+	 * @param string $content The enclosed content.
+	 * @param string $tag Current shortcode tag.
+	 * @return string $output Content to output for shortcode.
 	 */
 	public function get( $atts, $content = null, $tag = '' ) {
 
 		$output = '';
 
-		$default = array(
-			0 			=> '',		// For row close
-			'size' 		=> '',		// The fraction for the width of the column
-			'wpautop'	=> 'true',	// Whether wpautop happens within the column
-			'class'		=> ''		// CSS class to override framework grid class
-	    );
-	    $atts = shortcode_atts( $default, $atts );
+	    $atts = shortcode_atts( array(
+			0 			=> '',		// For row close.
+			'size' 		=> '',		// The fraction for the width of the column.
+			'wpautop'	=> 'true',	// Whether wpautop happens within the column.
+			'class'		=> '',		// CSS class to override framework grid class.
+	    ), $atts );
 
-	    // Setup the fraction of the column width
+	    // Setup the fraction of the column width.
 	    $size = $atts['size'];
 
-	    if ( $tag != 'column' ) {
-	    	$size = $this->to_fraction($tag);
+	    if ( 'column' !== $tag ) {
+
+	    	$size = $this->to_fraction( $tag );
+
 	    }
 
-	    // Open row
-	    if ( $this->total == 0 ) {
+	    // Open row.
+	    if ( 0 === $this->total ) {
+
 	    	$output .= $this->open_row();
+
 	    }
 
-	    // Add fraction to total
-	    $this->add($size);
+	    // Add fraction to total.
+	    $this->add( $size );
 
-	    // Setup the CSS class for the column
+	    // Setup the CSS class for the column.
 	    $class = $this->get_class( $size, $atts );
 
-	    // Start column output
-	    $output .= '<div class="'.$class.'">';
+	    // Start column output.
+	    $output .= '<div class="' . $class . '">';
 
-	    if ( $atts['wpautop'] == 'true' ) {
-	    	$content = wpautop($content);
+	    if ( 'true' === $atts['wpautop'] ) {
+
+	    	$content = wpautop( $content );
+
 	    }
 
-	    $output .= do_shortcode($content);
+	    $output .= do_shortcode( $content );
 
 	    $output .= '</div>';
 
-	    // Close row
-	    if ( $this->total >= 99 || ( isset($atts[0]) && trim($atts[0]) == 'last') ) {
+	    // Close row.
+	    if ( $this->total >= 99 || ( isset( $atts[0] ) && 'last' === trim( $atts[0] )) ) {
+
 	    	$output .= $this->close_row();
 	    	$this->total = 0;
+
 	    }
 
 	    return $output;
@@ -114,34 +128,48 @@ class Theme_Blvd_Column_Shortcode {
 		$output = '';
 
 		if ( function_exists( 'themeblvd_get_open_row' ) ) {
+
 			$output = themeblvd_get_open_row();
+
 		}
 
 		return $output;
+
 	}
 
 	/**
 	 * Close a row.
 	 *
 	 * @since 1.4.2
+	 *
+	 * @return string $output HTML output to close a row.
 	 */
-	public function close_row(  ) {
+	public function close_row() {
 
 		$output = '';
 
 		if ( function_exists( 'themeblvd_get_close_row' ) ) {
+
 			$output = themeblvd_get_close_row();
+
 		} else {
+
 			$output .= '<div class="clear"></div>';
+
 		}
 
 		return $output;
+
 	}
 
 	/**
 	 * Get CSS class for column
 	 *
 	 * @since 1.4.2
+	 *
+	 * @param string $size Size of column.
+	 * @param array  $atts Shortcode attributes.
+	 * @return string $class CSS class to use for column.
 	 */
 	public function get_class( $size, $atts ) {
 
@@ -151,21 +179,24 @@ class Theme_Blvd_Column_Shortcode {
 
 			// @deprecated
 			$class .= 'column ';
-			$class .= $this->to_class($size);
+			$class .= $this->to_class( $size );
 
-			if ( $this->total >= 99 || ( isset($atts[0]) && trim($atts[0]) == 'last') ) {
+			if ( $this->total >= 99 || ( isset( $atts[0] ) && 'last' === trim( $atts[0] ) ) ) {
+
 				$class .= ' last';
-			}
 
+			}
 		} else {
 
 			// In framework 2.5+, life is simple.
-			$class .= themeblvd_grid_class($size);
+			$class .= themeblvd_grid_class( $size );
 
 		}
 
 		if ( $atts['class'] ) {
-			$class .= ' '.$atts['class'];
+
+			$class .= ' ' . $atts['class'];
+
 		}
 
 		return $class;
@@ -177,21 +208,24 @@ class Theme_Blvd_Column_Shortcode {
 	 * we can assume it's time to end the row.
 	 *
 	 * @since 1.4.2
+	 *
+	 * @param string $fraction Column width as a fraction.
 	 */
 	public function add( $fraction ) {
+
 		$fraction = explode( '/', $fraction );
-		$this->total += (intval($fraction[0]) / intval($fraction[1]))*100;
+		$this->total += ( intval( $fraction[0] ) / intval( $fraction[1] ) ) * 100;
+
 	}
 
-
-	/*--------------------------------------------*/
-	/* Methods, helpers for deprecated stuff
-	/*--------------------------------------------*/
-
 	/**
-	 * Convert deprecated shortcode tag to accepted fraction.
+	 * Convert deprecated shortcode tag to accepted
+	 * fraction.
 	 *
 	 * @since 1.4.2
+	 *
+	 * @param string $tag Shortcode tag being used; it should be something other than "column".
+	 * @return string $fraction Column width as human-readable fraction.
 	 */
 	public function to_fraction( $tag ) {
 
@@ -250,6 +284,7 @@ class Theme_Blvd_Column_Shortcode {
 	    }
 
 	    return $fraction;
+
 	}
 
 	/**
@@ -258,6 +293,9 @@ class Theme_Blvd_Column_Shortcode {
 	 * are no longer used.
 	 *
 	 * @since 1.4.2
+	 *
+	 * @param string $fraction Human-readable fraction.
+	 * @return string $class CSS class for column.
 	 */
 	public function to_class( $fraction ) {
 
@@ -265,22 +303,28 @@ class Theme_Blvd_Column_Shortcode {
 
 		$fraction = explode( '/', $fraction );
 
-		$numerator = intval($fraction[0]);
-		$denominator = intval($fraction[1]);
+		$numerator = intval( $fraction[0] );
+		$denominator = intval( $fraction[1] );
 
-		// 12-col?
-		$x = (12*$numerator)/$denominator;
+		// 12-col grid system?
+		$x = ( 12 * $numerator ) / $denominator;
 
 		if ( is_int( $x ) ) {
+
 			$class .= $x;
 			return $class;
+
 		}
 
-		// 10-col?
-		if ( $denominator == 5 ) {
-			$class .= 'fifth_'.$numerator;
-		} else if ( $denominator == 10 ) {
-			$class .= 'tenth_'.$numerator;
+		// 10-col grid system?
+		if ( 5 === $denominator ) {
+
+			$class .= 'fifth_' . $numerator;
+
+		} elseif ( 10 === $denominator ) {
+
+			$class .= 'tenth_' . $numerator;
+
 		}
 
 		return $class;

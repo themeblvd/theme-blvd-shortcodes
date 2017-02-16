@@ -2,7 +2,7 @@
 Author URI: http://www.themeblvd.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 1.5.9.2
+Stable Tag: 1.6.0
 
 This plugin works in conjunction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
@@ -60,9 +60,10 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
-= 1.5.9.2 - XX/XX/XXXX =
+= 1.6.0 - XX/XX/XXXX =
 
 * Fixed: Selecting a style for `[post_slider]` in shortcode generator wasn't working.
+* Improvement: All PHP code has been reformatted to pass [WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) through PHP_CodeSniffer.
 
 = 1.5.9.1 - 11/11/2015 =
 
