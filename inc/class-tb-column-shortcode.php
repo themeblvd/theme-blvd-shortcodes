@@ -66,6 +66,7 @@ class Theme_Blvd_Column_Shortcode {
 	    $atts = shortcode_atts( array(
 			0 			=> '',		// For row close.
 			'size' 		=> '',		// The fraction for the width of the column.
+			'stack'		=> 'sm',	// Stacking point for column - xs, sm, md, lg.
 			'wpautop'	=> 'true',	// Whether wpautop happens within the column.
 			'class'		=> '',		// CSS class to override framework grid class.
 	    ), $atts );
@@ -189,7 +190,7 @@ class Theme_Blvd_Column_Shortcode {
 		} else {
 
 			// In framework 2.5+, life is simple.
-			$class .= themeblvd_grid_class( $size );
+			$class .= themeblvd_grid_class( $size, $atts['stack'] );
 
 		}
 

@@ -62,6 +62,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.6.0 - XX/XX/XXXX =
 
+* New: Added optional "stack" parameter to `[column]` shortcode for responsive stacking; you can pass in `xs`, `sm`, `md` or `lg` (requires Theme Blvd Framework 2.5+).
 * Fixed: Selecting a style for `[post_slider]` in shortcode generator wasn't working.
 * Improvement: All PHP code has been reformatted to pass [WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) through PHP_CodeSniffer.
 
