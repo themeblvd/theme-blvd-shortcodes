@@ -40,7 +40,7 @@ function themeblvd_shortcodes_init() {
 	global $_themeblvd_shortcode_options;
 
 	// Include general functions.
-	include_once( TB_SHORTCODES_PLUGIN_DIR . '/inc/general.php' );
+	include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/general.php' );
 
 	// Check to make sure Theme Blvd Framework 2.2+ is running.
 	if ( ! defined( 'TB_FRAMEWORK_VERSION' ) || version_compare( TB_FRAMEWORK_VERSION, '2.2.0', '<' ) ) {
@@ -57,11 +57,11 @@ function themeblvd_shortcodes_init() {
 		// Add shortcode generator -- Can be disabled from WP > Settings > Writing.
 		if ( 'no' !== get_option( 'themeblvd_shortcode_generator' ) ) {
 
-			include_once( TB_SHORTCODES_PLUGIN_DIR . '/inc/admin/generator/class-tb-shortcode-generator.php' );
+			include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/admin/generator/class-tb-shortcode-generator.php' );
 
 			if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
 
-				include_once( TB_SHORTCODES_PLUGIN_DIR . '/inc/admin/generator/class-tb-shortcode-generator-legacy.php' );
+				include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/admin/generator/class-tb-shortcode-generator-legacy.php' );
 
 			}
 
@@ -77,7 +77,7 @@ function themeblvd_shortcodes_init() {
 		}
 
 		// Add shortcode options, Settings > General.
-		include_once( TB_SHORTCODES_PLUGIN_DIR . '/inc/admin/options/class-tb-shortcode-options.php' );
+		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/admin/options/class-tb-shortcode-options.php' );
 
 		$_themeblvd_shortcode_options = new Theme_Blvd_Shortcode_Options();
 
@@ -86,9 +86,9 @@ function themeblvd_shortcodes_init() {
 	if ( ! is_admin() || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) {
 
 		// Include shortcodes.
-		include_once( TB_SHORTCODES_PLUGIN_DIR . '/inc/shortcodes.php' );
-		include_once( TB_SHORTCODES_PLUGIN_DIR . '/inc/class-tb-column-shortcode.php' );
-		include_once( TB_SHORTCODES_PLUGIN_DIR . '/inc/class-tb-popup-shortcode.php' );
+		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/shortcodes.php' );
+		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/class-tb-column-shortcode.php' );
+		include_once( TB_SHORTCODES_PLUGIN_DIR . '/includes/class-tb-popup-shortcode.php' );
 
 		// [raw] -- Can be disabled from WP > Settings > Writing
 		if ( 'no' !== get_option( 'themeblvd_raw' ) ) {
