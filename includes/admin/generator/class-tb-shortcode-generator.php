@@ -274,11 +274,11 @@ class Theme_Blvd_Shortcode_Generator {
 	 *
 	 * @since 1.4.0
 	 *
-	 * @param string $editor_id ID of current WP editor; it should be equal to "content".
+	 * @param string $editor_id ID of current WP editor; it should be equal to "content" or "themeblvd_content".
 	 */
 	public function add_button( $editor_id ) {
 
-		if ( 'content' !== $editor_id && 'themeblvd_editor' === $editor_id ) {
+		if ( 'content' !== $editor_id && 'themeblvd_editor' !== $editor_id ) {
 
 			return;
 
