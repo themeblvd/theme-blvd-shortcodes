@@ -62,6 +62,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.6.1 - 02/17/2016 =
 
+* Fixed: Theme Options page being covered by shortcode generator popup.
+
 = 1.6.0 - 02/16/2016 =
 
 * New: Added optional "stack" parameter to `[column]` shortcode for responsive stacking; you can pass in `xs`, `sm`, `md` or `lg` (requires Theme Blvd Framework 2.5+).
