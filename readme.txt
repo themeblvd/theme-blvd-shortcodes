@@ -63,6 +63,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.6.1 - 02/17/2016 =
 
 * Fixed: Theme Options page being covered by shortcode generator popup.
+* Fixed: Fatal PHP error when using `[lead]` shortcode.
 
 = 1.6.0 - 02/16/2016 =
 

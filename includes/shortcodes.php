@@ -1293,7 +1293,7 @@ function themeblvd_shortcode_vector_icon( $atts ) {
  */
 function themeblvd_shortcode_lead( $atts, $content = null ) {
 
-	$atts = shortcode_ats( array(
+	$atts = shortcode_atts( array(
 		'size' => 0, // Optional font size, 20px, 1.5em, etc.
 	), $atts );
 
