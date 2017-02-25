@@ -62,6 +62,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.6.2 - 02/25/2017 =
 
+* Fixed: Transparent background and border on `[button]` shortcode using `include_bg` and `include_border` parameters not working properly.
+
 = 1.6.1 - 02/17/2017 =
 
 * Fixed: Theme Options page being covered by shortcode generator popup.

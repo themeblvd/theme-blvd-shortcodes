@@ -227,8 +227,8 @@ function themeblvd_shortcode_button( $atts, $content = null ) {
 		'border'            => '#cccccc',
 		'text'              => '#333333',
 		'text_hover'        => '#333333',
-		'include_bg'        => 1,
-		'include_border'    => 1,
+		'include_bg'        => 'true',
+		'include_border'    => 'true',
 	), $atts );
 
 	$class = 'btn-shortcode';
@@ -247,13 +247,13 @@ function themeblvd_shortcode_button( $atts, $content = null ) {
 
 			if ( 'true' !== $atts['include_bg']  ) {
 
-				$bg = 'transparent';
+				$atts['bg'] = 'transparent';
 
 			}
 
 			if ( 'true' !== $atts['include_border'] ) {
 
-				$border = 'transparent';
+				$atts['border'] = 'transparent';
 
 			}
 
