@@ -2,7 +2,7 @@
 Author URI: http://www.themeblvd.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 1.6.1
+Stable Tag: 1.6.2
 
 This plugin works in conjunction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
@@ -60,13 +60,15 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
-= 1.6.1 - 02/17/2016 =
+= 1.6.2 - 02/25/2017 =
+
+= 1.6.1 - 02/17/2017 =
 
 * Fixed: Theme Options page being covered by shortcode generator popup.
 * Fixed: Fatal PHP error when using `[lead]` shortcode.
-* Fixed: "Add Shortcode" button not displaying in editor popups on Theme Options page and Layout Builder. 
+* Fixed: "Add Shortcode" button not displaying in editor popups on Theme Options page and Layout Builder.
 
-= 1.6.0 - 02/16/2016 =
+= 1.6.0 - 02/16/2017 =
 
 * New: Added optional "stack" parameter to `[column]` shortcode for responsive stacking; you can pass in `xs`, `sm`, `md` or `lg` (requires Theme Blvd Framework 2.5+).
 * Fixed: Selecting a style for `[post_slider]` in shortcode generator wasn't working.
