@@ -2,7 +2,7 @@
 Author URI: http://www.themeblvd.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 1.6.2
+Stable Tag: 1.6.3
 
 This plugin works in conjunction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
@@ -59,6 +59,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 2. Shortcode Generator interface.
 
 == Changelog ==
+
+= 1.6.3 - 03/08/2017 =
 
 = 1.6.2 - 02/25/2017 =
 
