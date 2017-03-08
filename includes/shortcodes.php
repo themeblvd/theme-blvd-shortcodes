@@ -2007,6 +2007,7 @@ function themeblvd_shortcode_gallery_slider( $atts ) {
 
 	$atts = shortcode_atts( array(
 	    'ids'           => '',                  // Comma separated attachments ID's.
+		'carousel'		=> '',					// Whether to use variable width owl carousel or not.
 	    'title'         => 'false',             // Whether to show titles.
 	    'caption'       => 'false',             // Whether to show captions.
 	    'size'          => '',      			// Crop size for images.
@@ -2033,7 +2034,7 @@ function themeblvd_shortcode_gallery_slider( $atts ) {
 	}
 
 	// Are we using variable-with owl carousel?
-	if ( ! isset( $atts['carousel'] ) ) {
+	if ( empty( $atts['carousel'] ) ) {
 
 		if ( themeblvd_get_option( 'gallery_carousel' ) ) {
 
