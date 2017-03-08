@@ -2009,7 +2009,7 @@ function themeblvd_shortcode_gallery_slider( $atts ) {
 	    'ids'           => '',                  // Comma separated attachments ID's.
 	    'title'         => 'false',             // Whether to show titles.
 	    'caption'       => 'false',             // Whether to show captions.
-	    'size'          => 'slider-large',      // Crop size for images.
+	    'size'          => '',      			// Crop size for images.
 	    'interval'      => '5000',              // Milliseconds between transitions.
 	    'pause'         => 'true',              // Whether to pause on hover.
 	    'wrap'          => 'true',              // Whether sliders continues auto rotate after first pass.
@@ -2030,6 +2030,20 @@ function themeblvd_shortcode_gallery_slider( $atts ) {
 
 	    $atts['thumb_size'] = str_replace( 'square_', '', $atts['thumb_size'] );
 
+	}
+
+	// Are we using variable-with owl carousel?
+	if ( ! isset( $atts['carousel'] ) ) {
+
+		if ( themeblvd_get_option( 'gallery_carousel' ) ) {
+
+			$atts['carousel'] = 'true';
+
+		} else {
+
+			$atts['carousel'] = 'false';
+
+		}
 	}
 
 	foreach ( $atts as $key => $val ) {
