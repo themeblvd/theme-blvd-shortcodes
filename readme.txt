@@ -62,6 +62,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.6.4 - XX/XX/XXXX =
 
+* Fixed: Minor admin styling issues with WordPress 4.8+.
+
 = 1.6.3 - 03/08/2017 =
 
 * Improvement: Better support for using variable width carousel with `[gallery_slider]` in Theme Blvd Framework 2.5+ themes. -- You can now pass in `carousel="true"` or `carousel="false"` to force the variable width carousel and override global gallery slider option set on theme options page. Also, now appropriate default image crop size will be used, depending on slider being displayed. [See documentation](http://demoblvd.com/plugins/shortcodes/generator/shortcodes-sliders/gallery-slider/).
