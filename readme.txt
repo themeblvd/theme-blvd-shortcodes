@@ -63,6 +63,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.6.4 - XX/XX/XXXX =
 
 * Fixed: Minor admin styling issues with WordPress 4.8+.
+* Removed: No more "striped" option for progress bars in Theme Blvd Framework 2.5+ themes.
 
 = 1.6.3 - 03/08/2017 =
 

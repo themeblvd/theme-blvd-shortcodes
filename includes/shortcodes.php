@@ -2707,19 +2707,12 @@ function themeblvd_shortcode_progress_bar( $atts ) {
 	if ( function_exists( 'themeblvd_get_progress_bar' ) ) {
 
 	    $atts['value'] = $atts['percent'];
-	    unset( $atts['percent'] );
 
-	    if ( 'true' === $atts['striped'] ) {
-
-	        $atts['striped'] = '1';
-
-	    } else {
-
-	        $atts['striped'] = '0';
-
-	    }
+		unset( $atts['percent'] );
 
 	    $atts['label_value'] = $atts['value'] . '%';
+
+		unset( $atts['striped'] ); // Removed from framework in 2.7.0.
 
 	    return themeblvd_get_progress_bar( $atts );
 

@@ -2733,17 +2733,6 @@ class Theme_Blvd_Shortcode_Generator {
 				'std' 		=> '#428bca',
 				'type' 		=> 'color',
 			),
-			'striped' => array(
-				'name' 		=> __( 'Striped', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( 'Whether the bar has the striped effect or not.', 'theme-blvd-shortcodes' ),
-				'id' 		=> 'striped',
-				'std' 		=> 'false',
-				'type' 		=> 'select',
-				'options' 	=> array(
-					'true' 		=> __( 'True', 'theme-blvd-shortcodes' ),
-					'false' 	=> __( 'False', 'theme-blvd-shortcodes' ),
-				),
-			),
 		);
 
 		// Milestone.
