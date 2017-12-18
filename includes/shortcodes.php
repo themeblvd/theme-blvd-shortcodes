@@ -580,7 +580,7 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
 
 	if ( 'false' === $atts['frame'] && $atts['class'] ) {
 
-	    $anchor_classes .= $atts['class'];
+	    $anchor_classes .= ' ' . $atts['class'];
 
 	}
 
