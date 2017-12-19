@@ -182,16 +182,19 @@ function themeblvd_shortcode_icon_list( $atts, $content = null ) {
 
 	}
 
-	// Add in fontawesome icon.
 	$content = str_replace( '<ul>', '<ul class="tb-icon-list fa-ul">', $content );
 
-	if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+	if ( function_exists( 'themeblvd_get_icon_class' ) ) { // Framework 2.7+
 
-		$content = str_replace( '<li>', '<li><i class="fa-li fa fa-' . $atts['icon'] . '"' . $color_css . '></i> ', $content );
+		$content = str_replace( '<li>', '<li><span class="fa-li"><i class="' . esc_attr( themeblvd_get_icon_class( $atts['icon'] ) ) . '"' . esc_attr( $color_css ) . '></i></span> ', $content );
+
+	} elseif ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+		$content = str_replace( '<li>', '<li><i class="fa-li fa fa-' . esc_attr( $atts['icon'] ) . '"' . esc_attr( $color_css ) . '></i> ', $content );
 
 	} else {
 
-		$content = str_replace( '<li>', '<li><i class="icon-' . $atts['icon'] . '"' . $color_css . '></i> ', $content );
+		$content = str_replace( '<li>', '<li><i class="icon-' . esc_attr( $atts['icon'] ) . '"' . esc_attr( $color_css ) . '></i> ', $content );
 
 	}
 
@@ -1105,19 +1108,42 @@ function themeblvd_shortcode_icon_link( $atts, $content = null ) {
 
 	}
 
-	$output  = sprintf( '<span class="tb-icon-link %s">', $atts['class'] );
+	$output  = sprintf( '<span class="tb-icon-link %s">', esc_attr( $atts['class'] ) );
 
-	if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+	if ( function_exists( 'themeblvd_get_icon_class' ) ) { // Framework 2.7+
 
-	    $output .= sprintf( '<i class="icon fa fa-%s" style="%s"></i>', $atts['icon'], $style );
+		$output .= sprintf(
+			'<i class="icon %s" style="%s"></i>',
+			esc_attr( themeblvd_get_icon_class( $atts['icon'], array( 'fa-fw' ) ) ),
+			esc_attr( $style )
+		);
+
+	} elseif ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+	    $output .= sprintf(
+			'<i class="icon fa fa-%s" style="%s"></i>',
+			esc_attr( $atts['icon'] ),
+			esc_attr( $style )
+		);
 
 	} else {
 
-	    $output .= sprintf( '<i class="icon-%s" style="%s"></i>', $atts['icon'], $style );
+	    $output .= sprintf(
+			'<i class="icon-%s" style="%s"></i>',
+			esc_attr( $atts['icon'] ),
+			esc_attr( $style )
+		);
 
 	}
 
-	$output .= sprintf( '<a href="%s" title="%s" class="icon-link-%s" target="%s">%s</a>', $atts['link'], $atts['title'], $atts['icon'], $atts['target'], $content );
+	$output .= sprintf(
+		'<a href="%s" title="%s" class="icon-link-%s" target="%s">%s</a>',
+		esc_url( $atts['link'] ),
+		esc_attr( $atts['title'] ),
+		esc_attr( $atts['icon'] ),
+		esc_attr( $atts['target'] ),
+		$content
+	);
 
 	$output .= '</span>';
 
@@ -1195,13 +1221,17 @@ function themeblvd_shortcode_label( $atts, $content = null ) {
 
 	if ( $atts['icon'] ) {
 
-		if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+		if ( function_exists( 'themeblvd_get_icon_class' ) ) { // Framework 2.7+
 
-	        $content = '<i class="fa fa-' . $atts['icon'] . '"></i> ' . $content;
+			$content = '<i class="' . esc_attr( themeblvd_get_icon_class( $atts['icon'] ) ) . '"></i> ' . $content;
+
+		} else if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
+
+	        $content = '<i class="fa fa-' . esc_attr( $atts['icon'] ) . '"></i> ' . $content;
 
 	    } else {
 
-	        $content = '<i class="icon-' . $atts['icon'] . '"></i> ' . $content;
+	        $content = '<i class="icon-' . esc_attr( $atts['icon'] ) . '"></i> ' . $content;
 
 	    }
 	}
@@ -1253,6 +1283,12 @@ function themeblvd_shortcode_vector_icon( $atts ) {
 	}
 
 	$class = sprintf( 'fa fa-%s', $icon ); // FontAwesome 4.
+
+	if ( function_exists( 'themeblvd_get_icon_class' ) ) { // Framework 2.7+
+
+		$class = themeblvd_get_icon_class( $icon ); // FontAwesome 5.
+
+	}
 
 	if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '<' ) ) {
 

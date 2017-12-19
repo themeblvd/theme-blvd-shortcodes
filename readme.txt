@@ -62,9 +62,10 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.6.4 - XX/XX/XXXX =
 
+* Improvement: Added compatibility for FontAwesome 5 (for framework 2.7+ themes).
 * Fixed: Minor admin styling issues with WordPress 4.8+.
 * Fixed: Custom classes added to `[lightbox]` shortcode not always being appended correctly.
-* Removed: No more "striped" option for progress bars in Theme Blvd Framework 2.5+ themes.
+* Removed: No more "striped" option for progress bars (for framework 2.5+ themes).
 
 = 1.6.3 - 03/08/2017 =
 
