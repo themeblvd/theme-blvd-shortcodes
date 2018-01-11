@@ -234,7 +234,7 @@ class Theme_Blvd_Shortcode_Generator {
 
 		if ( 'post.php' === $hook || 'post-new.php' === $hook || ( 'toplevel_page_themeblvd_builder' === $hook && version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) ) {
 
-			$suffix = SCRIPT_DEBUG ? '' : '.min';
+			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 			// WP Built-in scripts.
 			wp_enqueue_script( 'jquery-ui-core' );
