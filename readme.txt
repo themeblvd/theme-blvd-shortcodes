@@ -60,7 +60,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
-= 1.6.4 - XX/XX/XXXX =
+= 1.6.4 - 01/16/2018 =
 
 * Improvement: Added compatibility for FontAwesome 5 (for framework 2.7+ themes).
 * Fixed: Minor admin styling issues with WordPress 4.8+.
