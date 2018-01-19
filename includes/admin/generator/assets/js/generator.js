@@ -4,6 +4,20 @@ jQuery(document).ready(function($){
 	/* Static Methods
 	/*---------------------------------------*/
 
+	var themeblvdColumns = {};
+
+	if ( 'undefined' !== typeof window.themeblvd ) {
+
+		if ( 'undefined' !== typeof window.themeblvd.options ) {
+
+			if ( 'undefined' !== typeof window.themeblvd.columnWidths ) {
+
+				themeblvdColumns = window.themeblvd.columnWidths;
+
+			}
+		}
+	}
+
 	var themeblvd_generator = {
 
 		/**
@@ -209,36 +223,13 @@ jQuery(document).ready(function($){
 				wpautop = true;
 			}
 
-			if ( typeof themeblvd_column_widths != 'undefined' ) {
+			if ( $.isEmptyObject( themeblvdColumns ) ) {
 
-				// Theme Blvd Framework 2.5+
+				// Theme Blvd Framework v2.4 (@deprecated)
 
-				var setup = $section.find('.column-width-input').val(),
-					setup = setup.split('-');
-
-				for ( var i = 0; i < setup.length; i++ ) {
-
-					markup += '[column size="'+setup[i]+'"';
-
-					if ( wpautop ) {
-						markup += ' wpautop="true"';
-					}
-
-					markup += ']<br>';
-					markup += 'Column '+(i+1)+'...<br>';
-					markup += '[/column]';
-
-					if ( i < setup.length-1 ) {
-						markup += '<br>';
-					}
-				}
-
-			} else {
-
-				// @deprecated
-				var num = $section.find('.column-num').val(),
-					setup = $section.find('.column-width-'+num+' select').val(),
-					setup = setup.split('-'),
+				var num = $section.find( '.column-num' ).val(),
+					setup = $section.find( '.column-width-' + num ).val(),
+					setup = setup.split( '-' ),
 					column = '',
 					size;
 
@@ -246,7 +237,7 @@ jQuery(document).ready(function($){
 
 					column = '';
 
-					switch(setup[i]) {
+					switch( setup[ i ] ) {
 
 						case 'grid_3' :
 							size = '1/4';
@@ -314,6 +305,31 @@ jQuery(document).ready(function($){
 
 					markup += column;
 				}
+
+			} else {
+
+				// Theme Blvd Framework 2.7+
+
+				var setup = $section.find('.column-width-input').val(),
+					setup = setup.split('-');
+
+				for ( var i = 0; i < setup.length; i++ ) {
+
+					markup += '[column size="'+setup[i]+'"';
+
+					if ( wpautop ) {
+						markup += ' wpautop="true"';
+					}
+
+					markup += ']<br>';
+					markup += 'Column '+(i+1)+'...<br>';
+					markup += '[/column]';
+
+					if ( i < setup.length-1 ) {
+						markup += '<br>';
+					}
+				}
+
 			}
 
 			markup += '<br>[/raw]';
@@ -601,22 +617,35 @@ jQuery(document).ready(function($){
 	/* Columns
 	/*---------------------------------------*/
 
-	if ( typeof themeblvd_column_widths != 'undefined' ) {
+	/**
+	 * Send columns configuration to shortcode
+	 * output.
+	 *
+	 * The following only supports framework v2.4
+	 * and v2.7+.
+	 *
+	 * Those using framework 2.5-2.6 should update
+	 * their themes to get this functionality.
+	 */
+	if ( $.isEmptyObject( themeblvdColumns ) ) {
 
-		// Theme Blvd framework v2.5+
-		$('#tb-shortcode-generator .column-width-input').on('themeblvd_update_columns', function(){
-			themeblvd_generator.preview_columns( $(this).closest('.shortcode-options') );
-		});
+		// Theme Blvd Framework v2.4 (@deprecated)
 
-	} else {
-
-		$('#tb-shortcode-generator').find('.column-num, .column-width select').on('change', function(){
+		$('#tb-shortcode-generator').find('.column-num, .column-width').on('change', function(){
 			themeblvd_generator.preview_columns( $(this).closest('.shortcode-options') );
 		});
 
 		$('#tb-shortcode-generator .columns').each(function(){
 			$(this).find('.column-num option:first-child').remove();
 			$(this).find('.column-width-1').remove();
+		});
+
+	} else {
+
+		// Theme Blvd framework v2.7+
+
+		$('#tb-shortcode-generator .column-width-input').on('themeblvd-update-columns', function(){
+			themeblvd_generator.preview_columns( $(this).closest('.shortcode-options') );
 		});
 
 	}
