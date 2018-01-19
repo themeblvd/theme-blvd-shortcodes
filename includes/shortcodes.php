@@ -1288,9 +1288,7 @@ function themeblvd_shortcode_vector_icon( $atts ) {
 
 		$class = themeblvd_get_icon_class( $icon ); // FontAwesome 5.
 
-	}
-
-	if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '<' ) ) {
+	} else if ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '<' ) ) {
 
 	    $class = sprintf( 'icon-%s', $icon ); // FontAwesome 1-3.
 

@@ -97,6 +97,7 @@
 /* =Icon Browser
 -----------------------------------------------*/
 
+/* Framework 2.4 */
 #tb-shortcode-generator .icon-browser {
 	border: 1px solid #dfdfdf;
 	margin: 12px;
@@ -145,6 +146,17 @@
 }
 #tb-shortcode-generator .select-icon.selected {
 	color: #2ea2cc;
+}
+
+/* Framework 2.7+ */
+#tb-shortcode-generator .media-modal {
+	z-index: 100001;
+}
+#tb-shortcode-generator .media-modal-backdrop {
+	z-index: 100000;
+}
+.themeblvd-shortcode-generator-on #themeblvd-modal-backdrop {
+	z-index: 100001;
 }
 
 /* =Tooltips

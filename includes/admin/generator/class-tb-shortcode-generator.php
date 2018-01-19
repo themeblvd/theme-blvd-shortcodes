@@ -69,6 +69,10 @@ class Theme_Blvd_Shortcode_Generator {
 
 		}
 
+		// Add icon browser into editing posts, and pages when
+		// layout builder isn't presetn.
+		add_action( 'current_screen', array( $this, 'add_icon_browser' ) );
+
 	}
 
 	/**
@@ -157,12 +161,7 @@ class Theme_Blvd_Shortcode_Generator {
 		/**
 		 * Vector Icons
 		 */
-
-		if ( function_exists( 'themeblvd_get_icons' ) ) { // Framework 2.5+.
-
-			$this->vector_icons = themeblvd_get_icons( 'vector' );
-
-		} else {
+		if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
 
 			// Check for cached icons.
 			$this->vector_icons = get_transient( 'themeblvd_' . get_template() . '_vector_icons' );
@@ -498,7 +497,10 @@ class Theme_Blvd_Shortcode_Generator {
 												echo '<div class="shortcode-options shortcode-options-vector_icon" data-type="vector_icon">';
 
 												$this->preview( 'vector_icon' );
-												$this->icon_browser();
+
+												if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '<' ) ) {
+													$this->icon_browser();
+												}
 
 												echo '<div class="options-wrap">';
 
@@ -815,17 +817,19 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'icon_before' => array(
 				'name' 		=> __( 'Icon Before Button Text (optional)', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( '<p>Icon before text of button. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'theme-blvd-shortcodes' ),
+				'desc' 		=> __( 'Icon before text of button. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'icon_before',
 				'std' 		=> '',
 				'type' 		=> 'text',
+				'icon'      => 'vector',
 			),
 			'icon_after' => array(
 				'name' 		=> __( 'Icon After Button Text (optional)', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( '<p>Icon after text of button. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'theme-blvd-shortcodes' ),
+				'desc' 		=> __( 'Icon after text of button. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'icon_after',
 				'std' 		=> '',
 				'type' 		=> 'text',
+				'icon'      => 'vector',
 			),
 			'target' => array(
 				'name' 		=> __( 'Button Target', 'theme-blvd-shortcodes' ),
@@ -976,9 +980,10 @@ class Theme_Blvd_Shortcode_Generator {
 			'icon' => array(
 				'id' 		=> 'icon',
 				'name'		=> __( 'Divider Icon', 'theme-blvd-layout-builder' ),
-				'desc'		=> __( '<p>Enter the icon placed in the middle of the divider line. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'theme-blvd-layout-builder' ),
+				'desc'		=> __( 'Enter the icon placed in the middle of the divider line. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.', 'theme-blvd-layout-builder' ),
 				'std'		=> '',
 				'type'		=> 'text',
+				'icon'      => 'vector',
 				'class'		=> 'hide receiver receiver-solid receiver-dashed receiver-thick-solid receiver-thick-dashed receiver-double-solid receiver-double-dashed',
 			),
 			'icon_color' => array(
@@ -1031,10 +1036,11 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'icon' => array(
 				'name' 		=> __( 'Icon', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( '<p>Icon to be applied to each list item. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'theme-blvd-shortcodes' ),
+				'desc' 		=> __( 'Icon to be applied to each list item. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'icon',
-				'std' 		=> 'caret-right',
+				'std' 		=> 'fas fa-caret-right',
 				'type' 		=> 'text',
+				'icon'      => 'vector',
 			),
 			'color' => array(
 				'name' 		=> __( 'Icon Color (optional)', 'theme-blvd-shortcodes' ),
@@ -1044,6 +1050,10 @@ class Theme_Blvd_Shortcode_Generator {
 				'type' 		=> 'color',
 			),
 		);
+
+		if ( version_compare( TB_FRAMEWORK_VERSION, '2.7.0', '<' ) ) {
+			$options['icon_list']['icon']['std'] = 'caret-right';
+		}
 
 		// Jumbotron.
 		$options['jumbotron'] = array(
@@ -1271,17 +1281,19 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'icon_before' => array(
 				'name' 		=> __( 'Icon Before Button Text (optional)', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( '<p>Icon before text of button to popup. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'theme-blvd-shortcodes' ),
+				'desc' 		=> __( 'Icon before text of button to popup. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'icon_before',
 				'std' 		=> '',
 				'type' 		=> 'text',
+				'icon'      => 'vector',
 			),
 			'icon_after' => array(
 				'name' 		=> __( 'Icon After Button Text (optional)', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( '<p>Icon after text of button to popup. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'theme-blvd-shortcodes' ),
+				'desc' 		=> __( 'Icon after text of button to popup. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'icon_after',
 				'std' 		=> '',
 				'type' 		=> 'text',
+				'icon'      => 'vector',
 			),
 		);
 
@@ -2130,10 +2142,11 @@ class Theme_Blvd_Shortcode_Generator {
 		$options['icon_link'] = array(
 			'icon' => array(
 				'name' 		=> __( 'Link Icon', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( '<p>Enter an icon name. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'theme-blvd-shortcodes' ),
+				'desc' 		=> __( 'Enter an icon name. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'icon',
 				'std' 		=> 'link',
 				'type' 		=> 'text',
+				'icon'      => 'vector',
 			),
 			'link' => array(
 				'name' 		=> __( 'Link URL', 'theme-blvd-shortcodes' ),
@@ -2209,10 +2222,11 @@ class Theme_Blvd_Shortcode_Generator {
 			),
 			'icon' => array(
 				'name' 		=> __( 'Label Icon (optional)', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( '<p>Enter an icon name to appear at the start of the label. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.</p><p><em>Note: Do not prefix icon ID with "fa-"</em></p>', 'theme-blvd-shortcodes' ),
+				'desc' 		=> __( 'Enter an icon name to appear at the start of the label. This can be any <a href="http://fortawesome.github.io/Font-Awesome/icons/" target="_blank">FontAwesome vector icon ID</a>.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'icon',
 				'std' 		=> '',
 				'type' 		=> 'text',
+				'icon'      => 'vector',
 			),
 		);
 
@@ -2978,6 +2992,7 @@ class Theme_Blvd_Shortcode_Generator {
 				'id' 		=> 'icon',
 				'std' 		=> '',
 				'type' 		=> 'text',
+				'icon'      => 'vector',
 			),
 			'color' => array(
 				'name' 		=> __( 'Icon Color (optional)', 'theme-blvd-shortcodes' ),
@@ -3386,6 +3401,33 @@ class Theme_Blvd_Shortcode_Generator {
 
 		echo '</div><!-- .color-browser (end) -->';
 
+	}
+
+	/**
+	 * Hook in hidden icon browser modal.
+	 *
+	 * @since 1.6.5
+	 */
+	public function add_icon_browser() {
+
+		// Requires Framework 2.5+
+		if ( function_exists( 'themeblvd_icon_browser' ) ) {
+
+			$page = get_current_screen();
+
+			if ( $page->base == 'post' ) {
+
+				// Only insert when layout builder hasn't already.
+				if ( ! defined( 'TB_BUILDER_PLUGIN_VERSION' ) || $page->id != 'page' ) {
+
+					add_action( 'in_admin_header', array( $this, 'display_icon_browser' ) );
+
+				}
+			}
+		}
+	}
+	public function display_icon_browser() {
+		themeblvd_icon_browser( array( 'type' => 'vector' ) );
 	}
 
 }

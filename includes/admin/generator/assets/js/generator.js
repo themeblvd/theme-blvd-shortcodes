@@ -395,14 +395,14 @@ jQuery(document).ready(function($){
 	// Show modal window
 	$('.tb-insert-shortcode').on( 'click', function(){
 		$('#tb-shortcode-generator').show();
-		$('body').addClass('themeblvd-stop-scroll');
+		$('body').addClass('themeblvd-stop-scroll themeblvd-shortcode-generator-on');
 		return false;
 	});
 
 	// Hide modal window
 	$('#tb-shortcode-generator .media-modal-close, #tb-shortcode-generator .media-modal-backdrop').on( 'click', function(){
 		$('#tb-shortcode-generator').hide();
-		$('body').removeClass('themeblvd-stop-scroll');
+		$('body').removeClass('themeblvd-stop-scroll themeblvd-shortcode-generator-on');
 		return false;
 	});
 
@@ -533,7 +533,8 @@ jQuery(document).ready(function($){
 	/* Setup icon browser
 	/*---------------------------------------*/
 
-	// Vector icon browser
+	// Theme Blvd Framework 2.4
+
 	$('#tb-shortcode-generator .icon-browser-content').hide();
 
 	$('#tb-shortcode-generator .icon-browser-title a').on( 'click', function(){
@@ -573,6 +574,19 @@ jQuery(document).ready(function($){
 
 		return false;
 	});
+
+	// Theme Blvd Framework 2.7+
+
+	$( '#themeblvd-icon-browser-vector .media-button-insert' ).on( 'themeblvd-modal-insert', function( event, self ) {
+
+		var icon  = self.$modalWindow.find( '.icon-selection' ).val(),
+			$link = $( self.$element );
+
+		$link.closest( '.input-wrap' ).find( 'input' ).val( icon );
+
+		themeblvd_generator.preview( $link.closest( '.shortcode-options' ) );
+
+	} );
 
 	/*---------------------------------------*/
 	/* Setup color browser
@@ -687,7 +701,7 @@ jQuery(document).ready(function($){
 		window.send_to_editor(content);
 
 		// Allow page to scroll again
-		$('body').removeClass('themeblvd-stop-scroll');
+		$('body').removeClass('themeblvd-stop-scroll themeblvd-shortcode-generator-on');
 
 		// Hide modal window
 		$modal.hide();
