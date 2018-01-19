@@ -695,7 +695,6 @@ class Theme_Blvd_Shortcode_Generator {
 				'id'	=> 'sliders',
 				'name'	=> __( 'Sliders', 'theme-blvd-shortcodes' ),
 				'sub'	=> array(
-					'slider'			=> __( 'Custom Slider', 'theme-blvd-shortcodes' ),
 					'gallery_slider'	=> __( 'Gallery Slider', 'theme-blvd-shortcodes' ),
 					'post_slider'		=> __( 'Post Slider', 'theme-blvd-shortcodes' ),
 					'post_grid_slider'	=> __( 'Post Grid Slider', 'theme-blvd-shortcodes' ),
