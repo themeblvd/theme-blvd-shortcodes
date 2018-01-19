@@ -427,7 +427,7 @@ class Theme_Blvd_Shortcode_Generator {
 
 						<?php endforeach; ?>
 
-						<div id="optionsframework" class="media-frame-content">
+						<div id="optionsframework" class="tb-options-wrap media-frame-content">
 							<div class="attachments-browser">
 
 								<?php foreach ( $groups as $key => $group ) : ?>
