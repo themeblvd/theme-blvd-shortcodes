@@ -62,6 +62,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.6.5 - 01/18/2018 =
 
+* New: Added support for the shortcode generator in framework 2.7 themes.
+
 = 1.6.4 - 01/16/2018 =
 
 * Improvement: Added compatibility for FontAwesome 5 (for framework 2.7+ themes).
