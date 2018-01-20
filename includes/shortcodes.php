@@ -571,6 +571,11 @@ function themeblvd_shortcode_lightbox( $atts, $content = null ) {
 
 	    $thumb .= ' />';
 
+		if ( function_exists( 'themeblvd_get_thumbnail_link_icon' ) ) {
+
+			$thumb .= themeblvd_get_thumbnail_link_icon( $atts['icon'] );
+
+		}
 	}
 
 	$anchor_classes = 'tb-thumb-link ' . $atts['icon'];

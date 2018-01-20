@@ -62,6 +62,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.6.6 - XX/XX/2018 =
 
+* Fixed: Restored support for the theme's thumbnail icons to work with the `[lightbox]` shortcode in framework 2.7 themes.
+
 = 1.6.5 - 01/18/2018 =
 
 * New: Added support for the shortcode generator in framework 2.7 themes.
