@@ -1828,7 +1828,7 @@ class Theme_Blvd_Shortcode_Generator_Legacy {
 		$options['vector_icon'] = array(
 			'icon' => array(
 				'name' 		=> __( 'Icon', 'theme-blvd-shortcodes' ),
-				'desc' 		=> __( 'Enter an icon name. You can browse available FontAwesome icons in the above browser.', 'theme-blvd-shortcodes' ),
+				'desc' 		=> __( 'Enter an icon name.', 'theme-blvd-shortcodes' ),
 				'id' 		=> 'icon',
 				'std' 		=> '',
 				'type' 		=> 'text',
