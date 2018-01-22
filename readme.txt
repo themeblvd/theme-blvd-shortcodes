@@ -63,6 +63,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 = 1.6.6 - XX/XX/2018 =
 
 * Fixed: Restored support for the theme's thumbnail icons to work with the `[lightbox]` shortcode in framework 2.7 themes.
+* Fixed: Make sure icon browser search data doesn't get printed in the source code more than once.
 
 = 1.6.5 - 01/18/2018 =
 
