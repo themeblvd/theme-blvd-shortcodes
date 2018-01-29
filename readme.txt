@@ -60,8 +60,9 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
-= 1.6.6 - XX/XX/2018 =
+= 1.6.6 - 01/29/2018 =
 
+* Fixed: Custom colors not getting applied to icons of `[icon_list]` shortcode.
 * Fixed: Restored support for the theme's thumbnail icons to work with the `[lightbox]` shortcode in framework 2.7 themes.
 * Fixed: Make sure icon browser search data doesn't get printed in the source code more than once.
 

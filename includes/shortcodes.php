@@ -178,7 +178,7 @@ function themeblvd_shortcode_icon_list( $atts, $content = null ) {
 
 	if ( $atts['color'] ) {
 
-		$color_css = ' style="color:' . $atts['color'] . ';"';
+		$color_css = ' style="color:' . esc_attr( $atts['color'] ) . ';"';
 
 	}
 
@@ -186,15 +186,15 @@ function themeblvd_shortcode_icon_list( $atts, $content = null ) {
 
 	if ( function_exists( 'themeblvd_get_icon_class' ) ) { // Framework 2.7+
 
-		$content = str_replace( '<li>', '<li><span class="fa-li"><i class="' . esc_attr( themeblvd_get_icon_class( $atts['icon'] ) ) . '"' . esc_attr( $color_css ) . '></i></span> ', $content );
+		$content = str_replace( '<li>', '<li><span class="fa-li" ' . $color_css . '><i class="' . esc_attr( themeblvd_get_icon_class( $atts['icon'] ) ) . '"></i></span> ', $content );
 
 	} elseif ( version_compare( TB_FRAMEWORK_VERSION, '2.4.0', '>=' ) ) {
 
-		$content = str_replace( '<li>', '<li><i class="fa-li fa fa-' . esc_attr( $atts['icon'] ) . '"' . esc_attr( $color_css ) . '></i> ', $content );
+		$content = str_replace( '<li>', '<li><i class="fa-li fa fa-' . esc_attr( $atts['icon'] ) . '"' . $color_css . '></i> ', $content );
 
 	} else {
 
-		$content = str_replace( '<li>', '<li><i class="icon-' . esc_attr( $atts['icon'] ) . '"' . esc_attr( $color_css ) . '></i> ', $content );
+		$content = str_replace( '<li>', '<li><i class="icon-' . esc_attr( $atts['icon'] ) . '"' . $color_css . '></i> ', $content );
 
 	}
 
