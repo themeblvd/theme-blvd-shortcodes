@@ -2,7 +2,7 @@
 Author URI: http://www.themeblvd.com
 Contributors: themeblvd
 Tags: shortcodes, bootstrap, Theme Blvd, themeblvd, Jason Bobich
-Stable Tag: 1.6.6
+Stable Tag: 1.6.7
 
 This plugin works in conjunction with the Theme Blvd framework to create shortcodes for many of the framework's internal elements.
 
@@ -60,15 +60,17 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
+= 1.6.7 - XX/XX/2018 =
+
 = 1.6.6 - 01/29/2018 =
 
 * Fixed: Custom colors not getting applied to icons of `[icon_list]` shortcode.
-* Fixed: Restored support for the theme's thumbnail icons to work with the `[lightbox]` shortcode in framework 2.7 themes.
-* Fixed: Make sure icon browser search data doesn't get printed in the source code more than once.
+* Fixed: Restored support for the theme's thumbnail icons to work with the `[lightbox]` shortcode (for framework 2.7 themes).
+* Fixed: Make sure icon browser search data doesn't get printed in the source code more than once (for framework 2.7 themes).
 
 = 1.6.5 - 01/18/2018 =
 
-* New: Added support for the shortcode generator in framework 2.7 themes.
+* New: Added support for the shortcode generator (framework 2.7 themes).
 
 = 1.6.4 - 01/16/2018 =
 
