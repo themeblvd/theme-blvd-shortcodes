@@ -150,13 +150,16 @@
 
 /* Framework 2.7+ */
 #tb-shortcode-generator .media-modal {
-	z-index: 100001;
+	z-index: 100002;
 }
 #tb-shortcode-generator .media-modal-backdrop {
 	z-index: 100000;
 }
 .themeblvd-shortcode-generator-on #themeblvd-modal-backdrop {
 	z-index: 100001;
+}
+.themeblvd-shortcode-generator-on .themeblvd-icon-browser .themeblvd-modal {
+	z-index: 100003;
 }
 
 /* =Tooltips

@@ -62,6 +62,8 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 = 1.6.7 - XX/XX/2018 =
 
+* Fixed: "Add Shortcode" button not usable with elements within a Columns element of the [layout builder](http://wordpress.org/plugins/theme-blvd-layout-builder) (for framework 2.7 themes).
+
 = 1.6.6 - 01/29/2018 =
 
 * Fixed: Custom colors not getting applied to icons of `[icon_list]` shortcode.
