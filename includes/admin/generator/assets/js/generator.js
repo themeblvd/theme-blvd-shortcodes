@@ -10,9 +10,9 @@ jQuery(document).ready(function($){
 
 		if ( 'undefined' !== typeof window.themeblvd.options ) {
 
-			if ( 'undefined' !== typeof window.themeblvd.columnWidths ) {
+			if ( 'undefined' !== typeof window.themeblvd.options.columnWidths ) {
 
-				themeblvdColumns = window.themeblvd.columnWidths;
+				themeblvdColumns = window.themeblvd.options.columnWidths;
 
 			}
 		}
