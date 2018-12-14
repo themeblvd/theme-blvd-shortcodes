@@ -61,7 +61,7 @@ Any content wrapped in the `[raw]` shortcode will allow you to escape any automa
 
 == Changelog ==
 
-= 1.6.8 - XX/XX/XXXX =
+= 1.6.8 - 12/14/2018 =
 
 * Fixed: "Add Shortcode" button not working when editing custom layouts with [Theme Blvd Layout Builder](https://wordpress.org/plugins/theme-blvd-layout-builder) v2.3+.
 
