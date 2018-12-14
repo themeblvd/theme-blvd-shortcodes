@@ -61,13 +61,12 @@ class Theme_Blvd_Shortcode_Generator {
 		add_action( 'media_buttons', array( $this, 'add_button' ), 11 );
 
 		add_action( 'admin_footer-post.php', array( $this, 'add_modal' ) );
+
 		add_action( 'admin_footer-post-new.php', array( $this, 'add_modal' ) );
 
-		if ( version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) {
+		add_action( 'admin_footer-toplevel_page_themeblvd_builder', array( $this, 'add_modal' ) );
 
-			add_action( 'admin_footer-toplevel_page_themeblvd_builder', array( $this, 'add_modal' ) );
-
-		}
+		add_action( 'admin_footer-admin_page_tb-edit-layout', array( $this, 'add_modal' ) );
 
 		// Add icon browser into editing posts, and pages when
 		// layout builder isn't presetn.
@@ -231,7 +230,14 @@ class Theme_Blvd_Shortcode_Generator {
 	 */
 	public function assets( $hook ) {
 
-		if ( 'post.php' === $hook || 'post-new.php' === $hook || ( 'toplevel_page_themeblvd_builder' === $hook && version_compare( TB_FRAMEWORK_VERSION, '2.5.0', '>=' ) ) ) {
+		$pages_to_add_assets = array(
+			'post.php',
+			'post-new.php',
+			'admin_page_tb-edit-layout',
+			'toplevel_page_themeblvd_builder'
+		);
+
+		if ( in_array( $hook, $pages_to_add_assets ) ) {
 
 			$suffix = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
